@@ -1,0 +1,53 @@
+# MISSING CHART FILES — EXPORT FROM TRADE NAVIGATOR
+
+## Total Missing: 11 files
+## Status: NOT in GitHub repo, listed in spreadsheet or needed for completeness
+
+### WHEAT CONTRACTS (5 missing)
+1. Wheat_HRW_D.png (Kansas City HRW Daily) — row 8 in spreadsheet
+   → Export from Trade Navigator as generic filename: Wheat_HRW_D.png or WHEAT_HRW_D.png
+
+2. Wheat_HRW_M.png (Kansas City HRW Monthly) — row 10 in spreadsheet
+   → Export as: WHEAT_HRW_M.png
+
+3. Wheat_HRS_D.png (Minneapolis HRS Daily) — row 11 in spreadsheet
+   → Export as: WHEAT_HRS_D.png or keep consistent with pattern
+
+4. Wheat_HRS_M.png (Minneapolis HRS Monthly) — row 13 in spreadsheet
+   → Export as: WHEAT_HRS_M.png
+
+5. Wheat_FWH_M.png (Paris 11% Milling Wheat Monthly) — row 16 in spreadsheet
+   → Export as: WHEAT_FWH_M.png
+
+### INTRA-MARKET SPREADS (1 missing)
+6. SPD_HRW_H_K.png (Kansas City HRW Mar/May Spread) — row 26 in spreadsheet
+   → Export as: SPD_HRW_H_K.png (should already exist per pattern, but missing)
+
+### ENERGY (3 missing)
+7. NRG_CL_W.png (Crude Oil Weekly) — row 55 in spreadsheet
+   → Export as: NRG_CL_W.png (only _M exists currently)
+
+8. NRG_HO_W.png (Diesel/Heating Oil Weekly) — row 58 in spreadsheet
+   → Export as: NRG_HO_W.png (only _D exists currently)
+
+9. NRG_HO_M.png (Diesel/Heating Oil Monthly) — row 59 in spreadsheet
+   → Export as: NRG_HO_M.png (only _D exists currently)
+
+### METALS (1 missing)
+10. METL_SI_M.png (Silver Monthly) — row 64 in spreadsheet
+    → Export as: METL_SI_M.png (only _D exists currently)
+
+### OTHER (1 missing - may not be needed)
+11. AGI_CAT_D.png (Caterpillar Daily) — row 74 in spreadsheet
+    → Export as: FIN_CAT_D.png or AGI_CAT_D.png depending on naming convention
+
+---
+
+## NAMING CONVENTION DECISION NEEDED:
+Do you want to rename existing FIN_* files to AGI_*, or update the spreadsheet to reference FIN_*?
+
+Current files:
+- FIN_DE_D.png (John Deere) — spreadsheet expects AGI_DE_D.png
+- FIN_HD_D.png (Home Depot) — spreadsheet expects AGI_HD_D.png
+
+Recommendation: Standardize on one prefix (AGI = Agriculture Index, or FIN = Financial indices)
