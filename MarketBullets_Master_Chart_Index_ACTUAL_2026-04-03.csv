@@ -1,0 +1,73 @@
+Row #,Category,Filename (ACTUAL),Chart Title,Timeframe,Status,Dashboard Location,Update Frequency,NOTES
+1,WHEATS,WHEAT_SRW_BOR_D.png,Box-o-Rox Daily,Daily,Published,Top,Daily,THE signal. SRW price vs 60MA
+2,WHEATS,WHEAT_SRW_30M.png,Chicago SRW 30-Minute,30-Min,Published,Top,Live/Daily,Session momentum
+3,WHEATS,WHEAT_SRW_D.png,Chicago SRW Daily,Daily,Published,Top,Daily,Primary chart
+4,WHEATS,WHEAT_SRW_W.png,Chicago SRW Weekly,Weekly,Published,Top,Weekly,Intermediate trend
+5,WHEATS,WHEAT_SRW_M.png,Chicago SRW Monthly,Monthly,Published,Top,Monthly,Seasonal patterns
+6,WHEATS,WHEAT_SRW_Special_M.png,Chicago SRW Monthly (Annotated),Monthly,Published,Top,Monthly,Pattern identification
+7,WHEATS,WHEAT_SRW_A.png,Chicago SRW Annual,Annual,Published,Top,Annually,50+ year view
+8,WHEATS,WHEAT_HRW_W.png,Kansas City HRW Weekly,Weekly,Published,Top,Weekly,HRW intermediate trend
+9,WHEATS,WHEAT_HRS_W.png,Minneapolis HRS Weekly,Weekly,Published,Top,Weekly,Spring wheat trend
+10,WHEATS,WHEAT_FWH_D.png,Paris 11% Milling Wheat Daily,Daily,Published,Top,Daily,European benchmark
+11,WHEATS,WHEAT_FWH_W.png,Paris 11% Milling Wheat Weekly,Weekly,Published,Top,Weekly,Global price discovery
+12,GRAINS,GRAIN_C_D.png,CBOT Corn Daily,Daily,Published,Mid,Daily,Feed substitution
+13,GRAINS,GRAIN_C_W.png,CBOT Corn Weekly,Weekly,Published,Mid,Weekly,Corn intermediate trend
+14,GRAINS,GRAIN_S_D.png,CBOT Soybeans Daily,Daily,Published,Mid,Daily,Row crop bellwether
+15,GRAINS,GRAIN_S_W.png,CBOT Soybeans Weekly,Weekly,Published,Mid,Weekly,Soybean intermediate trend
+16,SPD_INTRA,SPD_SRW_H_K.png,Chicago SRW Spread: Mar/May,Weekly,In Development,Mid,Daily,Near-term carry
+17,SPD_INTRA,SPD_SRW_K_N.png,Chicago SRW Spread: May/Jul,Weekly,Published,Mid,Daily,Pre-harvest carry signal
+18,SPD_INTRA,SPD_SRW_N_U.png,Chicago SRW Spread: Jul/Sep,Weekly,Published,Mid,Daily,Harvest pressure spread
+19,SPD_INTRA,SPD_SRW_U_Z.png,Chicago SRW Spread: Sep/Dec,Weekly,Published,Mid,Daily,Post-harvest carry
+20,SPD_INTRA,SPD_SRW_Z_H2.png,Chicago SRW Spread: Dec/Mar+1yr,Weekly,In Development,Mid,Daily,Winter carry
+21,SPD_INTRA,SPD_HRW_H_K.png,Kansas City HRW Spread: Mar/May,Weekly,In Development,Mid,Daily,HRW near-term carry
+22,SPD_INTRA,SPD_HRW_K_N.png,Kansas City HRW Spread: May/Jul,Weekly,Published,Mid,Daily,HRW pre-harvest
+23,SPD_INTRA,SPD_HRW_N_U.png,Kansas City HRW Spread: Jul/Sep,Weekly,Published,Mid,Daily,HRW harvest-to-fall
+24,SPD_INTRA,SPD_HRW_U_Z.png,Kansas City HRW Spread: Sep/Dec,Weekly,Published,Mid,Daily,HRW fall carry
+25,SPD_INTRA,SPD_HRW_Z_H2.png,Kansas City HRW Spread: Dec/Mar+1yr,Weekly,In Development,Mid,Daily,HRW winter carry
+26,SPD_INTRA,SPD_HRS_H_K.png,Minneapolis HRS Spread: Mar/May,Weekly,In Development,Mid,Daily,HRS near-term carry
+27,SPD_INTRA,SPD_HRS_K_N.png,Minneapolis HRS Spread: May/Jul,Weekly,Published,Mid,Daily,HRS pre-harvest
+28,SPD_INTRA,SPD_HRS_N_U.png,Minneapolis HRS Spread: Jul/Sep,Weekly,Published,Mid,Daily,HRS harvest-to-fall
+29,SPD_INTRA,SPD_HRS_U_Z.png,Minneapolis HRS Spread: Sep/Dec,Weekly,Published,Mid,Daily,HRS fall carry
+30,SPD_INTRA,SPD_HRS_Z_H2.png,Minneapolis HRS Spread: Dec/Mar+1yr,Weekly,In Development,Mid,Daily,HRS winter carry
+31,SPD_INTRA,SPD_FWH_H_K.png,Paris Milling Spread: Mar/May,Weekly,In Development,Mid,Daily,European pre-harvest
+32,SPD_INTRA,SPD_FWH_K_U.png,Paris Milling Spread: May/Sep,Weekly,Published,Mid,Daily,European pre-harvest carry
+33,SPD_INTRA,SPD_FWH_K2_U2.png,Paris Milling Spread: May+1/Sep+1,Weekly,Unknown,Mid,Unknown,EXTRA - undocumented variant
+34,SPD_INTRA,SPD_FWH_U_Z.png,Paris Milling Spread: Sep/Dec,Weekly,Published,Mid,Daily,European fall carry
+35,SPD_INTRA,SPD_FWH_Z_H2.png,Paris Milling Spread: Dec/Mar+1yr,Weekly,Published,Mid,Daily,European winter carry
+36,SPD_INTER,SPDINTER_SRW_HRW_M.png,Chicago SRW minus Kansas City HRW,Monthly,Published,Mid,Periodic,Class premium/discount
+37,SPD_INTER,SPDINTER_SRW_HRS_M.png,Chicago SRW minus Minneapolis HRS,Monthly,Published,Mid,Periodic,Protein premium
+38,SPD_INTER,SPDINTER_SRW_HRS_W.png,Chicago SRW minus Minneapolis HRS (Weekly),Weekly,In Development,Mid,Periodic,Protein premium weekly
+39,SPD_INTER,SPDINTER_HRS_HRW_M.png,Minneapolis HRS minus Kansas City HRW,Monthly,Published,Mid,Periodic,Quality differential
+40,RATIO,RATIO_SRW_C_M.png,Wheat/Corn Ratio: Monthly,Monthly,Published,Bot,Periodic,Substitution economics
+41,RATIO,RATIO_S_C_W.png,Soybeans/Corn Ratio: Weekly,Weekly,Published,Bot,Periodic,Planting decision ratio
+42,COT,COT_SRW_W.png,Commitment of Traders: Chicago SRW,Weekly,Published,Mid,Weekly,Managed money positioning
+43,COT,COT_HRW_W.png,Commitment of Traders: Kansas City HRW,Weekly,Published,Mid,Weekly,HRW positioning
+44,BNDS,BNDS_2YR_TNOTE_W.png,2-Year T-Note Weekly,Weekly,Published,Bot,Weekly,Near-term rate expectations
+45,BNDS,BNDS_10YR_Price_Q.png,10-Year Treasury Bond Price: Quarterly,Quarterly,Published,Bot,Quarterly,Economic outlook gauge
+46,BNDS,BNDS_30YR_Price_Q.png,30-Year Treasury Bond Price: Quarterly,Quarterly,Published,Bot,Quarterly,Flight to quality signal
+47,BNDS,BNDS_30YR_Yield_Q.png,30-Year Treasury Bond Yield: Quarterly,Quarterly,Published,Bot,Quarterly,Long-term borrowing cost
+48,FX,FX_USD_WD_D.png,Australian Dollar Daily,Daily,Published,Bot,Daily,Competitor currency (AUD)
+49,FX,FX_USD_WD_M.png,Australian Dollars per US Dollar: Monthly,Monthly,Published,Bot,Monthly,Long-term AUD trend
+50,FX,FX_RUB_USD_M.png,Russian Rubles per US Dollar: Monthly,Monthly,Published,Bot,Monthly,Russian export competitiveness
+51,FX,FX_CNY_USD_M.png,Chinese Yuan per US Dollar: Monthly,Monthly,Published,Bot,Monthly,China trade dynamics
+52,FX,FX_RUB_CNY_W.png,Russian Rubles per Chinese Yuan: Weekly,Weekly,Published,Bot,Weekly,Black Sea-China corridor
+53,NRG,NRG_CL_M.png,Crude Oil: Monthly,Monthly,Published,Bot,Monthly,Energy trend
+54,NRG,NRG_HO_D.png,Diesel/Heating Oil Daily,Daily,Published,Bot,Daily,Input cost - immediate
+55,NRG,NRG_NG_M.png,Natural Gas: Henry Hub Monthly,Monthly,Published,Bot,Monthly,Fertilizer feedstock
+56,METL,METL_GC_D.png,Gold (COMEX) Daily,Daily,Published,Bot,Daily,Risk sentiment - immediate
+57,METL,METL_GC_M.png,Gold (COMEX) Monthly,Monthly,Published,Bot,Monthly,Long-term risk gauge
+58,METL,METL_SI_D.png,Silver (COMEX) Daily,Daily,Published,Bot,Daily,Industrial/monetary hybrid
+59,METL,METL_HG_M.png,Copper (COMEX) Monthly,Monthly,Published,Bot,Monthly,Dr. Copper - economist's metal
+60,IDX,IDX_DXY_W.png,US Dollar Index Weekly,Weekly,Published,Bot,Weekly,Currency impact
+61,IDX,IDX_DXY_M.png,US Dollar Index Monthly,Monthly,In Development,Bot,Monthly,Dollar long-term trend
+62,IDX,IDX_BDI_W.png,Baltic Dry Index (Bulk Freight) Weekly,Weekly,Published,Bot,Weekly,Shipping costs
+63,IDX,IDX_ES_D.png,S&P 500 Index Daily,Daily,Published,Bot,Daily,Risk appetite
+64,IDX,IDX_ES_M.png,S&P 500 Index Monthly,Monthly,Published,Bot,Monthly,Equity trend
+65,IDX,IDX_GSCI_W.png,Goldman Sachs Commodity Index Weekly,Weekly,Published,Bot,Weekly,Commodity complex barometer
+66,FIN,FIN_DE_D.png,John Deere & Co. Daily,Daily,Published,Bot,Daily,Farm economy bellwether
+67,FIN,FIN_HD_D.png,The Home Depot Daily,Daily,Published,Bot,Daily,Consumer strength proxy
+68,MISC,MISC_CC_M.png,Unknown/Crypto,Monthly,Unknown,Unknown,Unknown,EXTRA - needs documentation
+,,,,,,,,,
+,TOTAL ACTUAL FILES:,68,,,,,,,
+,Published:,?,,,,,,,
+,In Development/Unknown:,?,,,,,,,

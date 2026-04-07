@@ -1,0 +1,7 @@
+# MarketBullets Social Automation — Dependencies
+anthropic>=0.25.0          # Claude API — voice transformation engine
+feedparser>=6.0.10         # Squarespace RSS parsing
+requests>=2.31.0           # Buffer API + image fetching
+python-dotenv>=1.0.0       # .env secrets loading
+schedule>=1.2.2            # lightweight polling scheduler
+pytz>=2024.1               # Pacific Time zone handling

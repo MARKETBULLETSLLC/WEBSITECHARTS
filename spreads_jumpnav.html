@@ -1,0 +1,160 @@
+<!--
+  MarketBullets® — Spreads & Ratios Gallery Jump Navigation
+  Paste this as a Code Block at the TOP of the Spreads & Ratios member page in Squarespace.
+  Each card anchors to a corresponding section header below the chart groups.
+  The section headers (anchor targets) are in spreads_section_headers.html — paste one above each chart group.
+-->
+
+<style>
+  :root {
+    --ink:    #1A1612;
+    --cream:  #FBF7EE;
+    --amber:  #D4A051;
+    --rule:   rgba(212,160,81,.22);
+    --muted:  rgba(251,247,238,.55);
+    --card-bg:#221D18;
+    --card-border: rgba(212,160,81,.18);
+  }
+
+  .spd-nav-wrap {
+    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+    background: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px 24px 20px;
+    margin: 0 0 36px;
+  }
+
+  .spd-nav-eyebrow {
+    font-family: 'DM Mono', 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0 0 14px;
+  }
+
+  .spd-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .spd-nav-card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 14px 16px 12px;
+    text-decoration: none;
+    color: var(--cream);
+    transition: border-color .2s, background .2s;
+    cursor: pointer;
+  }
+  .spd-nav-card:hover {
+    border-color: var(--amber);
+    background: #2A2218;
+  }
+
+  .spd-nav-class {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--amber);
+    margin: 0 0 2px;
+    letter-spacing: .01em;
+  }
+
+  .spd-nav-xchg {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+
+  .spd-nav-region {
+    font-size: 12px;
+    color: rgba(251,247,238,.75);
+    line-height: 1.45;
+    margin: 0 0 7px;
+  }
+
+  .spd-nav-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 7px;
+  }
+
+  .spd-nav-arrow {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    color: var(--amber);
+    margin-top: 8px;
+    opacity: .7;
+  }
+
+  @media (max-width: 600px) {
+    .spd-nav-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 380px) {
+    .spd-nav-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="spd-nav-wrap">
+  <p class="spd-nav-eyebrow">&#x2736; Spreads &amp; Ratios &nbsp;&middot;&nbsp; Jump to group</p>
+  <div class="spd-nav-grid">
+
+    <!-- SRW -->
+    <a class="spd-nav-card" href="#srw-spreads">
+      <div class="spd-nav-class">Chicago SRW</div>
+      <div class="spd-nav-xchg">CBOT &nbsp;&middot;&nbsp; ZW</div>
+      <p class="spd-nav-region">Eastern Corn Belt to the Mid-Atlantic. The speculative benchmark &mdash; soft, low-protein, cookie and cracker class.</p>
+      <p class="spd-nav-desc">When managed money moves in or out of wheat, it moves here first. Calendar spreads reveal carry structure and old-crop tightness.</p>
+      <span class="spd-nav-arrow">&#x2193;</span>
+    </a>
+
+    <!-- HRW -->
+    <a class="spd-nav-card" href="#hrw-spreads">
+      <div class="spd-nav-class">Kansas City HRW</div>
+      <div class="spd-nav-xchg">KCBT &nbsp;&middot;&nbsp; KE</div>
+      <p class="spd-nav-region">Great Plains &mdash; Kansas, Oklahoma, Texas. The largest U.S. wheat class. Bread flour. Drought-tolerant, export-critical.</p>
+      <p class="spd-nav-desc">Less speculative noise than CBOT, more tied to export fundamentals. Watch HRW spreads when Plains crop condition shifts.</p>
+      <span class="spd-nav-arrow">&#x2193;</span>
+    </a>
+
+    <!-- HRS -->
+    <a class="spd-nav-card" href="#hrs-spreads">
+      <div class="spd-nav-class">Minneapolis HRS</div>
+      <div class="spd-nav-xchg">MGEX &nbsp;&middot;&nbsp; MWE</div>
+      <p class="spd-nav-region">Northern Plains &mdash; North Dakota, Minnesota, Montana. Spring-planted. Premium protein. The blending class.</p>
+      <p class="spd-nav-desc">Most weather-sensitive contract. When HRS firms sharply against HRW, protein is scarce and end-users are paying for it.</p>
+      <span class="spd-nav-arrow">&#x2193;</span>
+    </a>
+
+    <!-- FWH -->
+    <a class="spd-nav-card" href="#fwh-spreads">
+      <div class="spd-nav-class">Paris Milling</div>
+      <div class="spd-nav-xchg">EuroNext &nbsp;&middot;&nbsp; EBM</div>
+      <p class="spd-nav-region">France, Germany, Romania. EU soft wheat belt. The contract that competes with U.S. origin for global export business.</p>
+      <p class="spd-nav-desc">When French FOB drops below U.S. Gulf, American wheat loses export sales &mdash; full stop. EUR/USD is embedded in every quote.</p>
+      <span class="spd-nav-arrow">&#x2193;</span>
+    </a>
+
+    <!-- Inter-market -->
+    <a class="spd-nav-card" href="#inter-spreads">
+      <div class="spd-nav-class">Inter-Market</div>
+      <div class="spd-nav-xchg">Cross-class &nbsp;&middot;&nbsp; Ratios</div>
+      <p class="spd-nav-region">SRW vs. HRW vs. HRS. Wheat vs. corn. Beans vs. corn. The relationships between classes and competing crops.</p>
+      <p class="spd-nav-desc">Class spread compression or widening signals structural shifts in the supply picture before flat price reflects them.</p>
+      <span class="spd-nav-arrow">&#x2193;</span>
+    </a>
+
+  </div>
+</div>

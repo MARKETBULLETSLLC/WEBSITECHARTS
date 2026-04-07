@@ -1,0 +1,67 @@
+# AG INDEX vs FIN PREFIX NAMING CONVENTION FIX
+
+## CURRENT STATE:
+Files exist with FIN_ prefix but spreadsheet references AGI_ prefix:
+- FIN_DE_D.png (currently in repo) — spreadsheet row 73 expects: AGI_DE_D.png
+- FIN_HD_D.png (currently in repo) — spreadsheet row 72 expects: AGI_HD_D.png
+- AGI_CAT_D.png (needed but missing) — spreadsheet row 74 expects: AGI_CAT_D.png
+
+## DECISION REQUIRED:
+Choose ONE approach and stick with it:
+
+---
+
+### OPTION A: STANDARDIZE ON AGI_ (Agriculture Index)
+Rationale: These are ag-sector economic indicators, not pure financial indices
+
+Renames needed:
+```bash
+git mv FIN_DE_D.png AGI_DE_D.png
+git mv FIN_HD_D.png AGI_HD_D.png
+git commit -m "Rename financial agriculture indices to AGI_ prefix for consistency"
+```
+
+Then export from Trade Navigator:
+- AGI_CAT_D.png (Caterpillar Daily)
+
+---
+
+### OPTION B: STANDARDIZE ON FIN_ (Financial Index)
+Rationale: These are all equity/financial market signals, grouped with other macro indices
+
+Action: Update spreadsheet rows 72-74 to reference FIN_ instead of AGI_
+- Change AGI_HD_D.png → FIN_HD_D.png (row 72) ✓ file exists
+- Change AGI_DE_D.png → FIN_DE_D.png (row 73) ✓ file exists
+- Change AGI_CAT_D.png → FIN_CAT_D.png (row 74) export as FIN_CAT_D.png
+
+Then export from Trade Navigator:
+- FIN_CAT_D.png (Caterpillar Daily)
+
+---
+
+### OPTION C: SPLIT NAMING BY CATEGORY
+Use different prefixes for different types:
+- AGI_* = Farm equipment & inputs (Deere, Caterpillar)
+- RTL_* = Retail/consumer (Home Depot)
+- IDX_* = pure market indices (keep DXY, BDI, ES, GSCI where they are)
+
+Renames needed:
+```bash
+git mv FIN_DE_D.png AGI_DE_D.png
+git mv FIN_HD_D.png RTL_HD_D.png
+git commit -m "Split financial indices by category: AGI for farm equipment, RTL for retail"
+```
+
+Then export:
+- AGI_CAT_D.png (Caterpillar)
+- RTL_HD_D.png already renamed above
+
+---
+
+## RECOMMENDATION:
+**Go with OPTION A (AGI_ prefix)** — these are distinctly agriculture-sector indicators, separate from pure macro financial indices. The name AGI signals both agricultural focus AND index status.
+
+Once you decide, let me know and I'll:
+1. Execute the Git renames
+2. Update the spreadsheet with correct filenames
+3. Provide the export checklist for Trade Navigator

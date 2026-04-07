@@ -1,0 +1,7 @@
+# On-Air Indicator dependencies (Windows only)
+pywin32>=306
+
+# Optional: local AI transcription with timestamps
+# openai-whisper
+# torch
+# ffmpeg-python
