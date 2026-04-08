@@ -575,21 +575,6 @@ table.mb-tbl { width: 100%; border-collapse: collapse; min-width: 640px; }
 }
 .mb-card-expand { color: rgba(200,150,10,.25); font-size: .52rem; }
 
-/* Missing chart placeholder */
-.mb-card-missing {
-  background: var(--soil-light);
-  border: 1px dashed rgba(200,150,10,.12);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 180px;
-  padding: 24px;
-  gap: 10px;
-}
-.mb-card-missing-icon { font-family: var(--mono); font-size: 1.2rem; color: rgba(200,150,10,.15); }
-.mb-card-missing-label { font-family: var(--mono); font-size: .55rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,150,10,.22); text-align: center; }
-.mb-card-missing-sub { font-family: var(--mono); font-size: .48rem; letter-spacing: 1px; color: rgba(200,150,10,.14); text-align: center; }
 
 /* ══════════════════════════════════════════════════════
    FOOTER NAV
@@ -810,9 +795,9 @@ table.mb-tbl { width: 100%; border-collapse: collapse; min-width: 640px; }
     <div class="mb-gal-title">Wheat Charts <span>Click any chart to expand</span></div>
     <div class="mb-tabs">
       <button class="mb-tab on" data-tab="srw">SRW <span class="mb-tab-count">5</span></button>
-      <button class="mb-tab" data-tab="hrw">HRW <span class="mb-tab-count">3</span></button>
-      <button class="mb-tab" data-tab="hrs">HRS <span class="mb-tab-count">3</span></button>
-      <button class="mb-tab" data-tab="fwh">FWH / Paris <span class="mb-tab-count">3</span></button>
+      <button class="mb-tab" data-tab="hrw">HRW <span class="mb-tab-count">1</span></button>
+      <button class="mb-tab" data-tab="hrs">HRS <span class="mb-tab-count">1</span></button>
+      <button class="mb-tab" data-tab="fwh">FWH / Paris <span class="mb-tab-count">2</span></button>
     </div>
   </div>
 
@@ -842,51 +827,27 @@ table.mb-tbl { width: 100%; border-collapse: collapse; min-width: 640px; }
     </div>
   </div>
 
-  <!-- HRW — 3 charts: Daily (missing), Weekly, Monthly (missing) -->
+  <!-- HRW — Weekly only (Daily + Monthly pending Trade Navigator export) -->
   <div class="mb-panel" id="mb-p-hrw">
     <div class="mb-grid">
-      <!-- HRW Daily — pending export -->
-      <div class="mb-card-missing">
-        <div class="mb-card-missing-icon">◻</div>
-        <div class="mb-card-missing-label">HRW · Daily</div>
-        <div class="mb-card-missing-sub">Export WHEAT_HRW_D.png from Trade Navigator</div>
-      </div>
       <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRW_W.png','HRW · Weekly')">
         <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRW_W.png" alt="HRW Weekly" loading="lazy"/>
         <div class="mb-card-lbl">HRW · Weekly <span class="mb-card-expand">⊕</span></div>
       </div>
-      <!-- HRW Monthly — pending export -->
-      <div class="mb-card-missing">
-        <div class="mb-card-missing-icon">◻</div>
-        <div class="mb-card-missing-label">HRW · Monthly</div>
-        <div class="mb-card-missing-sub">Export WHEAT_HRW_M.png from Trade Navigator</div>
-      </div>
     </div>
   </div>
 
-  <!-- HRS — 3 charts: Daily (missing), Weekly, Monthly (missing) -->
+  <!-- HRS — Weekly only (Daily + Monthly pending Trade Navigator export) -->
   <div class="mb-panel" id="mb-p-hrs">
     <div class="mb-grid">
-      <!-- HRS Daily — pending export -->
-      <div class="mb-card-missing">
-        <div class="mb-card-missing-icon">◻</div>
-        <div class="mb-card-missing-label">HRS · Daily</div>
-        <div class="mb-card-missing-sub">Export WHEAT_HRS_D.png from Trade Navigator</div>
-      </div>
       <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRS_W.png','HRS · Weekly')">
         <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRS_W.png" alt="HRS Weekly" loading="lazy"/>
         <div class="mb-card-lbl">HRS · Weekly <span class="mb-card-expand">⊕</span></div>
       </div>
-      <!-- HRS Monthly — pending export -->
-      <div class="mb-card-missing">
-        <div class="mb-card-missing-icon">◻</div>
-        <div class="mb-card-missing-label">HRS · Monthly</div>
-        <div class="mb-card-missing-sub">Export WHEAT_HRS_M.png from Trade Navigator</div>
-      </div>
     </div>
   </div>
 
-  <!-- FWH — 3 charts: Daily, Weekly, Monthly (missing) -->
+  <!-- FWH — Daily + Weekly (Monthly pending Trade Navigator export) -->
   <div class="mb-panel" id="mb-p-fwh">
     <div class="mb-grid">
       <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_D.png','Paris Milling · Daily')">
@@ -896,12 +857,6 @@ table.mb-tbl { width: 100%; border-collapse: collapse; min-width: 640px; }
       <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_W.png','Paris Milling · Weekly')">
         <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_W.png" alt="FWH Weekly" loading="lazy"/>
         <div class="mb-card-lbl">Paris Milling · Weekly <span class="mb-card-expand">⊕</span></div>
-      </div>
-      <!-- FWH Monthly — pending export -->
-      <div class="mb-card-missing">
-        <div class="mb-card-missing-icon">◻</div>
-        <div class="mb-card-missing-label">Paris Milling · Monthly</div>
-        <div class="mb-card-missing-sub">Export WHEAT_FWH_M.png from Trade Navigator</div>
       </div>
     </div>
   </div>
