@@ -4,20 +4,28 @@
 ## Status: NOT in GitHub repo, listed in spreadsheet or needed for completeness
 
 ### WHEAT CONTRACTS (5 missing)
-1. Wheat_HRW_D.png (Kansas City HRW Daily) — row 8 in spreadsheet
-   → Export from Trade Navigator as generic filename: Wheat_HRW_D.png or WHEAT_HRW_D.png
+1. WHEAT_HRW_D.png (Kansas City HRW Daily) — row 8 in spreadsheet
+   → Export from Trade Navigator as: WHEAT_HRW_D.png
+   → NEEDED FOR: Members dashboard gallery · HRW tab · Daily slot
 
-2. Wheat_HRW_M.png (Kansas City HRW Monthly) — row 10 in spreadsheet
+2. WHEAT_HRW_M.png (Kansas City HRW Monthly) — row 10 in spreadsheet
    → Export as: WHEAT_HRW_M.png
+   → NEEDED FOR: Members dashboard gallery · HRW tab · Monthly slot
 
-3. Wheat_HRS_D.png (Minneapolis HRS Daily) — row 11 in spreadsheet
-   → Export as: WHEAT_HRS_D.png or keep consistent with pattern
+3. WHEAT_HRS_D.png (Minneapolis HRS Daily) — row 11 in spreadsheet
+   → Export as: WHEAT_HRS_D.png
+   → NEEDED FOR: Members dashboard gallery · HRS tab · Daily slot
 
-4. Wheat_HRS_M.png (Minneapolis HRS Monthly) — row 13 in spreadsheet
+4. WHEAT_HRS_M.png (Minneapolis HRS Monthly) — row 13 in spreadsheet
    → Export as: WHEAT_HRS_M.png
+   → NEEDED FOR: Members dashboard gallery · HRS tab · Monthly slot
 
-5. Wheat_FWH_M.png (Paris 11% Milling Wheat Monthly) — row 16 in spreadsheet
+5. WHEAT_FWH_M.png (Paris 11% Milling Wheat Monthly) — row 16 in spreadsheet
    → Export as: WHEAT_FWH_M.png
+   → NEEDED FOR: Members dashboard gallery · FWH tab · Monthly slot
+
+NOTE: WHEAT_SRW_BOR_D.png (daily) is confirmed correct for the BOR section.
+No monthly BOR chart needed.
 
 ### INTRA-MARKET SPREADS (1 missing)
 6. SPD_HRW_H_K.png (Kansas City HRW Mar/May Spread) — row 26 in spreadsheet

@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║  MARKETBULLETS® — MEMBERS DASHBOARD v2                          ║
+║                                                                  ║
+║  SQUARESPACE DEPLOYMENT                                          ║
+║  Step 1 · Code Injection Header → paste [INJECT:HEADER]         ║
+║  Step 2 · Page Code Block → paste everything inside <body>      ║
+║  Step 3 · API Key → replace YOUR_BARCHART_API_KEY               ║
+║                                                                  ║
+║  HERO PHOTO                                                      ║
+║  Drop photo in repo root as: hero_photo.jpg                      ║
+║  Then change --hero-bg in CSS to:                                ║
+║    url('https://raw.githubusercontent.com/...hero_photo.jpg')   ║
+║                                                                  ║
+║  COMMENTARY CHART LINKS                                          ║
+║  In commentary text use shortcode: [chart:WHEAT_SRW_D]          ║
+║  JS auto-converts to inline thumbnail → lightbox                 ║
+║  Full chart reference list at bottom of this file               ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets® — Members Dashboard</title>
+
+<!-- ═══ [INJECT:HEADER · START] ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.mb*,.mb *,.mb *::before,.mb *::after{box-sizing:border-box;margin:0;padding:0;}
+.mb img{display:block;max-width:100%;height:auto;}
+.mb a{text-decoration:none;color:inherit;}
+.mb button{font-family:inherit;cursor:pointer;border:none;background:none;}
+</style>
+<!-- ═══ [INJECT:HEADER · END] ═══ -->
+
+<style>body{margin:0;background:#0A0704;}</style>
+</head>
+<body>
+<div class="mb">
+<style>
+/* ══════════════════════════════════════════════════════
+   TOKENS
+══════════════════════════════════════════════════════ */
+.mb {
+  --soil:        #0A0704;
+  --soil-mid:    #0F0B07;
+  --soil-light:  #1A1208;
+  --charcoal:    #231A0E;
+  --cream:       #FBF7EE;
+  --parchment:   #F0E8D0;
+  --buff:        #E4D9BA;
+  --wheat:       #C8960A;
+  --wheat-lt:    #E8B820;
+  --wheat-pale:  #F5E6C0;
+  --wheat-dim:   rgba(200,150,10,0.12);
+  --up:          #5AAA70;
+  --dn:          #E05030;
+  --flat:        #9A8870;
+  --border:      rgba(200,150,10,0.18);
+  --border-lt:   rgba(200,150,10,0.08);
+  --serif:       'DM Serif Display',Georgia,serif;
+  --serif2:      'Playfair Display',Georgia,serif;
+  --body:        'Lora',Georgia,serif;
+  --mono:        'IBM Plex Mono','Courier New',monospace;
+  font-family: var(--body);
+  background: var(--soil);
+  color: var(--wheat-pale);
+  min-height: 100vh;
+}
+
+/* ══════════════════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════════════════ */
+.mb-lb {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,3,2,0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.mb-lb.open { display: flex; }
+.mb-lb-img {
+  max-width: min(95vw, 1400px);
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 0 80px rgba(0,0,0,0.8);
+}
+.mb-lb-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,0.6);
+  border: 1px solid rgba(200,150,10,0.25);
+  padding: 6px 14px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: color .2s, border-color .2s;
+  background: rgba(10,7,4,0.8);
+}
+.mb-lb-close:hover { color: var(--wheat-lt); border-color: rgba(200,150,10,0.6); }
+.mb-lb-caption {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,0.38);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════════════ */
+.mb-hdr {
+  background: var(--soil);
+  border-bottom: 1px solid var(--wheat);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+.mb-hdr-logo {
+  display: flex;
+  justify-content: center;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid var(--border-lt);
+}
+.mb-hdr-logo img {
+  width: 288px;
+  height: 288px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 28px rgba(200,150,10,0.18));
+}
+.mb-hdr-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 28px 12px;
+  max-width: 1440px;
+  margin: 0 auto;
+  gap: 16px;
+}
+.mb-hdr-brand { display: flex; flex-direction: column; gap: 3px; }
+.mb-hdr-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--wheat-lt);
+  line-height: 1;
+}
+.mb-hdr-name sup { font-size: .55em; vertical-align: super; color: var(--wheat); }
+.mb-hdr-tag {
+  font-family: var(--mono);
+  font-size: .5rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,.45);
+}
+.mb-hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.mb-hdr-date { font-family: var(--mono); font-size: .68rem; color: var(--wheat-pale); letter-spacing: 1px; }
+.mb-hdr-badge {
+  font-family: var(--mono);
+  font-size: .5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,.45);
+  border: 1px solid rgba(200,150,10,.2);
+  padding: 2px 8px;
+}
+
+/* ══════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════ */
+.mb-hero {
+  position: relative;
+  width: 100%;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background:
+    linear-gradient(to bottom, rgba(10,7,4,0.25) 0%, rgba(10,7,4,0.72) 65%, rgba(10,7,4,0.97) 100%),
+    linear-gradient(135deg, #4A5E30 0%, #8A7040 22%, #C8960A 42%, #3D1A06 62%, #1A3A1E 82%, #C8960A 100%);
+  /*
+    ── PHOTO SLOT ──────────────────────────────────────────────
+    When hero_photo.jpg is in repo root, replace the two
+    background lines above with:
+
+    background:
+      linear-gradient(to bottom, rgba(10,7,4,0.2) 0%, rgba(10,7,4,0.65) 60%, rgba(10,7,4,0.97) 100%),
+      url('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/hero_photo.jpg')
+        center center / cover no-repeat;
+    ──────────────────────────────────────────────────────────── */
+}
+.mb-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 52px 64px;
+}
+.mb-hero-eyebrow {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,.6);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.mb-hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--wheat);
+  opacity: .5;
+}
+.mb-hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  color: var(--cream);
+  line-height: 1.08;
+  margin-bottom: 20px;
+  max-width: 760px;
+}
+.mb-hero-h1 em { font-style: italic; color: var(--wheat-lt); }
+.mb-hero-sub {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: clamp(.95rem, 1.6vw, 1.2rem);
+  color: rgba(251,247,238,.65);
+  max-width: 560px;
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════════════
+   QUOTE TABLE
+══════════════════════════════════════════════════════ */
+.mb-qt {
+  background: var(--soil-mid);
+  border-bottom: 1px solid var(--border);
+}
+.mb-qt-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 18px 28px 22px;
+}
+.mb-qt-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.mb-qt-label { font-family: var(--mono); font-size: .58rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(200,150,10,.5); }
+.mb-qt-meta { display: flex; align-items: center; gap: 12px; }
+.mb-qt-ts { font-family: var(--mono); font-size: .54rem; color: rgba(200,150,10,.3); letter-spacing: .5px; }
+.mb-refresh {
+  font-family: var(--mono); font-size: .56rem; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(200,150,10,.55); border: 1px solid rgba(200,150,10,.2); padding: 4px 12px;
+  transition: color .2s, border-color .2s; cursor: pointer;
+}
+.mb-refresh:hover { color: var(--wheat-lt); border-color: rgba(200,150,10,.5); }
+.mb-refresh.spin { opacity: .4; pointer-events: none; }
+.mb-tbl-wrap { overflow-x: auto; }
+table.mb-tbl { width: 100%; border-collapse: collapse; min-width: 640px; }
+.mb-tbl thead tr { border-bottom: 1px solid var(--border); }
+.mb-tbl th {
+  font-family: var(--mono); font-size: .52rem; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(200,150,10,.35);
+  padding: 0 12px 9px; text-align: right; white-space: nowrap; font-weight: 400;
+}
+.mb-tbl th:first-child, .mb-tbl th:nth-child(2) { text-align: left; }
+.mb-tbl tbody tr { border-bottom: 1px solid var(--border-lt); transition: background .15s; }
+.mb-tbl tbody tr:last-child { border-bottom: none; }
+.mb-tbl tbody tr:hover { background: rgba(200,150,10,.04); }
+.mb-tbl td { padding: 13px 12px; font-family: var(--mono); font-size: .8rem; text-align: right; white-space: nowrap; }
+.mb-tbl td:first-child { text-align: left; }
+.mb-tbl td:nth-child(2) { text-align: left; }
+.mb-badge {
+  display: inline-block; font-family: var(--mono); font-size: .66rem; font-weight: 700;
+  letter-spacing: 1.5px; padding: 3px 10px; border-left: 3px solid var(--wheat);
+  color: var(--wheat-lt); background: rgba(200,150,10,.08);
+}
+.mb-badge.hrw { border-color:#D4804A; color:#E8A070; background:rgba(212,128,74,.08); }
+.mb-badge.hrs { border-color:#7AB0D0; color:#9ACCEE; background:rgba(122,176,208,.08); }
+.mb-badge.fwh { border-color:#8ABB60; color:#AADA80; background:rgba(138,187,96,.08); }
+.mb-cname { font-family: var(--mono); font-size: .68rem; color: rgba(245,230,192,.5); display: block; margin-top: 2px; }
+.mb-last { font-size: 1rem; font-weight: 600; color: var(--wheat-pale); letter-spacing: -.5px; }
+.mb-unit { font-size: .54rem; color: rgba(245,230,192,.32); margin-left: 2px; font-weight: 300; }
+.mb-chg { font-weight: 500; }
+.mb-chg.up { color: var(--up); }
+.mb-chg.dn { color: var(--dn); }
+.mb-chg.fl { color: var(--flat); }
+.mb-range-wrap { display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
+.mb-range-track { width: 52px; height: 3px; background: rgba(200,150,10,.12); border-radius: 2px; position: relative; flex-shrink: 0; }
+.mb-range-fill { position: absolute; top: 0; height: 100%; background: var(--wheat); border-radius: 2px; }
+.mb-range-lbl { font-size: .6rem; color: rgba(245,230,192,.38); }
+.mb-skel { display: inline-block; background: linear-gradient(90deg,rgba(200,150,10,.07) 25%,rgba(200,150,10,.14) 50%,rgba(200,150,10,.07) 75%); background-size: 200% 100%; animation: mbshim 1.4s infinite; border-radius: 2px; height: 1em; vertical-align: middle; }
+@keyframes mbshim { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.mb-qerr { text-align: center; padding: 24px; font-family: var(--mono); font-size: .68rem; color: rgba(200,150,10,.35); letter-spacing: 1px; }
+
+/* ══════════════════════════════════════════════════════
+   DISCLAIMER
+══════════════════════════════════════════════════════ */
+.mb-disc {
+  background: var(--soil-light);
+  border-bottom: 1px solid var(--border-lt);
+  padding: 10px 28px;
+}
+.mb-disc p {
+  max-width: 1440px; margin: 0 auto;
+  font-family: var(--mono); font-size: .53rem; line-height: 1.7;
+  color: rgba(245,230,192,.26); letter-spacing: .3px;
+}
+
+/* ══════════════════════════════════════════════════════
+   COMMENTARY
+══════════════════════════════════════════════════════ */
+.mb-comm {
+  background: var(--cream);
+  padding: 52px 28px 60px;
+  border-top: 2px solid #D0C0A0;
+  border-bottom: 2px solid #D0C0A0;
+}
+.mb-comm-inner { max-width: 800px; margin: 0 auto; }
+.mb-comm-dateline {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #D0C0A0;
+  padding-bottom: 16px;
+  margin-bottom: 28px;
+}
+.mb-comm-head {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--wheat);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mb-comm-head::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--wheat);
+  opacity: .6;
+}
+.mb-comm-attr {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: .82rem;
+  color: #9A8060;
+}
+.mb-comm-date-label {
+  font-family: var(--mono);
+  font-size: .56rem;
+  letter-spacing: 1px;
+  color: #BBA880;
+}
+
+/* Commentary body text */
+.mb-comm-body {
+  font-family: var(--body);
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: #2A1E0E;
+}
+.mb-comm-body p { margin-bottom: 1.3em; }
+.mb-comm-body p:last-child { margin-bottom: 0; }
+.mb-comm-body strong { font-weight: 600; color: #1A1008; }
+
+/* Inline chart thumbnail links (auto-generated from [chart:NAME] shortcodes) */
+.mb-comm-body .mb-inline-chart {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+  border: 1px solid #D0B890;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .2s, transform .15s;
+  line-height: 0;
+}
+.mb-comm-body .mb-inline-chart:hover {
+  border-color: var(--wheat);
+  transform: scale(1.04);
+}
+.mb-comm-body .mb-inline-chart img {
+  width: 72px;
+  height: 48px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Commentary placeholder */
+.mb-comm-placeholder {
+  font-family: var(--body); font-style: italic;
+  color: #BBA880; font-size: .88rem; padding: 32px;
+  text-align: center; border: 1px dashed #D0C0A0;
+  line-height: 1.7;
+}
+.mb-comm-placeholder code {
+  font-family: var(--mono); font-size: .8em;
+  background: rgba(200,150,10,.1); padding: 1px 5px;
+  border-radius: 2px; color: #9A6020;
+}
+
+/* ══════════════════════════════════════════════════════
+   BOX-O-ROX SECTION
+══════════════════════════════════════════════════════ */
+.mb-bor {
+  background: var(--soil);
+  padding: 0;
+  border-top: 1px solid var(--border-lt);
+}
+.mb-bor-label {
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,.42);
+  padding: 24px 28px 14px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mb-bor-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-lt);
+  max-width: 400px;
+}
+.mb-bor-chart { width: 100%; display: block; }
+.mb-bor-status {
+  background: var(--soil-light);
+  border-top: 1px solid var(--border-lt);
+  padding: 22px 28px 28px;
+}
+.mb-bor-status-inner { max-width: 800px; margin: 0 auto; }
+.mb-bor-status-label {
+  font-family: var(--mono);
+  font-size: .54rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,.38);
+  margin-bottom: 10px;
+}
+/* Status text styled same as commentary body */
+.mb-bor-status-text {
+  font-family: var(--body);
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: var(--wheat-pale);
+}
+.mb-bor-status-text p { margin-bottom: .8em; }
+.mb-bor-status-text p:last-child { margin-bottom: 0; }
+/* Placeholder */
+.mb-bor-placeholder {
+  font-family: var(--body); font-style: italic;
+  color: rgba(200,150,10,.28); font-size: .85rem;
+  padding: 18px; border: 1px dashed rgba(200,150,10,.12);
+}
+
+/* ══════════════════════════════════════════════════════
+   CHART GALLERY
+══════════════════════════════════════════════════════ */
+.mb-gal {
+  background: var(--soil-mid);
+  padding: 44px 0 60px;
+  border-top: 1px solid var(--border);
+}
+.mb-gal-hdr {
+  padding: 0 28px;
+  max-width: 1440px;
+  margin: 0 auto 24px;
+}
+.mb-gal-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  color: var(--wheat-lt);
+  margin-bottom: 18px;
+  letter-spacing: -.01em;
+}
+.mb-gal-title span {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(200,150,10,.38);
+  margin-left: 12px;
+  font-style: normal;
+}
+
+/* Tab bar */
+.mb-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+.mb-tab {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 10px 22px; color: rgba(200,150,10,.38); cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color .2s, border-color .2s; white-space: nowrap;
+  border-top: none; border-left: none; border-right: none; background: none;
+}
+.mb-tab:hover { color: rgba(200,150,10,.72); }
+.mb-tab.on { color: var(--wheat-lt); border-bottom-color: var(--wheat); }
+.mb-tab-count { font-size: .48rem; letter-spacing: 1px; opacity: .45; margin-left: 5px; background: rgba(200,150,10,.1); padding: 1px 5px; }
+
+/* Tab panels */
+.mb-panel { display: none; }
+.mb-panel.on { display: block; }
+
+/* 2-column chart grid, constrained to page margins */
+.mb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 24px 28px 0;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Chart card */
+.mb-card {
+  background: var(--soil-light);
+  border: 1px solid var(--border-lt);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .2s, transform .18s;
+  display: block;
+  position: relative;
+}
+.mb-card:hover {
+  border-color: rgba(200,150,10,.5);
+  transform: translateY(-2px);
+}
+.mb-card img { width: 100%; display: block; }
+.mb-card-lbl {
+  padding: 9px 12px;
+  font-family: var(--mono); font-size: .58rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(200,150,10,.48);
+  border-top: 1px solid var(--border-lt);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mb-card-expand { color: rgba(200,150,10,.25); font-size: .52rem; }
+
+/* Missing chart placeholder */
+.mb-card-missing {
+  background: var(--soil-light);
+  border: 1px dashed rgba(200,150,10,.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding: 24px;
+  gap: 10px;
+}
+.mb-card-missing-icon { font-family: var(--mono); font-size: 1.2rem; color: rgba(200,150,10,.15); }
+.mb-card-missing-label { font-family: var(--mono); font-size: .55rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(200,150,10,.22); text-align: center; }
+.mb-card-missing-sub { font-family: var(--mono); font-size: .48rem; letter-spacing: 1px; color: rgba(200,150,10,.14); text-align: center; }
+
+/* ══════════════════════════════════════════════════════
+   FOOTER NAV
+══════════════════════════════════════════════════════ */
+.mb-foot {
+  background: var(--soil);
+  border-top: 1px solid var(--border);
+  padding: 28px;
+}
+.mb-foot-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.mb-foot-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.mb-foot-link {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(200,150,10,.5);
+  border: 1px solid rgba(200,150,10,.18); padding: 8px 16px;
+  transition: color .2s, border-color .2s; display: inline-flex; align-items: center; gap: 7px;
+}
+.mb-foot-link:hover { color: var(--wheat-lt); border-color: rgba(200,150,10,.5); }
+.mb-foot-copy { font-family: var(--mono); font-size: .5rem; color: rgba(200,150,10,.22); letter-spacing: 1.5px; }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════ */
+@media(max-width:760px){
+  .mb-hdr-logo img { width: 180px; height: 180px; }
+  .mb-hdr-logo { padding: 16px 16px 12px; }
+  .mb-hdr-bar { padding: 8px 16px 10px; }
+  .mb-hero-content { padding: 0 20px 44px; }
+  .mb-hero { min-height: 50vh; }
+  .mb-qt-inner, .mb-disc, .mb-comm, .mb-bor-label, .mb-bor-status { padding-left: 16px; padding-right: 16px; }
+  .mb-grid { grid-template-columns: 1fr; padding: 16px 16px 0; }
+  .mb-gal-hdr { padding: 0 16px; }
+  .mb-foot { padding: 20px 16px; }
+  .mb-foot-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+<!-- ══════════════════════════════════════════════════════
+     LIGHTBOX (singleton)
+══════════════════════════════════════════════════════ -->
+<div class="mb-lb" id="mb-lb" onclick="mbLbClose(event)">
+  <button class="mb-lb-close" onclick="mbLbClose()">✕ Close</button>
+  <img class="mb-lb-img" id="mb-lb-img" src="" alt="" />
+  <div class="mb-lb-caption" id="mb-lb-cap"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════════ -->
+<header class="mb-hdr">
+  <div class="mb-hdr-logo">
+    <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/MarketBullets_Logo.png"
+         alt="MarketBullets LLC" />
+  </div>
+  <div class="mb-hdr-bar">
+    <div class="mb-hdr-brand">
+      <div class="mb-hdr-name">MarketBullets<sup>®</sup></div>
+      <div class="mb-hdr-tag">More Sense Per Bushel™</div>
+    </div>
+    <div class="mb-hdr-right">
+      <div class="mb-hdr-date" id="mb-date"></div>
+      <div class="mb-hdr-badge">Prices 15-min Delayed</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════ -->
+<section class="mb-hero">
+  <div class="mb-hero-content">
+    <div class="mb-hero-eyebrow">Members Dashboard</div>
+    <h1 class="mb-hero-h1">
+      The boots get smaller.<br><em>The decisions get bigger.</em>
+    </h1>
+    <p class="mb-hero-sub">
+      Institutional-quality wheat analysis delivered before the open —
+      for producers, merchandisers, and traders who can't afford to be
+      the last one informed.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     QUOTE TABLE
+══════════════════════════════════════════════════════ -->
+<section class="mb-qt">
+  <div class="mb-qt-inner">
+    <div class="mb-qt-topbar">
+      <div class="mb-qt-label">Wheat Futures — Front Month</div>
+      <div class="mb-qt-meta">
+        <span class="mb-qt-ts" id="mb-qt-ts">—</span>
+        <button class="mb-refresh" id="mb-refresh" onclick="mbFetch()">↻ Refresh</button>
+      </div>
+    </div>
+    <div class="mb-tbl-wrap">
+      <table class="mb-tbl" id="mb-tbl">
+        <thead>
+          <tr>
+            <th style="text-align:left">Class</th>
+            <th style="text-align:left">Contract</th>
+            <th>Last</th>
+            <th>Day Chg</th>
+            <th>Day %</th>
+            <th>Wk Chg</th>
+            <th>Mo Chg</th>
+            <th>Day Range</th>
+          </tr>
+        </thead>
+        <tbody id="mb-tbody">
+          <tr><td colspan="8" style="text-align:center;padding:22px"><span class="mb-skel" style="width:200px"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     DISCLAIMER
+══════════════════════════════════════════════════════ -->
+<div class="mb-disc">
+  <p>Market data provided by Barchart. Prices delayed minimum 15 minutes. For informational purposes only — not trading advice. Commodity trading involves substantial risk of loss. Past performance is not indicative of future results. MarketBullets LLC is not a registered investment advisor. © MarketBullets LLC. All rights reserved.</p>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     COMMENTARY
+══════════════════════════════════════════════════════ -->
+<section class="mb-comm">
+  <div class="mb-comm-inner">
+    <div class="mb-comm-dateline">
+      <div class="mb-comm-head">Pre-Dawn Commentary</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+        <div class="mb-comm-date-label" id="mb-comm-date"></div>
+        <div class="mb-comm-attr">Gary Hofer · MarketBullets LLC</div>
+      </div>
+    </div>
+
+    <div class="mb-comm-body" id="mb-comm-body">
+      <!--
+      ════════════════════════════════════════════════════════
+      PASTE DAILY COMMENTARY HERE
+
+      Replace this placeholder div with Gary's commentary.
+      Use standard <p> tags for paragraphs.
+
+      TO LINK A CHART INLINE — use shortcode notation:
+        [chart:WHEAT_SRW_D]
+        [chart:WHEAT_SRW_W]
+        [chart:WHEAT_HRW_W]
+        etc.
+
+      Example paragraph with inline chart link:
+        <p>SRW put in a key reversal on the daily [chart:WHEAT_SRW_D]
+        with volume confirming the move.</p>
+
+      JavaScript auto-converts shortcodes to thumbnail images
+      that open full-size in the lightbox when clicked.
+
+      FULL CHART SHORTCODE REFERENCE:
+        [chart:WHEAT_SRW_30M]    SRW 30-Minute
+        [chart:WHEAT_SRW_D]      SRW Daily
+        [chart:WHEAT_SRW_W]      SRW Weekly
+        [chart:WHEAT_SRW_M]      SRW Monthly
+        [chart:WHEAT_SRW_A]      SRW Annual
+        [chart:WHEAT_SRW_BOR_D]  SRW Box-o-Rox Daily
+        [chart:WHEAT_HRW_W]      HRW Weekly
+        [chart:WHEAT_HRS_W]      HRS Weekly
+        [chart:WHEAT_FWH_D]      Paris Daily
+        [chart:WHEAT_FWH_W]      Paris Weekly
+        [chart:COT_SRW_W]        SRW COT
+        [chart:COT_HRW_W]        HRW COT
+      ════════════════════════════════════════════════════════
+      -->
+      <div class="mb-comm-placeholder">
+        Today's commentary will appear here.<br><br>
+        Paste Gary's text using <code>&lt;p&gt;</code> tags.<br>
+        Use <code>[chart:WHEAT_SRW_D]</code> inline to insert chart thumbnail links.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     BOX-O-ROX
+══════════════════════════════════════════════════════ -->
+<section class="mb-bor">
+  <div class="mb-bor-label">Box-o-Rox · Daily</div>
+  <img class="mb-bor-chart"
+       src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_BOR_D.png"
+       alt="SRW Box-o-Rox Daily"
+       onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_BOR_D.png','Box-o-Rox Daily')"
+       style="cursor:zoom-in" />
+  <div class="mb-bor-status">
+    <div class="mb-bor-status-inner">
+      <div class="mb-bor-status-label">Box-o-Rox Status</div>
+      <div class="mb-bor-status-text" id="mb-bor-text">
+        <!--
+          PASTE BOX-O-ROX STATUS HERE (1–2 lines)
+          Same font size as commentary. Example:
+          <p>SRW closing above the 60-day MA for the third consecutive session.
+          Signal phase: LOADED.</p>
+        -->
+        <div class="mb-bor-placeholder">Box-o-Rox status — paste 1–2 lines here each session.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     WHEAT CHART GALLERY
+══════════════════════════════════════════════════════ -->
+<section class="mb-gal">
+  <div class="mb-gal-hdr">
+    <div class="mb-gal-title">Wheat Charts <span>Click any chart to expand</span></div>
+    <div class="mb-tabs">
+      <button class="mb-tab on" data-tab="srw">SRW <span class="mb-tab-count">5</span></button>
+      <button class="mb-tab" data-tab="hrw">HRW <span class="mb-tab-count">3</span></button>
+      <button class="mb-tab" data-tab="hrs">HRS <span class="mb-tab-count">3</span></button>
+      <button class="mb-tab" data-tab="fwh">FWH / Paris <span class="mb-tab-count">3</span></button>
+    </div>
+  </div>
+
+  <!-- SRW — 5 charts: 30-min, Daily, Weekly, Monthly, Annual -->
+  <div class="mb-panel on" id="mb-p-srw">
+    <div class="mb-grid">
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_30M.png','SRW · 30-Minute')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_30M.png" alt="SRW 30-Min" loading="lazy"/>
+        <div class="mb-card-lbl">SRW · 30-Minute <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_D.png','SRW · Daily')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_D.png" alt="SRW Daily" loading="lazy"/>
+        <div class="mb-card-lbl">SRW · Daily <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_W.png','SRW · Weekly')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_W.png" alt="SRW Weekly" loading="lazy"/>
+        <div class="mb-card-lbl">SRW · Weekly <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_M.png','SRW · Monthly')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_M.png" alt="SRW Monthly" loading="lazy"/>
+        <div class="mb-card-lbl">SRW · Monthly <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_A.png','SRW · Annual')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_A.png" alt="SRW Annual" loading="lazy"/>
+        <div class="mb-card-lbl">SRW · Annual <span class="mb-card-expand">⊕</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HRW — 3 charts: Daily (missing), Weekly, Monthly (missing) -->
+  <div class="mb-panel" id="mb-p-hrw">
+    <div class="mb-grid">
+      <!-- HRW Daily — pending export -->
+      <div class="mb-card-missing">
+        <div class="mb-card-missing-icon">◻</div>
+        <div class="mb-card-missing-label">HRW · Daily</div>
+        <div class="mb-card-missing-sub">Export WHEAT_HRW_D.png from Trade Navigator</div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRW_W.png','HRW · Weekly')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRW_W.png" alt="HRW Weekly" loading="lazy"/>
+        <div class="mb-card-lbl">HRW · Weekly <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <!-- HRW Monthly — pending export -->
+      <div class="mb-card-missing">
+        <div class="mb-card-missing-icon">◻</div>
+        <div class="mb-card-missing-label">HRW · Monthly</div>
+        <div class="mb-card-missing-sub">Export WHEAT_HRW_M.png from Trade Navigator</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HRS — 3 charts: Daily (missing), Weekly, Monthly (missing) -->
+  <div class="mb-panel" id="mb-p-hrs">
+    <div class="mb-grid">
+      <!-- HRS Daily — pending export -->
+      <div class="mb-card-missing">
+        <div class="mb-card-missing-icon">◻</div>
+        <div class="mb-card-missing-label">HRS · Daily</div>
+        <div class="mb-card-missing-sub">Export WHEAT_HRS_D.png from Trade Navigator</div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRS_W.png','HRS · Weekly')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRS_W.png" alt="HRS Weekly" loading="lazy"/>
+        <div class="mb-card-lbl">HRS · Weekly <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <!-- HRS Monthly — pending export -->
+      <div class="mb-card-missing">
+        <div class="mb-card-missing-icon">◻</div>
+        <div class="mb-card-missing-label">HRS · Monthly</div>
+        <div class="mb-card-missing-sub">Export WHEAT_HRS_M.png from Trade Navigator</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FWH — 3 charts: Daily, Weekly, Monthly (missing) -->
+  <div class="mb-panel" id="mb-p-fwh">
+    <div class="mb-grid">
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_D.png','Paris Milling · Daily')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_D.png" alt="FWH Daily" loading="lazy"/>
+        <div class="mb-card-lbl">Paris Milling · Daily <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <div class="mb-card" onclick="mbLbOpen('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_W.png','Paris Milling · Weekly')">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_W.png" alt="FWH Weekly" loading="lazy"/>
+        <div class="mb-card-lbl">Paris Milling · Weekly <span class="mb-card-expand">⊕</span></div>
+      </div>
+      <!-- FWH Monthly — pending export -->
+      <div class="mb-card-missing">
+        <div class="mb-card-missing-icon">◻</div>
+        <div class="mb-card-missing-label">Paris Milling · Monthly</div>
+        <div class="mb-card-missing-sub">Export WHEAT_FWH_M.png from Trade Navigator</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     FOOTER NAV
+══════════════════════════════════════════════════════ -->
+<footer class="mb-foot">
+  <div class="mb-foot-inner">
+    <nav class="mb-foot-nav">
+      <a class="mb-foot-link" href="/supplemental-documents">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="0.5" width="8" height="9" rx="0.5"/><line x1="2.5" y1="3" x2="7.5" y2="3"/><line x1="2.5" y1="5" x2="7.5" y2="5"/><line x1="2.5" y1="7" x2="5" y2="7"/></svg>
+        Supplemental Documents
+      </a>
+      <a class="mb-foot-link" href="/input-cost-calculator">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="0.5" y="0.5" width="9" height="9" rx="0.5"/><line x1="3.5" y1="0.5" x2="3.5" y2="9.5"/><line x1="0.5" y1="4" x2="9.5" y2="4"/><line x1="0.5" y1="7" x2="9.5" y2="7"/></svg>
+        Input Cost Calculator
+      </a>
+      <a class="mb-foot-link" href="/all-charts">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="0.5" y="0.5" width="4" height="4"/><rect x="5.5" y="0.5" width="4" height="4"/><rect x="0.5" y="5.5" width="4" height="4"/><rect x="5.5" y="5.5" width="4" height="4"/></svg>
+        All Charts
+      </a>
+    </nav>
+    <div class="mb-foot-copy">© MarketBullets LLC · marketbulletsllc.com</div>
+  </div>
+</footer>
+
+</div><!-- end .mb -->
+
+<!-- ══════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════ -->
+<script>
+(function(){
+'use strict';
+
+/* ── CONFIG ──────────────────────────────────────────── */
+var CFG = {
+  KEY:      'YOUR_BARCHART_API_KEY',
+  BASE:     'https://ondemand.websol.barchart.com',
+  REFRESH:  60000,
+  GH:       'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/',
+  CONTRACTS:[
+    { key:'srw', sym:'ZW*0', label:'SRW', name:'Soft Red Winter',   unit:'$/bu',  div:100,  cls:'' },
+    { key:'hrw', sym:'KE*0', label:'HRW', name:'Hard Red Winter',   unit:'$/bu',  div:100,  cls:'hrw' },
+    { key:'hrs', sym:'MW*0', label:'HRS', name:'Hard Red Spring',   unit:'$/bu',  div:100,  cls:'hrs' },
+    { key:'fwh', sym:'EBM*0',label:'FWH', name:'Paris Milling',     unit:'€/t',   div:1,    cls:'fwh' }
+  ]
+};
+
+/* ── DATES ───────────────────────────────────────────── */
+function fmtDate(d){
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var mos=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return days[d.getDay()]+', '+mos[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+}
+function yyyymmdd(d){ return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate()); }
+function pad(n){ return String(n).padStart(2,'0'); }
+function daysAgo(n){ var d=new Date(); d.setDate(d.getDate()-n); return d; }
+
+var now=new Date();
+var el=document.getElementById('mb-date'); if(el) el.textContent=fmtDate(now);
+var ce=document.getElementById('mb-comm-date'); if(ce) ce.textContent=fmtDate(now);
+
+/* ── LIGHTBOX ────────────────────────────────────────── */
+window.mbLbOpen=function(src,cap){
+  document.getElementById('mb-lb-img').src=src;
+  document.getElementById('mb-lb-cap').textContent=cap||'';
+  document.getElementById('mb-lb').classList.add('open');
+  document.body.style.overflow='hidden';
+};
+window.mbLbClose=function(e){
+  if(e && e.target!==document.getElementById('mb-lb') && !e.target.classList.contains('mb-lb-close')) return;
+  document.getElementById('mb-lb').classList.remove('open');
+  document.getElementById('mb-lb-img').src='';
+  document.body.style.overflow='';
+};
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') mbLbClose({target:document.getElementById('mb-lb')}); });
+
+/* ── COMMENTARY SHORTCODES ───────────────────────────── */
+// Replaces [chart:FILENAME] with inline thumbnail that opens lightbox
+function processCommentary(){
+  var body=document.getElementById('mb-comm-body');
+  if(!body) return;
+  body.innerHTML=body.innerHTML.replace(/\[chart:([A-Z0-9_]+)\]/g,function(_,name){
+    var url=CFG.GH+name+'.png';
+    return '<a class="mb-inline-chart" href="javascript:void(0)" onclick="mbLbOpen(\''+url+'\',\''+name+'\')" title="Click to expand: '+name+'">'
+          +'<img src="'+url+'" alt="'+name+'" onerror="this.parentNode.style.display=\'none\'">'
+          +'</a>';
+  });
+}
+processCommentary();
+
+/* ── GALLERY TABS ────────────────────────────────────── */
+document.querySelectorAll('.mb-tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    var target=this.getAttribute('data-tab');
+    document.querySelectorAll('.mb-tab').forEach(function(x){ x.classList.remove('on'); });
+    document.querySelectorAll('.mb-panel').forEach(function(x){ x.classList.remove('on'); });
+    this.classList.add('on');
+    var p=document.getElementById('mb-p-'+target);
+    if(p) p.classList.add('on');
+  });
+});
+
+/* ── BARCHART API ────────────────────────────────────── */
+var qData={};
+
+function apiUrl(ep,params){
+  var u=CFG.BASE+'/'+ep+'.json?apikey='+CFG.KEY;
+  Object.keys(params).forEach(function(k){ u+='&'+k+'='+encodeURIComponent(params[k]); });
+  return u;
+}
+function apiFetch(url){ return fetch(url,{mode:'cors'}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }); }
+
+window.mbFetch=function(){
+  var btn=document.getElementById('mb-refresh');
+  if(btn) btn.classList.add('spin');
+  var syms=CFG.CONTRACTS.map(function(c){return c.sym;}).join(',');
+  var qUrl=apiUrl('getQuote',{symbols:syms,fields:'symbol,lastPrice,netChange,percentChange,open,high,low,tradeTime,contractName'});
+  var hProms=CFG.CONTRACTS.map(function(c){
+    return apiFetch(apiUrl('getHistory',{symbol:c.sym,type:'daily',startDate:yyyymmdd(daysAgo(35)),maxRecords:25}))
+      .then(function(d){ return {sym:c.sym,hist:(d&&d.results)?d.results:[]}; })
+      .catch(function(){ return {sym:c.sym,hist:[]}; });
+  });
+  Promise.all([apiFetch(qUrl),Promise.all(hProms)])
+    .then(function(res){
+      var qr=res[0], hr=res[1];
+      var hIdx={}; hr.forEach(function(h){ hIdx[h.sym]=h.hist; });
+      if(qr&&qr.results) qr.results.forEach(function(q){
+        qData[q.symbol]=q;
+        var h=hIdx[q.symbol]||[];
+        qData[q.symbol]._wk=h.length>5?h[5].close:null;
+        qData[q.symbol]._mo=h.length>21?h[21].close:null;
+      });
+      renderTable();
+      var ts=document.getElementById('mb-qt-ts');
+      if(ts){ var t=new Date(); ts.textContent='Updated '+t.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }
+    })
+    .catch(function(e){ renderErr('Unable to load quotes — check API key.'); console.error(e); })
+    .finally(function(){ if(btn) btn.classList.remove('spin'); });
+};
+
+function cc(v){ return v>0?'up':v<0?'dn':'fl'; }
+function fc(v,pre){
+  if(v===null||v===undefined||isNaN(v)) return '<span class="mb-chg fl">—</span>';
+  var s=v>0?'+':''; return '<span class="mb-chg '+cc(v)+'">'+s+(pre||'')+v.toFixed(2)+'</span>';
+}
+function fp(v){
+  if(v===null||v===undefined||isNaN(v)) return '<span class="mb-chg fl">—</span>';
+  var s=v>0?'+':''; return '<span class="mb-chg '+cc(v)+'">'+s+v.toFixed(2)+'%</span>';
+}
+function rng(lo,hi,last){
+  if(!lo||!hi||lo===hi) return '<span class="mb-chg fl">—</span>';
+  var pct=Math.max(0,Math.min(100,((last-lo)/(hi-lo))*100));
+  return '<div class="mb-range-wrap">'
+    +'<span class="mb-range-lbl">'+lo.toFixed(2)+'</span>'
+    +'<div class="mb-range-track"><div class="mb-range-fill" style="width:'+pct.toFixed(1)+'%"></div></div>'
+    +'<span class="mb-range-lbl">'+hi.toFixed(2)+'</span>'
+    +'</div>';
+}
+
+function renderTable(){
+  var tb=document.getElementById('mb-tbody'); if(!tb) return;
+  if(!Object.keys(qData).length){ tb.innerHTML='<tr><td colspan="8" class="mb-qerr">No data.</td></tr>'; return; }
+  tb.innerHTML=CFG.CONTRACTS.map(function(c){
+    var q=qData[c.sym];
+    if(!q) return '<tr><td><span class="mb-badge '+c.cls+'">'+c.label+'</span></td><td colspan="7" class="mb-qerr" style="text-align:left">No data</td></tr>';
+    var last=q.lastPrice||0, dc=q.netChange||0, dp=q.percentChange||0, hi=q.high||0, lo=q.low||0;
+    var wk=q._wk?(last-q._wk):null, mo=q._mo?(last-q._mo):null;
+    return '<tr>'
+      +'<td><span class="mb-badge '+c.cls+'">'+c.label+'</span><span class="mb-cname">'+c.name+'</span></td>'
+      +'<td><span style="font-size:.72rem;color:rgba(245,230,192,.5)">'+(q.contractName||c.sym)+'</span></td>'
+      +'<td><span class="mb-last">'+last.toFixed(2)+'</span><span class="mb-unit">'+c.unit+'</span></td>'
+      +'<td>'+fc(dc)+'</td>'
+      +'<td>'+fp(dp)+'</td>'
+      +'<td>'+fc(wk)+'</td>'
+      +'<td>'+fc(mo)+'</td>'
+      +'<td>'+rng(lo,hi,last)+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+function renderErr(msg){ var tb=document.getElementById('mb-tbody'); if(tb) tb.innerHTML='<tr><td colspan="8" class="mb-qerr">'+msg+'</td></tr>'; }
+
+if(CFG.KEY && CFG.KEY!=='YOUR_BARCHART_API_KEY'){
+  mbFetch();
+  setInterval(mbFetch,CFG.REFRESH);
+} else {
+  renderErr('Add Barchart API key to MB_CONFIG to enable live quotes.');
+}
+
+})();
+</script>
+</body>
+</html>
