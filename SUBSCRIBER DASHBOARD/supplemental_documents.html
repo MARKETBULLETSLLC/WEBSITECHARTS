@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+  SQUARESPACE DEPLOYMENT
+  Code Injection Header: paste [INJECT:HEADER] block (same as members_dashboard.html)
+  Code Block: paste everything inside <body> tags
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets® — Supplemental Documents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0A0704;}</style>
+</head>
+<body>
+<div class="mb-sd">
+<style>
+.mb-sd*,.mb-sd*::before,.mb-sd*::after{box-sizing:border-box;margin:0;padding:0;}
+.mb-sd img{display:block;max-width:100%;height:auto;}
+.mb-sd a{text-decoration:none;color:inherit;}
+.mb-sd button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+.mb-sd{
+  --soil:#0A0704; --soil-mid:#0F0B07; --soil-light:#1A1208;
+  --cream:#FBF7EE; --parchment:#F0E8D0; --buff:#E4D9BA;
+  --wheat:#C8960A; --wheat-lt:#E8B820; --wheat-pale:#F5E6C0;
+  --border:rgba(200,150,10,0.18); --border-lt:rgba(200,150,10,0.08);
+  --serif-display:'DM Serif Display',Georgia,serif;
+  --serif-body:'Playfair Display',Georgia,serif;
+  --body-font:'Lora',Georgia,serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  font-family:var(--body-font);
+  background:var(--soil);
+  color:var(--wheat-pale);
+  min-height:100vh;
+}
+
+/* HEADER */
+.mb-sd-header{background:var(--soil);border-bottom:1px solid var(--wheat);position:sticky;top:0;z-index:200;}
+.mb-sd-logo-bar{display:flex;justify-content:center;align-items:center;padding:20px 28px 16px;border-bottom:1px solid var(--border-lt);}
+.mb-sd-logo{width:160px;height:160px;object-fit:contain;display:block;filter:drop-shadow(0 0 20px rgba(200,150,10,0.18));}
+.mb-sd-header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 28px 12px;max-width:1440px;margin:0 auto;}
+.mb-sd-brand-name{font-family:var(--serif-display);font-size:1.1rem;color:var(--wheat-lt);line-height:1;}
+.mb-sd-brand-name sup{font-size:0.55em;vertical-align:super;color:var(--wheat);}
+.mb-sd-brand-tag{font-family:var(--mono);font-size:0.5rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(200,150,10,0.5);margin-top:3px;}
+.mb-sd-back{font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(200,150,10,0.55);border:1px solid rgba(200,150,10,0.2);padding:7px 16px;transition:color .2s,border-color .2s;}
+.mb-sd-back:hover{color:var(--wheat-lt);border-color:rgba(200,150,10,0.5);}
+
+/* PAGE TITLE */
+.mb-sd-title-bar{background:var(--soil-mid);border-bottom:1px solid var(--border);padding:32px 28px;}
+.mb-sd-title-inner{max-width:1200px;margin:0 auto;}
+.mb-sd-page-label{font-family:var(--mono);font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:rgba(200,150,10,0.45);margin-bottom:10px;}
+.mb-sd-page-title{font-family:var(--serif-display);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--wheat-lt);letter-spacing:-0.01em;margin-bottom:6px;}
+.mb-sd-page-sub{font-family:var(--mono);font-size:0.62rem;color:rgba(245,230,192,0.35);letter-spacing:1px;}
+
+/* MAIN CONTENT — splits dark/light */
+.mb-sd-body{padding:48px 28px 64px;max-width:1200px;margin:0 auto;}
+
+/* SECTION HEADER */
+.mb-sd-section{margin-bottom:52px;}
+.mb-sd-section-eyebrow{font-family:var(--mono);font-size:0.56rem;letter-spacing:3px;text-transform:uppercase;color:rgba(200,150,10,0.4);margin-bottom:8px;}
+.mb-sd-section-title{font-family:var(--serif-display);font-size:1.15rem;color:var(--wheat-lt);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border-lt);}
+
+/* DOCUMENT CARDS */
+.mb-sd-doc-list{display:flex;flex-direction:column;gap:10px;}
+.mb-sd-doc-card{
+  background:var(--soil-light);
+  border:1px solid var(--border-lt);
+  display:flex;align-items:center;gap:20px;
+  padding:18px 22px;
+  transition:border-color .2s,background .2s;
+}
+.mb-sd-doc-card:hover{border-color:rgba(200,150,10,0.4);background:rgba(200,150,10,0.04);}
+.mb-sd-doc-icon{
+  width:40px;height:40px;flex-shrink:0;
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(200,150,10,0.5);
+}
+.mb-sd-doc-icon svg{width:18px;height:18px;}
+.mb-sd-doc-info{flex:1;min-width:0;}
+.mb-sd-doc-title{font-family:var(--body-font);font-size:0.95rem;font-weight:500;color:var(--wheat-pale);margin-bottom:4px;}
+.mb-sd-doc-meta{font-family:var(--mono);font-size:0.55rem;letter-spacing:1px;color:rgba(245,230,192,0.3);text-transform:uppercase;}
+.mb-sd-doc-desc{font-family:var(--body-font);font-size:0.82rem;color:rgba(245,230,192,0.45);line-height:1.6;margin-top:5px;}
+.mb-sd-doc-actions{display:flex;gap:8px;flex-shrink:0;}
+.mb-sd-btn-dl{
+  font-family:var(--mono);font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--wheat);border:1px solid rgba(200,150,10,0.35);
+  padding:8px 16px;transition:all .2s;display:inline-flex;align-items:center;gap:6px;
+  white-space:nowrap;
+}
+.mb-sd-btn-dl:hover{background:rgba(200,150,10,0.1);border-color:rgba(200,150,10,0.6);}
+.mb-sd-btn-dl svg{width:10px;height:10px;}
+
+/* PLACEHOLDER STATE */
+.mb-sd-placeholder{
+  font-family:var(--mono);font-size:0.62rem;letter-spacing:1.5px;
+  color:rgba(200,150,10,0.2);text-transform:uppercase;text-align:center;
+  padding:32px;border:1px dashed rgba(200,150,10,0.12);
+}
+
+/* NOTICE BOX */
+.mb-sd-notice{
+  background:rgba(200,150,10,0.06);
+  border-left:3px solid var(--wheat);
+  padding:16px 20px;margin-bottom:36px;
+}
+.mb-sd-notice p{font-family:var(--body-font);font-size:0.85rem;line-height:1.7;color:rgba(245,230,192,0.6);}
+.mb-sd-notice strong{color:var(--wheat-pale);}
+
+/* FOOTER */
+.mb-sd-footer{background:var(--soil);border-top:1px solid var(--border);padding:24px 28px;}
+.mb-sd-footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.mb-sd-footer-nav{display:flex;gap:8px;flex-wrap:wrap;}
+.mb-sd-footer-link{font-family:var(--mono);font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:rgba(200,150,10,0.5);border:1px solid rgba(200,150,10,0.18);padding:7px 16px;transition:color .2s,border-color .2s;display:inline-block;}
+.mb-sd-footer-link:hover{color:var(--wheat-lt);border-color:rgba(200,150,10,0.5);}
+.mb-sd-footer-copy{font-family:var(--mono);font-size:0.5rem;color:rgba(200,150,10,0.22);letter-spacing:1.5px;}
+
+@media(max-width:680px){
+  .mb-sd-logo{width:110px;height:110px;}
+  .mb-sd-logo-bar{padding:14px 16px 10px;}
+  .mb-sd-body{padding:28px 16px 40px;}
+  .mb-sd-doc-card{flex-wrap:wrap;}
+  .mb-sd-doc-actions{width:100%;}
+}
+</style>
+
+<!-- HEADER -->
+<header class="mb-sd-header">
+  <div class="mb-sd-logo-bar">
+    <img class="mb-sd-logo"
+      src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/MarketBullets_Logo.png"
+      alt="MarketBullets LLC" />
+  </div>
+  <div class="mb-sd-header-inner">
+    <div>
+      <div class="mb-sd-brand-name">MarketBullets<sup>®</sup></div>
+      <div class="mb-sd-brand-tag">More Sense Per Bushel™</div>
+    </div>
+    <a class="mb-sd-back" href="/dashboard">← Dashboard</a>
+  </div>
+</header>
+
+<!-- PAGE TITLE -->
+<div class="mb-sd-title-bar">
+  <div class="mb-sd-title-inner">
+    <div class="mb-sd-page-label">Members Library</div>
+    <div class="mb-sd-page-title">Supplemental Documents</div>
+    <div class="mb-sd-page-sub">Reference materials, reports, and resources for subscribers</div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="mb-sd-body">
+
+  <div class="mb-sd-notice">
+    <p><strong>Members only.</strong> All documents on this page are provided exclusively for
+    MarketBullets® subscribers. Please do not distribute or reproduce without written permission.
+    © MarketBullets LLC.</p>
+  </div>
+
+  <!-- SECTION: USDA & CFTC REFERENCE -->
+  <div class="mb-sd-section">
+    <div class="mb-sd-section-eyebrow">Government Data</div>
+    <div class="mb-sd-section-title">USDA &amp; CFTC Reference Guides</div>
+    <div class="mb-sd-doc-list">
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="1" width="14" height="16" rx="1"/>
+            <line x1="5" y1="6" x2="13" y2="6"/>
+            <line x1="5" y1="9" x2="13" y2="9"/>
+            <line x1="5" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">WASDE Report — Reading Guide</div>
+          <div class="mb-sd-doc-meta">PDF · Reference</div>
+          <div class="mb-sd-doc-desc">How to read the World Agricultural Supply and Demand Estimates report. Key tables, what the numbers mean, and what changes to watch.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <!--
+            TO ACTIVATE: Upload PDF to Squarespace Files or Google Drive,
+            replace # with the direct download URL
+          -->
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="1" width="14" height="16" rx="1"/>
+            <line x1="5" y1="6" x2="13" y2="6"/>
+            <line x1="5" y1="9" x2="13" y2="9"/>
+            <line x1="5" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">COT Report — Managed Money Positioning Guide</div>
+          <div class="mb-sd-doc-meta">PDF · Reference</div>
+          <div class="mb-sd-doc-desc">How to use the Commitment of Traders report. Net long vs. net short thresholds, historical extremes, and what large speculator positioning means for wheat producers.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="1" width="14" height="16" rx="1"/>
+            <line x1="5" y1="6" x2="13" y2="6"/>
+            <line x1="5" y1="9" x2="13" y2="9"/>
+            <line x1="5" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">USDA Report Calendar — Current Crop Year</div>
+          <div class="mb-sd-doc-meta">PDF · Calendar</div>
+          <div class="mb-sd-doc-desc">Dates for WASDE, Grain Stocks, Crop Progress, Prospective Plantings, and Weekly Export Sales for the current marketing year.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION: THE WARM SIGNAL -->
+  <div class="mb-sd-section">
+    <div class="mb-sd-section-eyebrow">Proprietary Framework</div>
+    <div class="mb-sd-section-title">The Warm Signal (TWS)</div>
+    <div class="mb-sd-doc-list">
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="1" width="14" height="16" rx="1"/>
+            <line x1="5" y1="6" x2="13" y2="6"/>
+            <line x1="5" y1="9" x2="13" y2="9"/>
+            <line x1="5" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">The Warm Signal — Framework Overview</div>
+          <div class="mb-sd-doc-meta">PDF · Framework</div>
+          <div class="mb-sd-doc-desc">Introduction to The Warm Signal (TWS) — Gary Hofer's 44-year synthesis of quantitative and qualitative market pattern recognition. Four phases: Loaded, Locked &amp; Loaded, Aim, Fire.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="1" width="14" height="16" rx="1"/>
+            <line x1="5" y1="6" x2="13" y2="6"/>
+            <line x1="5" y1="9" x2="13" y2="9"/>
+            <line x1="5" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">Box-o-Rox — Signal Documentation</div>
+          <div class="mb-sd-doc-meta">PDF · Framework</div>
+          <div class="mb-sd-doc-desc">The Box-o-Rox sell/suspend signal within TWS. Chicago SRW price vs. its 60-day moving average — historical signal performance, thresholds, and application guidance.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION: MARKETING TOOLS -->
+  <div class="mb-sd-section">
+    <div class="mb-sd-section-eyebrow">Producer Tools</div>
+    <div class="mb-sd-section-title">Grain Marketing Reference</div>
+    <div class="mb-sd-doc-list">
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="16" height="12" rx="1"/>
+            <line x1="1" y1="7" x2="17" y2="7"/>
+            <line x1="6" y1="3" x2="6" y2="15"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">Basis Contract vs. HTA — Decision Matrix</div>
+          <div class="mb-sd-doc-meta">PDF · Reference</div>
+          <div class="mb-sd-doc-desc">When to use a basis contract vs. a Hedge-to-Arrive. Decision framework based on current basis strength, futures trend, and seasonal patterns.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="16" height="12" rx="1"/>
+            <line x1="1" y1="7" x2="17" y2="7"/>
+            <line x1="6" y1="3" x2="6" y2="15"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">Seasonal Price Tendencies — SRW, HRW, HRS</div>
+          <div class="mb-sd-doc-meta">PDF · Seasonal Study</div>
+          <div class="mb-sd-doc-desc">Historical seasonal price patterns by class. Month-by-month tendency analysis based on 20+ years of data. Updated annually.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="#">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="3" width="16" height="12" rx="1"/>
+            <line x1="1" y1="7" x2="17" y2="7"/>
+            <line x1="6" y1="3" x2="6" y2="15"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">Chart Master Index — Current</div>
+          <div class="mb-sd-doc-meta">XLSX · Index</div>
+          <div class="mb-sd-doc-desc">Complete index of all 60 MarketBullets charts with filenames, categories, descriptions, and update frequency.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <a class="mb-sd-btn-dl" href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/MarketBullets_Master_Chart_Index.xlsx" download>
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+              <line x1="5" y1="1" x2="5" y2="7"/>
+              <polyline points="2,5 5,8 8,5"/>
+              <line x1="1" y1="9" x2="9" y2="9"/>
+            </svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER SECTION FOR FUTURE DOCS -->
+  <div class="mb-sd-section">
+    <div class="mb-sd-section-eyebrow">Coming Soon</div>
+    <div class="mb-sd-section-title">Additional Resources</div>
+    <div class="mb-sd-placeholder">
+      Additional documents will appear here as they are published.
+      Check back after major USDA reports.
+    </div>
+  </div>
+
+  <!--
+  ═══════════════════════════════════════════════════════════════
+  HOW TO ADD A NEW DOCUMENT:
+
+  1. Upload the file to Squarespace (Pages → File Storage) or Google Drive
+  2. Copy the direct download link
+  3. Duplicate one of the mb-sd-doc-card blocks above
+  4. Update the title, meta, description
+  5. Replace the href="#" with your download link
+  ═══════════════════════════════════════════════════════════════
+  -->
+
+</div><!-- end .mb-sd-body -->
+
+<!-- FOOTER -->
+<footer class="mb-sd-footer">
+  <div class="mb-sd-footer-inner">
+    <nav class="mb-sd-footer-nav">
+      <a class="mb-sd-footer-link" href="/dashboard">← Dashboard</a>
+      <a class="mb-sd-footer-link" href="/input-cost-calculator">Input Cost Calculator</a>
+      <a class="mb-sd-footer-link" href="/all-charts">All Charts</a>
+    </nav>
+    <div class="mb-sd-footer-copy">© MarketBullets LLC · marketbulletsllc.com</div>
+  </div>
+</footer>
+
+</div><!-- end .mb-sd -->
+</body>
+</html>
