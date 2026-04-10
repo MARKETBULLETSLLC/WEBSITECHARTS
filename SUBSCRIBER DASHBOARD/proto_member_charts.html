@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets® — Chart Dashboard</title>
+<style>
+/* ── RESET ──────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+img{display:block;max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  --soil:      #0A0704;
+  --soil-mid:  #110D08;
+  --soil-lt:   #1C1409;
+  --charcoal:  #2A1F10;
+  --wheat:     #C8960A;
+  --wheat-lt:  #E8B820;
+  --wheat-pal: #F5E6C0;
+  --cream:     #FBF7EE;
+  --border:    rgba(200,150,10,0.20);
+  --border-lt: rgba(200,150,10,0.09);
+  --serif:     Georgia,'Times New Roman',serif;
+  --mono:      'Courier New',Courier,monospace;
+}
+
+/* ── BASE ────────────────────────────────────────────── */
+body {
+  background: var(--soil);
+  color: var(--wheat-pal);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ── HEADER ──────────────────────────────────────────── */
+.mb-header {
+  background: var(--soil-mid);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 24px;
+}
+.mb-logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: .04em;
+  color: var(--wheat-lt);
+}
+.mb-logo sup { font-size: 11px; vertical-align: super; }
+.mb-tagline {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(245,230,192,.55);
+  letter-spacing: .02em;
+}
+.mb-updated {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(245,230,192,.40);
+  letter-spacing: .04em;
+}
+
+/* ── JUMP NAV ────────────────────────────────────────── */
+.mb-nav {
+  background: var(--soil-mid);
+  border-bottom: 1px solid var(--border-lt);
+  padding: 10px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 4px;
+}
+.mb-nav a {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--wheat);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.mb-nav a:hover { background: var(--charcoal); }
+
+/* ── MAIN ────────────────────────────────────────────── */
+.mb-main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+/* ── SECTION ─────────────────────────────────────────── */
+.mb-section {
+  margin-bottom: 52px;
+}
+.mb-section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.mb-section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--soil);
+  background: var(--wheat);
+  padding: 3px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.mb-section-title {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: .02em;
+  color: var(--cream);
+}
+.mb-section-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(245,230,192,.35);
+  margin-left: auto;
+}
+
+/* ── GRID ────────────────────────────────────────────── */
+.mb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.mb-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.mb-grid-full {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* ── CHART CARD ──────────────────────────────────────── */
+.mb-card {
+  background: var(--soil-lt);
+  border: 1px solid var(--border-lt);
+  border-radius: 3px;
+  overflow: hidden;
+  transition: border-color .18s;
+}
+.mb-card:hover { border-color: var(--border); }
+.mb-card a {
+  display: block;
+}
+.mb-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity .18s;
+}
+.mb-card:hover img { opacity: .92; }
+.mb-caption {
+  padding: 8px 10px 9px;
+  border-top: 1px solid var(--border-lt);
+  background: var(--charcoal);
+}
+.mb-caption-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--wheat-pal);
+  line-height: 1.3;
+}
+.mb-caption-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(245,230,192,.42);
+  margin-top: 2px;
+  letter-spacing: .04em;
+}
+
+/* ── SIGNAL CARD (BOR) ───────────────────────────────── */
+.mb-card-signal {
+  border-color: rgba(200,150,10,.40);
+  background: rgba(200,150,10,.04);
+}
+.mb-card-signal .mb-caption {
+  background: rgba(200,150,10,.08);
+}
+.mb-card-signal .mb-caption-title { color: var(--wheat-lt); }
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.mb-footer {
+  border-top: 1px solid var(--border-lt);
+  padding: 24px 24px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(245,230,192,.28);
+  letter-spacing: .05em;
+  line-height: 1.8;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 860px) {
+  .mb-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .mb-grid, .mb-grid-3 { grid-template-columns: 1fr; }
+  .mb-header { padding: 20px 16px 16px; }
+  .mb-main { padding: 24px 12px 48px; }
+  .mb-nav { padding: 8px 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="mb-header">
+  <div class="mb-logo">MarketBullets<sup>®</sup></div>
+  <div class="mb-tagline">More Sense Per Bushel™</div>
+  <div class="mb-updated" id="updated-date">UPDATED: —</div>
+</header>
+
+<!-- ── JUMP NAV ── -->
+<nav class="mb-nav">
+  <a href="#wheat-futures">Wheat Futures</a>
+  <a href="#cot">COT</a>
+  <a href="#grains">Grains</a>
+  <a href="#inter-spreads">Inter-Market Spreads</a>
+  <a href="#intra-spreads">Intra-Market Spreads</a>
+  <a href="#ratios">Ratios</a>
+  <a href="#currencies">Currencies</a>
+  <a href="#energy">Energy</a>
+  <a href="#metals">Metals</a>
+  <a href="#indices">Indices</a>
+  <a href="#rates">Rates</a>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="mb-main">
+
+<!-- ════════════════════════════════════════
+     WHEAT FUTURES
+════════════════════════════════════════ -->
+<section class="mb-section" id="wheat-futures">
+  <div class="mb-section-head">
+    <span class="mb-section-label">01</span>
+    <span class="mb-section-title">Wheat Futures</span>
+    <span class="mb-section-count">11 charts</span>
+  </div>
+
+  <!-- Box-o-Rox: full width signal card -->
+  <div class="mb-grid-full" style="margin-bottom:14px;">
+    <div class="mb-card mb-card-signal">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_BOR_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_BOR_D.png" alt="Box-o-Rox Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Box-o-Rox Daily — The Signal</div>
+        <div class="mb-caption-sub">SRW PRICE vs 60-DAY MA · DAILY · SELL/SUSPEND DECISION</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_30M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_30M.png" alt="Chicago SRW 30-Minute" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW 30-Minute</div>
+        <div class="mb-caption-sub">SRW · INTRADAY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_D.png" alt="Chicago SRW Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW Daily</div>
+        <div class="mb-caption-sub">SRW · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_W.png" alt="Chicago SRW Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW Weekly</div>
+        <div class="mb-caption-sub">SRW · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_M.png" alt="Chicago SRW Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW Monthly</div>
+        <div class="mb-caption-sub">SRW · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_Special_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_Special_M.png" alt="Chicago SRW Monthly Annotated" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW Monthly (Annotated)</div>
+        <div class="mb-caption-sub">SRW · MONTHLY · PATTERN ANALYSIS</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_A.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_SRW_A.png" alt="Chicago SRW Annual" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW Annual</div>
+        <div class="mb-caption-sub">SRW · 50+ YEAR VIEW</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRW_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRW_W.png" alt="Kansas City HRW Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Kansas City HRW Weekly</div>
+        <div class="mb-caption-sub">HRW · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRS_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_HRS_W.png" alt="Minneapolis HRS Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Minneapolis HRS Weekly</div>
+        <div class="mb-caption-sub">HRS · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_D.png" alt="Paris 11% Milling Wheat Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Paris 11% Milling Wheat Daily</div>
+        <div class="mb-caption-sub">FWH · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/WHEAT_FWH_W.png" alt="Paris 11% Milling Wheat Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Paris 11% Milling Wheat Weekly</div>
+        <div class="mb-caption-sub">FWH · WEEKLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     COMMITMENT OF TRADERS
+════════════════════════════════════════ -->
+<section class="mb-section" id="cot">
+  <div class="mb-section-head">
+    <span class="mb-section-label">02</span>
+    <span class="mb-section-title">Commitment of Traders</span>
+    <span class="mb-section-count">2 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/COT_SRW_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/COT_SRW_W.png" alt="COT Chicago SRW" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Commitment of Traders — Chicago SRW</div>
+        <div class="mb-caption-sub">MANAGED MONEY NET POSITION · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/COT_HRW_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/COT_HRW_W.png" alt="COT Kansas City HRW" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Commitment of Traders — Kansas City HRW</div>
+        <div class="mb-caption-sub">MANAGED MONEY NET POSITION · WEEKLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CORRELATED GRAINS
+════════════════════════════════════════ -->
+<section class="mb-section" id="grains">
+  <div class="mb-section-head">
+    <span class="mb-section-label">03</span>
+    <span class="mb-section-title">Correlated Grains</span>
+    <span class="mb-section-count">4 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_C_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_C_D.png" alt="CBOT Corn Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">CBOT Corn Daily</div>
+        <div class="mb-caption-sub">CORN · DAILY · FEED SUBSTITUTION BENCHMARK</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_C_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_C_W.png" alt="CBOT Corn Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">CBOT Corn Weekly</div>
+        <div class="mb-caption-sub">CORN · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_S_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_S_D.png" alt="CBOT Soybeans Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">CBOT Soybeans Daily</div>
+        <div class="mb-caption-sub">SOYBEANS · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_S_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/GRAIN_S_W.png" alt="CBOT Soybeans Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">CBOT Soybeans Weekly</div>
+        <div class="mb-caption-sub">SOYBEANS · WEEKLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     INTER-MARKET SPREADS
+════════════════════════════════════════ -->
+<section class="mb-section" id="inter-spreads">
+  <div class="mb-section-head">
+    <span class="mb-section-label">04</span>
+    <span class="mb-section-title">Inter-Market Spreads</span>
+    <span class="mb-section-count">4 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_SRW_HRW_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_SRW_HRW_M.png" alt="SRW vs HRW Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW vs Kansas City HRW</div>
+        <div class="mb-caption-sub">CLASS PREMIUM/DISCOUNT · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_SRW_HRS_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_SRW_HRS_M.png" alt="SRW vs HRS Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chicago SRW vs Minneapolis HRS</div>
+        <div class="mb-caption-sub">PROTEIN PREMIUM · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_HRS_HRW_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_HRS_HRW_M.png" alt="HRS vs HRW Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Minneapolis HRS vs Kansas City HRW</div>
+        <div class="mb-caption-sub">QUALITY DIFFERENTIAL · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_HRW_FWH_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPDINTER_HRW_FWH_W.png" alt="Paris FWH vs HRW Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Paris Milling vs Kansas City HRW</div>
+        <div class="mb-caption-sub">EUROPEAN vs US HRW · WEEKLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     INTRA-MARKET SPREADS
+════════════════════════════════════════ -->
+<section class="mb-section" id="intra-spreads">
+  <div class="mb-section-head">
+    <span class="mb-section-label">05</span>
+    <span class="mb-section-title">Intra-Market Calendar Spreads</span>
+    <span class="mb-section-count">12 charts</span>
+  </div>
+
+  <!-- SRW -->
+  <div style="margin-bottom:8px;padding:4px 0;font-family:var(--mono);font-size:10px;letter-spacing:.10em;color:rgba(245,230,192,.45);">CHICAGO SRW</div>
+  <div class="mb-grid-3" style="margin-bottom:20px;">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_SRW_K_N.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_SRW_K_N.png" alt="SRW May/Jul Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">SRW May / Jul</div>
+        <div class="mb-caption-sub">PRE-HARVEST CARRY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_SRW_N_U.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_SRW_N_U.png" alt="SRW Jul/Sep Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">SRW Jul / Sep</div>
+        <div class="mb-caption-sub">HARVEST PRESSURE</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_SRW_U_Z.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_SRW_U_Z.png" alt="SRW Sep/Dec Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">SRW Sep / Dec</div>
+        <div class="mb-caption-sub">POST-HARVEST CARRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HRW -->
+  <div style="margin-bottom:8px;padding:4px 0;font-family:var(--mono);font-size:10px;letter-spacing:.10em;color:rgba(245,230,192,.45);">KANSAS CITY HRW</div>
+  <div class="mb-grid-3" style="margin-bottom:20px;">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRW_K_N.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRW_K_N.png" alt="HRW May/Jul Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">HRW May / Jul</div>
+        <div class="mb-caption-sub">HRW PRE-HARVEST</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRW_N_U.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRW_N_U.png" alt="HRW Jul/Sep Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">HRW Jul / Sep</div>
+        <div class="mb-caption-sub">HRW HARVEST-TO-FALL</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRW_U_Z.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRW_U_Z.png" alt="HRW Sep/Dec Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">HRW Sep / Dec</div>
+        <div class="mb-caption-sub">HRW FALL CARRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HRS -->
+  <div style="margin-bottom:8px;padding:4px 0;font-family:var(--mono);font-size:10px;letter-spacing:.10em;color:rgba(245,230,192,.45);">MINNEAPOLIS HRS</div>
+  <div class="mb-grid-3" style="margin-bottom:20px;">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRS_K_N.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRS_K_N.png" alt="HRS May/Jul Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">HRS May / Jul</div>
+        <div class="mb-caption-sub">HRS PRE-HARVEST</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRS_N_U.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRS_N_U.png" alt="HRS Jul/Sep Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">HRS Jul / Sep</div>
+        <div class="mb-caption-sub">HRS HARVEST-TO-FALL</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRS_U_Z.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_HRS_U_Z.png" alt="HRS Sep/Dec Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">HRS Sep / Dec</div>
+        <div class="mb-caption-sub">HRS FALL CARRY</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FWH -->
+  <div style="margin-bottom:8px;padding:4px 0;font-family:var(--mono);font-size:10px;letter-spacing:.10em;color:rgba(245,230,192,.45);">PARIS MILLING WHEAT (FWH)</div>
+  <div class="mb-grid-3">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_FWH_K_U.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_FWH_K_U.png" alt="FWH May/Sep Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">FWH May / Sep</div>
+        <div class="mb-caption-sub">EUROPEAN PRE-HARVEST CARRY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_FWH_U_Z.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_FWH_U_Z.png" alt="FWH Sep/Dec Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">FWH Sep / Dec</div>
+        <div class="mb-caption-sub">EUROPEAN FALL CARRY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_FWH_Z_H2.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SPD_FWH_Z_H2.png" alt="FWH Dec/Mar+1 Spread" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">FWH Dec / Mar+1yr</div>
+        <div class="mb-caption-sub">EUROPEAN WINTER CARRY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     RATIOS
+════════════════════════════════════════ -->
+<section class="mb-section" id="ratios">
+  <div class="mb-section-head">
+    <span class="mb-section-label">06</span>
+    <span class="mb-section-title">Ratios</span>
+    <span class="mb-section-count">2 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/RATIO_SRW_C_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/RATIO_SRW_C_M.png" alt="Wheat/Corn Ratio Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Wheat / Corn Ratio</div>
+        <div class="mb-caption-sub">SUBSTITUTION ECONOMICS · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/RATIO_S_C_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/RATIO_S_C_W.png" alt="Soybeans/Corn Ratio Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Soybeans / Corn Ratio</div>
+        <div class="mb-caption-sub">PLANTING DECISION RATIO · WEEKLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CURRENCIES
+════════════════════════════════════════ -->
+<section class="mb-section" id="currencies">
+  <div class="mb-section-head">
+    <span class="mb-section-label">07</span>
+    <span class="mb-section-title">Currencies</span>
+    <span class="mb-section-count">5 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_WD_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_WD_D.png" alt="Australian Dollar Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Australian Dollar Daily</div>
+        <div class="mb-caption-sub">AUD · COMPETITOR CURRENCY · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_WD_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_WD_M.png" alt="Australian Dollar Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Australian Dollar Monthly</div>
+        <div class="mb-caption-sub">AUD · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_RUB_USD_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_RUB_USD_M.png" alt="Russian Rubles per USD Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Russian Rubles per US Dollar</div>
+        <div class="mb-caption-sub">RUB/USD · RUSSIAN EXPORT COMPETITIVENESS · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_CNY_USD_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_CNY_USD_M.png" alt="Chinese Yuan per USD Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Chinese Yuan per US Dollar</div>
+        <div class="mb-caption-sub">CNY/USD · CHINA TRADE DYNAMICS · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_RUB_CNY_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FX_RUB_CNY_W.png" alt="Russian Rubles per Chinese Yuan Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Russian Rubles per Chinese Yuan</div>
+        <div class="mb-caption-sub">RUB/CNY · BLACK SEA–CHINA CORRIDOR · WEEKLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     ENERGY
+════════════════════════════════════════ -->
+<section class="mb-section" id="energy">
+  <div class="mb-section-head">
+    <span class="mb-section-label">08</span>
+    <span class="mb-section-title">Energy</span>
+    <span class="mb-section-count">4 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_CL_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_CL_M.png" alt="Crude Oil Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Crude Oil Monthly</div>
+        <div class="mb-caption-sub">WTI · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_CL_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_CL_W.png" alt="Crude Oil Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Crude Oil Weekly</div>
+        <div class="mb-caption-sub">WTI · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_HO_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_HO_D.png" alt="Diesel/Heating Oil Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Diesel / Heating Oil Daily</div>
+        <div class="mb-caption-sub">HO · INPUT COST · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_NG_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/NRG_NG_M.png" alt="Natural Gas Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Natural Gas — Henry Hub</div>
+        <div class="mb-caption-sub">NG · FERTILIZER FEEDSTOCK · MONTHLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     METALS
+════════════════════════════════════════ -->
+<section class="mb-section" id="metals">
+  <div class="mb-section-head">
+    <span class="mb-section-label">09</span>
+    <span class="mb-section-title">Metals</span>
+    <span class="mb-section-count">4 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_GC_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_GC_D.png" alt="Gold Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Gold (COMEX) Daily</div>
+        <div class="mb-caption-sub">GC · RISK SENTIMENT · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_GC_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_GC_M.png" alt="Gold Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Gold (COMEX) Monthly</div>
+        <div class="mb-caption-sub">GC · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_SI_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_SI_D.png" alt="Silver Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Silver (COMEX) Daily</div>
+        <div class="mb-caption-sub">SI · INDUSTRIAL/MONETARY HYBRID · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_HG_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/METL_HG_M.png" alt="Copper Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Copper (COMEX) Monthly</div>
+        <div class="mb-caption-sub">HG · DR. COPPER ECONOMIC INDICATOR · MONTHLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     MACRO INDICES
+════════════════════════════════════════ -->
+<section class="mb-section" id="indices">
+  <div class="mb-section-head">
+    <span class="mb-section-label">10</span>
+    <span class="mb-section-title">Macro Indices</span>
+    <span class="mb-section-count">8 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_DXY_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_DXY_W.png" alt="US Dollar Index Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">US Dollar Index Weekly</div>
+        <div class="mb-caption-sub">DXY · CURRENCY IMPACT · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_DXY_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_DXY_M.png" alt="US Dollar Index Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">US Dollar Index Monthly</div>
+        <div class="mb-caption-sub">DXY · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_BDI_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_BDI_W.png" alt="Baltic Dry Index Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Baltic Dry Index Weekly</div>
+        <div class="mb-caption-sub">BDI · BULK FREIGHT / SHIPPING COSTS · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_GSCI_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_GSCI_W.png" alt="Goldman Sachs Commodity Index Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">Goldman Sachs Commodity Index</div>
+        <div class="mb-caption-sub">GSCI · COMMODITY COMPLEX BAROMETER · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_ES_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_ES_D.png" alt="S&P 500 Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">S&amp;P 500 Index Daily</div>
+        <div class="mb-caption-sub">ES · RISK APPETITE · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_ES_M.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/IDX_ES_M.png" alt="S&P 500 Monthly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">S&amp;P 500 Index Monthly</div>
+        <div class="mb-caption-sub">ES · MONTHLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FIN_DE_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FIN_DE_D.png" alt="John Deere Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">John Deere &amp; Co. Daily</div>
+        <div class="mb-caption-sub">DE · FARM ECONOMY BELLWETHER · DAILY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FIN_HD_D.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/FIN_HD_D.png" alt="The Home Depot Daily" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">The Home Depot Daily</div>
+        <div class="mb-caption-sub">HD · CONSUMER STRENGTH PROXY · DAILY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     INTEREST RATES
+════════════════════════════════════════ -->
+<section class="mb-section" id="rates">
+  <div class="mb-section-head">
+    <span class="mb-section-label">11</span>
+    <span class="mb-section-title">Interest Rates</span>
+    <span class="mb-section-count">4 charts</span>
+  </div>
+  <div class="mb-grid">
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_2YR_TNOTE_W.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_2YR_TNOTE_W.png" alt="2-Year T-Note Weekly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">2-Year T-Note Weekly</div>
+        <div class="mb-caption-sub">NEAR-TERM RATE EXPECTATIONS · WEEKLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_10YR_Price_Q.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_10YR_Price_Q.png" alt="10-Year Treasury Bond Price Quarterly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">10-Year Treasury Bond Price</div>
+        <div class="mb-caption-sub">ECONOMIC OUTLOOK GAUGE · QUARTERLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_30YR_Price_Q.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_30YR_Price_Q.png" alt="30-Year Treasury Bond Price Quarterly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">30-Year Treasury Bond Price</div>
+        <div class="mb-caption-sub">FLIGHT TO QUALITY SIGNAL · QUARTERLY</div>
+      </div>
+    </div>
+    <div class="mb-card">
+      <a href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_30YR_Yield_Q.png" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/BNDS_30YR_Yield_Q.png" alt="30-Year Treasury Bond Yield Quarterly" loading="lazy">
+      </a>
+      <div class="mb-caption">
+        <div class="mb-caption-title">30-Year Treasury Bond Yield</div>
+        <div class="mb-caption-sub">LONG-TERM BORROWING COST · QUARTERLY</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="mb-footer">
+  <div>MarketBullets® &nbsp;·&nbsp; More Sense Per Bushel™</div>
+  <div style="margin-top:4px;">Charts updated via Trade Navigator. Images served from GitHub. Click any chart to expand.</div>
+  <div style="margin-top:4px;">© MarketBullets LLC &nbsp;·&nbsp; marketbulletsllc.com &nbsp;·&nbsp; All rights reserved.</div>
+</footer>
+
+<script>
+// Auto-fill updated date from last image load or just set today
+(function(){
+  var d = new Date();
+  var months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var label = 'UPDATED: ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  document.getElementById('updated-date').textContent = label;
+})();
+</script>
+
+</body>
+</html>
