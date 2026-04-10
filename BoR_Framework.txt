@@ -1,0 +1,115 @@
+================================================================================
+BOX-O-ROX (BoR) FRAMEWORK REFERENCE
+MarketBullets LLC — Gary Hofer, Proprietor
+================================================================================
+Last Updated: [DATE]
+Version: [VERSION]
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+Box-o-Rox™ (BoR™) is a wheat marketing decision framework used to guide grain
+sale timing for subscribers holding physical bushels or managing price risk.
+
+BoR is technically-informed but NOT purely technical. While status signals are
+derived from technical indicators, all final status changes are instituted by
+Gary Hofer. This human confirmation layer exists to account for overarching
+fundamental narratives that a mechanical system cannot fully process.
+
+BoR is a trading system with human governance — not an autonomous algorithm.
+
+--------------------------------------------------------------------------------
+STATUS DEFINITIONS
+--------------------------------------------------------------------------------
+
+STATUS: SUSPEND
+  Definition: Hold all tranches. No sales are recommended at this time.
+  Implication: Pricing conditions do not favor execution. Accumulated sale
+               tranches remain suspended and continue to accumulate.
+  Subscriber Action: Do not sell. Monitor Signal Proximity for approaching
+                     status change.
+
+STATUS: EXECUTE
+  Definition: Sell all suspended tranches. This is a full accumulated position
+              liquidation — not a partial or staged sale.
+  Implication: Pricing conditions have met the threshold for action. All
+               tranches accumulated during the Suspend period are now sold.
+  Subscriber Action: Execute sales across all suspended tranches.
+
+--------------------------------------------------------------------------------
+SIGNAL PROXIMITY
+--------------------------------------------------------------------------------
+Signal Proximity is an integrated threshold indicator embedded within BoR.
+It measures how close current pricing is to triggering a potential status
+change (Suspend → Execute, or Execute → Suspend).
+
+Signal Proximity does NOT change BoR status on its own. It informs Gary's
+assessment and is published to subscribers as an early-warning gauge.
+
+  PROXIMITY LEVELS:
+  [ ] Distant     — Pricing well removed from status-change threshold
+  [ ] Approaching — Pricing trending toward threshold; monitor closely
+  [ ] Near        — Threshold within range; status change possible
+  [ ] At Threshold — Technical criteria met; Gary evaluates for confirmation
+
+  SIGNAL PROXIMITY CRITERIA (Technical — To Be Defined):
+  Indicator(s) used:        [PLACEHOLDER — e.g., moving average cross, RSI level, etc.]
+  Threshold definition:     [PLACEHOLDER — specific price level or indicator value]
+  Lookback period:          [PLACEHOLDER]
+  Confirmation requirement: [PLACEHOLDER — e.g., close above/below, X consecutive sessions]
+
+  FUNDAMENTAL OVERRIDE CONDITIONS (Gary's Discretion):
+  Examples of conditions that may delay or accelerate status change despite
+  technical signals:
+  - Active WASDE cycle with pending report
+  - Known geopolitical event affecting supply chain
+  - Basis dislocation inconsistent with futures signal
+  - Managed money positioning extreme (COT context)
+  - [PLACEHOLDER — add additional override conditions as defined]
+
+--------------------------------------------------------------------------------
+STATUS CHANGE PROTOCOL
+--------------------------------------------------------------------------------
+1. Technical indicator(s) reach threshold (Signal Proximity: At Threshold)
+2. Gary reviews fundamental overlay — supply/demand, basis, macro context
+3. Gary institutes status change (Suspend → Execute or Execute → Suspend)
+4. New status published to subscribers in pre-dawn commentary
+5. Signal Proximity resets relative to new status baseline
+
+NOTE: Gary is the sole authority on BoR status changes. No automated system
+      or third party may institute a status change.
+
+--------------------------------------------------------------------------------
+TRANCHE STRUCTURE
+--------------------------------------------------------------------------------
+  Tranche definition:       [PLACEHOLDER — how is a tranche sized? % of position?]
+  Accumulation method:      [PLACEHOLDER — how do tranches accumulate during Suspend?]
+  Maximum tranches held:    [PLACEHOLDER]
+  Execute trigger quantity: All suspended tranches (full accumulated position)
+
+--------------------------------------------------------------------------------
+PUBLISHING & SUBSCRIBER COMMUNICATION
+--------------------------------------------------------------------------------
+  BoR status is published:  Pre-dawn commentary (daily when active)
+  Format in commentary:     Inline BoR™ signal tag + narrative context
+  Signal Proximity shown:   [PLACEHOLDER — how is proximity communicated to subscribers?]
+  Historical log kept:      [PLACEHOLDER — yes/no, location if yes]
+
+--------------------------------------------------------------------------------
+FRAMEWORK GOVERNANCE
+--------------------------------------------------------------------------------
+  Creator/Operator:   Gary Hofer, MarketBullets LLC
+  System type:        Technically-informed, human-confirmed
+  Technical input:    Trade Navigator indicators
+  Final authority:    Gary Hofer only
+  Trademark:          Box-o-Rox™, BoR™ — MarketBullets LLC
+
+--------------------------------------------------------------------------------
+REVISION HISTORY
+--------------------------------------------------------------------------------
+[DATE] — [Description of change]
+[DATE] — [Description of change]
+
+================================================================================
+END OF DOCUMENT
+================================================================================
