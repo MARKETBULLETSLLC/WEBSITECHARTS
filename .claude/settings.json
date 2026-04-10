@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/Users/hofer/**)"
+      "Read(//c/Users/hofer/**)",
+      "Read(//temp/readonly/**)"
     ]
   }
 }

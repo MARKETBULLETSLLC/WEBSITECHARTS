@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets® — True Cost Per Bushel Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil: #140E08;
+  --soil-mid: #1E1408;
+  --soil-light: #2C1C0A;
+  --wheat: #C8973A;
+  --wheat-light: #E8C068;
+  --wheat-pale: #F5E6C0;
+  --wheat-dim: rgba(200,151,58,0.15);
+  --field: #1a3a1e;
+  --field-mid: #2d5a3d;
+  --sage: #6A9B78;
+  --amber: #D4860A;
+  --amber-glow: rgba(212,134,10,0.12);
+  --parchment: #F8F2E4;
+  --ink: #1C1410;
+  --rust: #9B3A1A;
+  --rust-dim: rgba(155,58,26,0.18);
+  --red: #E05030;
+  --red-dim: rgba(224,80,48,0.15);
+  --green: #5AAA70;
+  --green-dim: rgba(90,170,112,0.15);
+  --warn: #D47A1A;
+  --warn-dim: rgba(212,122,26,0.15);
+  --muted: #7A6A58;
+  --border: rgba(200,151,58,0.18);
+  --term-bg: #0A0704;
+  --term-amber: #E8A020;
+  --term-dim: rgba(232,160,32,0.45);
+  --term-faint: rgba(232,160,32,0.18);
+  --term-grid: rgba(232,160,32,0.06);
+  --card-bg: rgba(28,20,10,0.95);
+  --card-border: rgba(200,151,58,0.2);
+  --input-bg: rgba(0,0,0,0.35);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--soil);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(200,151,58,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(26,58,30,0.15) 0%, transparent 50%);
+  color: var(--wheat-pale);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════
+   MASTHEAD
+══════════════════════════════════ */
+.masthead {
+  background: linear-gradient(180deg, #0A0704 0%, var(--soil) 100%);
+  border-bottom: 1px solid var(--wheat);
+  padding: 22px 40px 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--wheat-light);
+  line-height: 1;
+}
+.brand-name em { color: var(--wheat-pale); font-style: italic; }
+.brand-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  margin-top: 5px;
+}
+
+.masthead-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/* ══════════════════════════════════
+   SUMMARY TICKER
+══════════════════════════════════ */
+.summary-ticker {
+  background: var(--term-bg);
+  border-bottom: 1px solid var(--term-faint);
+  padding: 0 40px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 74px;
+  z-index: 99;
+}
+
+.ticker-cell {
+  padding: 10px 24px;
+  border-right: 1px solid var(--term-faint);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+.ticker-cell:last-child { border-right: none; margin-left: auto; }
+
+.ticker-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+}
+.ticker-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--term-amber);
+  line-height: 1;
+}
+.ticker-value.red { color: var(--red); }
+.ticker-value.green { color: var(--green); }
+.ticker-value.warn { color: var(--warn); }
+
+/* ══════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════ */
+.main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 32px 40px 64px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ══════════════════════════════════
+   SECTION HEADERS
+══════════════════════════════════ */
+.sec-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--term-faint);
+}
+
+/* ══════════════════════════════════
+   CARDS
+══════════════════════════════════ */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--wheat);
+  opacity: 0.4;
+}
+.card.accent::before { background: var(--wheat); opacity: 1; }
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  color: var(--wheat-light);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-icon { font-size: 1.1rem; opacity: 0.7; }
+
+/* ══════════════════════════════════
+   INPUT ROWS
+══════════════════════════════════ */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+}
+.input-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+.input-grid.single { grid-template-columns: 1fr; }
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.input-label .hint {
+  font-size: 0.56rem;
+  opacity: 0.6;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix, .input-suffix {
+  position: absolute;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--term-dim);
+  pointer-events: none;
+  z-index: 1;
+}
+.input-prefix { left: 10px; }
+.input-suffix { right: 10px; }
+
+input[type="number"], input[type="text"], select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--term-faint);
+  border-radius: 3px;
+  color: var(--term-amber);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus, input[type="text"]:focus, select:focus {
+  border-color: var(--wheat);
+  box-shadow: 0 0 0 2px rgba(200,151,58,0.12);
+}
+
+.has-prefix input { padding-left: 24px; }
+.has-suffix input { padding-right: 32px; }
+
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(232,160,32,0.4)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  -webkit-appearance: none;
+}
+option { background: #1A1208; }
+
+/* ══════════════════════════════════
+   LINE ITEMS
+══════════════════════════════════ */
+.line-item {
+  display: grid;
+  grid-template-columns: 1fr 130px 90px;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(232,160,32,0.06);
+}
+.line-item:last-child { border-bottom: none; }
+
+.line-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--term-dim);
+}
+
+.line-input-wrap { position: relative; }
+.line-input-wrap input {
+  padding: 6px 32px 6px 18px;
+  font-size: 0.75rem;
+  width: 100%;
+}
+.line-input-wrap .pre { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--term-dim); pointer-events: none; }
+.line-input-wrap .suf { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--term-dim); pointer-events: none; }
+
+.line-result {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--wheat-pale);
+  text-align: right;
+  padding: 6px 8px;
+  background: rgba(232,160,32,0.05);
+  border-radius: 2px;
+  border: 1px solid var(--term-faint);
+}
+.line-result.red { color: var(--red); background: var(--red-dim); border-color: rgba(224,80,48,0.25); }
+
+/* ══════════════════════════════════
+   CATEGORY HEADER
+══════════════════════════════════ */
+.cat-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wheat);
+  background: rgba(200,151,58,0.08);
+  padding: 5px 8px;
+  border-radius: 2px;
+  margin: 12px 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cat-header .cat-total { font-size: 0.68rem; color: var(--term-amber); font-weight: 600; }
+
+/* ══════════════════════════════════
+   DEBT TABLE
+══════════════════════════════════ */
+.debt-row {
+  display: grid;
+  grid-template-columns: 1fr 100px 80px 80px 80px;
+  gap: 6px 10px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(232,160,32,0.06);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+}
+.debt-row:last-child { border-bottom: none; }
+.debt-row.header {
+  font-size: 0.56rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--term-faint);
+}
+.debt-row input { padding: 5px 8px; font-size: 0.7rem; text-align: right; }
+.debt-row .d-calc { color: var(--term-amber); text-align: right; }
+.debt-row .d-calc.red { color: var(--red); }
+.debt-row .d-name-input { text-align: left; }
+
+.add-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px dashed var(--term-faint);
+  background: transparent;
+  color: var(--term-dim);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+  width: 100%;
+}
+.add-btn:hover { border-color: var(--wheat); color: var(--wheat); background: var(--wheat-dim); }
+
+/* ══════════════════════════════════
+   RESULTS PANEL
+══════════════════════════════════ */
+.results-panel { position: sticky; top: 130px; }
+
+.result-hero {
+  background: var(--term-bg);
+  border: 1px solid var(--wheat);
+  border-radius: 4px;
+  padding: 24px 22px;
+  margin-bottom: 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.result-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(200,151,58,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  margin-bottom: 8px;
+}
+
+.hero-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.5rem;
+  color: var(--term-amber);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -2px;
+  transition: color 0.4s;
+}
+.hero-value.red { color: var(--red); }
+.hero-value.warn { color: var(--warn); }
+.hero-value.green { color: var(--green); }
+
+.hero-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--term-dim);
+  margin-bottom: 16px;
+}
+
+.breakeven-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid var(--term-faint);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+}
+.breakeven-row .be-label { color: var(--term-dim); }
+.breakeven-row .be-val { color: var(--wheat-light); font-weight: 600; }
+.breakeven-row .be-val.red { color: var(--red); }
+.breakeven-row .be-val.green { color: var(--green); }
+
+/* ══════════════════════════════════
+   COST BREAKDOWN CHART
+══════════════════════════════════ */
+.breakdown-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.breakdown-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  margin-bottom: 14px;
+}
+
+.breakdown-bar-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 64px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.bb-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--term-dim);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.bb-bar-wrap {
+  background: rgba(232,160,32,0.07);
+  border-radius: 2px;
+  height: 8px;
+  overflow: hidden;
+}
+.bb-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+.bb-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--term-amber);
+  text-align: right;
+}
+
+/* ══════════════════════════════════
+   VERDICT BOX
+══════════════════════════════════ */
+.verdict {
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  border: 1px solid;
+}
+.verdict.loss { background: var(--red-dim); border-color: rgba(224,80,48,0.3); color: #E88070; }
+.verdict.margin { background: var(--warn-dim); border-color: rgba(212,122,26,0.3); color: #E8A060; }
+.verdict.profit { background: var(--green-dim); border-color: rgba(90,170,112,0.3); color: #80C890; }
+.verdict.idle { background: rgba(200,151,58,0.05); border-color: var(--term-faint); color: var(--term-dim); }
+
+.verdict-title {
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ══════════════════════════════════
+   SENSITIVITY TABLE
+══════════════════════════════════ */
+.sens-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  margin-top: 8px;
+}
+.sens-table thead tr { border-bottom: 1px solid var(--term-faint); }
+.sens-table th {
+  padding: 5px 7px;
+  text-align: right;
+  font-size: 0.56rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+  font-weight: 400;
+}
+.sens-table th:first-child { text-align: left; }
+.sens-table td {
+  padding: 6px 7px;
+  border-bottom: 1px solid rgba(232,160,32,0.05);
+  text-align: right;
+  color: var(--term-dim);
+}
+.sens-table td:first-child { text-align: left; }
+.sens-table td.profit { color: var(--green); }
+.sens-table td.loss { color: var(--red); }
+.sens-table td.margin { color: var(--warn); }
+.sens-table td.current { color: var(--wheat-light); font-weight: 700; background: rgba(200,151,58,0.07); }
+
+/* ══════════════════════════════════
+   PRINT / EXPORT CONTROLS
+══════════════════════════════════ */
+.controls-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.ctrl-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--term-dim);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover { border-color: var(--wheat); color: var(--wheat-light); background: var(--wheat-dim); }
+.ctrl-btn.primary {
+  border-color: var(--wheat);
+  color: var(--wheat-light);
+  background: var(--wheat-dim);
+}
+.ctrl-btn.primary:hover { background: rgba(200,151,58,0.28); }
+
+/* ══════════════════════════════════
+   TOTAL ROWS
+══════════════════════════════════ */
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 10px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.73rem;
+  margin-top: 6px;
+  background: rgba(232,160,32,0.07);
+  border: 1px solid rgba(232,160,32,0.12);
+}
+.total-row .t-label { color: var(--wheat-light); }
+.total-row .t-val { color: var(--term-amber); font-weight: 700; }
+
+/* ══════════════════════════════════
+   DIVIDER
+══════════════════════════════════ */
+.divider { border: none; border-top: 1px solid var(--term-faint); margin: 20px 0; }
+
+/* ══════════════════════════════════
+   TOOLTIP
+══════════════════════════════════ */
+.tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
+.tooltip-icon {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--term-faint);
+  font-size: 9px;
+  color: var(--term-dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  margin-left: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.tooltip-text {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: var(--soil-light);
+  border: 1px solid var(--term-faint);
+  border-radius: 3px;
+  padding: 8px 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--wheat-pale);
+  white-space: nowrap;
+  z-index: 200;
+  line-height: 1.6;
+  max-width: 260px;
+  white-space: normal;
+}
+.tooltip-wrap:hover .tooltip-text { display: block; }
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 1100px) {
+  .main { grid-template-columns: 1fr; padding: 20px 20px 48px; }
+  .results-panel { position: static; }
+  .masthead { padding: 18px 20px; }
+  .summary-ticker { padding: 0 20px; top: 68px; }
+  .input-grid.three { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .input-grid, .input-grid.three { grid-template-columns: 1fr; }
+  .debt-row { grid-template-columns: 1fr 80px 70px; }
+  .debt-row > *:nth-child(4),
+  .debt-row > *:nth-child(5) { display: none; }
+  .line-item { grid-template-columns: 1fr 100px 80px; }
+}
+
+/* ══════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity:0; transform: translateY(6px); }
+  to { opacity:1; transform: translateY(0); }
+}
+.card { animation: fadeIn 0.35s ease both; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+
+@media print {
+  .masthead, .summary-ticker, .controls-bar { position: static !important; }
+  body { background: white; color: black; }
+  .card { border: 1px solid #ccc; background: white; }
+  .ctrl-btn { display: none; }
+}
+
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background: var(--soil); }
+::-webkit-scrollbar-thumb { background: rgba(200,151,58,0.25); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- MASTHEAD -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="masthead">
+  <div>
+    <div class="brand-name">MarketBullets<em>®</em></div>
+    <div class="brand-tag">True Cost Per Bushel Calculator — Full Input Cost Analysis</div>
+  </div>
+  <div class="masthead-right" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--term-dim);text-align:right;line-height:1.8">
+    <span id="clockEl">—</span><br>
+    <em style="color:var(--wheat-dim)">More Sense Per Bushel™</em>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SUMMARY TICKER -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="summary-ticker">
+  <div class="ticker-cell">
+    <span class="ticker-label">Cost / Bu</span>
+    <span class="ticker-value" id="tk-cost">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Breakeven Price</span>
+    <span class="ticker-value" id="tk-be">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Cash Price</span>
+    <span class="ticker-value" id="tk-cash">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Margin / Bu</span>
+    <span class="ticker-value" id="tk-margin">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Total Acres</span>
+    <span class="ticker-value" id="tk-ac">—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Total Bushels</span>
+    <span class="ticker-value" id="tk-bu">—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Net Farm P&amp;L</span>
+    <span class="ticker-value" id="tk-pnl">$—</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- MAIN LAYOUT -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="main">
+
+  <!-- ═══════════════════════════════
+       LEFT COLUMN — INPUT FORMS
+  ═══════════════════════════════ -->
+  <div class="left-col">
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <button class="ctrl-btn primary" onclick="recalc()">↻ Recalculate</button>
+      <button class="ctrl-btn" onclick="resetDefaults()">⟳ Load Defaults</button>
+      <button class="ctrl-btn" onclick="window.print()">⎙ Print / PDF</button>
+      <button class="ctrl-btn" onclick="exportCSV()">↓ Export CSV</button>
+    </div>
+
+    <!-- ─────────────────────────────
+         SECTION 1: FARM OVERVIEW
+    ───────────────────────────────── -->
+    <div class="sec-label">01 — Farm Overview</div>
+
+    <div class="card accent">
+      <div class="card-title">
+        Operation Parameters
+        <span class="card-icon">⚙</span>
+      </div>
+
+      <div class="input-grid three">
+        <div class="input-group">
+          <div class="input-label">Wheat Class</div>
+          <div class="input-wrap">
+            <select id="inp-class" onchange="recalc()">
+              <option value="SRW">SRW — Soft Red Winter</option>
+              <option value="HRW">HRW — Hard Red Winter</option>
+              <option value="HRS">HRS — Hard Red Spring</option>
+              <option value="SWW" selected>SWW — Soft White Winter</option>
+              <option value="DNW">DNW — Dark Northern Spring</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Total Acres
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Total wheat acres planted this crop year.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="inp-acres" value="500" min="1" step="10" oninput="recalc()">
+            <span class="input-suffix">ac</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Expected Yield
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Bushels per acre — use your 5-year average or NASS county average as a baseline.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="inp-yield" value="60" min="1" step="1" oninput="recalc()">
+            <span class="input-suffix">bu/ac</span>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="input-grid three">
+        <div class="input-group">
+          <div class="input-label">Futures Price
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Current or target futures contract price ($/bu). Use CBOT ZW for SRW/SWW, KCBT KE for HRW, MGEX MWE for HRS.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="inp-futures" value="5.50" min="0" step="0.01" oninput="recalc()">
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Basis
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Local cash price minus futures. Negative is typical (below futures). e.g. -0.35 means 35¢ under.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="inp-basis" value="-0.35" step="0.01" oninput="recalc()">
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Target Profit / Bu
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Desired profit margin per bushel above breakeven. Used to calculate target sale price.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-prefix">
+            <span class="input-prefix">$</span>
+            <input type="number" id="inp-target-profit" value="0.50" min="0" step="0.05" oninput="recalc()">
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;" class="input-grid">
+        <div class="input-group">
+          <div class="input-label">Storage Months
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Months grain will be stored before sale. Used to calculate storage cost.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="inp-storage-mo" value="4" min="0" max="18" step="1" oninput="recalc()">
+            <span class="input-suffix">mo</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-label">Storage Rate
+            <span class="tooltip-wrap">
+              <span class="tooltip-icon">?</span>
+              <span class="tooltip-text">Monthly storage rate charged by elevator (¢/bu/month). Typical: 2–4¢/bu/month.</span>
+            </span>
+          </div>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="inp-storage-rate" value="3" min="0" step="0.5" oninput="recalc()">
+            <span class="input-suffix">¢/bu/mo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────
+         SECTION 2: VARIABLE COSTS
+    ───────────────────────────────── -->
+    <div class="sec-label">02 — Variable Costs (per acre)</div>
+
+    <div class="card">
+      <div class="card-title">
+        Variable Input Costs
+        <span class="card-icon">🌱</span>
+      </div>
+
+      <!-- SEED -->
+      <div class="cat-header">
+        Seed
+        <span class="cat-total" id="ct-seed">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Certified Seed</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-seed" value="22.00" min="0" step="0.50" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-seed">$22.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Seed Treatment</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-seed-treat" value="4.50" min="0" step="0.50" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-seed-treat">$4.50</span>
+      </div>
+
+      <!-- FERTILIZER -->
+      <div class="cat-header">
+        Fertilizer
+        <span class="cat-total" id="ct-fert">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Nitrogen (N)</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-fert-n" value="55.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-fert-n">$55.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Phosphorus (P)</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-fert-p" value="18.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-fert-p">$18.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Potassium (K)</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-fert-k" value="8.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-fert-k">$8.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Sulfur / Micronutrients</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-fert-s" value="6.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-fert-s">$6.00</span>
+      </div>
+
+      <!-- CROP PROTECTION -->
+      <div class="cat-header">
+        Crop Protection
+        <span class="cat-total" id="ct-chem">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Herbicides</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-herb" value="24.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-herb">$24.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Fungicide</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-fung" value="18.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-fung">$18.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Insecticide</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-insect" value="4.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-insect">$4.00</span>
+      </div>
+
+      <!-- FUEL & LABOR -->
+      <div class="cat-header">
+        Fuel, Labor &amp; Custom Work
+        <span class="cat-total" id="ct-fuel">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Fuel &amp; Lubrication</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-fuel" value="18.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-fuel">$18.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Custom Application</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-custom" value="10.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-custom">$10.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Hired Labor</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-hired-labor" value="6.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-hired-labor">$6.00</span>
+      </div>
+
+      <!-- MISC -->
+      <div class="cat-header">
+        Harvest &amp; Miscellaneous
+        <span class="cat-total" id="ct-misc">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Crop Insurance Premium</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-cropins" value="12.00" min="0" step="0.50" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-cropins">$12.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Drying / Conditioning</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-dry" value="0.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-dry">$0.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Trucking / Hauling</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-truck" value="8.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-truck">$8.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Miscellaneous Variable</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-misc-var" value="5.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-misc-var">$5.00</span>
+      </div>
+
+      <div class="total-row">
+        <span class="t-label">Total Variable Cost / Acre</span>
+        <span class="t-val" id="tot-var">$—</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────
+         SECTION 3: FIXED COSTS
+    ───────────────────────────────── -->
+    <div class="sec-label">03 — Fixed Costs (per acre)</div>
+
+    <div class="card">
+      <div class="card-title">
+        Fixed &amp; Overhead Costs
+        <span class="card-icon">🏗</span>
+      </div>
+
+      <!-- LAND -->
+      <div class="cat-header">
+        Land
+        <span class="cat-total" id="ct-land">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <div class="line-name" style="display:flex;align-items:center;gap:4px;">
+          Land Rent / Cash Rent
+          <span class="tooltip-wrap">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">Annual cash rent per acre. For owned ground, use opportunity cost (what you could lease it for). PNW dryland typical: $80–$140/ac.</span>
+          </span>
+        </div>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-rent" value="95.00" min="0" step="5" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-rent">$95.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Property Tax (owned acres)</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-proptax" value="8.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-proptax">$8.00</span>
+      </div>
+
+      <!-- EQUIPMENT -->
+      <div class="cat-header">
+        Equipment
+        <span class="cat-total" id="ct-equip">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Equipment Depreciation</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-deprec" value="28.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-deprec">$28.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Equipment Repairs &amp; Maintenance</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-repairs" value="14.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-repairs">$14.00</span>
+      </div>
+
+      <!-- OVERHEAD -->
+      <div class="cat-header">
+        Overhead
+        <span class="cat-total" id="ct-overhead">$0.00/ac</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Operator Labor / Management</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-op-labor" value="20.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-op-labor">$20.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Farm Insurance</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-farmins" value="5.00" min="0" step="0.50" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-farmins">$5.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Utilities / Overhead</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-util" value="4.00" min="0" step="1" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-util">$4.00</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Accounting / Legal / Admin</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-admin" value="3.00" min="0" step="0.50" oninput="recalc()">
+          <span class="suf">/ac</span>
+        </div>
+        <span class="line-result" id="lr-admin">$3.00</span>
+      </div>
+
+      <div class="total-row">
+        <span class="t-label">Total Fixed Cost / Acre</span>
+        <span class="t-val" id="tot-fixed">$—</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────
+         SECTION 4: DEBT SERVICE
+    ───────────────────────────────── -->
+    <div class="sec-label">04 — Debt Service</div>
+
+    <div class="card">
+      <div class="card-title">
+        Loan Obligations
+        <span class="card-icon">🏦</span>
+      </div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--term-dim);margin-bottom:12px;line-height:1.6;">
+        Annual principal + interest payments. Enter outstanding balance, rate, and term — annual payment is calculated automatically and allocated across your total acres.
+      </p>
+
+      <div class="debt-row header">
+        <span>Loan Description</span>
+        <span style="text-align:right">Balance ($)</span>
+        <span style="text-align:right">Rate (%)</span>
+        <span style="text-align:right">Term (yr)</span>
+        <span style="text-align:right">Annual Pmt</span>
+      </div>
+
+      <div id="debt-rows">
+        <!-- dynamic rows injected here -->
+      </div>
+
+      <button class="add-btn" onclick="addDebtRow()">+ Add Loan</button>
+
+      <div class="total-row" style="margin-top:12px;">
+        <span class="t-label">Total Debt Service / Acre</span>
+        <span class="t-val" id="tot-debt">$—</span>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────
+         SECTION 5: MARKETING & STORAGE
+    ───────────────────────────────── -->
+    <div class="sec-label">05 — Marketing &amp; Storage Costs</div>
+
+    <div class="card">
+      <div class="card-title">
+        Post-Harvest Marketing Costs
+        <span class="card-icon">📦</span>
+      </div>
+
+      <div class="line-item">
+        <div class="line-name">
+          Storage (auto-calc)
+          <span style="font-size:0.6rem;color:var(--sage);margin-left:4px;" id="storage-calc-label"></span>
+        </div>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-storage" value="0.00" min="0" step="0.01" oninput="recalc()" placeholder="auto">
+          <span class="suf">/bu</span>
+        </div>
+        <span class="line-result" id="lr-storage">$0.00/bu</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Elevator Handling</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-handling" value="0.08" min="0" step="0.01" oninput="recalc()">
+          <span class="suf">/bu</span>
+        </div>
+        <span class="line-result" id="lr-handling">$0.08/bu</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Shrink / Weight Loss</span>
+        <div class="line-input-wrap">
+          <span class="pre">$</span>
+          <input type="number" id="li-shrink" value="0.03" min="0" step="0.01" oninput="recalc()">
+          <span class="suf">/bu</span>
+        </div>
+        <span class="line-result" id="lr-shrink">$0.03/bu</span>
+      </div>
+      <div class="line-item">
+        <span class="line-name">Interest on Stored Grain
+          <span class="tooltip-wrap">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">Opportunity cost of capital tied up in unsold grain. Typically 5–7% annual rate on grain value × storage months / 12.</span>
+          </span>
+        </span>
+        <div class="line-input-wrap">
+          <span class="pre">%</span>
+          <input type="number" id="li-carry-rate" value="6.5" min="0" step="0.25" oninput="recalc()">
+          <span class="suf">annual</span>
+        </div>
+        <span class="line-result" id="lr-carry">$0.00/bu</span>
+      </div>
+
+      <div class="total-row">
+        <span class="t-label">Total Marketing Cost / Bu</span>
+        <span class="t-val" id="tot-mkt">$—</span>
+      </div>
+    </div>
+
+  </div><!-- /left-col -->
+
+  <!-- ═══════════════════════════════
+       RIGHT COLUMN — RESULTS PANEL
+  ═══════════════════════════════ -->
+  <div class="results-panel">
+
+    <!-- HERO: COST PER BUSHEL -->
+    <div class="result-hero">
+      <div class="hero-label">True Cost Per Bushel</div>
+      <div class="hero-value" id="hero-cost">$—</div>
+      <div class="hero-sub" id="hero-class-label">—</div>
+
+      <div class="breakeven-row">
+        <span class="be-label">Cash Price</span>
+        <span class="be-val" id="be-cash">$—</span>
+      </div>
+      <div class="breakeven-row">
+        <span class="be-label">Breakeven Price</span>
+        <span class="be-val" id="be-break">$—</span>
+      </div>
+      <div class="breakeven-row">
+        <span class="be-label">Target Sale Price</span>
+        <span class="be-val" id="be-target">$—</span>
+      </div>
+      <div class="breakeven-row">
+        <span class="be-label">Margin / Bushel</span>
+        <span class="be-val" id="be-margin">$—</span>
+      </div>
+      <div class="breakeven-row">
+        <span class="be-label">Net Farm P&amp;L</span>
+        <span class="be-val" id="be-pnl">$—</span>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict idle" id="verdict-box">
+      <div class="verdict-title" id="verdict-title">⬤ Enter your data to see analysis</div>
+      <div id="verdict-body">Fill in farm overview and cost inputs to generate your cost per bushel and market position assessment.</div>
+    </div>
+
+    <!-- COST BREAKDOWN CHART -->
+    <div class="breakdown-card">
+      <div class="breakdown-title">Cost Breakdown — $/Acre</div>
+
+      <div class="breakdown-bar-row">
+        <span class="bb-label">Variable</span>
+        <div class="bb-bar-wrap">
+          <div class="bb-bar" id="bb-var-bar" style="width:0%;background:var(--wheat);"></div>
+        </div>
+        <span class="bb-val" id="bb-var-val">$—</span>
+      </div>
+      <div class="breakdown-bar-row">
+        <span class="bb-label">Fixed</span>
+        <div class="bb-bar-wrap">
+          <div class="bb-bar" id="bb-fix-bar" style="width:0%;background:var(--sage);"></div>
+        </div>
+        <span class="bb-val" id="bb-fix-val">$—</span>
+      </div>
+      <div class="breakdown-bar-row">
+        <span class="bb-label">Debt Svc</span>
+        <div class="bb-bar-wrap">
+          <div class="bb-bar" id="bb-debt-bar" style="width:0%;background:var(--rust);"></div>
+        </div>
+        <span class="bb-val" id="bb-debt-val">$—</span>
+      </div>
+      <div class="breakdown-bar-row">
+        <span class="bb-label">Marketing</span>
+        <div class="bb-bar-wrap">
+          <div class="bb-bar" id="bb-mkt-bar" style="width:0%;background:var(--amber);"></div>
+        </div>
+        <span class="bb-val" id="bb-mkt-val">$—</span>
+      </div>
+
+      <hr class="divider" style="margin:12px 0 8px;">
+
+      <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;">
+        <span style="color:var(--term-dim)">Total / Acre</span>
+        <span style="color:var(--term-amber);font-weight:700;" id="bb-total-ac">$—</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:0.65rem;margin-top:4px;">
+        <span style="color:var(--term-dim)">Total / Bu</span>
+        <span style="color:var(--term-amber);font-weight:700;" id="bb-total-bu">$—</span>
+      </div>
+    </div>
+
+    <!-- COST DETAIL ($/BU) -->
+    <div class="breakdown-card">
+      <div class="breakdown-title">Per-Bushel Cost Detail</div>
+
+      <div id="per-bu-detail" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+          <span style="color:var(--term-dim)">Variable Inputs</span>
+          <span style="color:var(--term-amber);" id="pbu-var">—</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+          <span style="color:var(--term-dim)">Fixed &amp; Overhead</span>
+          <span style="color:var(--term-amber);" id="pbu-fix">—</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+          <span style="color:var(--term-dim)">Debt Service</span>
+          <span style="color:var(--term-amber);" id="pbu-debt">—</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+          <span style="color:var(--term-dim)">Marketing / Storage</span>
+          <span style="color:var(--term-amber);" id="pbu-mkt">—</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:8px 0 0;margin-top:4px;border-top:1px solid var(--term-faint);">
+          <span style="color:var(--wheat-light);font-weight:700;">TRUE COST / BU</span>
+          <span style="color:var(--term-amber);font-weight:700;font-size:0.78rem;" id="pbu-total">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SENSITIVITY TABLE -->
+    <div class="breakdown-card">
+      <div class="breakdown-title">Sensitivity — Net $/Bu at Yield × Price</div>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--term-faint);margin-bottom:10px;">
+        Rows = yield deviation from expected. Columns = futures price. Bold = current scenario.
+      </p>
+      <div style="overflow-x:auto;">
+        <table class="sens-table" id="sens-table">
+          <thead>
+            <tr>
+              <th>Yield</th>
+              <th id="sh-p1">—</th>
+              <th id="sh-p2">—</th>
+              <th id="sh-p3">—</th>
+              <th id="sh-p4">—</th>
+              <th id="sh-p5">—</th>
+            </tr>
+          </thead>
+          <tbody id="sens-body">
+            <tr><td colspan="6" style="color:var(--term-faint);text-align:center;padding:12px;">Enter data above to generate sensitivity matrix.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /results-panel -->
+
+</div><!-- /main -->
+
+<script>
+/* ════════════════════════════════════════════════
+   DEBT ROWS — dynamic management
+════════════════════════════════════════════════ */
+let debtRows = [
+  { name: 'Operating Loan', balance: 80000, rate: 7.5, term: 1 },
+  { name: 'Equipment Note', balance: 220000, rate: 6.25, term: 7 },
+  { name: 'Land Mortgage',  balance: 650000, rate: 5.75, term: 20 }
+];
+
+function buildDebtRows() {
+  const container = document.getElementById('debt-rows');
+  container.innerHTML = '';
+  debtRows.forEach((row, i) => {
+    const pmt = calcAnnualPayment(row.balance, row.rate / 100, row.term);
+    const div = document.createElement('div');
+    div.className = 'debt-row';
+    div.innerHTML = `
+      <input type="text" class="d-name-input" value="${row.name}" oninput="debtRows[${i}].name=this.value;recalc()" style="text-align:left;font-size:0.68rem;">
+      <input type="number" value="${row.balance}" min="0" step="1000" oninput="debtRows[${i}].balance=parseFloat(this.value)||0;recalc()" style="text-align:right;font-size:0.68rem;">
+      <input type="number" value="${row.rate}" min="0" step="0.25" oninput="debtRows[${i}].rate=parseFloat(this.value)||0;recalc()" style="text-align:right;font-size:0.68rem;">
+      <input type="number" value="${row.term}" min="1" step="1" oninput="debtRows[${i}].term=parseFloat(this.value)||1;recalc()" style="text-align:right;font-size:0.68rem;">
+      <span class="d-calc" id="debt-pmt-${i}">${fmt(pmt)}</span>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function addDebtRow() {
+  debtRows.push({ name: 'New Loan', balance: 0, rate: 6.5, term: 5 });
+  buildDebtRows();
+  recalc();
+}
+
+function calcAnnualPayment(balance, annualRate, termYears) {
+  if (!balance || !termYears) return 0;
+  if (!annualRate) return balance / termYears;
+  const r = annualRate;
+  const n = termYears;
+  return balance * (r * Math.pow(1+r, n)) / (Math.pow(1+r, n) - 1);
+}
+
+/* ════════════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════════════ */
+function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function fmt(n) { return '$' + n.toFixed(2); }
+function fmtK(n) {
+  const abs = Math.abs(n);
+  const sign = n < 0 ? '-' : '';
+  if (abs >= 1000000) return sign + '$' + (abs/1000000).toFixed(2) + 'M';
+  if (abs >= 1000) return sign + '$' + (abs/1000).toFixed(1) + 'K';
+  return sign + fmt(abs);
+}
+
+function setColor(el, value) {
+  el.classList.remove('red', 'green', 'warn');
+  if (value < 0) el.classList.add('red');
+  else if (value > 0 && value < 0.30) el.classList.add('warn');
+  else if (value >= 0.30) el.classList.add('green');
+}
+
+/* ════════════════════════════════════════════════
+   MAIN RECALCULATE
+════════════════════════════════════════════════ */
+function recalc() {
+  const acres       = v('inp-acres');
+  const yieldBu     = v('inp-yield');
+  const futures     = v('inp-futures');
+  const basis       = v('inp-basis');
+  const targetProfit = v('inp-target-profit');
+  const storageMo   = v('inp-storage-mo');
+  const storageRate = v('inp-storage-rate');
+  const carryRate   = v('li-carry-rate') / 100;
+  const wheatClass  = document.getElementById('inp-class').value;
+
+  const cashPrice = futures + basis;
+
+  // ── VARIABLE COSTS / ACRE ──
+  const varItems = [
+    'seed','seed-treat',
+    'fert-n','fert-p','fert-k','fert-s',
+    'herb','fung','insect',
+    'fuel','custom','hired-labor',
+    'cropins','dry','truck','misc-var'
+  ];
+  let varTotal = 0;
+  varItems.forEach(id => {
+    const val = v('li-' + id);
+    varTotal += val;
+    const el = document.getElementById('lr-' + id);
+    if (el) el.textContent = fmt(val);
+  });
+
+  // Category sub-totals
+  const ctSeed  = v('li-seed') + v('li-seed-treat');
+  const ctFert  = v('li-fert-n') + v('li-fert-p') + v('li-fert-k') + v('li-fert-s');
+  const ctChem  = v('li-herb') + v('li-fung') + v('li-insect');
+  const ctFuel  = v('li-fuel') + v('li-custom') + v('li-hired-labor');
+  const ctMisc  = v('li-cropins') + v('li-dry') + v('li-truck') + v('li-misc-var');
+
+  document.getElementById('ct-seed').textContent = fmt(ctSeed) + '/ac';
+  document.getElementById('ct-fert').textContent = fmt(ctFert) + '/ac';
+  document.getElementById('ct-chem').textContent = fmt(ctChem) + '/ac';
+  document.getElementById('ct-fuel').textContent = fmt(ctFuel) + '/ac';
+  document.getElementById('ct-misc').textContent = fmt(ctMisc) + '/ac';
+  document.getElementById('tot-var').textContent = fmt(varTotal) + '/ac';
+
+  // ── FIXED COSTS / ACRE ──
+  const fixItems = ['rent','proptax','deprec','repairs','op-labor','farmins','util','admin'];
+  let fixTotal = 0;
+  fixItems.forEach(id => {
+    const val = v('li-' + id);
+    fixTotal += val;
+    const el = document.getElementById('lr-' + id);
+    if (el) el.textContent = fmt(val);
+  });
+
+  const ctLand     = v('li-rent') + v('li-proptax');
+  const ctEquip    = v('li-deprec') + v('li-repairs');
+  const ctOverhead = v('li-op-labor') + v('li-farmins') + v('li-util') + v('li-admin');
+
+  document.getElementById('ct-land').textContent    = fmt(ctLand) + '/ac';
+  document.getElementById('ct-equip').textContent   = fmt(ctEquip) + '/ac';
+  document.getElementById('ct-overhead').textContent = fmt(ctOverhead) + '/ac';
+  document.getElementById('tot-fixed').textContent  = fmt(fixTotal) + '/ac';
+
+  // ── DEBT SERVICE / ACRE ──
+  let totalDebtAnnual = 0;
+  debtRows.forEach((row, i) => {
+    const pmt = calcAnnualPayment(row.balance, row.rate / 100, row.term);
+    totalDebtAnnual += pmt;
+    const el = document.getElementById('debt-pmt-' + i);
+    if (el) {
+      el.textContent = fmtK(pmt);
+      el.classList.toggle('red', pmt > 0 && acres === 0);
+    }
+  });
+  const debtPerAcre = acres > 0 ? totalDebtAnnual / acres : 0;
+  document.getElementById('tot-debt').textContent = fmt(debtPerAcre) + '/ac';
+
+  // ── MARKETING / STORAGE ($/bu) ──
+  // Auto-calc storage from rate × months, convert ¢ to $
+  const storageCostPer = (storageRate * storageMo) / 100; // ¢ to $
+  document.getElementById('li-storage').value = storageCostPer.toFixed(3);
+  document.getElementById('lr-storage').textContent = fmt(storageCostPer) + '/bu';
+  document.getElementById('storage-calc-label').textContent =
+    storageMo > 0 ? `(${storageMo}mo × ${storageRate}¢)` : '';
+
+  const handling = v('li-handling');
+  const shrink   = v('li-shrink');
+
+  // Carrying cost on grain value: futures × carryRate × (months/12)
+  const carryCost = futures > 0 ? futures * carryRate * (storageMo / 12) : 0;
+  document.getElementById('lr-carry').textContent = fmt(carryCost) + '/bu';
+
+  const mktTotalPerBu = storageCostPer + handling + shrink + carryCost;
+  document.getElementById('lr-handling').textContent = fmt(handling) + '/bu';
+  document.getElementById('lr-shrink').textContent   = fmt(shrink)   + '/bu';
+  document.getElementById('tot-mkt').textContent     = fmt(mktTotalPerBu) + '/bu';
+
+  // Convert marketing cost $/bu → $/ac for breakdown chart
+  const mktPerAcre = mktTotalPerBu * yieldBu;
+
+  // ── GRAND TOTALS ──
+  const totalCostPerAcre = varTotal + fixTotal + debtPerAcre + mktPerAcre;
+  const costPerBu = yieldBu > 0 ? totalCostPerAcre / yieldBu : 0;
+  // Note: marketing costs already include storage etc. on a per-bu basis,
+  // but they also bake in yield. The "true cost/bu" reflects all costs including
+  // those per-bu marketing costs.
+  const trueCostPerBu = yieldBu > 0 ? (varTotal + fixTotal + debtPerAcre) / yieldBu + mktTotalPerBu : 0;
+
+  const breakeven = trueCostPerBu;
+  const targetSalePrice = breakeven + targetProfit;
+  const marginPerBu = cashPrice - trueCostPerBu;
+
+  const totalBushels = acres * yieldBu;
+  const totalRevenue = totalBushels * cashPrice;
+  const totalCostFarm = totalCostPerAcre * acres;
+  const netPnL = totalRevenue - totalCostFarm;
+
+  // ── UPDATE HERO ──
+  const heroEl = document.getElementById('hero-cost');
+  heroEl.textContent = fmt(trueCostPerBu);
+  heroEl.className = 'hero-value';
+
+  document.getElementById('hero-class-label').textContent =
+    `${wheatClass} | ${acres.toLocaleString()} ac | ${yieldBu} bu/ac`;
+
+  document.getElementById('be-cash').textContent   = fmt(cashPrice);
+  document.getElementById('be-break').textContent  = fmt(breakeven);
+  document.getElementById('be-target').textContent = fmt(targetSalePrice);
+
+  const marginEl = document.getElementById('be-margin');
+  marginEl.textContent = (marginPerBu >= 0 ? '+' : '') + fmt(marginPerBu);
+  marginEl.className = 'be-val ' + (marginPerBu < 0 ? 'red' : marginPerBu < 0.25 ? '' : 'green');
+
+  const pnlEl = document.getElementById('be-pnl');
+  pnlEl.textContent = (netPnL >= 0 ? '+' : '') + fmtK(netPnL);
+  pnlEl.className = 'be-val ' + (netPnL < 0 ? 'red' : 'green');
+
+  // ── TICKER BAR ──
+  document.getElementById('tk-cost').textContent = fmt(trueCostPerBu);
+  document.getElementById('tk-be').textContent   = fmt(breakeven);
+  document.getElementById('tk-cash').textContent = fmt(cashPrice);
+
+  const tkMargin = document.getElementById('tk-margin');
+  tkMargin.textContent = (marginPerBu >= 0 ? '+' : '') + fmt(marginPerBu);
+  tkMargin.className = 'ticker-value ' + (marginPerBu < 0 ? 'red' : marginPerBu < 0.15 ? 'warn' : 'green');
+
+  document.getElementById('tk-ac').textContent = acres > 0 ? acres.toLocaleString() : '—';
+  document.getElementById('tk-bu').textContent = totalBushels > 0 ? Math.round(totalBushels).toLocaleString() : '—';
+
+  const tkPnl = document.getElementById('tk-pnl');
+  tkPnl.textContent = totalBushels > 0 ? (netPnL >= 0 ? '+' : '') + fmtK(netPnL) : '$—';
+  tkPnl.className = 'ticker-value ' + (netPnL < 0 ? 'red' : 'green');
+
+  // ── BREAKDOWN BARS ──
+  const barMax = Math.max(varTotal + fixTotal + debtPerAcre + mktPerAcre, 1);
+  setBar('bb-var', varTotal, barMax);
+  setBar('bb-fix', fixTotal, barMax);
+  setBar('bb-debt', debtPerAcre, barMax);
+  setBar('bb-mkt', mktPerAcre, barMax);
+
+  document.getElementById('bb-total-ac').textContent = fmt(totalCostPerAcre);
+  document.getElementById('bb-total-bu').textContent = fmt(trueCostPerBu);
+
+  // ── PER-BU DETAIL ──
+  const pbuVar  = yieldBu > 0 ? varTotal / yieldBu : 0;
+  const pbuFix  = yieldBu > 0 ? fixTotal / yieldBu : 0;
+  const pbuDebt = yieldBu > 0 ? debtPerAcre / yieldBu : 0;
+  document.getElementById('pbu-var').textContent  = fmt(pbuVar);
+  document.getElementById('pbu-fix').textContent  = fmt(pbuFix);
+  document.getElementById('pbu-debt').textContent = fmt(pbuDebt);
+  document.getElementById('pbu-mkt').textContent  = fmt(mktTotalPerBu);
+  document.getElementById('pbu-total').textContent = fmt(trueCostPerBu);
+
+  // ── VERDICT ──
+  updateVerdict(marginPerBu, netPnL, trueCostPerBu, cashPrice, futures, breakeven);
+
+  // ── SENSITIVITY TABLE ──
+  buildSensTable(trueCostPerBu, yieldBu, futures, basis, mktTotalPerBu,
+    varTotal, fixTotal, debtPerAcre);
+}
+
+function setBar(prefix, value, max) {
+  const pct = Math.min(100, (value / max) * 100);
+  document.getElementById(prefix + '-bar').style.width = pct + '%';
+  document.getElementById(prefix + '-val').textContent = fmt(value);
+}
+
+/* ════════════════════════════════════════════════
+   VERDICT
+════════════════════════════════════════════════ */
+function updateVerdict(marginPerBu, netPnL, costPerBu, cashPrice, futures, breakeven) {
+  const box   = document.getElementById('verdict-box');
+  const title = document.getElementById('verdict-title');
+  const body  = document.getElementById('verdict-body');
+
+  if (!costPerBu || costPerBu <= 0) {
+    box.className = 'verdict idle';
+    title.textContent = '⬤ Awaiting input';
+    body.textContent = 'Enter your operation data to generate market position assessment.';
+    return;
+  }
+
+  const pctAboveBreak = ((cashPrice - breakeven) / breakeven) * 100;
+
+  if (marginPerBu < 0) {
+    box.className = 'verdict loss';
+    title.innerHTML = '▼ Below Breakeven — Loss Position';
+    const shortfall = Math.abs(marginPerBu);
+    body.innerHTML = `At current cash price of ${fmt(cashPrice)}, you are <strong>${fmt(shortfall)}/bu</strong> below your ${fmt(breakeven)} breakeven. ` +
+      `Futures would need to move to <strong>${fmt(breakeven - v('inp-basis'))}</strong> to cover all costs. ` +
+      `At this price and yield, the operation runs a net loss of ${fmtK(netPnL)}.`;
+  } else if (pctAboveBreak < 5) {
+    box.className = 'verdict margin';
+    title.innerHTML = '◆ Marginal — Thin Cover';
+    body.innerHTML = `Cash price covers costs by only <strong>${fmt(marginPerBu)}/bu</strong> (${pctAboveBreak.toFixed(1)}% above breakeven). ` +
+      `A 5¢ adverse basis move or modest yield shortfall would push the operation into loss territory. ` +
+      `Consider whether this margin justifies the production risk.`;
+  } else {
+    box.className = 'verdict profit';
+    title.innerHTML = '▲ Profitable — Covered Position';
+    const margin = fmtK(netPnL);
+    body.innerHTML = `At ${fmt(cashPrice)} cash price, you carry <strong>${fmt(marginPerBu)}/bu</strong> above breakeven — ${pctAboveBreak.toFixed(1)}% coverage. ` +
+      `Projected net return is ${margin} on ${Math.round(v('inp-acres') * v('inp-yield')).toLocaleString()} bushels. ` +
+      `This is a viable pricing window for new-crop sales.`;
+  }
+}
+
+/* ════════════════════════════════════════════════
+   SENSITIVITY TABLE
+════════════════════════════════════════════════ */
+function buildSensTable(baseCostPerBu, baseYield, baseFutures, basis,
+    mktPerBu, varPerAcre, fixPerAcre, debtPerAcre) {
+
+  if (!baseCostPerBu || !baseYield) return;
+
+  // Price columns: -$1.00, -$0.50, current, +$0.50, +$1.00
+  const prices = [baseFutures - 1.00, baseFutures - 0.50, baseFutures, baseFutures + 0.50, baseFutures + 1.00];
+  const yieldMults = [-0.20, -0.10, 0, 0.10, 0.20];
+  const yieldLabels = ['-20%', '-10%', 'Expected', '+10%', '+20%'];
+
+  // Update column headers
+  prices.forEach((p, i) => {
+    const el = document.getElementById('sh-p' + (i+1));
+    if (el) el.textContent = fmt(p + basis);
+  });
+
+  const tbody = document.getElementById('sens-body');
+  tbody.innerHTML = '';
+
+  yieldMults.forEach((mult, ri) => {
+    const adjYield = baseYield * (1 + mult);
+    const tr = document.createElement('tr');
+
+    // Row header
+    const tdLabel = document.createElement('td');
+    tdLabel.textContent = yieldLabels[ri] + ' (' + Math.round(adjYield) + ' bu)';
+    if (mult === 0) tdLabel.classList.add('current');
+    tr.appendChild(tdLabel);
+
+    prices.forEach((futPrice, ci) => {
+      const cashP = futPrice + basis;
+      // Recalc cost per bu at this yield
+      const adjCostPerBu = adjYield > 0
+        ? (varPerAcre + fixPerAcre + debtPerAcre) / adjYield + mktPerBu
+        : 0;
+      const netPerBu = cashP - adjCostPerBu;
+      const td = document.createElement('td');
+      td.textContent = (netPerBu >= 0 ? '+' : '') + fmt(netPerBu);
+
+      // Color coding
+      const isCurrYield = mult === 0;
+      const isCurrPrice = Math.abs(futPrice - baseFutures) < 0.001;
+
+      if (isCurrYield && isCurrPrice) {
+        td.classList.add('current');
+      } else if (netPerBu < 0) {
+        td.classList.add('loss');
+      } else if (netPerBu < 0.25) {
+        td.classList.add('margin');
+      } else {
+        td.classList.add('profit');
+      }
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+/* ════════════════════════════════════════════════
+   RESET DEFAULTS
+════════════════════════════════════════════════ */
+function resetDefaults() {
+  const defaults = {
+    'inp-acres': 500, 'inp-yield': 60, 'inp-futures': 5.50, 'inp-basis': -0.35,
+    'inp-target-profit': 0.50, 'inp-storage-mo': 4, 'inp-storage-rate': 3,
+    'li-seed': 22, 'li-seed-treat': 4.50,
+    'li-fert-n': 55, 'li-fert-p': 18, 'li-fert-k': 8, 'li-fert-s': 6,
+    'li-herb': 24, 'li-fung': 18, 'li-insect': 4,
+    'li-fuel': 18, 'li-custom': 10, 'li-hired-labor': 6,
+    'li-cropins': 12, 'li-dry': 0, 'li-truck': 8, 'li-misc-var': 5,
+    'li-rent': 95, 'li-proptax': 8,
+    'li-deprec': 28, 'li-repairs': 14,
+    'li-op-labor': 20, 'li-farmins': 5, 'li-util': 4, 'li-admin': 3,
+    'li-handling': 0.08, 'li-shrink': 0.03, 'li-carry-rate': 6.5
+  };
+  Object.entries(defaults).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+  debtRows = [
+    { name: 'Operating Loan', balance: 80000, rate: 7.5, term: 1 },
+    { name: 'Equipment Note', balance: 220000, rate: 6.25, term: 7 },
+    { name: 'Land Mortgage',  balance: 650000, rate: 5.75, term: 20 }
+  ];
+  buildDebtRows();
+  recalc();
+}
+
+/* ════════════════════════════════════════════════
+   EXPORT CSV
+════════════════════════════════════════════════ */
+function exportCSV() {
+  const acres   = v('inp-acres');
+  const yld     = v('inp-yield');
+  const futures = v('inp-futures');
+  const basis   = v('inp-basis');
+  const cash    = futures + basis;
+
+  const rows = [
+    ['MarketBullets\u00ae \u2014 True Cost Per Bushel Calculator', '', ''],
+    ['Generated', new Date().toLocaleDateString(), ''],
+    [''],
+    ['FARM OVERVIEW', '', ''],
+    ['Wheat Class', document.getElementById('inp-class').value, ''],
+    ['Total Acres', acres, 'ac'],
+    ['Expected Yield', yld, 'bu/ac'],
+    ['Futures Price', futures, '$/bu'],
+    ['Basis', basis, '$/bu'],
+    ['Cash Price', cash, '$/bu'],
+    [''],
+    ['COST SUMMARY', '$/Acre', '$/Bu'],
+    ['Variable Costs', document.getElementById('tot-var').textContent.replace('$','').replace('/ac',''), ''],
+    ['Fixed Costs', document.getElementById('tot-fixed').textContent.replace('$','').replace('/ac',''), ''],
+    ['Debt Service', document.getElementById('tot-debt').textContent.replace('$','').replace('/ac',''), ''],
+    [''],
+    ['TRUE COST / BUSHEL', '', document.getElementById('pbu-total').textContent],
+    ['Breakeven Price', '', document.getElementById('be-break').textContent],
+    ['Cash Price', '', document.getElementById('be-cash').textContent],
+    ['Margin / Bu', '', document.getElementById('be-margin').textContent],
+    ['Net Farm P&L', '', document.getElementById('be-pnl').textContent],
+  ];
+
+  const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'marketbullets_cost_calc_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ════════════════════════════════════════════════
+   CLOCK
+════════════════════════════════════════════════ */
+function updateClock() {
+  const now = new Date();
+  const opts = { weekday: 'short', month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit', timeZoneName: 'short' };
+  document.getElementById('clockEl').textContent = now.toLocaleString('en-US', opts);
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+/* ════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════ */
+buildDebtRows();
+recalc();
+</script>
+</body>
+</html>
