@@ -1,0 +1,17 @@
+{
+  "buildCommand": "next build",
+  "outputDirectory": ".next",
+  "env": [
+    "GOOGLE_SHEETS_PROJECT_ID",
+    "GOOGLE_SHEETS_PRIVATE_KEY",
+    "GOOGLE_SHEETS_CLIENT_EMAIL",
+    "GOOGLE_SHEETS_ID",
+    "NEXT_PUBLIC_API_URL"
+  ],
+  "functions": {
+    "pages/api/**": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  }
+}
