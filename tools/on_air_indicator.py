@@ -21,7 +21,8 @@ import math
 
 try:
     import win32gui
-    import win32com.client
+    import win32api
+    import win32con
     HAS_WIN32 = True
 except ImportError:
     HAS_WIN32 = False
@@ -188,17 +189,11 @@ class OnAirIndicator:
         hwnd = self._find_audacity()
         if not hwnd:
             return
-        prev = win32gui.GetForegroundWindow()
+        vk = win32api.VkKeyScan(key) & 0xFF
         try:
-            win32gui.SetForegroundWindow(hwnd)
-            time.sleep(0.07)
-            win32com.client.Dispatch("WScript.Shell").SendKeys(key)
+            win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, vk, 0)
             time.sleep(0.05)
-            if prev and prev != hwnd:
-                try:
-                    win32gui.SetForegroundWindow(prev)
-                except Exception:
-                    pass
+            win32api.PostMessage(hwnd, win32con.WM_KEYUP, vk, 0)
         except Exception:
             pass
 
