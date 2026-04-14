@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets® — True Cost Per Bushel Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --soil:         #140E08;
+  --soil-mid:     #1E1408;
+  --soil-light:   #2C1C0A;
+  --wheat:        #C8973A;
+  --wheat-light:  #E8C068;
+  --wheat-pale:   #F5E6C0;
+  --wheat-dim:    rgba(200,151,58,0.15);
+  --field:        #1a3a1e;
+  --field-mid:    #2d5a3d;
+  --sage:         #6A9B78;
+  --amber:        #D4860A;
+  --amber-glow:   rgba(212,134,10,0.12);
+  --parchment:    #F8F2E4;
+  --ink:          #1C1410;
+  --rust:         #9B3A1A;
+  --rust-dim:     rgba(155,58,26,0.18);
+  --red:          #E05030;
+  --red-dim:      rgba(224,80,48,0.15);
+  --green:        #5AAA70;
+  --green-dim:    rgba(90,170,112,0.15);
+  --warn:         #D47A1A;
+  --warn-dim:     rgba(212,122,26,0.15);
+  --muted:        #7A6A58;
+  --border:       rgba(200,151,58,0.18);
+  --term-bg:      #0A0704;
+  --term-amber:   #E8A020;
+  --term-dim:     rgba(232,160,32,0.45);
+  --term-faint:   rgba(232,160,32,0.18);
+  --term-grid:    rgba(232,160,32,0.06);
+  --card-bg:      rgba(28,20,10,0.95);
+  --card-border:  rgba(200,151,58,0.2);
+  --input-bg:     rgba(0,0,0,0.35);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--soil);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(200,151,58,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(26,58,30,0.15) 0%, transparent 50%);
+  color: var(--wheat-pale);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════
+   MASTHEAD
+══════════════════════════════════ */
+.masthead {
+  background: linear-gradient(180deg, #0A0704 0%, var(--soil) 100%);
+  border-bottom: 1px solid var(--wheat);
+  padding: 22px 40px 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--wheat-light);
+  line-height: 1;
+}
+.brand-name em { color: var(--wheat-pale); font-style: italic; }
+.brand-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  margin-top: 5px;
+}
+
+.masthead-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+/* ══════════════════════════════════
+   SUMMARY TICKER (sticky top bar)
+══════════════════════════════════ */
+.summary-ticker {
+  background: var(--term-bg);
+  border-bottom: 1px solid var(--term-faint);
+  padding: 0 40px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 74px;
+  z-index: 99;
+}
+
+.ticker-cell {
+  padding: 10px 24px;
+  border-right: 1px solid var(--term-faint);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 140px;
+}
+.ticker-cell:last-child { border-right: none; margin-left: auto; }
+
+.ticker-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+}
+.ticker-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--term-amber);
+  line-height: 1;
+}
+.ticker-value.red   { color: var(--red); }
+.ticker-value.green { color: var(--green); }
+.ticker-value.warn  { color: var(--warn); }
+
+/* ══════════════════════════════════
+   MAIN LAYOUT
+══════════════════════════════════ */
+.main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 32px 40px 64px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ══════════════════════════════════
+   SECTION HEADERS
+══════════════════════════════════ */
+.sec-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--term-faint);
+}
+
+/* ══════════════════════════════════
+   CARDS
+══════════════════════════════════ */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--wheat);
+  opacity: 0.4;
+}
+.card.accent::before { background: var(--wheat); opacity: 1; }
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  color: var(--wheat-light);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-icon {
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+/* ══════════════════════════════════
+   INPUT ROWS
+══════════════════════════════════ */
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+}
+.input-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+.input-grid.single { grid-template-columns: 1fr; }
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.input-label .hint {
+  font-size: 0.56rem;
+  opacity: 0.6;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-prefix, .input-suffix {
+  position: absolute;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--term-dim);
+  pointer-events: none;
+  z-index: 1;
+}
+.input-prefix { left: 10px; }
+.input-suffix { right: 10px; }
+
+input[type="number"], input[type="text"], select {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--term-faint);
+  border-radius: 3px;
+  color: var(--term-amber);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type="number"]:focus, input[type="text"]:focus, select:focus {
+  border-color: var(--wheat);
+  box-shadow: 0 0 0 2px rgba(200,151,58,0.12);
+}
+
+.has-prefix input  { padding-left: 24px; }
+.has-suffix input  { padding-right: 32px; }
+
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(232,160,32,0.4)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  -webkit-appearance: none;
+}
+option { background: #1A1208; }
+
+/* ══════════════════════════════════
+   LINE ITEMS — per-category rows
+══════════════════════════════════ */
+.line-item {
+  display: grid;
+  grid-template-columns: 1fr 130px 90px;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(232,160,32,0.06);
+}
+.line-item:last-child { border-bottom: none; }
+
+.line-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--term-dim);
+}
+
+.line-input-wrap { position: relative; }
+.line-input-wrap input {
+  padding: 6px 32px 6px 18px;
+  font-size: 0.75rem;
+  width: 100%;
+}
+.line-input-wrap .pre { left: 8px; font-size: 0.65rem; }
+.line-input-wrap .suf { right: 8px; font-size: 0.65rem; }
+
+.line-result {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--wheat-pale);
+  text-align: right;
+  padding: 6px 8px;
+  background: rgba(232,160,32,0.05);
+  border-radius: 2px;
+  border: 1px solid var(--term-faint);
+}
+
+.line-result.red { color: var(--red); background: var(--red-dim); border-color: rgba(224,80,48,0.25); }
+
+/* ══════════════════════════════════
+   CATEGORY HEADER within card
+══════════════════════════════════ */
+.cat-header {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wheat);
+  background: rgba(200,151,58,0.08);
+  padding: 5px 8px;
+  border-radius: 2px;
+  margin: 12px 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cat-header .cat-total {
+  font-size: 0.68rem;
+  color: var(--term-amber);
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════
+   DEBT TABLE
+══════════════════════════════════ */
+.debt-row {
+  display: grid;
+  grid-template-columns: 1fr 100px 80px 80px 80px;
+  gap: 6px 10px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(232,160,32,0.06);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+}
+.debt-row:last-child { border-bottom: none; }
+.debt-row.header {
+  font-size: 0.56rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--term-faint);
+}
+.debt-row input {
+  padding: 5px 8px;
+  font-size: 0.7rem;
+  text-align: right;
+}
+.debt-row .d-calc {
+  color: var(--term-amber);
+  text-align: right;
+}
+.debt-row .d-calc.red { color: var(--red); }
+
+/* add debt btn */
+.add-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px dashed var(--term-faint);
+  background: transparent;
+  color: var(--term-dim);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+  width: 100%;
+}
+.add-btn:hover { border-color: var(--wheat); color: var(--wheat); background: var(--wheat-dim); }
+
+/* ══════════════════════════════════
+   RESULTS PANEL (right column)
+══════════════════════════════════ */
+.results-panel {
+  position: sticky;
+  top: 130px;
+}
+
+.result-hero {
+  background: var(--term-bg);
+  border: 1px solid var(--wheat);
+  border-radius: 4px;
+  padding: 24px 22px;
+  margin-bottom: 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.result-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(200,151,58,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  margin-bottom: 8px;
+}
+
+.hero-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.5rem;
+  color: var(--term-amber);
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -2px;
+  transition: color 0.4s;
+}
+.hero-value.red   { color: var(--red); }
+.hero-value.warn  { color: var(--warn); }
+.hero-value.green { color: var(--green); }
+
+.hero-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--term-dim);
+  margin-bottom: 16px;
+}
+
+.breakeven-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid var(--term-faint);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+}
+.breakeven-row .be-label { color: var(--term-dim); }
+.breakeven-row .be-val   { color: var(--wheat-light); font-weight: 600; }
+.breakeven-row .be-val.red { color: var(--red); }
+.breakeven-row .be-val.green { color: var(--green); }
+
+/* ══════════════════════════════════
+   COST BREAKDOWN CHART
+══════════════════════════════════ */
+.breakdown-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+
+.breakdown-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--term-dim);
+  margin-bottom: 14px;
+}
+
+.breakdown-bar-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 60px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.bb-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--term-dim);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.bb-bar-wrap {
+  background: rgba(232,160,32,0.07);
+  border-radius: 2px;
+  height: 8px;
+  overflow: hidden;
+}
+.bb-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+.bb-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--term-amber);
+  text-align: right;
+}
+
+/* ══════════════════════════════════
+   VERDICT BOX
+══════════════════════════════════ */
+.verdict {
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.7;
+  border: 1px solid;
+}
+.verdict.loss   { background: var(--red-dim);   border-color: rgba(224,80,48,0.3);   color: #E88070; }
+.verdict.margin { background: var(--warn-dim);  border-color: rgba(212,122,26,0.3);  color: #E8A060; }
+.verdict.profit { background: var(--green-dim); border-color: rgba(90,170,112,0.3);  color: #80C890; }
+
+.verdict-title {
+  font-weight: 700;
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ══════════════════════════════════
+   SENSITIVITY TABLE
+══════════════════════════════════ */
+.sens-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  margin-top: 8px;
+}
+.sens-table thead tr { border-bottom: 1px solid var(--term-faint); }
+.sens-table th {
+  padding: 5px 7px;
+  text-align: right;
+  font-size: 0.56rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+  font-weight: 400;
+}
+.sens-table th:first-child { text-align: left; }
+.sens-table td {
+  padding: 6px 7px;
+  border-bottom: 1px solid rgba(232,160,32,0.05);
+  text-align: right;
+  color: var(--term-dim);
+}
+.sens-table td:first-child { text-align: left; }
+.sens-table td.profit { color: var(--green); }
+.sens-table td.loss   { color: var(--red); }
+.sens-table td.margin { color: var(--warn); }
+.sens-table td.current { color: var(--wheat-light); font-weight: 700; }
+
+/* ══════════════════════════════════
+   DOLLAR INDEX ROW
+══════════════════════════════════ */
+.dxy-row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 10px;
+}
+.dxy-cell {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--term-faint);
+  border-radius: 3px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dxy-cell-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--term-faint);
+}
+.dxy-cell-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--term-amber);
+}
+.dxy-impact {
+  font-size: 0.62rem;
+  color: var(--sage);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════
+   PRINT / EXPORT CONTROLS
+══════════════════════════════════ */
+.controls-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.ctrl-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--term-dim);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover { border-color: var(--wheat); color: var(--wheat-light); background: var(--wheat-dim); }
+.ctrl-btn.primary {
+  border-color: var(--wheat);
+  color: var(--wheat-light);
+  background: var(--wheat-dim);
+}
+.ctrl-btn.primary:hover { background: rgba(200,151,58,0.28); }
+
+/* ══════════════════════════════════
+   TOTAL ROWS
+══════════════════════════════════ */
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 10px;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.73rem;
+  margin-top: 6px;
+  background: rgba(232,160,32,0.07);
+  border: 1px solid rgba(232,160,32,0.12);
+}
+.total-row .t-label { color: var(--wheat-light); }
+.total-row .t-val   { color: var(--term-amber); font-weight: 700; }
+
+/* ══════════════════════════════════
+   SECTION DIVIDER
+══════════════════════════════════ */
+.divider { border: none; border-top: 1px solid var(--term-faint); margin: 20px 0; }
+
+/* ══════════════════════════════════
+   TOOLTIP
+══════════════════════════════════ */
+.tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
+.tooltip-icon {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--term-faint);
+  font-size: 9px;
+  color: var(--term-dim);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  margin-left: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.tooltip-text {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: var(--soil-light);
+  border: 1px solid var(--term-faint);
+  border-radius: 3px;
+  padding: 8px 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--wheat-pale);
+  white-space: nowrap;
+  z-index: 200;
+  line-height: 1.6;
+}
+.tooltip-wrap:hover .tooltip-text { display: block; }
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 1100px) {
+  .main { grid-template-columns: 1fr; padding: 20px 20px 48px; }
+  .results-panel { position: static; }
+  .masthead { padding: 18px 20px; }
+  .summary-ticker { padding: 0 20px; }
+  .input-grid.three { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .input-grid, .input-grid.three { grid-template-columns: 1fr; }
+  .debt-row { grid-template-columns: 1fr 80px 70px; }
+  .debt-row > *:nth-child(4),
+  .debt-row > *:nth-child(5) { display: none; }
+}
+
+/* ══════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity:0; transform: translateY(6px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.card { animation: fadeIn 0.35s ease both; }
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background: var(--soil); }
+::-webkit-scrollbar-thumb { background: rgba(200,151,58,0.25); border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- MASTHEAD -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="masthead">
+  <div>
+    <div class="brand-name">MarketBullets<em>®</em></div>
+    <div class="brand-tag">True Cost Per Bushel Calculator — Full Input Cost Analysis</div>
+  </div>
+  <div class="masthead-right" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--term-dim);text-align:right;line-height:1.8">
+    <span id="clockEl">—</span><br>
+    <em style="color:var(--wheat-dim)">More Sense Per Bushel™</em>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SUMMARY TICKER -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="summary-ticker">
+  <div class="ticker-cell">
+    <span class="ticker-label">Cost / Bu</span>
+    <span class="ticker-value" id="tk-cost">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Breakeven Price</span>
+    <span class="ticker-value" id="tk-be">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Total Acres</span>
+    <span class="ticker-value" id="tk-acres">—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Yield (bu/ac)</span>
+    <span class="ticker-value" id="tk-yield">—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Total Bushels</span>
+    <span class="ticker-value" id="tk-bu">—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Mkt Price</span>
+    <span class="ticker-value" id="tk-mkt">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">P/L Per Bu</span>
+    <span class="ticker-value" id="tk-pl">$—</span>
+  </div>
+  <div class="ticker-cell">
+    <span class="ticker-label">Total P/L</span>
+    <span class="ticker-value" id="tk-total">$—</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- MAIN -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="main">
+
+<!-- ══════════ LEFT COLUMN — INPUTS ══════════ -->
+<div class="left-col">
+
+  <!-- CONTROLS -->
+  <div class="controls-bar">
+    <button class="ctrl-btn primary" onclick="resetToDefaults()">⟳ Load Typical Defaults</button>
+    <button class="ctrl-btn" onclick="window.print()">⎙ Print / Save PDF</button>
+    <button class="ctrl-btn" onclick="exportCSV()">↓ Export CSV</button>
+    <button class="ctrl-btn" onclick="clearAll()">✕ Clear All</button>
+  </div>
+
+  <!-- ─── OPERATION FOUNDATION ─── -->
+  <div class="sec-label">Operation Foundation</div>
+  <div class="card accent">
+    <div class="card-title"><span>Farm Operation Parameters</span><span class="card-icon">🌾</span></div>
+    <div class="input-grid three">
+      <div class="input-group">
+        <div class="input-label">Total Acres Planted</div>
+        <div class="input-wrap">
+          <input type="number" id="acres" value="1500" min="1" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Last Harvest Yield <span class="hint">bu/acre</span></div>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="yield" value="52" min="1" oninput="calc()">
+          <span class="input-suffix">bu</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Expected This Year <span class="hint">bu/acre</span></div>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="expectedYield" value="50" min="1" oninput="calc()">
+          <span class="input-suffix">bu</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Current Mkt Price <span class="hint">$/bu</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="mktPrice" value="5.40" step="0.01" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Local Basis <span class="hint">cents</span></div>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="localBasis" value="-30" step="1" oninput="calc()">
+          <span class="input-suffix">¢</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Crop Year</div>
+        <select id="cropYear" onchange="calc()">
+          <option value="2025-2026" selected>2025–2026</option>
+          <option value="2026-2027">2026–2027</option>
+          <option value="2024-2025">2024–2025</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DOLLAR / MACRO ─── -->
+  <div class="sec-label">Macro Inputs — Dollar Index &amp; Inflation</div>
+  <div class="card">
+    <div class="card-title"><span>U.S. Dollar Index &amp; Input Cost Inflation</span><span class="card-icon">💵</span></div>
+    <div class="dxy-row">
+      <div class="dxy-cell">
+        <div class="dxy-cell-label">DXY Current</div>
+        <input type="number" id="dxyCurrent" value="104.5" step="0.1" min="80" max="130" oninput="calc()"
+          style="border:none;background:transparent;padding:2px 0;font-size:0.9rem;width:100%">
+        <div class="dxy-impact" id="dxy-impact-text">Strong dollar suppresses wheat export demand</div>
+      </div>
+      <div class="dxy-cell">
+        <div class="dxy-cell-label">DXY Baseline (prior yr)</div>
+        <input type="number" id="dxyBaseline" value="102.0" step="0.1" min="80" max="130" oninput="calc()"
+          style="border:none;background:transparent;padding:2px 0;font-size:0.9rem;width:100%">
+        <div class="dxy-cell-label" style="margin-top:4px">YoY Change</div>
+        <div class="dxy-cell-val" id="dxy-change">+2.5%</div>
+      </div>
+      <div class="dxy-cell">
+        <div class="dxy-cell-label">Input Cost Inflation %</div>
+        <input type="number" id="inflationRate" value="4.2" step="0.1" min="0" max="30" oninput="calc()"
+          style="border:none;background:transparent;padding:2px 0;font-size:0.9rem;width:100%">
+        <div class="dxy-cell-label" style="margin-top:4px">Applied to all inputs</div>
+        <div class="dxy-cell-val" id="inflation-adj-label">+4.2% adj</div>
+      </div>
+    </div>
+    <div class="input-grid" style="margin-top:12px">
+      <div class="input-group">
+        <div class="input-label">Diesel Price <span class="hint">$/gallon</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="dieselPrice" value="3.85" step="0.01" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Diesel Use <span class="hint">gal/acre</span></div>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="dieselGal" value="8.5" step="0.5" min="0" oninput="calc()">
+          <span class="input-suffix">gal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CROP INPUTS ─── -->
+  <div class="sec-label">Direct Crop Input Costs</div>
+  <div class="card">
+    <div class="card-title"><span>Seed, Fertilizer, Chemicals</span><span class="card-icon">🧪</span></div>
+
+    <div class="cat-header">
+      <span>Seed</span>
+      <span class="cat-total" id="tot-seed">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Seed cost (certified)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="seedCost" value="18.00" step="0.50" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-seed">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Seed treatment</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="seedTreat" value="4.00" step="0.50" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-seedtreat">—</span>
+    </div>
+
+    <div class="cat-header">
+      <span>Fertilizer</span>
+      <span class="cat-total" id="tot-fert">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Nitrogen (anhydrous/urea)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="nitrogen" value="52.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-nitrogen">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Phosphorus (DAP/MAP)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="phosphorus" value="24.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-phosphorus">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Potassium (potash)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="potassium" value="14.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-potassium">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Micronutrients / sulfur</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="micro" value="6.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-micro">—</span>
+    </div>
+
+    <div class="cat-header">
+      <span>Pesticides &amp; Herbicides</span>
+      <span class="cat-total" id="tot-chem">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Herbicide (pre/post)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="herbicide" value="22.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-herb">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Fungicide (foliar)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="fungicide" value="16.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-fung">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Insecticide</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="insecticide" value="8.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-insect">—</span>
+    </div>
+  </div>
+
+  <!-- ─── OPERATIONS ─── -->
+  <div class="sec-label">Field Operations &amp; Labor</div>
+  <div class="card">
+    <div class="card-title"><span>Labor, Custom Hire, Irrigation</span><span class="card-icon">⚙️</span></div>
+
+    <div class="cat-header">
+      <span>Labor</span>
+      <span class="cat-total" id="tot-labor">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Operator labor (hrs × rate)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="laborCost" value="28.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-labor">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Hired labor (seasonal)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="hiredLabor" value="8.00" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-hired">—</span>
+    </div>
+
+    <div class="cat-header">
+      <span>Custom Hire &amp; Irrigation</span>
+      <span class="cat-total" id="tot-custom">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Custom harvest / combining</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="customHarvest" value="0" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-custom">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Irrigation (water + energy)</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="irrigation" value="0" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-irrig">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Crop drying / conditioning</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="drying" value="0" step="1" min="0" oninput="calc()">
+        <span class="suf input-suffix">/ac</span>
+      </div>
+      <span class="line-result" id="r-drying">—</span>
+    </div>
+
+    <div class="cat-header">
+      <span>Diesel &amp; Fuel (auto-calculated)</span>
+      <span class="cat-total" id="tot-diesel">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Diesel (from macro inputs above)</span>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--sage)" id="diesel-calc-label">auto</span>
+      </div>
+      <span class="line-result" id="r-diesel">—</span>
+    </div>
+  </div>
+
+  <!-- ─── EQUIPMENT ─── -->
+  <div class="sec-label">Equipment — Depreciation, Repairs &amp; Out-of-Pocket</div>
+  <div class="card">
+    <div class="card-title"><span>Equipment Cost Allocation</span><span class="card-icon">🚜</span></div>
+    <div class="input-grid">
+      <div class="input-group">
+        <div class="input-label">Equipment depreciation <span class="hint">/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="depreciation" value="38.00" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Repairs &amp; maintenance <span class="hint">/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="repairs" value="16.00" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-header" style="margin-top:14px">
+      <span>Out-of-Pocket Equipment Expenses (annualized over acres)</span>
+      <span class="cat-total" id="tot-oopequip">$0.00/bu</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Tires, belts, wear parts</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="wearParts" value="4500" step="100" min="0" oninput="calc()">
+        <span class="suf input-suffix">total</span>
+      </div>
+      <span class="line-result" id="r-wear">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Shop / hired mechanic</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="mechanic" value="2200" step="100" min="0" oninput="calc()">
+        <span class="suf input-suffix">total</span>
+      </div>
+      <span class="line-result" id="r-mech">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Precision ag / GPS / data</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="precisionAg" value="1800" step="100" min="0" oninput="calc()">
+        <span class="suf input-suffix">total</span>
+      </div>
+      <span class="line-result" id="r-precision">—</span>
+    </div>
+    <div class="line-item">
+      <span class="line-name">Other out-of-pocket equip</span>
+      <div class="line-input-wrap">
+        <span class="pre input-prefix">$</span>
+        <input type="number" id="otherEquip" value="0" step="100" min="0" oninput="calc()">
+        <span class="suf input-suffix">total</span>
+      </div>
+      <span class="line-result" id="r-oequip">—</span>
+    </div>
+  </div>
+
+  <!-- ─── DEBT & LOANS ─── -->
+  <div class="sec-label">Debt Service — Equipment Loans &amp; Operating Lines</div>
+  <div class="card">
+    <div class="card-title"><span>Loan &amp; Debt Schedule</span><span class="card-icon">📋</span></div>
+    <div class="debt-row header">
+      <span>Description</span>
+      <span>Balance ($)</span>
+      <span>Rate (%)</span>
+      <span>Yrs Left</span>
+      <span>Annual Pmt</span>
+    </div>
+    <div id="debtRows">
+      <!-- rows generated by JS -->
+    </div>
+    <button class="add-btn" onclick="addDebtRow()">+ Add Debt Item</button>
+    <div class="total-row" style="margin-top:12px">
+      <span class="t-label">Total annual debt service</span>
+      <span class="t-val" id="tot-debt-annual">$0</span>
+    </div>
+    <div class="total-row" style="margin-top:4px">
+      <span class="t-label">Debt service per bushel</span>
+      <span class="t-val" id="tot-debt-bu">$0.00</span>
+    </div>
+  </div>
+
+  <!-- ─── LAND & OVERHEAD ─── -->
+  <div class="sec-label">Land, Insurance &amp; Overhead</div>
+  <div class="card">
+    <div class="card-title"><span>Fixed &amp; Overhead Costs</span><span class="card-icon">🏠</span></div>
+
+    <div class="cat-header">
+      <span>Land</span>
+      <span class="cat-total" id="tot-land">$0.00/bu</span>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <div class="input-label">Cash rent <span class="hint">$/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="cashRent" value="85" step="5" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Owned land cost <span class="hint">$/ac (mortgage+tax)</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="landOwned" value="30" step="5" min="0" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-header" style="margin-top:12px">
+      <span>Insurance</span>
+      <span class="cat-total" id="tot-ins">$0.00/bu</span>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <div class="input-label">Crop insurance <span class="hint">$/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="cropIns" value="18" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Liability / property ins <span class="hint">$/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="propertyIns" value="6" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-header" style="margin-top:12px">
+      <span>Overhead &amp; Misc</span>
+      <span class="cat-total" id="tot-overhead">$0.00/bu</span>
+    </div>
+    <div class="input-grid">
+      <div class="input-group">
+        <div class="input-label">Grain handling / hauling <span class="hint">$/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="handling" value="8" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Management / consulting <span class="hint">$/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="management" value="5" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Utilities / telecom <span class="hint">$/ac</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="utilities" value="3" step="1" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Accounting / legal <span class="hint">total $</span></div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="accounting" value="3500" step="100" min="0" oninput="calc()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── OPERATING INTEREST ─── -->
+  <div class="sec-label">Operating Capital &amp; Interest</div>
+  <div class="card">
+    <div class="card-title"><span>Operating Line of Credit</span><span class="card-icon">🏦</span></div>
+    <div class="input-grid three">
+      <div class="input-group">
+        <div class="input-label">Operating loan amount</div>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="opLoan" value="180000" step="5000" min="0" oninput="calc()">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Interest rate <span class="hint">annual %</span></div>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="opRate" value="7.5" step="0.25" min="0" oninput="calc()">
+          <span class="input-suffix">%</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-label">Months outstanding</div>
+        <div class="input-wrap has-suffix">
+          <input type="number" id="opMonths" value="8" step="1" min="1" max="12" oninput="calc()">
+          <span class="input-suffix">mo</span>
+        </div>
+      </div>
+    </div>
+    <div class="total-row" style="margin-top:12px">
+      <span class="t-label">Operating interest cost / bu</span>
+      <span class="t-val" id="tot-opint">$0.00</span>
+    </div>
+  </div>
+
+</div><!-- /left-col -->
+
+<!-- ══════════ RIGHT COLUMN — RESULTS ══════════ -->
+<div class="results-panel">
+
+  <!-- HERO COST -->
+  <div class="result-hero">
+    <div class="hero-label">True Cost Per Bushel</div>
+    <div class="hero-value" id="hero-cost">$—</div>
+    <div class="hero-sub">fully loaded · inflation adjusted</div>
+
+    <div class="breakeven-row">
+      <span class="be-label">Breakeven price needed</span>
+      <span class="be-val" id="be-price">$—</span>
+    </div>
+    <div class="breakeven-row">
+      <span class="be-label">Current net cash price</span>
+      <span class="be-val" id="net-cash-price">$—</span>
+    </div>
+    <div class="breakeven-row">
+      <span class="be-label">Margin per bushel</span>
+      <span class="be-val" id="margin-bu">$—</span>
+    </div>
+    <div class="breakeven-row">
+      <span class="be-label">Total operation P/L</span>
+      <span class="be-val" id="total-pl">$—</span>
+    </div>
+    <div class="breakeven-row">
+      <span class="be-label">Operating cost only /bu</span>
+      <span class="be-val" id="op-cost-only">$—</span>
+    </div>
+    <div class="breakeven-row">
+      <span class="be-label">Total production cost</span>
+      <span class="be-val" id="total-prod-cost">$—</span>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict" id="verdictBox">
+    <div class="verdict-title" id="verdictTitle">◉ Awaiting data</div>
+    <div id="verdictBody">Enter your operation parameters to generate the cost verdict.</div>
+  </div>
+
+  <!-- COST BREAKDOWN -->
+  <div class="breakdown-card">
+    <div class="breakdown-title">Cost Breakdown — $/bu by Category</div>
+    <div id="breakdownBars"></div>
+  </div>
+
+  <!-- INFLATION ADJUSTMENT NOTE -->
+  <div class="breakdown-card" style="margin-bottom:16px">
+    <div class="breakdown-title">Inflation &amp; Dollar Index Impact</div>
+    <div id="inflationNote" style="font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--term-dim);line-height:1.8">
+      Enter DXY and inflation data above to see impact analysis.
+    </div>
+  </div>
+
+  <!-- YIELD SENSITIVITY -->
+  <div class="breakdown-card">
+    <div class="breakdown-title">Yield Sensitivity — Cost/Bu at Different Yields</div>
+    <table class="sens-table" id="sensTable">
+      <thead>
+        <tr>
+          <th>Yield</th>
+          <th>Cost/Bu</th>
+          <th>Margin</th>
+          <th>Total P/L</th>
+        </tr>
+      </thead>
+      <tbody id="sensBody"></tbody>
+    </table>
+  </div>
+
+</div><!-- /results-panel -->
+</div><!-- /main -->
+
+<script>
+// ══════════════════════════════════════════════
+// DEBT ROWS — initial data
+// ══════════════════════════════════════════════
+let debtItems = [
+  { desc: 'Combine loan',        balance: 185000, rate: 5.9, years: 5  },
+  { desc: 'Tractor note',        balance: 95000,  rate: 6.4, years: 4  },
+  { desc: 'Land mortgage',       balance: 420000, rate: 4.8, years: 18 },
+  { desc: 'Operating line',      balance: 0,      rate: 7.5, years: 1  },
+];
+
+function renderDebtRows() {
+  const container = document.getElementById('debtRows');
+  container.innerHTML = debtItems.map((item, i) => `
+    <div class="debt-row" id="debt-row-${i}">
+      <input type="text"   value="${item.desc}"    oninput="debtItems[${i}].desc=this.value;calc()"    style="padding:5px 8px;font-size:0.7rem;color:var(--term-amber)">
+      <input type="number" value="${item.balance}" oninput="debtItems[${i}].balance=+this.value;calc()" style="text-align:right;padding:5px 8px;font-size:0.7rem">
+      <input type="number" value="${item.rate}"    oninput="debtItems[${i}].rate=+this.value;calc()"    style="text-align:right;padding:5px 8px;font-size:0.7rem">
+      <input type="number" value="${item.years}"   oninput="debtItems[${i}].years=+this.value;calc()"   style="text-align:right;padding:5px 8px;font-size:0.7rem">
+      <span class="d-calc" id="debt-pmt-${i}">—</span>
+    </div>
+  `).join('');
+}
+
+function addDebtRow() {
+  debtItems.push({ desc: 'New item', balance: 0, rate: 7.0, years: 5 });
+  renderDebtRows();
+  calc();
+}
+
+// ══════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════
+const g = id => parseFloat(document.getElementById(id).value) || 0;
+const s = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+const fmt = (v, d=2) => '$' + Math.abs(v).toFixed(d);
+const fmtSgn = (v, d=2) => (v >= 0 ? '+$' : '-$') + Math.abs(v).toFixed(d);
+const fmtK = v => v >= 0 ? '+$' + Math.round(v).toLocaleString() : '-$' + Math.round(Math.abs(v)).toLocaleString();
+
+function annualPayment(balance, rate, years) {
+  if (!balance || !rate || !years) return balance || 0;
+  const r = rate / 100;
+  if (r === 0) return balance / years;
+  return balance * r * Math.pow(1+r, years) / (Math.pow(1+r, years) - 1);
+}
+
+// ══════════════════════════════════════════════
+// MAIN CALCULATION ENGINE
+// ══════════════════════════════════════════════
+function calc() {
+  const acres       = g('acres')        || 1;
+  const yld         = g('expectedYield')|| 1;
+  const lastYld     = g('yield')        || 1;
+  const mktPrice    = g('mktPrice');
+  const basis       = g('localBasis') / 100;
+  const inflation   = g('inflationRate') / 100;
+  const dxyCurr     = g('dxyCurrent');
+  const dxyBase     = g('dxyBaseline');
+  const dieselPx    = g('dieselPrice');
+  const dieselGal   = g('dieselGal');
+
+  const totalBu = acres * yld;
+
+  // ─── Inflation multiplier ───
+  const inf = 1 + inflation;
+
+  // ─── Direct crop inputs (per acre → per bu) ───
+  const acreTobu = ac => (ac * inf) / yld;
+
+  const rSeed     = acreTobu(g('seedCost'));
+  const rSeedTrt  = acreTobu(g('seedTreat'));
+  const rN        = acreTobu(g('nitrogen'));
+  const rP        = acreTobu(g('phosphorus'));
+  const rK        = acreTobu(g('potassium'));
+  const rMicro    = acreTobu(g('micro'));
+  const rHerb     = acreTobu(g('herbicide'));
+  const rFung     = acreTobu(g('fungicide'));
+  const rInsect   = acreTobu(g('insecticide'));
+
+  const rLabor    = acreTobu(g('laborCost'));
+  const rHired    = acreTobu(g('hiredLabor'));
+  const rCustom   = acreTobu(g('customHarvest'));
+  const rIrrig    = acreTobu(g('irrigation'));
+  const rDrying   = acreTobu(g('drying'));
+
+  const dieselTotal = dieselPx * dieselGal * inf;
+  const rDiesel   = dieselTotal / yld;
+
+  const rDepr     = acreTobu(g('depreciation'));
+  const rRepairs  = acreTobu(g('repairs'));
+
+  // Out-of-pocket equipment (total $, spread over total acres × yld)
+  const oopTotal  = (g('wearParts') + g('mechanic') + g('precisionAg') + g('otherEquip')) * inf;
+  const rWear     = g('wearParts') * inf / totalBu;
+  const rMech     = g('mechanic')  * inf / totalBu;
+  const rPrec     = g('precisionAg') * inf / totalBu;
+  const rOEquip   = g('otherEquip') * inf / totalBu;
+
+  // Land & insurance & overhead (per acre)
+  const rRent     = acreTobu(g('cashRent'));
+  const rLandOwn  = acreTobu(g('landOwned'));
+  const rCropIns  = acreTobu(g('cropIns'));
+  const rPropIns  = acreTobu(g('propertyIns'));
+  const rHandle   = acreTobu(g('handling'));
+  const rMgmt     = acreTobu(g('management'));
+  const rUtil     = acreTobu(g('utilities'));
+  const rAcct     = g('accounting') * inf / totalBu;
+
+  // ─── Debt service ───
+  let totalAnnualDebt = 0;
+  debtItems.forEach((item, i) => {
+    const pmt = annualPayment(item.balance, item.rate, item.years);
+    totalAnnualDebt += pmt;
+    const el = document.getElementById(`debt-pmt-${i}`);
+    if (el) {
+      el.textContent = pmt > 0 ? '$' + Math.round(pmt).toLocaleString() : '—';
+      el.className = 'd-calc' + (pmt > 50000 ? ' red' : '');
+    }
+  });
+  const rDebt = totalAnnualDebt / totalBu;
+
+  // ─── Operating interest ───
+  const opInterest = g('opLoan') * (g('opRate')/100) * (g('opMonths')/12);
+  const rOpInt = opInterest / totalBu;
+
+  // ─── Category totals (per bu) ───
+  const catSeed    = rSeed + rSeedTrt;
+  const catFert    = rN + rP + rK + rMicro;
+  const catChem    = rHerb + rFung + rInsect;
+  const catLabor   = rLabor + rHired;
+  const catCustom  = rCustom + rIrrig + rDrying;
+  const catDiesel  = rDiesel;
+  const catEquip   = rDepr + rRepairs + rWear + rMech + rPrec + rOEquip;
+  const catLand    = rRent + rLandOwn;
+  const catIns     = rCropIns + rPropIns;
+  const catOH      = rHandle + rMgmt + rUtil + rAcct;
+  const catDebt    = rDebt;
+  const catOpInt   = rOpInt;
+
+  const totalCostPerBu = catSeed + catFert + catChem + catLabor + catCustom +
+    catDiesel + catEquip + catLand + catIns + catOH + catDebt + catOpInt;
+
+  // Operating cost only (excludes debt service & land ownership costs)
+  const opCostOnly = catSeed + catFert + catChem + catLabor + catCustom +
+    catDiesel + catEquip + catIns + catOH + catOpInt + rRent;
+
+  const netCashPrice = mktPrice + basis;
+  const marginPerBu  = netCashPrice - totalCostPerBu;
+  const totalPL      = marginPerBu * totalBu;
+  const totalProdCost = totalCostPerBu * totalBu;
+
+  // ─── Update line results ───
+  const setBu = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.textContent = fmt(val, 4) + '/bu';
+      el.className = 'line-result' + (val > 2.5 ? ' red' : '');
+    }
+  };
+  setBu('r-seed',     rSeed);
+  setBu('r-seedtreat',rSeedTrt);
+  setBu('r-nitrogen', rN);
+  setBu('r-phosphorus',rP);
+  setBu('r-potassium',rK);
+  setBu('r-micro',    rMicro);
+  setBu('r-herb',     rHerb);
+  setBu('r-fung',     rFung);
+  setBu('r-insect',   rInsect);
+  setBu('r-labor',    rLabor);
+  setBu('r-hired',    rHired);
+  setBu('r-custom',   rCustom);
+  setBu('r-irrig',    rIrrig);
+  setBu('r-drying',   rDrying);
+  setBu('r-wear',     rWear);
+  setBu('r-mech',     rMech);
+  setBu('r-precision',rPrec);
+  setBu('r-oequip',   rOEquip);
+
+  // diesel label
+  s('diesel-calc-label', `$${dieselPx.toFixed(2)}/gal × ${dieselGal}gal × ${inf.toFixed(3)} inf`);
+  setBu('r-diesel', rDiesel);
+
+  // category totals
+  s('tot-seed',    fmt(catSeed,4)+'/bu');
+  s('tot-fert',    fmt(catFert,4)+'/bu');
+  s('tot-chem',    fmt(catChem,4)+'/bu');
+  s('tot-labor',   fmt(catLabor,4)+'/bu');
+  s('tot-custom',  fmt(catCustom,4)+'/bu');
+  s('tot-diesel',  fmt(catDiesel,4)+'/bu');
+  s('tot-oopequip',fmt(rWear+rMech+rPrec+rOEquip,4)+'/bu');
+  s('tot-land',    fmt(catLand,4)+'/bu');
+  s('tot-ins',     fmt(catIns,4)+'/bu');
+  s('tot-overhead',fmt(catOH,4)+'/bu');
+
+  s('tot-debt-annual', '$' + Math.round(totalAnnualDebt).toLocaleString());
+  s('tot-debt-bu',     fmt(rDebt,4)+'/bu');
+  s('tot-opint',       fmt(rOpInt,4)+'/bu');
+
+  // ─── Summary ticker ───
+  s('tk-cost',  fmt(totalCostPerBu));
+  s('tk-be',    fmt(totalCostPerBu));
+  s('tk-acres', acres.toLocaleString());
+  s('tk-yield', yld + ' bu/ac');
+  s('tk-bu',    totalBu.toLocaleString());
+  s('tk-mkt',   '$' + netCashPrice.toFixed(4));
+
+  const plEl = document.getElementById('tk-pl');
+  plEl.textContent = fmtSgn(marginPerBu);
+  plEl.className = 'ticker-value ' + (marginPerBu >= 0 ? 'green' : 'red');
+
+  const totEl = document.getElementById('tk-total');
+  totEl.textContent = fmtK(totalPL);
+  totEl.className = 'ticker-value ' + (totalPL >= 0 ? 'green' : totalPL > -50000 ? 'warn' : 'red');
+
+  // ─── Hero panel ───
+  const heroEl = document.getElementById('hero-cost');
+  heroEl.textContent = fmt(totalCostPerBu);
+  heroEl.className = 'hero-value ' + (totalCostPerBu > mktPrice ? 'red' : totalCostPerBu > mktPrice * 0.9 ? 'warn' : 'green');
+
+  s('be-price',       fmt(totalCostPerBu));
+  s('net-cash-price', '$' + netCashPrice.toFixed(4));
+  s('op-cost-only',   fmt(opCostOnly));
+  s('total-prod-cost','$' + Math.round(totalProdCost).toLocaleString());
+
+  const mbEl = document.getElementById('margin-bu');
+  mbEl.textContent = fmtSgn(marginPerBu);
+  mbEl.className = 'be-val ' + (marginPerBu >= 0 ? 'green' : 'red');
+
+  const tplEl = document.getElementById('total-pl');
+  tplEl.textContent = fmtK(totalPL);
+  tplEl.className = 'be-val ' + (totalPL >= 0 ? 'green' : 'red');
+
+  // ─── Verdict ───
+  const vBox  = document.getElementById('verdictBox');
+  const vTitle = document.getElementById('verdictTitle');
+  const vBody  = document.getElementById('verdictBody');
+
+  if (marginPerBu >= 0.25) {
+    vBox.className  = 'verdict profit';
+    vTitle.textContent = '◉ PROFITABLE at current prices';
+    vBody.textContent  = `Net margin of ${fmt(marginPerBu)}/bu covers all costs with ${fmt(marginPerBu/totalCostPerBu*100,1)}% return. True breakeven is ${fmt(totalCostPerBu)}/bu — current net price of ${fmt(netCashPrice)} clears by ${fmt(marginPerBu)}/bu. Total operation earns ${fmtK(totalPL)} at this price. Selling now is defensible.`;
+  } else if (marginPerBu >= 0) {
+    vBox.className  = 'verdict margin';
+    vTitle.textContent = '◉ BREAKEVEN — thin margin, watch basis';
+    vBody.textContent  = `Only ${fmt(marginPerBu)}/bu margin above fully-loaded cost. Any basis deterioration or yield shortfall pushes this negative. Operating cost only (ex-debt, land ownership) is ${fmt(opCostOnly)}/bu — cash flow is manageable but ownership costs are being subsidized. Consider selling the marketing decision at ${fmt(totalCostPerBu + 0.15)}/bu or above.`;
+  } else {
+    vBox.className  = 'verdict loss';
+    vTitle.textContent = '◉ BELOW COST — selling locks in loss';
+    vBody.textContent  = `Fully-loaded cost of ${fmt(totalCostPerBu)}/bu exceeds current net price of ${fmt(netCashPrice)} by ${fmt(Math.abs(marginPerBu))}/bu. Selling ${totalBu.toLocaleString()} bu at current price locks in ${fmtK(totalPL)}. Operating cost only is ${fmt(opCostOnly)}/bu — evaluate which fixed costs can be deferred. Breakeven requires mkt price of ${fmt(totalCostPerBu - basis)}/bu futures.`;
+  }
+
+  // ─── Breakdown bars ───
+  const categories = [
+    { label: 'Seed',       val: catSeed,   color: '#C8973A' },
+    { label: 'Fertilizer', val: catFert,   color: '#5AAA70' },
+    { label: 'Chemicals',  val: catChem,   color: '#8B8A40' },
+    { label: 'Labor',      val: catLabor,  color: '#C87050' },
+    { label: 'Diesel',     val: catDiesel, color: '#A06030' },
+    { label: 'Equipment',  val: catEquip,  color: '#6A7A8A' },
+    { label: 'Land',       val: catLand,   color: '#7A9B6A' },
+    { label: 'Insurance',  val: catIns,    color: '#8A6A9A' },
+    { label: 'Overhead',   val: catOH,     color: '#7A6A58' },
+    { label: 'Debt Svc',   val: catDebt,   color: '#E86A6A' },
+    { label: 'Op. Int.',   val: catOpInt,  color: '#E8A060' },
+  ];
+  const maxVal = Math.max(...categories.map(c => c.val), 0.01);
+  const bbEl = document.getElementById('breakdownBars');
+  bbEl.innerHTML = categories.map(c => `
+    <div class="breakdown-bar-row">
+      <span class="bb-label">${c.label}</span>
+      <div class="bb-bar-wrap">
+        <div class="bb-bar" style="width:${(c.val/maxVal*100).toFixed(1)}%;background:${c.color}66;border-right:2px solid ${c.color}"></div>
+      </div>
+      <span class="bb-val">${fmt(c.val)}</span>
+    </div>
+  `).join('');
+
+  // ─── DXY impact ───
+  const dxyChange = dxyCurr - dxyBase;
+  const dxyPct = (dxyChange / dxyBase * 100);
+  s('dxy-change', (dxyPct >= 0 ? '+' : '') + dxyPct.toFixed(2) + '%');
+  s('inflation-adj-label', '+' + (inflation * 100).toFixed(1) + '% adj');
+  const dxyImpactText = dxyChange > 0
+    ? `DXY +${dxyPct.toFixed(1)}% YoY: stronger dollar suppresses export demand, pressures wheat prices approx. ${(dxyPct * 0.3).toFixed(1)}¢/bu. Input costs denominated in USD relatively unchanged.`
+    : dxyChange < 0
+    ? `DXY ${dxyPct.toFixed(1)}% YoY: weaker dollar supports export demand, lifts wheat prices approx. ${(Math.abs(dxyPct) * 0.3).toFixed(1)}¢/bu.`
+    : 'DXY unchanged YoY — neutral dollar impact on wheat export pricing.';
+  document.getElementById('dxy-impact-text').textContent = dxyChange > 0
+    ? 'Strong dollar pressures export demand'
+    : 'Weak dollar supports export demand';
+  s('inflationNote',
+    `Input cost inflation (${(inflation*100).toFixed(1)}%) adds ${fmt(totalCostPerBu * inflation / inf)} /bu to cost vs. prior year.\n` +
+    `Dollar index YoY: ${dxyChange >= 0 ? '+' : ''}${dxyPct.toFixed(2)}% (${dxyCurr} vs. ${dxyBase} baseline).\n${dxyImpactText}\n` +
+    `Last harvest yield: ${lastYld} bu/ac. Current estimate: ${yld} bu/ac. ` +
+    (yld < lastYld
+      ? `Yield shortfall of ${(lastYld - yld).toFixed(1)} bu/ac raises cost/bu by ${fmt((totalCostPerBu * lastYld / yld) - totalCostPerBu)}.`
+      : yld > lastYld
+      ? `Yield improvement of ${(yld - lastYld).toFixed(1)} bu/ac lowers cost/bu by ${fmt(totalCostPerBu - (totalCostPerBu * lastYld / yld))}.`
+      : 'Yield unchanged from last harvest.')
+  );
+
+  // ─── Yield sensitivity ───
+  const baseFixedCostTotal = (catLand + catIns + catOH + catDebt) * totalBu;
+  const varCostPerAcre = (catSeed + catFert + catChem + catLabor + catCustom + catDiesel + catEquip + catOpInt) * yld;
+  const totalFixedPerAcre = (catLand + catIns + catOH + catDebt) * yld;
+
+  const yields = [yld - 15, yld - 10, yld - 5, yld, yld + 5, yld + 10, yld + 15].filter(y => y > 5);
+  const sensBody = document.getElementById('sensBody');
+  sensBody.innerHTML = yields.map(y => {
+    // Recalc cost at different yield (fixed costs stay constant, variable per acre)
+    const totalCostAtY = (varCostPerAcre / yld * y + totalFixedPerAcre) / y;
+    // Recalc total fixed cost correctly
+    const fixedPerBu = (catLand + catIns + catOH + catDebt) * yld / y;
+    const varPerBu   = catSeed + catFert + catChem + catLabor + catCustom + catDiesel + catEquip + catOpInt;
+    const costAtY    = fixedPerBu + varPerBu;
+    const margAtY    = netCashPrice - costAtY;
+    const plAtY      = margAtY * acres * y;
+    const isCurrent  = y === yld;
+    return `<tr>
+      <td class="${isCurrent ? 'current' : ''}">${y} bu/ac${isCurrent ? ' ◀' : ''}</td>
+      <td class="${isCurrent ? 'current' : ''}">${fmt(costAtY)}</td>
+      <td class="${isCurrent ? 'current' : margAtY >= 0.25 ? 'profit' : margAtY >= 0 ? 'margin' : 'loss'}">${fmtSgn(margAtY)}</td>
+      <td class="${isCurrent ? 'current' : plAtY >= 0 ? 'profit' : 'loss'}">${fmtK(plAtY)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// DEFAULTS & RESET
+// ══════════════════════════════════════════════
+function resetToDefaults() {
+  const defaults = {
+    acres:1500, yield:52, expectedYield:50, mktPrice:5.40, localBasis:-30,
+    dxyCurrent:104.5, dxyBaseline:102.0, inflationRate:4.2,
+    dieselPrice:3.85, dieselGal:8.5,
+    seedCost:18, seedTreat:4, nitrogen:52, phosphorus:24, potassium:14, micro:6,
+    herbicide:22, fungicide:16, insecticide:8,
+    laborCost:28, hiredLabor:8, customHarvest:0, irrigation:0, drying:0,
+    depreciation:38, repairs:16, wearParts:4500, mechanic:2200, precisionAg:1800, otherEquip:0,
+    cashRent:85, landOwned:30, cropIns:18, propertyIns:6,
+    handling:8, management:5, utilities:3, accounting:3500,
+    opLoan:180000, opRate:7.5, opMonths:8
+  };
+  Object.entries(defaults).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  });
+  debtItems = [
+    { desc: 'Combine loan',  balance: 185000, rate: 5.9, years: 5  },
+    { desc: 'Tractor note',  balance: 95000,  rate: 6.4, years: 4  },
+    { desc: 'Land mortgage', balance: 420000, rate: 4.8, years: 18 },
+  ];
+  renderDebtRows();
+  calc();
+}
+
+function clearAll() {
+  document.querySelectorAll('input[type="number"]').forEach(el => { el.value = 0; });
+  debtItems = [];
+  renderDebtRows();
+  calc();
+}
+
+// ══════════════════════════════════════════════
+// EXPORT CSV
+// ══════════════════════════════════════════════
+function exportCSV() {
+  const rows = [
+    ['Category', 'Item', 'Per Acre', 'Per Bushel', 'Total'],
+    ['Operation', 'Acres', document.getElementById('acres').value, '—', '—'],
+    ['Operation', 'Expected Yield (bu/ac)', document.getElementById('expectedYield').value, '—', '—'],
+    ['Operation', 'Market Price ($/bu)', document.getElementById('mktPrice').value, '—', '—'],
+  ];
+  const ticker = ['Cost/Bu','Breakeven','Acres','Yield','Bushels','Mkt Price','P/L per Bu','Total P/L'].map((l,i) => {
+    const ids = ['tk-cost','tk-be','tk-acres','tk-yield','tk-bu','tk-mkt','tk-pl','tk-total'];
+    return [l, document.getElementById(ids[i])?.textContent || ''];
+  });
+  const allRows = [
+    ['MarketBullets True Cost Per Bushel Calculator'],
+    ['Generated', new Date().toLocaleString()],
+    [],
+    ['SUMMARY'],
+    ...ticker.map(r => ['Summary', r[0], r[1]]),
+    [],
+    ['DETAIL (from screen)'],
+    ...rows,
+  ];
+  const csv = allRows.map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = `MarketBullets_CostPerBushel_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ══════════════════════════════════════════════
+// CLOCK
+// ══════════════════════════════════════════════
+function updateClock() {
+  document.getElementById('clockEl').textContent =
+    new Date().toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit', timeZoneName:'short' });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+renderDebtRows();
+calc();
+</script>
+</body>
+</html>
