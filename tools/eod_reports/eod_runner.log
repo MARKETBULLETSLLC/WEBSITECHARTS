@@ -341,3 +341,52 @@ Fetching EOD data for 2026-04-22...
 ================================================================
 
 Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260422.txt
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWK26.CBT"}}}
+$MWK26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWN26.CBT"}}}
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWK26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWK26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+Fetching EOD data for 2026-04-23...
+
+================================================================
+  MARKETBULLETS -- END-OF-DAY FUTURES REPORT
+  Thursday, April 23, 2026  |  CME Settlement
+================================================================
+
+  WHEAT FUTURES                                        c/bu
+  --------------------------------------------------------------
+  CONTRACT         SETTLE        CHANGE     OPEN     HIGH      LOW     VOL
+  --------------------------------------------------------------
+  SRW  ZW MAY26    612.75  + 13.50  (+2.2%)     600.25   612.75   598.75     36K
+  SRW  ZW JUL26    622.00  + 15.00  (+2.5%)     608.00   622.25   607.25     80K
+  ..............................................................
+  HRW  KE MAY26    667.75  + 30.00  (+4.7%)     639.00   667.75   637.00     19K
+  HRW  KE JUL26    679.50  + 29.50  (+4.5%)     651.00   680.25   648.50     64K
+  ..............................................................
+  HRS  MW MAY26       N/A       N/A            N/A      N/A      N/A     N/A
+  HRS  MW JUL26       N/A       N/A            N/A      N/A      N/A     N/A
+  ..............................................................
+
+  SPREADS  (front month: MAY26)
+  ----------------------------------------
+  HRW premium over SRW:         -55.00 c/bu
+  HRS premium over SRW:         N/A
+  HRS premium over HRW:         N/A
+
+  CARRY  (MAY26 vs JUL26)
+  ----------------------------------------
+  SRW  ZW         JUL26 vs MAY26:  +9.25 c/bu
+  HRW  KE         JUL26 vs MAY26:  +11.75 c/bu
+  HRS  MW         N/A
+
+  CORRELATED MARKETS
+  ----------------------------------------
+  U.S. Dollar (DXY)            98.80  +  0.21  (+0.2%)  
+  Crude Oil WTI                96.51  +  3.55  (+3.8%)  
+
+  Data: yfinance / CME  |  Generated 2026-04-23 15:14:08
+================================================================
+
+Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260423.txt
