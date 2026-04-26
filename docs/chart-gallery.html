@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chart Gallery — MarketBullets®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0704;
+  --bg2:#0F0B07;
+  --gold:#C8960A;
+  --gold-dim:rgba(200,150,10,.18);
+  --gold-mid:rgba(200,150,10,.5);
+  --text:#F0E8D0;
+  --dim:#5a4820;
+  --dev:#0d0a06;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Courier New',monospace;min-height:100vh;}
+
+.hdr{padding:28px 24px 20px;border-bottom:1px solid var(--gold-dim);}
+.hdr-wordmark{font-size:10px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+.hdr-title{font-size:18px;font-weight:500;letter-spacing:.04em;color:var(--text);margin:6px 0 2px;}
+.hdr-sub{font-size:9px;letter-spacing:.1em;color:var(--dim);}
+
+.jumpnav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,7,4,.96);
+  border-bottom:1px solid var(--gold-dim);
+  padding:0 24px;
+  display:flex;gap:0;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.jumpnav::-webkit-scrollbar{display:none;}
+.jumpnav a{
+  display:block;padding:11px 14px;
+  font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);text-decoration:none;white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+}
+.jumpnav a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+
+.section{padding:36px 24px;border-bottom:1px solid var(--gold-dim);}
+.section:last-of-type{border-bottom:none;}
+.section-tier{font-size:8px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.section-title{
+  font-size:13px;font-weight:500;letter-spacing:.05em;color:var(--text);
+  margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--gold-dim);
+  display:flex;align-items:baseline;gap:10px;
+}
+.section-count{font-size:9px;color:var(--dim);font-weight:300;}
+
+.chart-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+}
+@media(max-width:900px){.chart-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.chart-grid{grid-template-columns:1fr;}}
+
+.chart-card{
+  display:block;border:1px solid var(--gold-dim);background:var(--bg2);
+  text-decoration:none;color:inherit;transition:border-color .15s;overflow:hidden;
+}
+.chart-card:hover{border-color:var(--gold-mid);}
+.chart-card img{
+  width:100%;display:block;aspect-ratio:4/3;
+  object-fit:contain;background:#111008;
+}
+.chart-info{padding:9px 11px;display:flex;align-items:baseline;gap:8px;}
+.chart-tf{
+  font-size:7px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--bg);background:var(--gold);padding:2px 5px;flex-shrink:0;
+}
+.chart-title{font-size:9px;letter-spacing:.02em;color:var(--dim);line-height:1.4;}
+
+.chart-dev{
+  border:1px solid rgba(200,150,10,.07);background:var(--dev);overflow:hidden;
+}
+.chart-dev-body{
+  aspect-ratio:4/3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;padding:16px;
+}
+.chart-dev-badge{
+  font-size:7px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(200,150,10,.2);border:1px solid rgba(200,150,10,.12);padding:3px 8px;
+}
+.chart-dev-name{font-size:9px;color:rgba(200,150,10,.12);text-align:center;line-height:1.5;}
+.chart-dev .chart-info{padding:9px 11px;}
+.chart-dev .chart-tf{background:rgba(200,150,10,.15);color:rgba(200,150,10,.3);}
+.chart-dev .chart-title{color:rgba(90,72,32,.5);}
+
+.foot{
+  padding:28px 24px;font-size:8px;letter-spacing:.1em;
+  color:rgba(90,72,32,.4);border-top:1px solid var(--gold-dim);
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-wordmark">MarketBullets®</div>
+  <div class="hdr-title">Chart Gallery</div>
+  <div class="hdr-sub">72 charts &mdash; Wheat Futures &middot; Spreads &middot; Rates &middot; FX &middot; Macro &mdash; Updated daily</div>
+</div>
+
+<nav class="jumpnav">
+  <a href="#wheat-grains">Wheat &amp; Grains</a>
+  <a href="#intra-spreads">Intra Spreads</a>
+  <a href="#inter-spreads">Inter Spreads</a>
+  <a href="#ratios-cot">Ratios &amp; COT</a>
+  <a href="#rates">Rates</a>
+  <a href="#fx">FX</a>
+  <a href="#energy">Energy</a>
+  <a href="#metals">Metals</a>
+  <a href="#indices">Indices</a>
+  <a href="#equities">Equities</a>
+</nav>
+
+<div id="gallery"></div>
+
+<div class="foot">MARKETBULLETSLLC / WEBSITECHARTS &mdash; Chart Gallery &mdash; The Warm Signal&#8482;</div>
+
+<script>
+(function(){
+  var BASE = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/';
+
+  var SECTIONS = [
+    {
+      id: 'wheat-grains',
+      tier: 'Top — Primary',
+      title: 'Wheat Futures &amp; Grains',
+      charts: [
+        { file:'WHEAT_SRW_BOR_D.png',      title:'Box-o-Rox Daily',                    tf:'Daily',     dev:false },
+        { file:'WHEAT_SRW_30M.png',         title:'Chicago SRW 30-Minute',              tf:'30-Min',    dev:false },
+        { file:'WHEAT_SRW_D.png',           title:'Chicago SRW Daily',                  tf:'Daily',     dev:false },
+        { file:'WHEAT_SRW_W.png',           title:'Chicago SRW Weekly',                 tf:'Weekly',    dev:false },
+        { file:'WHEAT_SRW_M.png',           title:'Chicago SRW Monthly',                tf:'Monthly',   dev:false },
+        { file:'WHEAT_SRW_Special_M.png',   title:'Chicago SRW Monthly (Annotated)',    tf:'Monthly',   dev:false },
+        { file:'WHEAT_SRW_A.png',           title:'Chicago SRW Annual',                 tf:'Annual',    dev:false },
+        { file:'WHEAT_HRW_W.png',           title:'Kansas City HRW Weekly',             tf:'Weekly',    dev:false },
+        { file:'WHEAT_HRS_W.png',           title:'Minneapolis HRS Weekly',             tf:'Weekly',    dev:false },
+        { file:'WHEAT_FWH_D.png',           title:'Paris Milling Wheat Daily',          tf:'Daily',     dev:false },
+        { file:'WHEAT_FWH_W.png',           title:'Paris Milling Wheat Weekly',         tf:'Weekly',    dev:false },
+        { file:'GRAIN_C_D.png',             title:'CBOT Corn Daily',                    tf:'Daily',     dev:false },
+        { file:'GRAIN_C_W.png',             title:'CBOT Corn Weekly',                   tf:'Weekly',    dev:false },
+        { file:'GRAIN_S_D.png',             title:'CBOT Soybeans Daily',                tf:'Daily',     dev:false },
+        { file:'GRAIN_S_W.png',             title:'CBOT Soybeans Weekly',               tf:'Weekly',    dev:false }
+      ]
+    },
+    {
+      id: 'intra-spreads',
+      tier: 'Mid — Spreads',
+      title: 'Intra-Market Spreads',
+      charts: [
+        { file:'SPD_SRW_H_K.png',   title:'Chicago SRW: Mar/May',           tf:'Weekly', dev:true  },
+        { file:'SPD_SRW_K_N.png',   title:'Chicago SRW: May/Jul',           tf:'Weekly', dev:false },
+        { file:'SPD_SRW_N_U.png',   title:'Chicago SRW: Jul/Sep',           tf:'Weekly', dev:false },
+        { file:'SPD_SRW_U_Z.png',   title:'Chicago SRW: Sep/Dec',           tf:'Weekly', dev:false },
+        { file:'SPD_SRW_Z_H2.png',  title:'Chicago SRW: Dec/Mar+1',         tf:'Weekly', dev:true  },
+        { file:'SPD_HRW_H_K.png',   title:'Kansas City HRW: Mar/May',       tf:'Weekly', dev:true  },
+        { file:'SPD_HRW_K_N.png',   title:'Kansas City HRW: May/Jul',       tf:'Weekly', dev:false },
+        { file:'SPD_HRW_N_U.png',   title:'Kansas City HRW: Jul/Sep',       tf:'Weekly', dev:false },
+        { file:'SPD_HRW_U_Z.png',   title:'Kansas City HRW: Sep/Dec',       tf:'Weekly', dev:false },
+        { file:'SPD_HRW_Z_H2.png',  title:'Kansas City HRW: Dec/Mar+1',     tf:'Weekly', dev:true  },
+        { file:'SPD_HRS_H_K.png',   title:'Minneapolis HRS: Mar/May',       tf:'Weekly', dev:true  },
+        { file:'SPD_HRS_K_N.png',   title:'Minneapolis HRS: May/Jul',       tf:'Weekly', dev:false },
+        { file:'SPD_HRS_N_U.png',   title:'Minneapolis HRS: Jul/Sep',       tf:'Weekly', dev:false },
+        { file:'SPD_HRS_U_Z.png',   title:'Minneapolis HRS: Sep/Dec',       tf:'Weekly', dev:false },
+        { file:'SPD_HRS_Z_H2.png',  title:'Minneapolis HRS: Dec/Mar+1',     tf:'Weekly', dev:true  },
+        { file:'SPD_FWH_H_K.png',   title:'Paris Milling: Mar/May',         tf:'Weekly', dev:true  },
+        { file:'SPD_FWH_K_U.png',   title:'Paris Milling: May/Sep',         tf:'Weekly', dev:false },
+        { file:'SPD_FWH_K2_U2.png', title:'Paris Milling: May+1/Sep+1',     tf:'Weekly', dev:true  },
+        { file:'SPD_FWH_U_Z.png',   title:'Paris Milling: Sep/Dec',         tf:'Weekly', dev:false },
+        { file:'SPD_FWH_Z_H2.png',  title:'Paris Milling: Dec/Mar+1',       tf:'Weekly', dev:false }
+      ]
+    },
+    {
+      id: 'inter-spreads',
+      tier: 'Mid — Spreads',
+      title: 'Inter-Market Spreads',
+      charts: [
+        { file:'SPDINTER_SRW_HRW_M.png',  title:'SRW minus HRW',                          tf:'Monthly', dev:false },
+        { file:'SPDINTER_SRW_HRS_M.png',  title:'SRW minus HRS',                          tf:'Monthly', dev:false },
+        { file:'SPDINTER_SRW_HRS_W.png',  title:'SRW minus HRS (Weekly)',                 tf:'Weekly',  dev:true  },
+        { file:'SPDINTER_HRS_HRW_M.png',  title:'HRS minus HRW',                          tf:'Monthly', dev:false },
+        { file:'SPDINTER_HRW_FWH_M.png',  title:'HRW minus Paris Milling: Monthly',       tf:'Monthly', dev:false },
+        { file:'SPDINTER_HRW_FWH_W.png',  title:'HRW minus Paris Milling: Weekly',        tf:'Weekly',  dev:false }
+      ]
+    },
+    {
+      id: 'ratios-cot',
+      tier: 'Mid — Positioning',
+      title: 'Ratios &amp; COT Positioning',
+      charts: [
+        { file:'RATIO_SRW_C_M.png', title:'Wheat/Corn Ratio',              tf:'Monthly', dev:false },
+        { file:'RATIO_S_C_W.png',   title:'Soybeans/Corn Ratio',           tf:'Weekly',  dev:false },
+        { file:'COT_SRW_W.png',     title:'COT: Chicago SRW',              tf:'Weekly',  dev:false },
+        { file:'COT_HRW_W.png',     title:'COT: Kansas City HRW',          tf:'Weekly',  dev:false }
+      ]
+    },
+    {
+      id: 'rates',
+      tier: 'Bot — Macro',
+      title: 'Interest Rates',
+      charts: [
+        { file:'BNDS_2YR_TNOTE_W.png',   title:'2-Year T-Note Weekly',              tf:'Weekly',    dev:false },
+        { file:'BNDS_10YR_Price_Q.png',  title:'10-Year Treasury Bond Price',       tf:'Quarterly', dev:false },
+        { file:'BNDS_30YR_Price_Q.png',  title:'30-Year Treasury Bond Price',       tf:'Quarterly', dev:false },
+        { file:'BNDS_30YR_Yield_Q.png',  title:'30-Year Treasury Bond Yield',       tf:'Quarterly', dev:false }
+      ]
+    },
+    {
+      id: 'fx',
+      tier: 'Bot — Macro',
+      title: 'Foreign Exchange',
+      charts: [
+        { file:'FX_WD_D.png',       title:'Australian Dollar Daily',            tf:'Daily',   dev:false },
+        { file:'FX_WD_M.png',       title:'Australian Dollar Monthly',          tf:'Monthly', dev:false },
+        { file:'FX_RUB_USD_M.png',  title:'Russian Ruble / USD Monthly',        tf:'Monthly', dev:false },
+        { file:'FX_CNY_USD_M.png',  title:'Chinese Yuan / USD Monthly',         tf:'Monthly', dev:false },
+        { file:'FX_RUB_CNY_W.png',  title:'Russian Ruble / Chinese Yuan',       tf:'Weekly',  dev:false }
+      ]
+    },
+    {
+      id: 'energy',
+      tier: 'Bot — Macro',
+      title: 'Energy',
+      charts: [
+        { file:'NRG_CL_M.png', title:'Crude Oil Monthly',             tf:'Monthly', dev:false },
+        { file:'NRG_CL_W.png', title:'Crude Oil Weekly',              tf:'Weekly',  dev:false },
+        { file:'NRG_HO_D.png', title:'Diesel / Heating Oil Daily',    tf:'Daily',   dev:false },
+        { file:'NRG_NG_M.png', title:'Natural Gas: Henry Hub',        tf:'Monthly', dev:false }
+      ]
+    },
+    {
+      id: 'metals',
+      tier: 'Bot — Macro',
+      title: 'Metals',
+      charts: [
+        { file:'METL_GC_D.png', title:'Gold (COMEX) Daily',       tf:'Daily',   dev:false },
+        { file:'METL_GC_M.png', title:'Gold (COMEX) Monthly',     tf:'Monthly', dev:false },
+        { file:'METL_SI_D.png', title:'Silver (COMEX) Daily',     tf:'Daily',   dev:false },
+        { file:'METL_HG_M.png', title:'Copper (COMEX) Monthly',   tf:'Monthly', dev:false }
+      ]
+    },
+    {
+      id: 'indices',
+      tier: 'Bot — Macro',
+      title: 'Indices',
+      charts: [
+        { file:'IDX_DXY_W.png',   title:'US Dollar Index Weekly',                tf:'Weekly',  dev:false },
+        { file:'IDX_DXY_M.png',   title:'US Dollar Index Monthly',               tf:'Monthly', dev:true  },
+        { file:'IDX_BDI_W.png',   title:'Baltic Dry Index (Bulk Freight)',        tf:'Weekly',  dev:false },
+        { file:'IDX_ES_D.png',    title:'S&P 500 Daily',                          tf:'Daily',   dev:false },
+        { file:'IDX_ES_M.png',    title:'S&P 500 Monthly',                        tf:'Monthly', dev:false },
+        { file:'IDX_GSCI_W.png',  title:'Goldman Sachs Commodity Index',          tf:'Weekly',  dev:false }
+      ]
+    },
+    {
+      id: 'equities',
+      tier: 'Bot — Macro',
+      title: 'Equities &amp; Other',
+      charts: [
+        { file:'FIN_DE_D.png',    title:'John Deere &amp; Co. Daily',    tf:'Daily',   dev:false },
+        { file:'FIN_HD_D.png',    title:'The Home Depot Daily',          tf:'Daily',   dev:false },
+        { file:'FIN_CAT_D.png',   title:'Caterpillar Inc. Daily',        tf:'Daily',   dev:true  },
+        { file:'MISC_CC_M.png',   title:'Cocoa (ICE) Monthly',           tf:'Monthly', dev:false }
+      ]
+    }
+  ];
+
+  var gallery = document.getElementById('gallery');
+
+  SECTIONS.forEach(function(sec) {
+    var published = sec.charts.filter(function(c){ return !c.dev; }).length;
+    var total = sec.charts.length;
+    var countLabel = total === published
+      ? total + ' charts'
+      : published + ' published &middot; ' + (total - published) + ' coming';
+
+    var cards = sec.charts.map(function(c) {
+      if (c.dev) {
+        return '<div class="chart-dev">' +
+          '<div class="chart-dev-body">' +
+            '<div class="chart-dev-badge">In Development</div>' +
+            '<div class="chart-dev-name">' + c.title + '</div>' +
+          '</div>' +
+          '<div class="chart-info">' +
+            '<span class="chart-tf">' + c.tf + '</span>' +
+            '<span class="chart-title">' + c.title + '</span>' +
+          '</div>' +
+        '</div>';
+      }
+      var url = BASE + c.file;
+      return '<a class="chart-card" href="' + url + '" target="_blank" rel="noopener">' +
+        '<img src="' + url + '" alt="' + c.title + '" loading="lazy">' +
+        '<div class="chart-info">' +
+          '<span class="chart-tf">' + c.tf + '</span>' +
+          '<span class="chart-title">' + c.title + '</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+
+    var html = '<section class="section" id="' + sec.id + '">' +
+      '<div class="section-tier">' + sec.tier + '</div>' +
+      '<div class="section-title">' + sec.title + ' <span class="section-count">' + countLabel + '</span></div>' +
+      '<div class="chart-grid">' + cards + '</div>' +
+    '</section>';
+
+    gallery.insertAdjacentHTML('beforeend', html);
+  });
+})();
+</script>
+
+</body>
+</html>
