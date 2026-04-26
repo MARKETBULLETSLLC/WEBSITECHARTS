@@ -1,135 +1,149 @@
 """
-chart_watcher.py — MarketBullets wheat chart auto-push pipeline
+chart_watcher.py
+────────────────
+Watches your OneDrive folder for new JPG files exported from
+Trade Navigator, renames them to fixed canonical names, commits
+to GitHub repo MARKETBULLETSLLC/WEBSITECHARTS, and pushes.
+Squarespace embeds via raw.githubusercontent.com — URL never
+changes, site always shows the latest chart automatically.
 
-Monitors the repo root for new JPG exports from Trade Navigator,
-renames them to fixed canonical names, and git push to GitHub.
-Squarespace embeds update automatically via permanent raw.githubusercontent.com URLs.
-
-BEFORE FIRST RUN: verify CHART_MAP keys match Trade Navigator export filenames.
+Run: python scripts/chart_watcher.py
+Stop: Ctrl+C
 """
 
-import os
 import sys
 import time
 import shutil
 import subprocess
-import logging
 from pathlib import Path
+from datetime import date
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-# ── Config ────────────────────────────────────────────────────────────────────
-WATCH_FOLDER = Path(r"C:\users\hofer\onedrive\documents\github\websitecharts")
-REPO_ROOT    = WATCH_FOLDER
-CHARTS_DIR   = REPO_ROOT / "charts"
-GITHUB_RAW   = "https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts"
+# ─── CONFIG ─────────────────────────────────────────────────────────────────
 
-# Keys = substring to match in Trade Navigator filename (case-insensitive)
-# Values = canonical filename in charts/
+# Where Trade Navigator saves exported JPGs (your OneDrive path)
+WATCH_FOLDER = Path(r"C:\users\hofer\onedrive\documents\github\websitecharts")
+
+# Root of your local git clone (same folder — it IS the repo)
+REPO_ROOT = Path(r"C:\users\hofer\onedrive\documents\github\websitecharts")
+
+# Subfolder inside repo where chart images are stored
+CHARTS_DIR = REPO_ROOT / "charts"
+
+# Keyword matching: substring in Trade Navigator filename → fixed GitHub name
+# Edit the LEFT side (keys) to match what Trade Navigator actually names files.
+# Leave the RIGHT side (values) as-is — these become the GitHub filenames.
 CHART_MAP = {
-    "winter":    "wheat-winter-belt.jpg",
-    "spring":    "wheat-spring-belt.jpg",
-    "pacific":   "wheat-pacific-nw.jpg",
-    "ukraine":   "wheat-ukraine.jpg",
-    "russia":    "wheat-russia.jpg",
-    "canada":    "wheat-canada.jpg",
-    "argentina": "wheat-argentina.jpg",
-    "australia": "wheat-australia.jpg",
+    "winter":    "wheat-winter-belt",
+    "spring":    "wheat-spring-belt",
+    "pacific":   "wheat-pacific-nw",
+    "ukraine":   "wheat-ukraine",
+    "russia":    "wheat-russia",
+    "canada":    "wheat-canada",
+    "argentina": "wheat-argentina",
+    "australia": "wheat-australia",
 }
 
-EXTENSIONS = {".jpg", ".jpeg"}
-SETTLE_DELAY = 2  # seconds to wait after detection before processing
+# Used if no keyword matches the source filename
+FALLBACK_NAME = "wheat-chart"
 
-# ── Logging ───────────────────────────────────────────────────────────────────
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s  %(levelname)-8s  %(message)s",
-    datefmt="%H:%M:%S",
-)
-log = logging.getLogger(__name__)
+# GitHub raw base URL (displayed after each successful push)
+GITHUB_RAW = "https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts"
+
+# ─── END CONFIG ─────────────────────────────────────────────────────────────
 
 
-def match_canonical(filename: str) -> str | None:
-    """Return the canonical chart name if filename matches a CHART_MAP key."""
-    lower = filename.lower()
-    for keyword, canonical in CHART_MAP.items():
-        if keyword in lower:
-            return canonical
-    return None
+def resolve_chart_name(source_path: Path) -> str:
+    stem = source_path.stem.lower()
+    for keyword, name in CHART_MAP.items():
+        if keyword in stem:
+            return name
+    return FALLBACK_NAME
 
 
-def git_push(canonical: Path) -> bool:
-    """Stage, commit, and push one file. Returns True on success."""
-    rel = canonical.relative_to(REPO_ROOT)
-    cmds = [
-        ["git", "-C", str(REPO_ROOT), "add", str(rel)],
-        ["git", "-C", str(REPO_ROOT), "commit", "-m", f"update {canonical.name}"],
-        ["git", "-C", str(REPO_ROOT), "push", "origin", "main"],
-    ]
-    for cmd in cmds:
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        if result.returncode != 0:
-            log.error("Command failed: %s\n%s", " ".join(cmd), result.stderr.strip())
-            return False
-    return True
+def git(cmd: list, cwd: Path):
+    result = subprocess.run(
+        ["git"] + cmd,
+        cwd=cwd,
+        capture_output=True,
+        text=True
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"git {' '.join(cmd)} failed:\n{result.stderr.strip()}")
+    return result.stdout.strip()
 
 
-def process_file(src: Path) -> None:
-    canonical_name = match_canonical(src.name)
-    if canonical_name is None:
-        log.warning("No CHART_MAP match for '%s' — skipping. Check CHART_MAP keys.", src.name)
-        return
+def process_file(src: Path):
+    today = date.today().strftime("%Y-%m-%d")
+    base = resolve_chart_name(src)
+    fixed_name = f"{base}.jpg"
+    dest = CHARTS_DIR / fixed_name
 
-    dest = CHARTS_DIR / canonical_name
+    CHARTS_DIR.mkdir(parents=True, exist_ok=True)
+
     shutil.copy2(src, dest)
-    log.info("Copied  %s  →  charts/%s", src.name, canonical_name)
+    print(f" ✓ Copied → charts/{fixed_name}")
 
-    if git_push(dest):
-        log.info("Pushed  →  %s/%s", GITHUB_RAW, canonical_name)
-    else:
-        log.error("Push failed for %s", canonical_name)
+    git(["add", str(dest)], REPO_ROOT)
+
+    commit_msg = f"chart update: {base} [{today}]"
+    git(["commit", "-m", commit_msg], REPO_ROOT)
+    print(f" ✓ Committed: {commit_msg}")
+
+    git(["push", "origin", "main"], REPO_ROOT)
+    print(f" ✓ Pushed to GitHub")
+    print(f"\n 🌐 Live URL:\n {GITHUB_RAW}/{fixed_name}\n")
 
 
-# ── Watchdog handler ──────────────────────────────────────────────────────────
-class ChartHandler(FileSystemEventHandler):
+class JPGHandler(FileSystemEventHandler):
+
     def __init__(self):
-        self._seen: set[str] = set()
+        self._seen = set()
 
     def on_created(self, event):
         if event.is_directory:
             return
         path = Path(event.src_path)
-        if path.suffix.lower() not in EXTENSIONS:
+        if path.suffix.lower() not in {".jpg", ".jpeg"}:
             return
-        # Skip files already inside charts/
-        if CHARTS_DIR in path.parents:
+        if "charts" in path.parts:
+            return  # skip files already in charts/ subfolder
+        if path in self._seen:
             return
-        if str(path) in self._seen:
-            return
-        self._seen.add(str(path))
+        self._seen.add(path)
 
-        log.info("Detected  %s — waiting %ds for write to complete…", path.name, SETTLE_DELAY)
-        time.sleep(SETTLE_DELAY)
+        time.sleep(2)  # wait for Trade Navigator to finish writing
 
-        if not path.exists():
-            log.warning("File disappeared before processing: %s", path.name)
-            return
-
-        process_file(path)
+        print(f"\n[{time.strftime('%H:%M:%S')}] Detected: {path.name}")
+        try:
+            process_file(path)
+        except Exception as exc:
+            print(f" ✗ ERROR: {exc}")
+            print(" Check git auth and repo status, then retry.\n")
 
 
-# ── Entry point ───────────────────────────────────────────────────────────────
 def main():
-    if not CHARTS_DIR.exists():
-        log.error("charts/ directory not found at %s", CHARTS_DIR)
+    print("━" * 60)
+    print(" Wheat Chart Watcher")
+    print(f" Watching : {WATCH_FOLDER}")
+    print(f" GitHub   : MARKETBULLETSLLC/WEBSITECHARTS")
+    print(" Ctrl+C to stop")
+    print("━" * 60)
+
+    if not WATCH_FOLDER.exists():
+        print(f"\nERROR: Watch folder not found:\n {WATCH_FOLDER}")
         sys.exit(1)
 
-    log.info("MarketBullets chart watcher started.")
-    log.info("Watching: %s", WATCH_FOLDER)
-    log.info("Chart map: %d entries", len(CHART_MAP))
-    log.info("Press Ctrl+C to stop.\n")
+    if not (REPO_ROOT / ".git").exists():
+        print(f"\nERROR: No git repo found at:\n {REPO_ROOT}")
+        print("Run: git remote add origin "
+              "https://github.com/MARKETBULLETSLLC/WEBSITECHARTS.git")
+        sys.exit(1)
 
-    handler  = ChartHandler()
+    print("\nWaiting for new JPG exports...\n")
+
+    handler = JPGHandler()
     observer = Observer()
     observer.schedule(handler, str(WATCH_FOLDER), recursive=False)
     observer.start()
@@ -138,11 +152,9 @@ def main():
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
-        log.info("Shutting down…")
         observer.stop()
-
     observer.join()
-    log.info("Watcher stopped.")
+    print("\nWatcher stopped.")
 
 
 if __name__ == "__main__":
