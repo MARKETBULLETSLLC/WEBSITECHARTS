@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets® — Member Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:#0A0704;
+  color:#F0E8D0;
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+}
+.wordmark{
+  font-size:11px;
+  letter-spacing:.18em;
+  color:#C8960A;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+.tagline{
+  font-size:9px;
+  letter-spacing:.1em;
+  color:#5a4820;
+  margin-bottom:48px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;
+  width:100%;
+  max-width:840px;
+}
+.card{
+  border:1px solid rgba(200,150,10,.18);
+  background:#0F0B07;
+  padding:22px 24px;
+  text-decoration:none;
+  color:inherit;
+  display:block;
+  transition:border-color .15s;
+}
+.card:hover{border-color:rgba(200,150,10,.5);}
+.card-label{
+  font-size:8px;
+  letter-spacing:.12em;
+  color:#5a4820;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.card-title{
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:.05em;
+  color:#C8960A;
+  margin-bottom:6px;
+}
+.card-desc{
+  font-size:9px;
+  line-height:1.7;
+  color:#5a4820;
+  letter-spacing:.03em;
+}
+.foot{
+  margin-top:48px;
+  font-size:8px;
+  letter-spacing:.1em;
+  color:#2a2010;
+}
+</style>
+</head>
+<body>
+<div class="wordmark">MarketBullets®</div>
+<div class="tagline">More Sense Per Bushel™</div>
+
+<div class="grid">
+  <a class="card" href="wheat-weather.html">
+    <div class="card-label">Live Dashboard</div>
+    <div class="card-title">Global Wheat Weather</div>
+    <div class="card-desc">8 wheat-growing regions · NOAA + Open-Meteo · Frost, drought, wind &amp; severe alerts · Auto-refresh 30 min</div>
+  </a>
+</div>
+
+<div class="foot">MARKETBULLETSLLC / WEBSITECHARTS &mdash; Member Tools</div>
+</body>
+</html>
