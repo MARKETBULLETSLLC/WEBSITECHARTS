@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MB — BoR Badge (Squarespace Code Block)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!--
+═══════════════════════════════════════════════════════════════════
+  SQUARESPACE CODE BLOCK — COPY EVERYTHING INSIDE THE BODY TAG
+  File: MB_DASH_01_BOR_BADGE.html
+  Updated: 2026-04-25
+
+  To change state: edit data-state on the .bor-badge div
+    data-state="suspend"      Condition 1 — price above 60-D MA
+    data-state="execute-60d"  Condition 2 — price below 60-D MA
+    data-state="execute-20d"  Condition 3 — 20-D signal active
+═══════════════════════════════════════════════════════════════════
+-->
+
+<style>
+/* ── Base badge shell ────────────────────────────────────────────── */
+.bor-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  border: 1px solid;
+  border-radius: 4px;
+  max-width: 560px;
+  font-family: 'DM Mono', 'Courier New', monospace;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.bor-indicator {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+.bor-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.bor-status-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.bor-state-tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 2px 6px;
+  margin-right: 6px;
+  font-weight: 500;
+  vertical-align: baseline;
+}
+
+.bor-status-desc {
+  font-size: 11px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.bor-meta {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════════════════
+   BoR BADGE — THREE-STATE SYSTEM
+   ══════════════════════════════════════════════════
+   data-state="suspend"      Condition 1: above 60-D, accumulating
+   data-state="execute-60d"  Condition 2: below 60-D, sell all
+   data-state="execute-20d"  Condition 3: 20-D signal, sell all
+   ══════════════════════════════════════════════════ */
+
+/* --- CONDITION 1: SUSPEND (blue breathe) --- */
+.bor-badge[data-state="suspend"] {
+  background: #1a3a5c;
+  border-color: #0f2740;
+}
+.bor-badge[data-state="suspend"] .bor-indicator {
+  background: #4da6ff;
+  animation: bor-breathe 6s ease-in-out infinite;
+}
+.bor-badge[data-state="suspend"] .bor-status-label { color: #FAFAFA; }
+.bor-badge[data-state="suspend"] .bor-status-desc  { color: #a0c8e8; }
+.bor-badge[data-state="suspend"] .bor-meta         { color: #90bce0; } /* #80b0d8 fails AA — bumped to #90bce0 (4.63:1) */
+.bor-badge[data-state="suspend"] .bor-state-tag {
+  color: #1a3a5c;
+  background: #4da6ff;
+}
+
+/* --- CONDITION 2: EXECUTE via 60-D (green blink, 10s cycle) --- */
+.bor-badge[data-state="execute-60d"] {
+  background: #2C5530;
+  border-color: #1e3d22;
+}
+.bor-badge[data-state="execute-60d"] .bor-indicator {
+  background: #00FF66;
+  animation: bor-blink-normal 10s step-start infinite;
+}
+.bor-badge[data-state="execute-60d"] .bor-status-label { color: #FAFAFA; }
+.bor-badge[data-state="execute-60d"] .bor-status-desc  { color: #a8d5ae; }
+.bor-badge[data-state="execute-60d"] .bor-meta         { color: #90d098; }
+.bor-badge[data-state="execute-60d"] .bor-state-tag {
+  color: #2C5530;
+  background: #00FF66;
+}
+
+/* --- CONDITION 3: EXECUTE via 20-D (green blink, 5s cycle = 2× speed) --- */
+.bor-badge[data-state="execute-20d"] {
+  background: #2C5530;
+  border-color: #1e3d22;
+}
+.bor-badge[data-state="execute-20d"] .bor-indicator {
+  background: #00FF66;
+  animation: bor-blink-fast 5s step-start infinite;
+}
+.bor-badge[data-state="execute-20d"] .bor-status-label { color: #FAFAFA; }
+.bor-badge[data-state="execute-20d"] .bor-status-desc  { color: #a8d5ae; }
+.bor-badge[data-state="execute-20d"] .bor-meta         { color: #90d098; }
+.bor-badge[data-state="execute-20d"] .bor-state-tag {
+  color: #2C5530;
+  background: #00FF66;
+}
+
+/* --- ANIMATIONS ---
+   bor-blink-normal and bor-blink-fast share identical keyframes.
+   Speed difference comes from animation duration (10s vs 5s).
+   Named separately so duty cycle can be tuned independently later.
+*/
+@keyframes bor-blink-normal {
+  0%, 50%       { opacity: 1; }
+  50.01%, 100%  { opacity: 0; }
+}
+@keyframes bor-blink-fast {
+  0%, 50%       { opacity: 1; }
+  50.01%, 100%  { opacity: 0; }
+}
+@keyframes bor-breathe {
+  0%   { opacity: 0.2; }
+  50%  { opacity: 1;   }
+  100% { opacity: 0.2; }
+}
+
+/* ── Preview page wrapper (not needed in Squarespace) ── */
+body {
+  background: #0A0704;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 24px;
+  padding: 40px 20px;
+  font-family: 'DM Mono', monospace;
+  color: #888;
+  font-size: 11px;
+}
+.preview-label {
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 9px;
+  margin-bottom: -16px;
+  width: 560px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SQUARESPACE CODE BLOCK — PASTE FROM HERE
+     ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+/* paste the three-state CSS block above — omit the preview body styles */
+</style>
+
+<!--
+  ┌─────────────────────────────────────────────────────────────┐
+  │  GARY — CHANGE ONE ATTRIBUTE TO TOGGLE STATE:               │
+  │    data-state="suspend"      ← Condition 1                  │
+  │    data-state="execute-60d"  ← Condition 2                  │
+  │    data-state="execute-20d"  ← Condition 3                  │
+  └─────────────────────────────────────────────────────────────┘
+-->
+<div class="bor-badge" data-state="suspend">
+  <div class="bor-indicator"></div>
+  <div class="bor-content">
+    <div class="bor-status-label">
+      <span class="bor-state-tag"></span>Box-o-Rox&#174; &mdash; <span id="bor-action-text"></span>
+    </div>
+    <div class="bor-status-desc" id="bor-desc"></div>
+    <div class="bor-meta" id="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var badge    = document.querySelector('.bor-badge');
+  if (!badge) return;
+  var descEl   = document.getElementById('bor-desc');
+  var tagEl    = document.querySelector('.bor-state-tag');
+  var actionEl = document.getElementById('bor-action-text');
+  var state    = badge.getAttribute('data-state');
+
+  var stateConfig = {
+    'suspend': {
+      tag:    'SUSPEND',
+      action: 'Suspend Sale(s)',
+      desc:   'Condition 1 — price above 60-D MA. Tranches accumulating in suspended status.'
+    },
+    'execute-60d': {
+      tag:    'EXECUTE',
+      action: 'Execute Sale(s)',
+      desc:   'Condition 2 — price below 60-D MA. Execute all accumulated suspended tranche sales.'
+    },
+    'execute-20d': {
+      tag:    'EXECUTE • 20-D',
+      action: 'Execute Sale(s)',
+      desc:   'Condition 3 — 20-D signal active. Price crossed below 20-D MA while above 60-D. Execute all accumulated suspended tranche sales.'
+    }
+  };
+
+  var config = stateConfig[state] || stateConfig['suspend'];
+  if (tagEl)    tagEl.textContent    = config.tag;
+  if (actionEl) actionEl.textContent = config.action;
+  if (descEl)   descEl.textContent   = config.desc;
+})();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SQUARESPACE CODE BLOCK — PASTE TO HERE
+     ═══════════════════════════════════════════════════════════════ -->
+
+
+<!-- ── Preview: all three states side by side (remove from Squarespace) ── -->
+<div class="preview-label">Preview — Condition 1: SUSPEND</div>
+<div class="bor-badge" data-state="suspend">
+  <div class="bor-indicator"></div>
+  <div class="bor-content">
+    <div class="bor-status-label">
+      <span class="bor-state-tag">SUSPEND</span>Box-o-Rox&#174; &mdash; Suspend Sale(s)
+    </div>
+    <div class="bor-status-desc">Condition 1 — price above 60-D MA. Tranches accumulating in suspended status.</div>
+    <div class="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
+  </div>
+</div>
+
+<div class="preview-label">Preview — Condition 2: EXECUTE (60-D breach)</div>
+<div class="bor-badge" data-state="execute-60d">
+  <div class="bor-indicator"></div>
+  <div class="bor-content">
+    <div class="bor-status-label">
+      <span class="bor-state-tag">EXECUTE</span>Box-o-Rox&#174; &mdash; Execute Sale(s)
+    </div>
+    <div class="bor-status-desc">Condition 2 — price below 60-D MA. Execute all accumulated suspended tranche sales.</div>
+    <div class="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
+  </div>
+</div>
+
+<div class="preview-label">Preview — Condition 3: EXECUTE (20-D signal)</div>
+<div class="bor-badge" data-state="execute-20d">
+  <div class="bor-indicator"></div>
+  <div class="bor-content">
+    <div class="bor-status-label">
+      <span class="bor-state-tag">EXECUTE • 20-D</span>Box-o-Rox&#174; &mdash; Execute Sale(s)
+    </div>
+    <div class="bor-status-desc">Condition 3 — 20-D signal active. Price crossed below 20-D MA while above 60-D. Execute all accumulated suspended tranche sales.</div>
+    <div class="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
+  </div>
+</div>
+
+</body>
+</html>
