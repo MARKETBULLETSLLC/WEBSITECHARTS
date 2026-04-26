@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Wheat Weather Dashboard — MarketBullets®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+/* ── TOKENS ─────────────────────────────────────────────────────────── */
+:root {
+  --soil:      #0A0704;
+  --soil-mid:  #0F0B07;
+  --soil-lt:   #1A1208;
+  --char:      #231A0E;
+  --char-lt:   #2E2213;
+  --parchment: #F0E8D0;
+  --buff:      #E4D9BA;
+  --wheat:     #C8960A;
+  --wheat-lt:  #E8B820;
+  --wheat-dim: rgba(200,150,10,.12);
+  --border:    rgba(200,150,10,.20);
+  --border-lt: rgba(200,150,10,.09);
+  --up:        #4caf50;
+  --dn:        #E05030;
+  --warn:      #ff9800;
+  --mono:      'IBM Plex Mono','Courier New',monospace;
+}
+
+/* ── RESET ──────────────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PAGE ───────────────────────────────────────────────────────────── */
+body {
+  background: var(--soil);
+  color: var(--parchment);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ── HEADER ─────────────────────────────────────────────────────────── */
+#wwd-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#wwd-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--wheat);
+  text-transform: uppercase;
+}
+#wwd-title-sub {
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: #5a4820;
+  margin-top: 3px;
+}
+#wwd-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#wwd-updated {
+  font-size: 9px;
+  letter-spacing: .06em;
+  color: #5a4820;
+}
+#wwd-refresh {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--wheat);
+  padding: 4px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  cursor: pointer;
+}
+#wwd-refresh:hover { background: var(--wheat-dim); }
+
+/* ── ALERT BANNER ───────────────────────────────────────────────────── */
+#wwd-banner {
+  height: 28px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: var(--soil-mid);
+  border: 1px solid #1e1a14;
+  margin-bottom: 14px;
+  color: #5a4820;
+  font-size: 9px;
+  letter-spacing: .07em;
+  padding: 0 12px;
+}
+#wwd-banner.active {
+  background: #1a0a00;
+  border-color: rgba(224,80,48,.35);
+  color: #ff7043;
+}
+#wwd-ticker {
+  white-space: nowrap;
+  display: inline-block;
+}
+#wwd-banner.active #wwd-ticker {
+  padding-left: 100%;
+  animation: wwd-tick 50s linear infinite;
+}
+@keyframes wwd-tick {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── GRID ───────────────────────────────────────────────────────────── */
+#wwd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+@media (max-width: 1024px) { #wwd-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { #wwd-grid { grid-template-columns: 1fr; } }
+
+/* ── CARD ───────────────────────────────────────────────────────────── */
+.wwd-card {
+  background: var(--soil-mid);
+  border: 1px solid var(--border-lt);
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.wwd-card.err { border-color: rgba(224,80,48,.25); }
+
+/* card header */
+.wwd-card-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 9px 11px 8px;
+  background: var(--char);
+  border-bottom: 1px solid var(--border-lt);
+}
+.wwd-region-name {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  color: var(--wheat);
+  text-transform: uppercase;
+}
+.wwd-region-sub {
+  font-size: 8px;
+  letter-spacing: .06em;
+  color: #5a4820;
+  margin-top: 2px;
+}
+.wwd-card-ts {
+  font-size: 8px;
+  color: #3a2e18;
+  letter-spacing: .04em;
+  white-space: nowrap;
+  padding-top: 1px;
+}
+
+/* map */
+.wwd-map-wrap { height: 185px; flex-shrink: 0; background: var(--soil); }
+.wwd-map      { height: 100%; width: 100%; }
+
+/* card body */
+.wwd-card-body { padding: 9px 11px 11px; flex: 1; }
+
+/* metric rows */
+.wwd-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(200,150,10,.06);
+  font-size: 10px;
+}
+.wwd-metric:last-of-type { border-bottom: none; margin-bottom: 6px; }
+.wwd-mi { width: 14px; text-align: center; font-size: 10px; }
+.wwd-ml { color: #5a4820; width: 78px; flex-shrink: 0; letter-spacing: .03em; }
+.wwd-mv { color: var(--buff); }
+.wwd-mc { color: #3a2e18; }
+.wwd-warm { color: #ff7043; }
+.wwd-cool { color: #64b5f6; }
+.wwd-red  { color: #ef5350; font-weight: 600; }
+.wwd-org  { color: var(--warn); }
+
+/* badges */
+.wwd-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 7px 0 7px;
+}
+.wwd-badge {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  padding: 2px 6px;
+  border-radius: 1px;
+}
+.wwd-b-ok     { background: #0d1f0f; color: #66bb6a; border: 1px solid #1a3d1d; }
+.wwd-b-warn   { background: #1f1400; color: #ffa726; border: 1px solid #3d2800; }
+.wwd-b-danger { background: #1f0800; color: #ef5350; border: 1px solid #3d1200; }
+
+/* forecast */
+.wwd-forecast {
+  font-size: 9px;
+  line-height: 1.65;
+  color: #5a4820;
+  letter-spacing: .02em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+/* skeleton */
+.wwd-skel {
+  height: 9px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #161008 30%, #201608 50%, #161008 70%);
+  background-size: 200% 100%;
+  animation: wwd-skel 1.4s ease-in-out infinite;
+  margin: 4px 0;
+}
+.wwd-skel.s2 { width: 65%; }
+.wwd-skel.s3 { width: 40%; }
+@keyframes wwd-skel { 0%,100%{background-position:0% 0} 50%{background-position:200% 0} }
+
+/* error */
+.wwd-err  { font-size: 9px; color: #ef5350; padding: 6px 0; }
+.wwd-retry { color: var(--wheat); cursor: pointer; text-decoration: underline; }
+
+/* Leaflet overrides */
+.leaflet-container { background: var(--soil) !important; }
+.leaflet-tile      { filter: brightness(.75) saturate(.6); }
+</style>
+</head>
+
+<body>
+<div id="wwd-header">
+  <div>
+    <div id="wwd-title">Global Wheat Weather Dashboard</div>
+    <div id="wwd-title-sub">MarketBullets® · The Warm Signal™ · NOAA + Open-Meteo · Auto-refresh 30 min</div>
+  </div>
+  <div id="wwd-meta">
+    <span id="wwd-updated">Initializing…</span>
+    <button id="wwd-refresh">↺ Refresh</button>
+  </div>
+</div>
+
+<div id="wwd-banner">
+  <span id="wwd-ticker">Loading weather data for all wheat regions…</span>
+</div>
+
+<div id="wwd-grid">
+  <!-- Cards injected by JS -->
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function () {
+'use strict';
+
+// ── REGION CONFIG ─────────────────────────────────────────────────────────────
+const REGIONS = [
+  {
+    id: 'winter-wheat', name: 'US — Winter Wheat Belt', sub: 'KS · OK · TX · CO',
+    type: 'noaa', lat: 37.69, lon: -97.34, states: 'KS,OK,TX,CO',
+    bounds: [[26.5, -104], [40, -94]],
+    // 30-yr monthly normals °F (Jan–Dec)
+    norm: [32,37,47,57,66,76,81,80,70,59,46,35]
+  },
+  {
+    id: 'spring-wheat', name: 'US — Spring Wheat Belt', sub: 'ND · SD · MN · MT',
+    type: 'noaa', lat: 46.87, lon: -96.79, states: 'ND,SD,MN,MT',
+    bounds: [[43.5,-106],[49.5,-96]],
+    norm: [12,18,30,45,56,65,72,70,59,46,30,16]
+  },
+  {
+    id: 'pacific-nw', name: 'US — Pacific Northwest', sub: 'WA · OR · ID',
+    type: 'noaa', lat: 46.73, lon: -117.17, states: 'WA,OR,ID',
+    bounds: [[44.5,-121],[49,-115]],
+    norm: [34,39,44,50,57,63,72,72,64,53,42,35]
+  },
+  {
+    id: 'ukraine', name: 'Ukraine', sub: 'Kyiv · Kharkiv wheat zones',
+    type: 'openmeteo', lat: 49.45, lon: 31.52, lat2: 50.00, lon2: 36.23,
+    bounds: [[46,26],[52,40]],
+    norm: [27,30,40,52,63,70,75,73,63,50,37,29]
+  },
+  {
+    id: 'russia', name: 'Russia', sub: 'Krasnodar · Stavropol belt',
+    type: 'openmeteo', lat: 45.04, lon: 38.98, lat2: 45.05, lon2: 41.97,
+    bounds: [[43,36],[47,45]],
+    norm: [37,40,49,60,68,77,82,80,70,58,47,39]
+  },
+  {
+    id: 'canada', name: 'Canada', sub: 'Saskatchewan · Alberta',
+    type: 'openmeteo', lat: 51.17, lon: -106.67, lat2: 53.55, lon2: -113.47,
+    bounds: [[49,-116],[55,-100]],
+    norm: [7,13,24,40,52,61,67,65,53,39,23,10]
+  },
+  {
+    id: 'argentina', name: 'Argentina', sub: 'Buenos Aires · Córdoba · Santa Fe',
+    type: 'openmeteo', lat: -34.61, lon: -60.72, lat2: -31.42, lon2: -64.19,
+    bounds: [[-38,-66],[-28,-58]],
+    norm: [77,75,71,63,56,51,49,52,58,64,70,75]
+  },
+  {
+    id: 'australia', name: 'Australia', sub: 'WA Wheatbelt · NSW Riverina',
+    type: 'openmeteo', lat: -31.95, lon: 117.85, lat2: -34.40, lon2: 146.00,
+    bounds: [[-37,115],[-27,150]],
+    norm: [84,82,77,68,59,53,51,55,62,68,76,82]
+  }
+];
+
+const WX = {
+  0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',
+  45:'Fog',48:'Icy fog',
+  51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',
+  56:'Freezing drizzle',57:'Heavy freezing drizzle',
+  61:'Light rain',63:'Rain',65:'Heavy rain',
+  66:'Freezing rain',67:'Heavy freezing rain',
+  71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',
+  80:'Showers',81:'Heavy showers',82:'Violent showers',
+  85:'Snow showers',86:'Heavy snow showers',
+  95:'Thunderstorm',96:'Thunderstorm+hail',99:'Severe thunderstorm'
+};
+
+const REFRESH_MS = 30 * 60 * 1000;
+const NOAA_UA    = 'MarketBullets/1.0 (marketbulletsllc.com)';
+
+// ── MODULE STATE ──────────────────────────────────────────────────────────────
+const maps       = {};
+let   allBannerAlerts = [];
+
+// ── FETCH HELPERS ─────────────────────────────────────────────────────────────
+function getJSON(url, headers) {
+  return fetch(url, headers ? { headers } : {})
+    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
+}
+
+function openMeteo(lat, lon) {
+  const p = new URLSearchParams({
+    latitude: lat, longitude: lon,
+    daily: 'temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max,weathercode',
+    current_weather: 'true',
+    forecast_days: 7,
+    timezone: 'auto',
+    temperature_unit: 'fahrenheit',
+    wind_speed_unit: 'mph',
+    precipitation_unit: 'inch'
+  });
+  return getJSON(`https://api.open-meteo.com/v1/forecast?${p}`);
+}
+
+function averageMeteo(a, b) {
+  const out = JSON.parse(JSON.stringify(a));
+  const numKeys = ['temperature_2m_max','temperature_2m_min','precipitation_sum','windspeed_10m_max'];
+  numKeys.forEach(k => {
+    if (a.daily[k] && b.daily[k])
+      out.daily[k] = a.daily[k].map((v, i) => (v + b.daily[k][i]) / 2);
+  });
+  if (a.daily.weathercode && b.daily.weathercode)
+    out.daily.weathercode = a.daily.weathercode.map((v, i) => Math.max(v, b.daily.weathercode[i]));
+  if (a.current_weather && b.current_weather) {
+    out.current_weather.temperature = (a.current_weather.temperature + b.current_weather.temperature) / 2;
+    out.current_weather.windspeed   = (a.current_weather.windspeed   + b.current_weather.windspeed)   / 2;
+  }
+  return out;
+}
+
+async function noaaData(r) {
+  const pts = await getJSON(`https://api.weather.gov/points/${r.lat},${r.lon}`, { 'User-Agent': NOAA_UA });
+  const { gridId, gridX, gridY } = pts.properties;
+  const [fc, al] = await Promise.all([
+    getJSON(`https://api.weather.gov/gridpoints/${gridId}/${gridX},${gridY}/forecast`, { 'User-Agent': NOAA_UA }),
+    getJSON(`https://api.weather.gov/alerts/active?area=${r.states}`, { 'User-Agent': NOAA_UA })
+  ]);
+  return { forecast: fc, alerts: al };
+}
+
+async function loadRegionData(r) {
+  const m1 = await openMeteo(r.lat, r.lon);
+  const meteo = r.lat2 != null
+    ? averageMeteo(m1, await openMeteo(r.lat2, r.lon2))
+    : m1;
+
+  let noaa = null;
+  if (r.type === 'noaa') {
+    noaa = await noaaData(r).catch(e => {
+      console.warn(`NOAA degraded for ${r.name}: ${e.message}`);
+      return null;
+    });
+  }
+  return { meteo, noaa };
+}
+
+// ── ALERT COMPUTATION ─────────────────────────────────────────────────────────
+function computeAlerts(r, meteo, noaa) {
+  const d = meteo.daily;
+  const month = new Date().getMonth();
+  const normal = r.norm[month];
+
+  const currentT = meteo.current_weather
+    ? meteo.current_weather.temperature
+    : (d.temperature_2m_max[0] + d.temperature_2m_min[0]) / 2;
+  const anomaly = currentT - normal;
+
+  const noNull = arr => (arr || []).filter(v => v !== null && v !== undefined);
+  const minT       = Math.min(...noNull(d.temperature_2m_min));
+  const maxT       = Math.max(...noNull(d.temperature_2m_max));
+  const maxWind    = Math.max(...noNull(d.windspeed_10m_max));
+  const totalPrecip = noNull(d.precipitation_sum).reduce((a, b) => a + b, 0);
+  const maxCode    = d.weathercode ? Math.max(...noNull(d.weathercode)) : 0;
+
+  const badges = [];
+
+  // Frost / freeze
+  if (minT <= 28)       badges.push({ sev:'danger', label:'FREEZE WARNING',   detail:`${minT.toFixed(0)}°F forecast` });
+  else if (minT <= 33)  badges.push({ sev:'warn',   label:'FROST WATCH',      detail:`${minT.toFixed(0)}°F forecast` });
+
+  // Heat stress
+  if (maxT >= 95)       badges.push({ sev:'warn',   label:'HEAT STRESS',      detail:`${maxT.toFixed(0)}°F forecast` });
+
+  // Drought / dry
+  if (totalPrecip === 0 && anomaly > 5)
+                        badges.push({ sev:'danger', label:'DROUGHT WARNING',  detail:`No precip, +${anomaly.toFixed(1)}°F` });
+  else if (totalPrecip < 0.1 && anomaly > 3)
+                        badges.push({ sev:'warn',   label:'DRY ADVISORY',     detail:`${totalPrecip.toFixed(2)}" 7-day` });
+
+  // Wind
+  if (maxWind >= 50)    badges.push({ sev:'danger', label:'WIND WARNING',     detail:`${maxWind.toFixed(0)} mph` });
+  else if (maxWind >= 35) badges.push({ sev:'warn', label:'WIND ADVISORY',   detail:`${maxWind.toFixed(0)} mph` });
+
+  // International severe weathercode
+  if (!noaa && maxCode >= 65)
+    badges.push({ sev:'danger', label:'SEVERE WEATHER', detail: WX[maxCode] || `Code ${maxCode}` });
+
+  // NOAA active alerts
+  if (noaa?.alerts?.features) {
+    const SEVERE_WORDS = ['Tornado','Blizzard','Ice Storm','Severe Thunderstorm','Flash Flood','Winter Storm','Hurricane'];
+    noaa.alerts.features.forEach(f => {
+      const ev = f.properties?.event || '';
+      if (SEVERE_WORDS.some(w => ev.includes(w)))
+        badges.push({ sev:'danger', label: ev.toUpperCase().substring(0,24), detail: (f.properties.areaDesc||'').substring(0,40) });
+    });
+  }
+
+  return { badges, anomaly, currentT, minT, maxT, maxWind, totalPrecip };
+}
+
+// ── FORECAST TEXT ─────────────────────────────────────────────────────────────
+function noaaForecastText(noaa) {
+  const periods = noaa?.forecast?.properties?.periods || [];
+  return periods.slice(0, 3).map(p => p.detailedForecast).filter(Boolean).join(' ') || null;
+}
+
+function generateText(r, meteo, c) {
+  const noNull = arr => (arr || []).filter(v => v !== null);
+  const avgMax = noNull(meteo.daily.temperature_2m_max).reduce((a,b)=>a+b,0) / noNull(meteo.daily.temperature_2m_max).length;
+  const avgMin = noNull(meteo.daily.temperature_2m_min).reduce((a,b)=>a+b,0) / noNull(meteo.daily.temperature_2m_min).length;
+  const sign   = c.anomaly >= 0 ? `+${c.anomaly.toFixed(1)}°F above` : `${Math.abs(c.anomaly).toFixed(1)}°F below`;
+  const name   = r.name.replace('US — ','');
+
+  let t = `${name} will see temperatures ranging ${avgMin.toFixed(0)}–${avgMax.toFixed(0)}°F over the next 7 days, ${sign} seasonal average.`;
+  t += ` Precipitation: ${c.totalPrecip.toFixed(2)}" (${(c.totalPrecip*25.4).toFixed(0)} mm) over 7 days.`;
+
+  const notes = [];
+  if (c.minT <= 33)          notes.push(`frost risk with lows near ${c.minT.toFixed(0)}°F`);
+  if (c.maxT >= 95)          notes.push(`heat stress potential at ${c.maxT.toFixed(0)}°F`);
+  if (c.maxWind >= 35)       notes.push(`wind advisory conditions at ${c.maxWind.toFixed(0)} mph`);
+  if (c.totalPrecip < 0.1 && c.anomaly > 3) notes.push('dry, warmer-than-normal conditions');
+
+  t += notes.length
+    ? ` Notable: ${notes.join('; ')}.`
+    : ' No significant weather hazards currently forecast.';
+  return t;
+}
+
+// ── MAP INIT ──────────────────────────────────────────────────────────────────
+function initMap(r) {
+  const el = document.getElementById(`map-${r.id}`);
+  if (!el || maps[r.id]) return;
+
+  const map = L.map(el, {
+    zoomControl: false, attributionControl: false,
+    dragging: false, scrollWheelZoom: false,
+    doubleClickZoom: false, keyboard: false, touchZoom: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 })
+    .addTo(map);
+
+  const rect = L.rectangle(r.bounds, {
+    color: '#C8960A', weight: 1, fillColor: '#C8960A', fillOpacity: .10
+  }).addTo(map);
+
+  map.fitBounds(rect.getBounds(), { padding: [8, 8] });
+
+  const mkOpts = { radius:6, color:'#C8960A', fillColor:'#C8960A', fillOpacity:.85, weight:1.5 };
+  const m1 = L.circleMarker([r.lat, r.lon], mkOpts).addTo(map);
+  const m2 = r.lat2 != null
+    ? L.circleMarker([r.lat2, r.lon2], { ...mkOpts, radius:5, fillOpacity:.6 }).addTo(map)
+    : null;
+
+  maps[r.id] = { map, m1, m2 };
+  setTimeout(() => map.invalidateSize(), 250);
+}
+
+function updateMarkers(rid, badges) {
+  const m = maps[rid];
+  if (!m) return;
+  let color = '#4caf50';
+  if (badges.some(b => b.sev === 'danger')) color = '#ef5350';
+  else if (badges.length) color = '#ffa726';
+  const s = { color, fillColor: color };
+  m.m1.setStyle(s);
+  if (m.m2) m.m2.setStyle({ ...s, fillOpacity:.6 });
+}
+
+// ── CARD HTML ─────────────────────────────────────────────────────────────────
+function cardShell(r) {
+  return `
+<div class="wwd-card" id="card-${r.id}">
+  <div class="wwd-card-hdr">
+    <div>
+      <div class="wwd-region-name">${r.name}</div>
+      <div class="wwd-region-sub">${r.sub}</div>
+    </div>
+    <div class="wwd-card-ts" id="ts-${r.id}">—</div>
+  </div>
+  <div class="wwd-map-wrap"><div class="wwd-map" id="map-${r.id}"></div></div>
+  <div class="wwd-card-body">
+    <div id="metrics-${r.id}">
+      <div class="wwd-skel"></div><div class="wwd-skel s2"></div><div class="wwd-skel s3"></div>
+    </div>
+    <div class="wwd-badges" id="badges-${r.id}"></div>
+    <div class="wwd-forecast" id="forecast-${r.id}"></div>
+  </div>
+</div>`;
+}
+
+function metricRow(icon, label, valueHtml) {
+  return `<div class="wwd-metric">
+    <span class="wwd-mi">${icon}</span>
+    <span class="wwd-ml">${label}</span>
+    <span class="wwd-mv">${valueHtml}</span>
+  </div>`;
+}
+
+function metricsHTML(c) {
+  const tC       = ((c.currentT - 32) * 5/9).toFixed(0);
+  const aCls     = c.anomaly > 3 ? 'wwd-warm' : c.anomaly < -3 ? 'wwd-cool' : 'wwd-mc';
+  const aStr     = (c.anomaly >= 0 ? '+' : '') + c.anomaly.toFixed(1) + '°F';
+  const frostCls = c.minT <= 28 ? 'wwd-red' : c.minT <= 33 ? 'wwd-org' : 'wwd-mc';
+  const frostLbl = c.minT <= 28 ? 'HIGH' : c.minT <= 33 ? 'Low' : 'None';
+  const kph      = (c.maxWind * 1.60934).toFixed(0);
+
+  return [
+    metricRow('🌡', 'Temp',
+      `${c.currentT.toFixed(0)}°F <span class="wwd-mc">(${tC}°C)</span> <span class="${aCls}">${aStr} norm</span>`),
+    metricRow('🌧', '7-day precip',
+      `${c.totalPrecip.toFixed(2)}" <span class="wwd-mc">(${(c.totalPrecip*25.4).toFixed(0)} mm)</span>`),
+    metricRow('❄', 'Frost risk',
+      `<span class="${frostCls}">${frostLbl}</span>`),
+    metricRow('💨', 'Max wind',
+      `${c.maxWind.toFixed(0)} mph <span class="wwd-mc">(${kph} kph)</span>`)
+  ].join('');
+}
+
+function badgesHTML(badges) {
+  if (!badges.length) return '<span class="wwd-badge wwd-b-ok">✓ Nominal</span>';
+  return badges.map(b => {
+    const cls = b.sev === 'danger' ? 'wwd-b-danger' : 'wwd-b-warn';
+    return `<span class="wwd-badge ${cls}" title="${b.detail}">${b.label}</span>`;
+  }).join('');
+}
+
+// ── CARD UPDATE ───────────────────────────────────────────────────────────────
+function updateCard(r, data) {
+  const card = document.getElementById(`card-${r.id}`);
+  if (!card) return [];
+
+  const { meteo, noaa } = data;
+  const c = computeAlerts(r, meteo, noaa);
+
+  card.classList.remove('err');
+  document.getElementById(`metrics-${r.id}`).innerHTML  = metricsHTML(c);
+  document.getElementById(`badges-${r.id}`).innerHTML   = badgesHTML(c.badges);
+  document.getElementById(`forecast-${r.id}`).textContent =
+    noaaForecastText(noaa) || generateText(r, meteo, c);
+  document.getElementById(`ts-${r.id}`).textContent =
+    new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+
+  updateMarkers(r.id, c.badges);
+  return c.badges.map(b => ({ ...b, regionName: r.name }));
+}
+
+function setError(r, err) {
+  const card = document.getElementById(`card-${r.id}`);
+  if (!card) return;
+  card.classList.add('err');
+  document.getElementById(`metrics-${r.id}`).innerHTML =
+    `<div class="wwd-err">Data unavailable — <span class="wwd-retry" onclick="wwdRetry('${r.id}')">retry</span></div>`;
+  document.getElementById(`forecast-${r.id}`).textContent = err.message || 'Check console for details.';
+}
+
+// ── ALERT BANNER ──────────────────────────────────────────────────────────────
+function updateBanner(alerts) {
+  const ticker = document.getElementById('wwd-ticker');
+  const banner = document.getElementById('wwd-banner');
+  const severe = alerts.filter(a => a.sev === 'danger');
+
+  if (!severe.length) {
+    ticker.textContent = '✓  No active severe alerts — all wheat regions nominal';
+    banner.classList.remove('active');
+    return;
+  }
+
+  // Duplicate content for seamless CSS loop
+  const text = severe.map(a => `⚠  ${a.regionName}: ${a.label} — ${a.detail}`).join('     ·     ');
+  ticker.textContent = text + '     ·     ' + text;
+  banner.classList.add('active');
+}
+
+// ── LOAD ──────────────────────────────────────────────────────────────────────
+async function loadRegion(r) {
+  try {
+    const data = await loadRegionData(r);
+    return updateCard(r, data);
+  } catch (e) {
+    console.error(`${r.name}:`, e);
+    setError(r, e);
+    return [];
+  }
+}
+
+async function loadAll() {
+  document.getElementById('wwd-updated').textContent = 'Updating…';
+  const arrays = await Promise.all(REGIONS.map(loadRegion));
+  allBannerAlerts = arrays.flat();
+  updateBanner(allBannerAlerts);
+  document.getElementById('wwd-updated').textContent =
+    `Last updated: ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`;
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function init() {
+  document.getElementById('wwd-grid').innerHTML = REGIONS.map(cardShell).join('');
+  setTimeout(() => REGIONS.forEach(initMap), 120);
+  loadAll();
+  setInterval(loadAll, REFRESH_MS);
+  document.getElementById('wwd-refresh').addEventListener('click', loadAll);
+}
+
+// Public retry hook
+window.wwdRetry = function(regionId) {
+  const r = REGIONS.find(x => x.id === regionId);
+  if (!r) return;
+  loadRegion(r).then(badges => {
+    allBannerAlerts = allBannerAlerts
+      .filter(a => a.regionName !== r.name)
+      .concat(badges);
+    updateBanner(allBannerAlerts);
+  });
+};
+
+if (document.readyState === 'loading')
+  document.addEventListener('DOMContentLoaded', init);
+else
+  init();
+
+})();
+</script>
+</body>
+</html>
