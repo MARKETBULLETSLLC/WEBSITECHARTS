@@ -1,0 +1,138 @@
+WEBSITECHARTS REPOSITORY — PNG FILE LIST
+Generated: 2026-04-26
+Total: 82 PNGs (76 in charts/, 6 root-level)
+========================================
+
+WHEAT FUTURES (11)
+------------------
+WHEAT_SRW_30M.png
+WHEAT_SRW_D.png
+WHEAT_SRW_W.png
+WHEAT_SRW_M.png
+WHEAT_SRW_A.png
+WHEAT_SRW_BOR_D.png
+WHEAT_SRW_Special_M.png
+WHEAT_HRW_W.png
+WHEAT_HRS_W.png
+WHEAT_FWH_D.png
+WHEAT_FWH_W.png
+
+SPREADS — SRW (5)
+-----------------
+SPD_SRW_H_K.png
+SPD_SRW_K_N.png
+SPD_SRW_N_U.png
+SPD_SRW_U_Z.png
+SPD_SRW_Z_H2.png
+
+SPREADS — HRW (5)
+-----------------
+SPD_HRW_H_K.png
+SPD_HRW_K_N.png
+SPD_HRW_N_U.png
+SPD_HRW_U_Z.png
+SPD_HRW_Z_H2.png
+
+SPREADS — HRS (5)
+-----------------
+SPD_HRS_H_K.png
+SPD_HRS_K_N.png
+SPD_HRS_N_U.png
+SPD_HRS_U_Z.png
+SPD_HRS_Z_H2.png
+
+SPREADS — FWH (5)
+-----------------
+SPD_FWH_H_K.png
+SPD_FWH_K_U.png
+SPD_FWH_K2_U2.png
+SPD_FWH_U_Z.png
+SPD_FWH_Z_H2.png
+
+INTER-MARKET SPREADS (6)
+------------------------
+SPDINTER_SRW_HRW_M.png
+SPDINTER_SRW_HRS_M.png
+SPDINTER_SRW_HRS_W.png
+SPDINTER_HRS_HRW_M.png
+SPDINTER_HRW_FWH_M.png
+SPDINTER_HRW_FWH_W.png
+
+RATIOS (2)
+----------
+RATIO_SRW_C_M.png
+RATIO_S_C_W.png
+
+COT (2)
+-------
+COT_SRW_W.png
+COT_HRW_W.png
+
+CURRENCIES (5)
+--------------
+FX_WD_D.png
+FX_WD_M.png
+FX_CNY_USD_M.png
+FX_RUB_USD_M.png
+FX_RUB_CNY_W.png
+
+BONDS / INTEREST RATES (4)
+---------------------------
+BNDS_2YR_TNOTE_W.png
+BNDS_10YR_Price_Q.png
+BNDS_30YR_Price_Q.png
+BNDS_30YR_Yield_Q.png
+
+ENERGY (4)
+----------
+NRG_CL_W.png
+NRG_CL_M.png
+NRG_HO_D.png
+NRG_NG_M.png
+
+METALS (4)
+----------
+METL_GC_D.png
+METL_GC_M.png
+METL_SI_D.png
+METL_HG_M.png
+
+INDICES (6)
+-----------
+IDX_DXY_W.png
+IDX_DXY_M.png
+IDX_ES_D.png
+IDX_ES_M.png
+IDX_BDI_W.png
+IDX_GSCI_W.png
+
+GRAINS — CORN & BEANS (4)
+--------------------------
+GRAIN_C_D.png
+GRAIN_C_W.png
+GRAIN_S_D.png
+GRAIN_S_W.png
+
+FINANCIALS / EQUITIES (7)
+--------------------------
+FIN_ADM_D.png
+FIN_BG_D.png
+FIN_CAT_D.png
+FIN_CHSCP_D.png
+FIN_DE_D.png
+FIN_HD_D.png
+FIN_UNP_D.png
+
+MISC (1)
+--------
+MISC_CC_M.png
+
+========================================
+ROOT-LEVEL — NON-CHART FILES (6)
+========================================
+MarketBullets_Logo.png
+MarketBullets_Master_Chart_Index_ACTUAL_2026-04-03.png
+SPDINTER_HRW_FWH_W.png         (duplicate of charts/ version)
+WHEAT_SRW_30M.png               (duplicate of charts/ version)
+dadheadshot.png
+spreads_jumpnav_preview.png
