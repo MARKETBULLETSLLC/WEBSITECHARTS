@@ -11,22 +11,26 @@
 <style>
 /* ── TOKENS ─────────────────────────────────────────────────────────── */
 :root {
-  --soil:      #0A0704;
-  --soil-mid:  #0F0B07;
-  --soil-lt:   #1A1208;
-  --char:      #231A0E;
-  --char-lt:   #2E2213;
-  --parchment: #F0E8D0;
-  --buff:      #E4D9BA;
-  --wheat:     #C8960A;
-  --wheat-lt:  #E8B820;
-  --wheat-dim: rgba(200,150,10,.12);
-  --border:    rgba(200,150,10,.20);
-  --border-lt: rgba(200,150,10,.09);
-  --up:        #4caf50;
-  --dn:        #E05030;
-  --warn:      #ff9800;
-  --mono:      'IBM Plex Mono','Courier New',monospace;
+  --cream:      #F6F1E7;
+  --cream-mid:  #EDE6D6;
+  --cream-lt:   #FAF7F0;
+  --card:       #FFFFFF;
+  --hdr:        #2C1F0E;
+  --hdr-text:   #F0E8D0;
+  --text:       #1A1208;
+  --text-mid:   #5C4830;
+  --text-dim:   #9C8260;
+  --border:     #D8CEB4;
+  --border-lt:  #EAE3D0;
+  --wheat:      #B8840A;
+  --wheat-lt:   #D4A020;
+  --wheat-dim:  rgba(184,132,10,.10);
+  --up:         #166534;
+  --dn:         #991B1B;
+  --warn-text:  #92400E;
+  --warm:       #C2410C;
+  --cool:       #1D4ED8;
+  --mono:       'IBM Plex Mono','Courier New',monospace;
 }
 
 /* ── RESET ──────────────────────────────────────────────────────────── */
@@ -34,8 +38,8 @@
 
 /* ── PAGE ───────────────────────────────────────────────────────────── */
 body {
-  background: var(--soil);
-  color: var(--parchment);
+  background: var(--cream);
+  color: var(--text);
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.5;
@@ -49,7 +53,7 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--hdr);
   margin-bottom: 14px;
   flex-wrap: wrap;
   gap: 10px;
@@ -58,25 +62,17 @@ body {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: .08em;
-  color: var(--wheat);
+  color: var(--hdr);
   text-transform: uppercase;
 }
 #wwd-title-sub {
   font-size: 9px;
-  letter-spacing: .1em;
-  color: #5a4820;
+  letter-spacing: .10em;
+  color: var(--text-dim);
   margin-top: 3px;
 }
-#wwd-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-#wwd-updated {
-  font-size: 9px;
-  letter-spacing: .06em;
-  color: #5a4820;
-}
+#wwd-meta { display: flex; align-items: center; gap: 12px; }
+#wwd-updated { font-size: 9px; letter-spacing: .06em; color: var(--text-dim); }
 #wwd-refresh {
   background: none;
   border: 1px solid var(--border);
@@ -87,7 +83,7 @@ body {
   letter-spacing: .07em;
   cursor: pointer;
 }
-#wwd-refresh:hover { background: var(--wheat-dim); }
+#wwd-refresh:hover { background: var(--wheat-dim); border-color: var(--wheat); }
 
 /* ── ALERT BANNER ───────────────────────────────────────────────────── */
 #wwd-banner {
@@ -95,23 +91,20 @@ body {
   overflow: hidden;
   display: flex;
   align-items: center;
-  background: var(--soil-mid);
-  border: 1px solid #1e1a14;
+  background: var(--cream-mid);
+  border: 1px solid var(--border);
   margin-bottom: 20px;
-  color: #5a4820;
+  color: var(--text-dim);
   font-size: 9px;
   letter-spacing: .07em;
   padding: 0 12px;
 }
 #wwd-banner.active {
-  background: #1a0a00;
-  border-color: rgba(224,80,48,.35);
-  color: #ff7043;
+  background: #FEF2F2;
+  border-color: #FECACA;
+  color: var(--dn);
 }
-#wwd-ticker {
-  white-space: nowrap;
-  display: inline-block;
-}
+#wwd-ticker { white-space: nowrap; display: inline-block; }
 #wwd-banner.active #wwd-ticker {
   padding-left: 100%;
   animation: wwd-tick 50s linear infinite;
@@ -123,153 +116,131 @@ body {
 
 /* ── SECTIONS ───────────────────────────────────────────────────────── */
 .wwd-section { margin-bottom: 24px; }
-
 .wwd-section-hdr {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border-lt);
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border);
 }
 .wwd-section-label {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: .14em;
-  color: #5a4820;
+  color: var(--text-dim);
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.wwd-section-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--border-lt);
-}
+.wwd-section-rule { flex: 1; height: 1px; background: var(--border-lt); }
 
 /* ── GRIDS ──────────────────────────────────────────────────────────── */
-.wwd-grid-us {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-.wwd-grid-global {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-}
+.wwd-grid-us     { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.wwd-grid-global { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
 
-@media (max-width: 1200px) {
-  .wwd-grid-global { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 900px) {
-  .wwd-grid-us,
-  .wwd-grid-global { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px) {
-  .wwd-grid-us,
-  .wwd-grid-global { grid-template-columns: 1fr; }
-}
+@media (max-width: 1200px) { .wwd-grid-global { grid-template-columns: repeat(3,1fr); } }
+@media (max-width: 900px)  { .wwd-grid-us, .wwd-grid-global { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px)  { .wwd-grid-us, .wwd-grid-global { grid-template-columns: 1fr; } }
 
 /* ── CARD ───────────────────────────────────────────────────────────── */
 .wwd-card {
-  background: var(--soil-mid);
-  border: 1px solid var(--border-lt);
-  border-radius: 2px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
 }
-.wwd-card.err { border-color: rgba(224,80,48,.25); }
+.wwd-card.err { border-color: #FECACA; }
 
+/* card header */
 .wwd-card-hdr {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   padding: 9px 11px 8px;
-  background: var(--char);
-  border-bottom: 1px solid var(--border-lt);
+  background: var(--hdr);
+  border-bottom: 1px solid var(--border);
 }
 .wwd-region-name {
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .09em;
-  color: var(--wheat);
+  color: var(--hdr-text);
   text-transform: uppercase;
 }
 .wwd-region-sub {
   font-size: 8px;
   letter-spacing: .06em;
-  color: #5a4820;
+  color: rgba(240,232,208,.55);
   margin-top: 2px;
 }
 .wwd-card-ts {
   font-size: 8px;
-  color: #3a2e18;
+  color: rgba(240,232,208,.40);
   letter-spacing: .04em;
   white-space: nowrap;
   padding-top: 1px;
 }
 
 /* map */
-.wwd-map-wrap { height: 185px; flex-shrink: 0; background: var(--soil); }
+.wwd-map-wrap { height: 185px; flex-shrink: 0; background: #E8E2D4; }
 .wwd-map      { height: 100%; width: 100%; }
 
 /* card body */
-.wwd-card-body { padding: 9px 11px 11px; flex: 1; }
+.wwd-card-body { padding: 9px 11px 11px; flex: 1; background: var(--card); }
 
 /* metric rows */
 .wwd-metric {
   display: flex;
   align-items: baseline;
   gap: 5px;
-  padding: 2px 0;
-  border-bottom: 1px solid rgba(200,150,10,.06);
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border-lt);
   font-size: 10px;
 }
 .wwd-metric:last-of-type { border-bottom: none; margin-bottom: 6px; }
 .wwd-mi { width: 14px; text-align: center; font-size: 10px; }
-.wwd-ml { color: #5a4820; width: 78px; flex-shrink: 0; letter-spacing: .03em; }
-.wwd-mv { color: var(--buff); }
-.wwd-mc { color: #3a2e18; }
-.wwd-warm { color: #ff7043; }
-.wwd-cool { color: #64b5f6; }
-.wwd-red  { color: #ef5350; font-weight: 600; }
-.wwd-org  { color: var(--warn); }
+.wwd-ml { color: var(--text-dim); width: 78px; flex-shrink: 0; letter-spacing: .03em; }
+.wwd-mv { color: var(--text); }
+.wwd-mc { color: var(--text-dim); }
+.wwd-warm { color: var(--warm); font-weight: 500; }
+.wwd-cool { color: var(--cool); font-weight: 500; }
+.wwd-red  { color: var(--dn); font-weight: 600; }
+.wwd-org  { color: var(--warn-text); font-weight: 500; }
 
 /* badges */
-.wwd-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 7px 0;
-}
+.wwd-badges { display: flex; flex-wrap: wrap; gap: 4px; margin: 7px 0; }
 .wwd-badge {
   font-size: 8px;
   font-weight: 600;
-  letter-spacing: .09em;
+  letter-spacing: .08em;
   padding: 2px 6px;
-  border-radius: 1px;
+  border-radius: 0;
 }
-.wwd-b-ok     { background: #0d1f0f; color: #66bb6a; border: 1px solid #1a3d1d; }
-.wwd-b-warn   { background: #1f1400; color: #ffa726; border: 1px solid #3d2800; }
-.wwd-b-danger { background: #1f0800; color: #ef5350; border: 1px solid #3d1200; }
+.wwd-b-ok     { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+.wwd-b-warn   { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+.wwd-b-danger { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
 
 /* forecast */
 .wwd-forecast {
   font-size: 9px;
-  line-height: 1.65;
-  color: #5a4820;
+  line-height: 1.70;
+  color: var(--text-mid);
   letter-spacing: .02em;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 5;
+  line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 
 /* skeleton */
 .wwd-skel {
   height: 9px;
-  border-radius: 1px;
-  background: linear-gradient(90deg, #161008 30%, #201608 50%, #161008 70%);
+  border-radius: 0;
+  background: linear-gradient(90deg, #EDE6D6 30%, #E4DCCA 50%, #EDE6D6 70%);
   background-size: 200% 100%;
   animation: wwd-skel 1.4s ease-in-out infinite;
   margin: 4px 0;
@@ -279,12 +250,12 @@ body {
 @keyframes wwd-skel { 0%,100%{background-position:0% 0} 50%{background-position:200% 0} }
 
 /* error */
-.wwd-err   { font-size: 9px; color: #ef5350; padding: 6px 0; }
+.wwd-err   { font-size: 9px; color: var(--dn); padding: 6px 0; }
 .wwd-retry { color: var(--wheat); cursor: pointer; text-decoration: underline; }
 
-/* Leaflet overrides */
-.leaflet-container { background: var(--soil) !important; }
-.leaflet-tile      { filter: brightness(.75) saturate(.6); }
+/* Leaflet overrides — light map */
+.leaflet-container { background: #E8E2D4 !important; }
+.leaflet-tile      { filter: saturate(.85) brightness(1.02); }
 </style>
 </head>
 
@@ -555,19 +526,22 @@ function initMap(r) {
     doubleClickZoom: false, keyboard: false, touchZoom: false
   });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 })
+  /* Light tile layer — clearly readable */
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 })
     .addTo(map);
 
   const rect = L.rectangle(r.bounds, {
-    color: '#C8960A', weight: 1, fillColor: '#C8960A', fillOpacity: .10
+    color: '#8B6400', weight: 1.5,
+    fillColor: '#C49A0A', fillOpacity: .15
   }).addTo(map);
 
   map.fitBounds(rect.getBounds(), { padding: [8, 8] });
 
-  const mkOpts = { radius:6, color:'#C8960A', fillColor:'#C8960A', fillOpacity:.85, weight:1.5 };
+  /* Start markers green — updateMarkers() will recolor after data loads */
+  const mkOpts = { radius: 7, color: '#14532D', fillColor: '#22C55E', fillOpacity: .90, weight: 2 };
   const m1 = L.circleMarker([r.lat, r.lon], mkOpts).addTo(map);
   const m2 = r.lat2 != null
-    ? L.circleMarker([r.lat2, r.lon2], { ...mkOpts, radius:5, fillOpacity:.6 }).addTo(map)
+    ? L.circleMarker([r.lat2, r.lon2], { ...mkOpts, radius: 5, fillOpacity: .70 }).addTo(map)
     : null;
 
   maps[r.id] = { map, m1, m2 };
@@ -577,12 +551,12 @@ function initMap(r) {
 function updateMarkers(rid, badges) {
   const m = maps[rid];
   if (!m) return;
-  let color = '#4caf50';
-  if (badges.some(b => b.sev === 'danger')) color = '#ef5350';
-  else if (badges.length)                   color = '#ffa726';
-  const s = { color, fillColor: color };
+  let fill = '#22C55E', stroke = '#14532D';
+  if      (badges.some(b => b.sev === 'danger')) { fill = '#EF4444'; stroke = '#991B1B'; }
+  else if (badges.length)                        { fill = '#F59E0B'; stroke = '#92400E'; }
+  const s = { color: stroke, fillColor: fill };
   m.m1.setStyle(s);
-  if (m.m2) m.m2.setStyle({ ...s, fillOpacity:.6 });
+  if (m.m2) m.m2.setStyle({ ...s, fillOpacity: .70 });
 }
 
 // ── CARD HTML ─────────────────────────────────────────────────────────────────
@@ -725,7 +699,7 @@ function init() {
   document.getElementById('wwd-refresh').addEventListener('click', loadAll);
 }
 
-window.wwdRetry = function(regionId) {
+window.wwdRetry = function (regionId) {
   const r = REGIONS.find(x => x.id === regionId);
   if (!r) return;
   loadRegion(r).then(badges => {
@@ -741,7 +715,7 @@ if (document.readyState === 'loading')
 else
   init();
 
-})();
+}());
 </script>
 </body>
 </html>
