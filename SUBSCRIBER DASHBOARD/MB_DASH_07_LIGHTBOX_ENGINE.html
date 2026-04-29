@@ -1,0 +1,92 @@
+<style>
+/* ── MB Lightbox Engine ─────────────────────────────────────────────── */
+.mb-lb-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.90);
+  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mb-lb-overlay.open { display: flex; }
+.mb-lb-img {
+  max-width: 95vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: block;
+}
+.mb-lb-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  margin-top: 14px;
+  opacity: 0.75;
+}
+.mb-lb-close {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  font-size: 26px;
+  color: #FAFAFA;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.60;
+  font-family: sans-serif;
+  user-select: none;
+}
+.mb-lb-close:hover { opacity: 1; }
+
+/* Inline thumbnail — used inside Squarespace text blocks */
+.mb-inline-thumb {
+  width: 120px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin: 4px 8px;
+  vertical-align: middle;
+  transition: border-color 0.2s;
+}
+.mb-inline-thumb:hover { border-color: #2C5530; }
+</style>
+
+<div class="mb-lb-overlay" id="mb-lb-overlay">
+  <span class="mb-lb-close" id="mb-lb-close">&#10005;</span>
+  <img class="mb-lb-img" id="mb-lb-img" src="" alt="">
+  <div class="mb-lb-title" id="mb-lb-title"></div>
+</div>
+
+<script>
+(function () {
+  var overlay = document.getElementById('mb-lb-overlay');
+  var img     = document.getElementById('mb-lb-img');
+  var title   = document.getElementById('mb-lb-title');
+  var close   = document.getElementById('mb-lb-close');
+
+  window.openLightbox = function (src, lbl) {
+    img.src            = src;
+    img.alt            = lbl || '';
+    title.textContent  = lbl || '';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    img.src = '';
+    document.body.style.overflow = '';
+  }
+
+  close.addEventListener('click', closeLightbox);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeLightbox();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+}());
+</script>

@@ -1,0 +1,493 @@
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ── MB Chart Index ─────────────────────────────────────────────────── */
+.mb-idx { margin: 0; }
+
+.mb-idx-section-hdr {
+  background: #1A1A1A;
+  color: #FAFAFA;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 3px solid #1A1A1A;
+}
+.mb-idx-count {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* Abbreviation key */
+.mb-idx-key {
+  background: #f0f0f0;
+  border: 1px solid #1A1A1A;
+  border-top: none;
+  padding: 10px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin-bottom: 16px;
+}
+.mb-idx-key-item {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #1A1A1A;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.mb-idx-key-item strong {
+  font-weight: 700;
+  color: #2C5530;
+}
+
+/* Category headers */
+.mb-idx-cat-hdr {
+  background: #2C5530;
+  color: #FAFAFA;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  margin: 16px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mb-idx-cat-n {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* Thumbnail grid */
+.mb-idx-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  padding: 14px 0;
+}
+@media (max-width: 900px) { .mb-idx-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .mb-idx-grid { grid-template-columns: 1fr; } }
+
+.mb-idx-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.mb-idx-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #ddd;
+  transition: border-color 0.15s;
+}
+.mb-idx-thumb:hover img { border-color: #2C5530; }
+.mb-idx-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-top: 6px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  line-height: 1.4;
+}
+</style>
+
+<div class="mb-idx">
+
+  <div class="mb-idx-section-hdr">
+    Chart Index
+    <span class="mb-idx-count">77 Charts</span>
+  </div>
+
+  <div class="mb-idx-key">
+    <span class="mb-idx-key-item"><strong>SRW</strong> = Chicago Soft Red Winter</span>
+    <span class="mb-idx-key-item"><strong>HRW</strong> = Kansas City Hard Red Winter</span>
+    <span class="mb-idx-key-item"><strong>HRS</strong> = Minneapolis Hard Red Spring</span>
+    <span class="mb-idx-key-item"><strong>FWH</strong> = Paris 12% Protein (Milling)</span>
+  </div>
+
+  <!-- ── WHEAT FUTURES ──────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Wheat Futures <span class="mb-idx-cat-n">11</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png','SRW — 30-Minute')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png" alt="SRW 30-Minute" loading="lazy">
+      <div class="mb-idx-label">SRW — 30-Minute</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png','SRW — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png" alt="SRW Daily" loading="lazy">
+      <div class="mb-idx-label">SRW — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png','SRW — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png" alt="SRW Weekly" loading="lazy">
+      <div class="mb-idx-label">SRW — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png','SRW — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png" alt="SRW Monthly" loading="lazy">
+      <div class="mb-idx-label">SRW — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png','SRW — Annual')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png" alt="SRW Annual" loading="lazy">
+      <div class="mb-idx-label">SRW — Annual</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png','SRW — Special Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png" alt="SRW Special Monthly" loading="lazy">
+      <div class="mb-idx-label">SRW — Special Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png','Box-o-Rox Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png" alt="Box-o-Rox Daily" loading="lazy">
+      <div class="mb-idx-label">Box-o-Rox Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRW_W.png','HRW — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRW_W.png" alt="HRW Weekly" loading="lazy">
+      <div class="mb-idx-label">HRW — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRS_W.png','HRS — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRS_W.png" alt="HRS Weekly" loading="lazy">
+      <div class="mb-idx-label">HRS — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_D.png','FWH — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_D.png" alt="FWH Daily" loading="lazy">
+      <div class="mb-idx-label">FWH — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_W.png','FWH — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_W.png" alt="FWH Weekly" loading="lazy">
+      <div class="mb-idx-label">FWH — Weekly</div>
+    </div>
+  </div>
+
+  <!-- ── INTRA-MARKET SPREADS ───────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Intra-Market Spreads <span class="mb-idx-cat-n">20</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_H_K.png','SRW — Mar/May')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_H_K.png" alt="SRW Mar/May" loading="lazy">
+      <div class="mb-idx-label">SRW — Mar/May</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_K_N.png','SRW — May/Jul')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_K_N.png" alt="SRW May/Jul" loading="lazy">
+      <div class="mb-idx-label">SRW — May/Jul</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_N_U.png','SRW — Jul/Sep')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_N_U.png" alt="SRW Jul/Sep" loading="lazy">
+      <div class="mb-idx-label">SRW — Jul/Sep</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_U_Z.png','SRW — Sep/Dec')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_U_Z.png" alt="SRW Sep/Dec" loading="lazy">
+      <div class="mb-idx-label">SRW — Sep/Dec</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_Z_H2.png','SRW — Dec/Mar')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_Z_H2.png" alt="SRW Dec/Mar" loading="lazy">
+      <div class="mb-idx-label">SRW — Dec/Mar</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_H_K.png','HRW — Mar/May')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_H_K.png" alt="HRW Mar/May" loading="lazy">
+      <div class="mb-idx-label">HRW — Mar/May</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_K_N.png','HRW — May/Jul')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_K_N.png" alt="HRW May/Jul" loading="lazy">
+      <div class="mb-idx-label">HRW — May/Jul</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_N_U.png','HRW — Jul/Sep')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_N_U.png" alt="HRW Jul/Sep" loading="lazy">
+      <div class="mb-idx-label">HRW — Jul/Sep</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_U_Z.png','HRW — Sep/Dec')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_U_Z.png" alt="HRW Sep/Dec" loading="lazy">
+      <div class="mb-idx-label">HRW — Sep/Dec</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_Z_H2.png','HRW — Dec/Mar')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_Z_H2.png" alt="HRW Dec/Mar" loading="lazy">
+      <div class="mb-idx-label">HRW — Dec/Mar</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_H_K.png','HRS — Mar/May')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_H_K.png" alt="HRS Mar/May" loading="lazy">
+      <div class="mb-idx-label">HRS — Mar/May</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_K_N.png','HRS — May/Jul')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_K_N.png" alt="HRS May/Jul" loading="lazy">
+      <div class="mb-idx-label">HRS — May/Jul</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_N_U.png','HRS — Jul/Sep')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_N_U.png" alt="HRS Jul/Sep" loading="lazy">
+      <div class="mb-idx-label">HRS — Jul/Sep</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_U_Z.png','HRS — Sep/Dec')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_U_Z.png" alt="HRS Sep/Dec" loading="lazy">
+      <div class="mb-idx-label">HRS — Sep/Dec</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_Z_H2.png','HRS — Dec/Mar')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_Z_H2.png" alt="HRS Dec/Mar" loading="lazy">
+      <div class="mb-idx-label">HRS — Dec/Mar</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_H_K.png','FWH — Mar/May')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_H_K.png" alt="FWH Mar/May" loading="lazy">
+      <div class="mb-idx-label">FWH — Mar/May</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K_U.png','FWH — May/Sep')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K_U.png" alt="FWH May/Sep" loading="lazy">
+      <div class="mb-idx-label">FWH — May/Sep</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_U_Z.png','FWH — Sep/Dec')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_U_Z.png" alt="FWH Sep/Dec" loading="lazy">
+      <div class="mb-idx-label">FWH — Sep/Dec</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_Z_H2.png','FWH — Dec/Mar')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_Z_H2.png" alt="FWH Dec/Mar" loading="lazy">
+      <div class="mb-idx-label">FWH — Dec/Mar</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K2_U2.png','FWH — May/Sep (Deferred)')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K2_U2.png" alt="FWH May/Sep Deferred" loading="lazy">
+      <div class="mb-idx-label">FWH — May/Sep (Deferred)</div>
+    </div>
+  </div>
+
+  <!-- ── INTER-MARKET SPREADS & RATIOS ─────────────────────── -->
+  <div class="mb-idx-cat-hdr">Inter-Market Spreads &amp; Ratios <span class="mb-idx-cat-n">8</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRW_M.png','SRW vs. HRW — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRW_M.png" alt="SRW vs HRW Monthly" loading="lazy">
+      <div class="mb-idx-label">SRW vs. HRW — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_M.png','SRW vs. HRS — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_M.png" alt="SRW vs HRS Monthly" loading="lazy">
+      <div class="mb-idx-label">SRW vs. HRS — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_W.png','SRW vs. HRS — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_W.png" alt="SRW vs HRS Weekly" loading="lazy">
+      <div class="mb-idx-label">SRW vs. HRS — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRS_HRW_M.png','HRS vs. HRW — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRS_HRW_M.png" alt="HRS vs HRW Monthly" loading="lazy">
+      <div class="mb-idx-label">HRS vs. HRW — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_M.png','HRW vs. FWH — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_M.png" alt="HRW vs FWH Monthly" loading="lazy">
+      <div class="mb-idx-label">HRW vs. FWH — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_W.png','HRW vs. FWH — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_W.png" alt="HRW vs FWH Weekly" loading="lazy">
+      <div class="mb-idx-label">HRW vs. FWH — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_SRW_C_M.png','SRW/Corn Ratio — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_SRW_C_M.png" alt="SRW/Corn Ratio Monthly" loading="lazy">
+      <div class="mb-idx-label">SRW/Corn Ratio — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_S_C_W.png','Soy/Corn Ratio — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_S_C_W.png" alt="Soy/Corn Ratio Weekly" loading="lazy">
+      <div class="mb-idx-label">Soy/Corn Ratio — Weekly</div>
+    </div>
+  </div>
+
+  <!-- ── COMMITMENT OF TRADERS ──────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Commitment of Traders <span class="mb-idx-cat-n">2</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/COT_SRW_W.png','SRW — Commitment of Traders')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/COT_SRW_W.png" alt="SRW COT" loading="lazy">
+      <div class="mb-idx-label">SRW — Commitment of Traders</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/COT_HRW_W.png','HRW — Commitment of Traders')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/COT_HRW_W.png" alt="HRW COT" loading="lazy">
+      <div class="mb-idx-label">HRW — Commitment of Traders</div>
+    </div>
+  </div>
+
+  <!-- ── CURRENCIES ─────────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Currencies <span class="mb-idx-cat-n">5</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_WD_D.png','Australian Dollar — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_WD_D.png" alt="Australian Dollar Daily" loading="lazy">
+      <div class="mb-idx-label">Australian Dollar — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_WD_M.png','Australian Dollar — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_WD_M.png" alt="Australian Dollar Monthly" loading="lazy">
+      <div class="mb-idx-label">Australian Dollar — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_RUB_CNY_W.png','Ruble/Yuan — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_RUB_CNY_W.png" alt="Ruble/Yuan Weekly" loading="lazy">
+      <div class="mb-idx-label">Ruble/Yuan — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_RUB_USD_M.png','Ruble/USD — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_RUB_USD_M.png" alt="Ruble/USD Monthly" loading="lazy">
+      <div class="mb-idx-label">Ruble/USD — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_CNY_USD_M.png','Yuan/USD — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_CNY_USD_M.png" alt="Yuan/USD Monthly" loading="lazy">
+      <div class="mb-idx-label">Yuan/USD — Monthly</div>
+    </div>
+  </div>
+
+  <!-- ── INDICES ─────────────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Indices <span class="mb-idx-cat-n">6</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_DXY_W.png','U.S. Dollar Index — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_DXY_W.png" alt="Dollar Index Weekly" loading="lazy">
+      <div class="mb-idx-label">U.S. Dollar Index — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_DXY_M.png','U.S. Dollar Index — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_DXY_M.png" alt="Dollar Index Monthly" loading="lazy">
+      <div class="mb-idx-label">U.S. Dollar Index — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_ES_D.png','S&P 500 — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_ES_D.png" alt="S&P 500 Daily" loading="lazy">
+      <div class="mb-idx-label">S&amp;P 500 — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_ES_M.png','S&P 500 — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_ES_M.png" alt="S&P 500 Monthly" loading="lazy">
+      <div class="mb-idx-label">S&amp;P 500 — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_GSCI_W.png','Goldman Commodity Index — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_GSCI_W.png" alt="Goldman Commodity Index Weekly" loading="lazy">
+      <div class="mb-idx-label">Goldman Commodity Index — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_BDI_W.png','Baltic Dry Index — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_BDI_W.png" alt="Baltic Dry Index Weekly" loading="lazy">
+      <div class="mb-idx-label">Baltic Dry Index — Weekly</div>
+    </div>
+  </div>
+
+  <!-- ── ENERGIES ────────────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Energies <span class="mb-idx-cat-n">4</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_CL_W.png','Crude Oil — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_CL_W.png" alt="Crude Oil Weekly" loading="lazy">
+      <div class="mb-idx-label">Crude Oil — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_CL_M.png','Crude Oil — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_CL_M.png" alt="Crude Oil Monthly" loading="lazy">
+      <div class="mb-idx-label">Crude Oil — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_NG_M.png','Natural Gas — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_NG_M.png" alt="Natural Gas Monthly" loading="lazy">
+      <div class="mb-idx-label">Natural Gas — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_HO_D.png','Heating Oil — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_HO_D.png" alt="Heating Oil Daily" loading="lazy">
+      <div class="mb-idx-label">Heating Oil — Daily</div>
+    </div>
+  </div>
+
+  <!-- ── METALS ──────────────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Metals <span class="mb-idx-cat-n">4</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_GC_D.png','Gold — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_GC_D.png" alt="Gold Daily" loading="lazy">
+      <div class="mb-idx-label">Gold — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_GC_M.png','Gold — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_GC_M.png" alt="Gold Monthly" loading="lazy">
+      <div class="mb-idx-label">Gold — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_HG_M.png','Copper — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_HG_M.png" alt="Copper Monthly" loading="lazy">
+      <div class="mb-idx-label">Copper — Monthly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_SI_D.png','Silver — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_SI_D.png" alt="Silver Daily" loading="lazy">
+      <div class="mb-idx-label">Silver — Daily</div>
+    </div>
+  </div>
+
+  <!-- ── GRAINS ──────────────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Grains <span class="mb-idx-cat-n">4</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_C_D.png','Corn — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_C_D.png" alt="Corn Daily" loading="lazy">
+      <div class="mb-idx-label">Corn — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_C_W.png','Corn — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_C_W.png" alt="Corn Weekly" loading="lazy">
+      <div class="mb-idx-label">Corn — Weekly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_S_D.png','Soybeans — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_S_D.png" alt="Soybeans Daily" loading="lazy">
+      <div class="mb-idx-label">Soybeans — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_S_W.png','Soybeans — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_S_W.png" alt="Soybeans Weekly" loading="lazy">
+      <div class="mb-idx-label">Soybeans — Weekly</div>
+    </div>
+  </div>
+
+  <!-- ── INTEREST RATES & BONDS ─────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Interest Rates &amp; Bonds <span class="mb-idx-cat-n">4</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_10YR_Price_Q.png','10-Year T-Note Price — Quarterly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_10YR_Price_Q.png" alt="10-Year T-Note Price Quarterly" loading="lazy">
+      <div class="mb-idx-label">10-Year T-Note Price — Quarterly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_30YR_Price_Q.png','30-Year T-Bond Price — Quarterly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_30YR_Price_Q.png" alt="30-Year T-Bond Price Quarterly" loading="lazy">
+      <div class="mb-idx-label">30-Year T-Bond Price — Quarterly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_30YR_Yield_Q.png','30-Year T-Bond Yield — Quarterly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_30YR_Yield_Q.png" alt="30-Year T-Bond Yield Quarterly" loading="lazy">
+      <div class="mb-idx-label">30-Year T-Bond Yield — Quarterly</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_2YR_TNOTE_W.png','2-Year T-Note — Weekly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_2YR_TNOTE_W.png" alt="2-Year T-Note Weekly" loading="lazy">
+      <div class="mb-idx-label">2-Year T-Note — Weekly</div>
+    </div>
+  </div>
+
+  <!-- ── FINANCIALS ─────────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Financials <span class="mb-idx-cat-n">8</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_ADM_D.png','ADM — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_ADM_D.png" alt="ADM Daily" loading="lazy">
+      <div class="mb-idx-label">ADM — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_BG_D.png','Bunge — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_BG_D.png" alt="Bunge Daily" loading="lazy">
+      <div class="mb-idx-label">Bunge — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_CAT_D.png','Caterpillar — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_CAT_D.png" alt="Caterpillar Daily" loading="lazy">
+      <div class="mb-idx-label">Caterpillar — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_CHSCP_D.png','CHS Inc. — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_CHSCP_D.png" alt="CHS Inc Daily" loading="lazy">
+      <div class="mb-idx-label">CHS Inc. — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_DE_D.png','Deere &amp; Co. — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_DE_D.png" alt="Deere Daily" loading="lazy">
+      <div class="mb-idx-label">Deere &amp; Co. — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_HD_D.png','Home Depot — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_HD_D.png" alt="Home Depot Daily" loading="lazy">
+      <div class="mb-idx-label">Home Depot — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_UNP_D.png','Union Pacific — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_UNP_D.png" alt="Union Pacific Daily" loading="lazy">
+      <div class="mb-idx-label">Union Pacific — Daily</div>
+    </div>
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_WEAT_D.png','Wheat ETF (WEAT) — Daily')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_WEAT_D.png" alt="Wheat ETF Daily" loading="lazy">
+      <div class="mb-idx-label">Wheat ETF (WEAT) — Daily</div>
+    </div>
+  </div>
+
+  <!-- ── MISCELLANEOUS ──────────────────────────────────────── -->
+  <div class="mb-idx-cat-hdr">Miscellaneous <span class="mb-idx-cat-n">1</span></div>
+  <div class="mb-idx-grid">
+    <div class="mb-idx-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/MISC_CC_M.png','Cocoa — Monthly')">
+      <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/MISC_CC_M.png" alt="Cocoa Monthly" loading="lazy">
+      <div class="mb-idx-label">Cocoa — Monthly</div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,328 @@
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── MB Spreads Section ─────────────────────────────────────────────── */
+.mb-spd { margin: 0; }
+
+.mb-spd-section-hdr {
+  background: #1A1A1A;
+  color: #FAFAFA;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-top: 3px solid #1A1A1A;
+  margin-bottom: 0;
+}
+
+.mb-spd-exchange {
+  border: 1px solid #1A1A1A;
+  border-top: none;
+  margin-bottom: 12px;
+}
+
+.mb-spd-exch-hdr {
+  background: #2C5530;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mb-spd-exch-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+}
+.mb-spd-exch-venue {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.05em;
+}
+
+.mb-spd-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 13px;
+  color: #1A1A1A;
+  line-height: 1.6;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Accordion */
+.mb-spd-details {
+  border-top: 1px solid #e0e0e0;
+}
+.mb-spd-details summary {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  padding: 9px 16px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+.mb-spd-details summary::-webkit-details-marker { display: none; }
+.mb-spd-details summary::after {
+  content: '+';
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+}
+.mb-spd-details[open] summary::after { content: '−'; }
+.mb-spd-details summary:hover { background: #eeeeee; }
+
+.mb-spd-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #FAFAFA;
+}
+
+.mb-spd-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 150px;
+}
+.mb-spd-thumb img {
+  width: 150px;
+  height: auto;
+  display: block;
+  border: 1px solid #ddd;
+  transition: border-color 0.15s;
+}
+.mb-spd-thumb:hover img { border-color: #2C5530; }
+.mb-spd-thumb-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 5px;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+/* Inter-market accent color */
+.mb-spd-exchange.inter .mb-spd-exch-hdr { background: #8B2500; }
+</style>
+
+<div class="mb-spd">
+
+  <div class="mb-spd-section-hdr">Spreads &amp; Ratios</div>
+
+  <!-- ── SRW / CBOT ─────────────────────────────────────────── -->
+  <div class="mb-spd-exchange">
+    <div class="mb-spd-exch-hdr">
+      <div class="mb-spd-exch-name">SRW &mdash; Chicago Soft Red Winter</div>
+      <div class="mb-spd-exch-venue">CBOT</div>
+    </div>
+    <div class="mb-spd-desc">
+      The benchmark U.S. wheat contract and the most liquid grain futures market in the world. Delivery in Chicago; settles against soft red winter wheat — the class used for cookies, crackers, and pastry flour. Primary hedging vehicle for eastern wheat belt producers and the global reference price for wheat.
+    </div>
+    <details class="mb-spd-details">
+      <summary>Calendar Spreads</summary>
+      <div class="mb-spd-grid">
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_H_K.png','SRW — Mar/May')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_H_K.png" alt="SRW Mar/May">
+          <div class="mb-spd-thumb-label">SRW — Mar/May</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_K_N.png','SRW — May/Jul')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_K_N.png" alt="SRW May/Jul">
+          <div class="mb-spd-thumb-label">SRW — May/Jul</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_N_U.png','SRW — Jul/Sep')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_N_U.png" alt="SRW Jul/Sep">
+          <div class="mb-spd-thumb-label">SRW — Jul/Sep</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_U_Z.png','SRW — Sep/Dec')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_U_Z.png" alt="SRW Sep/Dec">
+          <div class="mb-spd-thumb-label">SRW — Sep/Dec</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_Z_H2.png','SRW — Dec/Mar')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_Z_H2.png" alt="SRW Dec/Mar">
+          <div class="mb-spd-thumb-label">SRW — Dec/Mar</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── HRW / KCBT ─────────────────────────────────────────── -->
+  <div class="mb-spd-exchange">
+    <div class="mb-spd-exch-hdr">
+      <div class="mb-spd-exch-name">HRW &mdash; Kansas City Hard Red Winter</div>
+      <div class="mb-spd-exch-venue">KCBT</div>
+    </div>
+    <div class="mb-spd-desc">
+      The Plains wheat contract. Hard red winter wheat is the bread flour class — higher protein, grown across Kansas, Oklahoma, Texas panhandle, Colorado, and Nebraska. The Kansas City contract is the primary hedging vehicle for the largest U.S. wheat-producing region and a key indicator of domestic milling demand and export competitiveness.
+    </div>
+    <details class="mb-spd-details">
+      <summary>Calendar Spreads</summary>
+      <div class="mb-spd-grid">
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_H_K.png','HRW — Mar/May')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_H_K.png" alt="HRW Mar/May">
+          <div class="mb-spd-thumb-label">HRW — Mar/May</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_K_N.png','HRW — May/Jul')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_K_N.png" alt="HRW May/Jul">
+          <div class="mb-spd-thumb-label">HRW — May/Jul</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_N_U.png','HRW — Jul/Sep')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_N_U.png" alt="HRW Jul/Sep">
+          <div class="mb-spd-thumb-label">HRW — Jul/Sep</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_U_Z.png','HRW — Sep/Dec')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_U_Z.png" alt="HRW Sep/Dec">
+          <div class="mb-spd-thumb-label">HRW — Sep/Dec</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_Z_H2.png','HRW — Dec/Mar')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_Z_H2.png" alt="HRW Dec/Mar">
+          <div class="mb-spd-thumb-label">HRW — Dec/Mar</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── HRS / MGEX ─────────────────────────────────────────── -->
+  <div class="mb-spd-exchange">
+    <div class="mb-spd-exch-hdr">
+      <div class="mb-spd-exch-name">HRS &mdash; Minneapolis Hard Red Spring</div>
+      <div class="mb-spd-exch-venue">MGEX</div>
+    </div>
+    <div class="mb-spd-desc">
+      Premium milling wheat grown in the northern tier — Montana, North Dakota, South Dakota, and Minnesota. Highest protein content of the major U.S. wheat classes, used for premium bread flour, bagels, and high-gluten applications. Typically commands a premium over both SRW and HRW; the HRS/SRW spread is a closely watched protein premium indicator.
+    </div>
+    <details class="mb-spd-details">
+      <summary>Calendar Spreads</summary>
+      <div class="mb-spd-grid">
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_H_K.png','HRS — Mar/May')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_H_K.png" alt="HRS Mar/May">
+          <div class="mb-spd-thumb-label">HRS — Mar/May</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_K_N.png','HRS — May/Jul')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_K_N.png" alt="HRS May/Jul">
+          <div class="mb-spd-thumb-label">HRS — May/Jul</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_N_U.png','HRS — Jul/Sep')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_N_U.png" alt="HRS Jul/Sep">
+          <div class="mb-spd-thumb-label">HRS — Jul/Sep</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_U_Z.png','HRS — Sep/Dec')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_U_Z.png" alt="HRS Sep/Dec">
+          <div class="mb-spd-thumb-label">HRS — Sep/Dec</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_Z_H2.png','HRS — Dec/Mar')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_Z_H2.png" alt="HRS Dec/Mar">
+          <div class="mb-spd-thumb-label">HRS — Dec/Mar</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── FWH / Euronext ─────────────────────────────────────── -->
+  <div class="mb-spd-exchange">
+    <div class="mb-spd-exch-hdr">
+      <div class="mb-spd-exch-name">FWH &mdash; Paris Milling Wheat</div>
+      <div class="mb-spd-exch-venue">Euronext</div>
+    </div>
+    <div class="mb-spd-desc">
+      The European milling wheat benchmark, quoted in euros per metric tonne. Reflects EU crop conditions, Black Sea competition, and global export dynamics. A critical reference for North African and Middle Eastern import demand — the same buyers who compete with U.S. wheat on the world market. The FWH/SRW spread is a key gauge of U.S. export competitiveness.
+    </div>
+    <details class="mb-spd-details">
+      <summary>Calendar Spreads</summary>
+      <div class="mb-spd-grid">
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_H_K.png','FWH — Mar/May')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_H_K.png" alt="FWH Mar/May">
+          <div class="mb-spd-thumb-label">FWH — Mar/May</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K_U.png','FWH — May/Sep')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K_U.png" alt="FWH May/Sep">
+          <div class="mb-spd-thumb-label">FWH — May/Sep</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_U_Z.png','FWH — Sep/Dec')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_U_Z.png" alt="FWH Sep/Dec">
+          <div class="mb-spd-thumb-label">FWH — Sep/Dec</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_Z_H2.png','FWH — Dec/Mar')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_Z_H2.png" alt="FWH Dec/Mar">
+          <div class="mb-spd-thumb-label">FWH — Dec/Mar</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K2_U2.png','FWH — May/Sep (Deferred)')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K2_U2.png" alt="FWH May/Sep Deferred">
+          <div class="mb-spd-thumb-label">FWH — May/Sep (Deferred)</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── Inter-Market Spreads ───────────────────────────────── -->
+  <div class="mb-spd-exchange inter">
+    <div class="mb-spd-exch-hdr">
+      <div class="mb-spd-exch-name">Inter-Market Spreads &amp; Ratios</div>
+      <div class="mb-spd-exch-venue">Cross-Exchange</div>
+    </div>
+    <div class="mb-spd-desc">
+      Price relationships between wheat classes and between wheat and other grains. These spreads reveal relative demand for protein, the competitiveness of individual growing regions, and structural shifts in end-user preferences. The wheat/corn ratio is a key input into livestock and ethanol demand models.
+    </div>
+    <details class="mb-spd-details">
+      <summary>Inter-Market Spreads</summary>
+      <div class="mb-spd-grid">
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRW_M.png','SRW vs. HRW — Monthly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRW_M.png" alt="SRW vs HRW Monthly">
+          <div class="mb-spd-thumb-label">SRW vs. HRW — Monthly</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_M.png','SRW vs. HRS — Monthly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_M.png" alt="SRW vs HRS Monthly">
+          <div class="mb-spd-thumb-label">SRW vs. HRS — Monthly</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_W.png','SRW vs. HRS — Weekly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_W.png" alt="SRW vs HRS Weekly">
+          <div class="mb-spd-thumb-label">SRW vs. HRS — Weekly</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRS_HRW_M.png','HRS vs. HRW — Monthly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRS_HRW_M.png" alt="HRS vs HRW Monthly">
+          <div class="mb-spd-thumb-label">HRS vs. HRW — Monthly</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_M.png','HRW vs. FWH — Monthly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_M.png" alt="HRW vs FWH Monthly">
+          <div class="mb-spd-thumb-label">HRW vs. FWH — Monthly</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_W.png','HRW vs. FWH — Weekly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_W.png" alt="HRW vs FWH Weekly">
+          <div class="mb-spd-thumb-label">HRW vs. FWH — Weekly</div>
+        </div>
+      </div>
+    </details>
+    <details class="mb-spd-details">
+      <summary>Grain Ratios</summary>
+      <div class="mb-spd-grid">
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_SRW_C_M.png','SRW/Corn Ratio — Monthly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_SRW_C_M.png" alt="SRW/Corn Ratio Monthly">
+          <div class="mb-spd-thumb-label">SRW/Corn Ratio — Monthly</div>
+        </div>
+        <div class="mb-spd-thumb" onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_S_C_W.png','Soy/Corn Ratio — Weekly')">
+          <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_S_C_W.png" alt="Soy/Corn Ratio Weekly">
+          <div class="mb-spd-thumb-label">Soy/Corn Ratio — Weekly</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+</div>

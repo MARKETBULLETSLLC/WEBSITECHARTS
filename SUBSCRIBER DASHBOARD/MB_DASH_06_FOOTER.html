@@ -1,0 +1,75 @@
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── MB Footer ──────────────────────────────────────────────────────── */
+.mb-ftr {
+  background: #1A1A1A;
+  border-top: 3px solid #1A1A1A;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.mb-ftr * {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+.mb-ftr a:hover { color: #FAFAFA; }
+
+.mb-ftr-left  { flex: 1; min-width: 200px; }
+.mb-ftr-center { flex: 1; min-width: 200px; text-align: center; }
+.mb-ftr-right { flex: 1; min-width: 200px; display: flex; justify-content: flex-end; align-items: center; gap: 14px; }
+
+.mb-ftr-copy { color: #666; }
+
+.mb-ftr-contact { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: center; }
+
+/* Social icons */
+.mb-ftr-social {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.mb-ftr-social a {
+  color: #444;
+  opacity: 0.45;
+  font-size: 14px;
+  line-height: 1;
+  transition: opacity 0.15s;
+}
+.mb-ftr-social a:hover { opacity: 0.70; color: #888; }
+</style>
+
+<div class="mb-ftr">
+
+  <div class="mb-ftr-left">
+    <span class="mb-ftr-copy">&copy; 2026 MarketBullets LLC &mdash; More Sense Per Bushel&reg;</span>
+  </div>
+
+  <div class="mb-ftr-center">
+    <div class="mb-ftr-contact">
+      <a href="mailto:info@marketbulletsllc.com">info@marketbulletsllc.com</a>
+      <!-- GARY: replace placeholder numbers below with actual numbers -->
+      <span>Gary: [phone]</span>
+      <span>Gabe: [phone]</span>
+    </div>
+  </div>
+
+  <div class="mb-ftr-right">
+    <!-- GARY: replace href="#" with actual URLs when social accounts are created -->
+    <div class="mb-ftr-social">
+      <a href="#" title="X / Twitter — Coming Soon" aria-label="X / Twitter">&#88;</a>
+      <a href="#" title="LinkedIn — Coming Soon" aria-label="LinkedIn">in</a>
+      <a href="#" title="Facebook — Coming Soon" aria-label="Facebook">&#402;</a>
+      <a href="#" title="YouTube — Coming Soon" aria-label="YouTube">&#9654;</a>
+      <a href="#" title="Instagram — Coming Soon" aria-label="Instagram">&#9678;</a>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,74 @@
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── MB SRW 30-Minute Chart ─────────────────────────────────────────── */
+.mb-srw30 {
+  border: 1px solid #1A1A1A;
+  background: #FAFAFA;
+}
+.mb-srw30-hdr {
+  background: #1A1A1A;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mb-srw30-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #FAFAFA;
+  line-height: 1;
+}
+.mb-srw30-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 0.05em;
+}
+.mb-srw30-chart-wrap {
+  line-height: 0;
+  border-bottom: 1px solid #1A1A1A;
+}
+.mb-srw30-chart-wrap img {
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.mb-srw30-chart-wrap img:hover { opacity: 0.90; }
+.mb-srw30-footer {
+  padding: 6px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mb-srw30-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: #999;
+  letter-spacing: 0.03em;
+}
+</style>
+
+<div class="mb-srw30">
+  <div class="mb-srw30-hdr">
+    <div class="mb-srw30-title">Short-term Price Structure &mdash; Chicago SRW</div>
+    <div class="mb-srw30-sub">30-Minute &middot; Front Month</div>
+  </div>
+  <div class="mb-srw30-chart-wrap">
+    <img
+      src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png"
+      alt="SRW 30-Minute Chart"
+      onclick="openLightbox('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png','SRW — 30-Minute')"
+    >
+  </div>
+  <div class="mb-srw30-footer">
+    <span class="mb-srw30-meta">Source: Trade Navigator</span>
+    <span class="mb-srw30-meta">Updated: <!-- GARY: edit date here each morning --></span>
+  </div>
+</div>
