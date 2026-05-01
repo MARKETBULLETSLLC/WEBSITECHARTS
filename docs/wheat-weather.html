@@ -6,7 +6,7 @@
 <title>Global Wheat Weather Dashboard — MarketBullets®</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
 /* ── TOKENS ─────────────────────────────────────────────────────────── */
@@ -47,43 +47,93 @@ body {
   padding: 20px;
 }
 
-/* ── HEADER ─────────────────────────────────────────────────────────── */
-#wwd-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-bottom: 14px;
-  border-bottom: 2px solid var(--hdr);
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-  gap: 10px;
+/* ── MASTHEAD ────────────────────────────────────────────────────────── */
+#wwd-masthead {
+  background: var(--hdr);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
 }
-#wwd-title {
-  font-size: 15px;
+/* chart-paper grid lines */
+#wwd-masthead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(184,132,10,.07) 0 1px, transparent 1px 60px),
+    repeating-linear-gradient(0deg,  rgba(184,132,10,.04) 0 1px, transparent 1px 18px);
+  pointer-events: none;
+}
+#wwd-mast-body {
+  position: relative;
+  text-align: center;
+  padding: 14px 24px 10px;
+}
+#wwd-mast-eyebrow {
+  font-size: 8px;
   font-weight: 600;
-  letter-spacing: .08em;
-  color: var(--hdr);
+  letter-spacing: .26em;
+  color: rgba(240,232,208,.32);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+#wwd-mast-title {
+  font-family: 'Bebas Neue', var(--mono);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 400;
+  letter-spacing: .10em;
+  color: var(--wheat-lt);
+  text-transform: uppercase;
+  line-height: 1.0;
+  margin-bottom: 6px;
+  text-shadow: 0 0 60px rgba(212,160,32,.30), 0 2px 4px rgba(0,0,0,.40);
+}
+#wwd-mast-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 auto 6px;
+  max-width: 560px;
+  font-size: 9px;
+  letter-spacing: .18em;
+  color: rgba(212,160,32,.55);
   text-transform: uppercase;
 }
-#wwd-title-sub {
-  font-size: 9px;
-  letter-spacing: .10em;
-  color: var(--text-dim);
-  margin-top: 3px;
+#wwd-mast-rule::before,
+#wwd-mast-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,160,32,.45), transparent);
 }
-#wwd-meta { display: flex; align-items: center; gap: 12px; }
-#wwd-updated { font-size: 9px; letter-spacing: .06em; color: var(--text-dim); }
+#wwd-mast-sub {
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: rgba(240,232,208,.38);
+  text-transform: uppercase;
+}
+#wwd-mast-footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px 9px;
+  border-top: 1px solid rgba(212,160,32,.14);
+  background: rgba(0,0,0,.18);
+}
+#wwd-updated { font-size: 9px; letter-spacing: .06em; color: rgba(240,232,208,.35); }
 #wwd-refresh {
   background: none;
-  border: 1px solid var(--border);
-  color: var(--wheat);
-  padding: 4px 12px;
+  border: 1px solid rgba(212,160,32,.30);
+  color: var(--wheat-lt);
+  padding: 4px 14px;
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: .07em;
   cursor: pointer;
 }
-#wwd-refresh:hover { background: var(--wheat-dim); border-color: var(--wheat); }
+#wwd-refresh:hover { background: rgba(212,160,32,.12); border-color: var(--wheat-lt); }
 
 /* ── ALERT BANNER ───────────────────────────────────────────────────── */
 #wwd-banner {
@@ -260,12 +310,14 @@ body {
 </head>
 
 <body>
-<div id="wwd-header">
-  <div>
-    <div id="wwd-title">Global Wheat Weather Dashboard</div>
-    <div id="wwd-title-sub">MarketBullets® · The Warm Signal™ · NOAA + Open-Meteo · Auto-refresh 30 min</div>
+<div id="wwd-masthead">
+  <div id="wwd-mast-body">
+    <div id="wwd-mast-eyebrow">MarketBullets® &nbsp;·&nbsp; The Warm Signal™ &nbsp;·&nbsp; Global Intelligence Series</div>
+    <div id="wwd-mast-title">Wheat Weather<br>World Wide</div>
+    <div id="wwd-mast-rule">◆ &nbsp; Global Crop Condition Intelligence &nbsp; ◆</div>
+    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 8 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
   </div>
-  <div id="wwd-meta">
+  <div id="wwd-mast-footer">
     <span id="wwd-updated">Initializing…</span>
     <button id="wwd-refresh">↺ Refresh</button>
   </div>
@@ -460,20 +512,20 @@ function computeAlerts(r, meteo, noaa) {
 
   const badges = [];
 
-  if (minT <= 28)      badges.push({ sev:'danger', label:'FREEZE WARNING',  detail:`${minT.toFixed(0)}°F forecast` });
-  else if (minT <= 33) badges.push({ sev:'warn',   label:'FROST WATCH',     detail:`${minT.toFixed(0)}°F forecast` });
+  if (minT <= 24)      badges.push({ sev:'danger', label:'FREEZE WARNING',  detail:`${minT.toFixed(0)}°F forecast` });
+  else if (minT <= 30) badges.push({ sev:'warn',   label:'FROST WATCH',     detail:`${minT.toFixed(0)}°F forecast` });
 
-  if (maxT >= 95)      badges.push({ sev:'warn',   label:'HEAT STRESS',     detail:`${maxT.toFixed(0)}°F forecast` });
+  if (maxT >= 102)     badges.push({ sev:'warn',   label:'HEAT STRESS',     detail:`${maxT.toFixed(0)}°F forecast` });
 
-  if (totalPrecip === 0 && anomaly > 5)
+  if (totalPrecip === 0 && anomaly > 8)
     badges.push({ sev:'danger', label:'DROUGHT WARNING',  detail:`No precip, +${anomaly.toFixed(1)}°F` });
-  else if (totalPrecip < 0.1 && anomaly > 3)
+  else if (totalPrecip < 0.05 && anomaly > 5)
     badges.push({ sev:'warn',   label:'DRY ADVISORY',     detail:`${totalPrecip.toFixed(2)}" 7-day` });
 
-  if (maxWind >= 50)       badges.push({ sev:'danger', label:'WIND WARNING',   detail:`${maxWind.toFixed(0)} mph` });
-  else if (maxWind >= 35)  badges.push({ sev:'warn',   label:'WIND ADVISORY',  detail:`${maxWind.toFixed(0)} mph` });
+  if (maxWind >= 60)       badges.push({ sev:'danger', label:'WIND WARNING',   detail:`${maxWind.toFixed(0)} mph` });
+  else if (maxWind >= 45)  badges.push({ sev:'warn',   label:'WIND ADVISORY',  detail:`${maxWind.toFixed(0)} mph` });
 
-  if (!noaa && maxCode >= 65)
+  if (!noaa && maxCode >= 95)
     badges.push({ sev:'danger', label:'SEVERE WEATHER', detail: WX[maxCode] || `Code ${maxCode}` });
 
   if (noaa?.alerts?.features) {
