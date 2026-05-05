@@ -95,7 +95,61 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Courier
 
 .foot{
   padding:28px 24px;font-size:8px;letter-spacing:.1em;
-  color:rgba(90,72,32,.4);border-top:1px solid var(--gold-dim);
+  color:rgba(90,72,32,.4);border-top:none;
+}
+
+/* ── GUIDE BUTTON ──────────────────────────────── */
+.guide-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--gold-dim);background:transparent;
+  color:var(--gold);
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  font-size:8px;letter-spacing:.13em;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.guide-btn:hover{border-color:var(--gold-mid);background:rgba(200,150,10,.07);}
+.guide-footer{
+  padding:20px 24px 0;
+  border-top:1px solid var(--gold-dim);
+}
+
+/* ── LIGHTBOX ──────────────────────────────────── */
+.lb{
+  display:none;position:fixed;inset:0;
+  background:rgba(5,3,2,.93);
+  z-index:2000;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  flex-direction:column;align-items:center;
+}
+.lb.open{display:flex;}
+.lb-bar{
+  position:sticky;top:0;width:100%;max-width:960px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 20px;
+  background:rgba(10,7,4,.98);
+  border-bottom:1px solid var(--gold-dim);
+  z-index:10;flex-shrink:0;
+}
+.lb-label{font-size:9px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;}
+.lb-actions{display:flex;gap:8px;}
+.lb-act{
+  border:1px solid var(--gold-dim);background:transparent;
+  color:var(--gold);
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 12px;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.lb-act:hover{border-color:var(--gold-mid);background:rgba(200,150,10,.08);}
+.lb-act.lb-close{color:var(--dim);font-size:16px;line-height:1;padding:4px 10px;letter-spacing:0;}
+.lb-act.lb-close:hover{color:var(--text);}
+.lb-img-wrap{width:100%;max-width:960px;padding:28px 24px;}
+.lb-img-wrap img{width:100%;display:block;}
+.lb-foot{
+  width:100%;max-width:960px;
+  padding:14px 24px;font-size:8px;letter-spacing:.08em;color:var(--dim);
+  border-top:1px solid var(--gold-dim);
 }
 </style>
 </head>
@@ -105,6 +159,10 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Courier
   <div class="hdr-wordmark">MarketBullets®</div>
   <div class="hdr-title">Chart Gallery</div>
   <div class="hdr-sub">72 charts &mdash; Wheat Futures &middot; Spreads &middot; Rates &middot; FX &middot; Macro &mdash; Updated daily</div>
+  <button class="guide-btn" style="margin-top:14px;" onclick="openGuide()">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+    How to Read Our Charts
+  </button>
 </div>
 
 <nav class="jumpnav">
@@ -122,6 +180,12 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Courier
 
 <div id="gallery"></div>
 
+<div class="guide-footer">
+  <button class="guide-btn" onclick="openGuide()">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+    How to Read Our Charts
+  </button>
+</div>
 <div class="foot">MARKETBULLETSLLC / WEBSITECHARTS &mdash; Chart Gallery &mdash; The Warm Signal&#8482;</div>
 
 <script>
@@ -314,6 +378,42 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono','Courier
     gallery.insertAdjacentHTML('beforeend', html);
   });
 })();
+</script>
+
+<!-- CHART READING GUIDE LIGHTBOX -->
+<div id="guide-lb" class="lb" onclick="lbBgClose(event)">
+  <div class="lb-bar">
+    <span class="lb-label">How to Read MarketBullets&#174; Charts</span>
+    <div class="lb-actions">
+      <button class="lb-act" onclick="lbPrint()">Print / Save PDF</button>
+      <button class="lb-act lb-close" onclick="closeGuide()">&times;</button>
+    </div>
+  </div>
+  <div class="lb-img-wrap">
+    <img src="img/chart-reading-guide.png"
+         alt="How to Read MarketBullets® Charts — Visual Guide">
+  </div>
+  <div class="lb-foot">Charts are tools for analysis, not guarantees of future price movement. Combine technical analysis with fundamental research and your farm situation.</div>
+</div>
+
+<script>
+function openGuide(){
+  document.getElementById('guide-lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeGuide(){
+  document.getElementById('guide-lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+function lbBgClose(e){
+  if(e.target===document.getElementById('guide-lb')) closeGuide();
+}
+function lbPrint(){
+  window.open('chart-reading-guide.html?print=1','_blank');
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeGuide();
+});
 </script>
 
 </body>

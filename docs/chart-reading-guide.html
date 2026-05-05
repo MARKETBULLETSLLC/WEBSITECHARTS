@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Read MarketBullets® Charts — Visual Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0704;
+  --bg2:#0F0B07;
+  --gold:#C8960A;
+  --gold-dim:rgba(200,150,10,.18);
+  --gold-mid:rgba(200,150,10,.5);
+  --text:#F0E8D0;
+  --dim:#5a4820;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.guide-hdr{
+  width:100%;
+  max-width:960px;
+  padding:18px 24px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border-bottom:1px solid var(--gold-dim);
+  flex-shrink:0;
+}
+.guide-hdr-left{display:flex;flex-direction:column;gap:4px;}
+.guide-wordmark{font-size:10px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+.guide-title{font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--text);}
+
+.btn-row{display:flex;gap:8px;flex-shrink:0;}
+.btn{
+  border:1px solid var(--gold-dim);background:transparent;
+  color:var(--gold);
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  font-size:8px;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.btn:hover{border-color:var(--gold-mid);background:rgba(200,150,10,.07);}
+.btn-dim{color:var(--dim);border-color:rgba(90,72,32,.3);}
+.btn-dim:hover{color:var(--text);}
+
+.guide-img-wrap{
+  width:100%;
+  max-width:960px;
+  padding:28px 24px;
+  flex:1;
+}
+.guide-img-wrap img{width:100%;display:block;}
+
+.guide-foot{
+  width:100%;max-width:960px;
+  padding:14px 24px;
+  font-size:8px;letter-spacing:.08em;color:var(--dim);
+  border-top:1px solid var(--gold-dim);
+}
+
+@media(max-width:540px){
+  .guide-hdr{flex-direction:column;align-items:flex-start;}
+  .btn-row{flex-wrap:wrap;}
+}
+
+@media print{
+  .guide-hdr,.guide-foot{display:none!important;}
+  body{background:white;}
+  .guide-img-wrap{padding:0;max-width:100%;}
+  .guide-img-wrap img{width:100%;max-width:100%;}
+}
+</style>
+</head>
+<body>
+
+<div class="guide-hdr">
+  <div class="guide-hdr-left">
+    <div class="guide-wordmark">MarketBullets®</div>
+    <div class="guide-title">How to Read Our Charts &mdash; Visual Guide</div>
+  </div>
+  <div class="btn-row">
+    <button class="btn" onclick="window.print()">Print / Save PDF</button>
+    <button class="btn btn-dim" onclick="window.close()">Close</button>
+  </div>
+</div>
+
+<div class="guide-img-wrap">
+  <img src="img/chart-reading-guide.png"
+       alt="How to Read MarketBullets® Charts — A Visual Guide to Understanding Our Technical Analysis">
+</div>
+
+<div class="guide-foot">
+  Charts are tools for analysis, not guarantees of future price movement. Combine technical analysis with fundamental research and your farm situation. &mdash; MarketBullets® &mdash; More Sense Per Bushel&#8482;
+</div>
+
+<script>
+if(window.location.search.indexOf('print=1')!==-1){
+  window.addEventListener('load',function(){
+    setTimeout(function(){window.print();},400);
+  });
+}
+</script>
+
+</body>
+</html>
