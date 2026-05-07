@@ -50,16 +50,17 @@ CHART_MAP = {
     # TODO: Replace each key with the actual substring Trade Navigator uses in
     # the exported filename for that chart. Keys are case-insensitive substrings.
     # Run a test export and check the filename before activating these entries.
-    # "w2-202607-30":    "wheat-srw-30min",       # Chicago SRW 30-minute
-    # "w2-202607-d":     "wheat-srw-daily",        # Chicago SRW Daily (July)
-    # "w2-057-w":        "wheat-srw-weekly",       # Chicago SRW Weekly cont.
-    # "w2-057-mo":       "wheat-srw-monthly",      # Chicago SRW Monthly
-    # "w2-057-lt":       "wheat-srw-monthly-lt",   # Chicago SRW Monthly long-term
-    # "w2-057-y":        "wheat-srw-annual",       # Chicago SRW Annual 58-yr
-    # "kw2-057":         "wheat-hrw-weekly",       # Kansas City HRW Weekly
-    # "mwe-057":         "wheat-hrs-weekly",       # Minneapolis HRS Weekly
-    # "fwh-057-d":       "wheat-paris-daily",      # Paris Milling Wheat Daily
-    # "fwh-057-w":       "wheat-paris-weekly",     # Paris Milling Wheat Weekly
+    # ── Wheat Futures (landing-preview.html) — all .png ─────────────────────
+    "w2-202607-30":    "wheat-srw-30min",        # Chicago SRW 30-minute
+    "w2-202607-d":     "wheat-srw-daily",        # Chicago SRW Daily (July)
+    "w2-057-w":        "wheat-srw-weekly",       # Chicago SRW Weekly cont.
+    "w2-057-mo":       "wheat-srw-monthly",      # Chicago SRW Monthly
+    "w2-057-lt":       "wheat-srw-monthly-lt",   # Chicago SRW Monthly long-term
+    "w2-057-y":        "wheat-srw-annual",       # Chicago SRW Annual 58-yr
+    "kw2-057":         "wheat-hrw-weekly",       # Kansas City HRW Weekly
+    "mwe-057":         "wheat-hrs-weekly",       # Minneapolis HRS Weekly
+    "fwh-057-d":       "wheat-paris-daily",      # Paris Milling Wheat Daily
+    "fwh-057-w":       "wheat-paris-weekly",     # Paris Milling Wheat Weekly
 }
 
 # Used if no keyword matches the source filename
@@ -131,7 +132,7 @@ def _update_and_push_log(sha: str, today: str):
 def process_file(src: Path):
     today = date.today().strftime("%Y-%m-%d")
     base = resolve_chart_name(src)
-    fixed_name = f"{base}.jpg"
+    fixed_name = f"{base}.png"
     dest = CHARTS_DIR / fixed_name
 
     CHARTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -167,7 +168,7 @@ class JPGHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         path = Path(event.src_path)
-        if path.suffix.lower() not in {".jpg", ".jpeg"}:
+        if path.suffix.lower() not in {".jpg", ".jpeg", ".png"}:
             return
         if "charts" in path.parts:
             return  # skip files already in charts/ subfolder
