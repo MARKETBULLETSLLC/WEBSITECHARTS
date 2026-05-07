@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Chart Preview — MarketBullets®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0A0704;
+  --bg2:#0F0B07;
+  --bg3:#14100A;
+  --gold:#C8960A;
+  --gold-dim:rgba(200,150,10,.18);
+  --gold-mid:rgba(200,150,10,.45);
+  --text:#F0E8D0;
+  --dim:#5a4820;
+  --muted:#7a6230;
+  --lock:#1a1208;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  min-height:100vh;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.hdr{
+  padding:24px 28px 18px;
+  border-bottom:1px solid var(--gold-dim);
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.hdr-left{}
+.hdr-wordmark{font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;}
+.hdr-title{font-size:17px;font-weight:500;color:var(--text);margin:5px 0 3px;}
+.hdr-sub{font-size:8px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;}
+.hdr-cta{
+  align-self:center;
+  background:var(--gold);
+  color:#0A0704;
+  font-family:inherit;
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border:none;
+  padding:10px 20px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:opacity .15s;
+}
+.hdr-cta:hover{opacity:.85;}
+
+/* ── Status bar ──────────────────────────────────────────── */
+.status-bar{
+  background:var(--bg3);
+  border-bottom:1px solid var(--gold-dim);
+  padding:13px 28px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.status-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--gold);
+  flex-shrink:0;
+}
+.status-text{font-size:9px;letter-spacing:.1em;color:var(--muted);}
+.status-date{color:var(--gold);font-weight:500;}
+.status-live{
+  margin-left:auto;
+  font-size:8px;
+  letter-spacing:.1em;
+  color:var(--dim);
+}
+#status-bar{display:none;}
+
+/* ── Loading / error states ──────────────────────────────── */
+.state-msg{
+  text-align:center;
+  padding:80px 28px;
+  font-size:11px;
+  letter-spacing:.08em;
+  color:var(--dim);
+}
+.state-msg strong{display:block;font-size:13px;color:var(--muted);margin-bottom:10px;}
+
+/* ── Section ─────────────────────────────────────────────── */
+.section{padding:32px 28px 40px;border-bottom:1px solid var(--gold-dim);}
+.section:last-of-type{border-bottom:none;}
+.section-eyebrow{
+  font-size:8px;letter-spacing:.18em;color:var(--gold);
+  text-transform:uppercase;margin-bottom:4px;
+}
+.section-title{
+  font-size:14px;font-weight:500;color:var(--text);
+  margin-bottom:4px;
+}
+.section-desc{
+  font-size:9px;letter-spacing:.06em;color:var(--dim);
+  margin-bottom:28px;line-height:1.7;
+}
+
+/* ── Chart grid ──────────────────────────────────────────── */
+.chart-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:16px;
+}
+.chart-card{
+  border:1px solid var(--gold-dim);
+  background:var(--bg2);
+  overflow:hidden;
+  cursor:zoom-in;
+  transition:border-color .15s;
+}
+.chart-card:hover{border-color:var(--gold-mid);}
+.chart-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
+.chart-meta{
+  padding:10px 14px;
+  border-top:1px solid var(--gold-dim);
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:8px;
+}
+.chart-label{font-size:9px;font-weight:500;letter-spacing:.08em;color:var(--text);}
+.chart-sub{font-size:8px;letter-spacing:.06em;color:var(--dim);}
+.chart-exch{
+  font-size:7px;letter-spacing:.12em;color:var(--gold);
+  text-transform:uppercase;flex-shrink:0;
+}
+
+/* ── Locked grid ─────────────────────────────────────────── */
+.locked-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+  margin-bottom:32px;
+}
+.locked-card{
+  border:1px solid var(--gold-dim);
+  background:var(--lock);
+  padding:24px 22px;
+  position:relative;
+  overflow:hidden;
+}
+.locked-card::before{
+  content:'';
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    45deg,
+    transparent,transparent 18px,
+    rgba(200,150,10,.03) 18px,rgba(200,150,10,.03) 19px
+  );
+  pointer-events:none;
+}
+.locked-icon{font-size:18px;margin-bottom:10px;opacity:.4;}
+.locked-name{
+  font-size:9px;font-weight:500;letter-spacing:.16em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:6px;
+}
+.locked-count{
+  font-size:22px;font-weight:300;color:var(--dim);
+  margin-bottom:6px;letter-spacing:-.01em;
+}
+.locked-count span{font-size:9px;letter-spacing:.08em;color:var(--dim);}
+.locked-desc{
+  font-size:8px;letter-spacing:.05em;color:var(--dim);
+  line-height:1.75;margin-bottom:18px;
+}
+.locked-btn{
+  display:inline-block;
+  background:transparent;
+  border:1px solid var(--gold-dim);
+  color:var(--muted);
+  font-family:inherit;
+  font-size:8px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:8px 16px;
+  cursor:pointer;
+  transition:border-color .15s,color .15s;
+  width:100%;
+  text-align:center;
+}
+.locked-btn:hover{border-color:var(--gold-mid);color:var(--gold);}
+
+/* ── CTA strip ───────────────────────────────────────────── */
+.cta-strip{
+  background:var(--bg3);
+  border:1px solid var(--gold-dim);
+  padding:32px 28px;
+  text-align:center;
+}
+.cta-headline{
+  font-size:13px;font-weight:500;color:var(--text);
+  letter-spacing:.04em;margin-bottom:8px;
+}
+.cta-sub{
+  font-size:9px;letter-spacing:.08em;color:var(--dim);
+  line-height:1.8;margin-bottom:28px;
+  max-width:560px;margin-left:auto;margin-right:auto;
+}
+.cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-btn{
+  background:var(--gold);
+  color:#0A0704;
+  font-family:inherit;
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border:none;
+  padding:13px 28px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+  transition:opacity .15s;
+}
+.cta-btn:hover{opacity:.85;}
+.cta-btn.secondary{
+  background:transparent;
+  border:1px solid var(--gold-mid);
+  color:var(--gold);
+}
+.cta-btn.secondary:hover{background:var(--gold-dim);}
+.cta-price{
+  font-size:7px;display:block;
+  margin-top:4px;letter-spacing:.1em;
+  color:rgba(10,7,4,.7);
+}
+.cta-btn.secondary .cta-price{color:var(--muted);}
+.cta-tagline{
+  margin-top:20px;
+  font-size:8px;letter-spacing:.12em;color:var(--dim);
+}
+
+/* ── Lightbox ────────────────────────────────────────────── */
+.lb{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(5,3,1,.95);
+  z-index:1000;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  cursor:zoom-out;
+}
+.lb.open{display:flex;}
+.lb img{
+  max-width:100%;max-height:85vh;
+  object-fit:contain;
+  box-shadow:0 0 60px rgba(200,150,10,.15);
+}
+.lb-caption{
+  margin-top:14px;
+  font-size:9px;letter-spacing:.1em;color:var(--muted);
+  text-align:center;
+}
+.lb-close{
+  position:fixed;top:20px;right:24px;
+  font-size:22px;color:var(--dim);
+  cursor:pointer;line-height:1;
+  transition:color .15s;
+}
+.lb-close:hover{color:var(--text);}
+
+/* ── Subscribe modal ─────────────────────────────────────── */
+.modal-overlay{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(5,3,1,.92);
+  z-index:2000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:var(--bg2);
+  border:1px solid var(--gold-dim);
+  padding:40px 36px;
+  max-width:440px;
+  width:100%;
+  position:relative;
+}
+.modal-close{
+  position:absolute;top:16px;right:20px;
+  font-size:18px;color:var(--dim);
+  cursor:pointer;transition:color .15s;
+  background:none;border:none;font-family:inherit;
+}
+.modal-close:hover{color:var(--text);}
+.modal-wordmark{font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;}
+.modal-headline{font-size:16px;font-weight:500;color:var(--text);margin-bottom:6px;}
+.modal-sub{font-size:9px;letter-spacing:.06em;color:var(--dim);line-height:1.7;margin-bottom:28px;}
+.modal-tiers{display:flex;flex-direction:column;gap:10px;}
+.tier-btn{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  font-family:inherit;
+  border:none;
+  cursor:pointer;
+  transition:opacity .15s;
+  padding:14px 20px;
+}
+.tier-btn.primary{background:var(--gold);color:#0A0704;}
+.tier-btn.primary:hover{opacity:.85;}
+.tier-btn.outline{
+  background:transparent;
+  border:1px solid var(--gold-dim);
+  color:var(--muted);
+}
+.tier-btn.outline:hover{border-color:var(--gold-mid);color:var(--gold);}
+.tier-name{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;display:block;}
+.tier-price{font-size:8px;letter-spacing:.08em;display:block;margin-top:3px;opacity:.75;}
+.modal-guarantee{
+  margin-top:18px;
+  font-size:8px;letter-spacing:.08em;color:var(--dim);text-align:center;
+}
+
+@media(max-width:600px){
+  .hdr{padding:18px 16px 14px;}
+  .section{padding:24px 16px 32px;}
+  .status-bar{padding:10px 16px;}
+  .cta-strip{padding:24px 16px;}
+  .modal{padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-wordmark">MarketBullets®</div>
+    <div class="hdr-title">Chart Gallery Preview</div>
+    <div class="hdr-sub">More Sense Per Bushel®</div>
+  </div>
+  <button class="hdr-cta" onclick="openModal()">Subscribe for Today's Analysis</button>
+</header>
+
+<!-- Status bar (shown after JS resolves the preview date) -->
+<div class="status-bar" id="status-bar">
+  <div class="status-dot"></div>
+  <div class="status-text">
+    Viewing analysis from <span class="status-date" id="preview-date">—</span>
+    &nbsp;·&nbsp; Subscribers receive today's charts before the open
+  </div>
+  <div class="status-live" id="status-live"></div>
+</div>
+
+<main id="main">
+  <div class="state-msg" id="loading-msg">
+    <strong>Loading preview…</strong>
+    Fetching chart history
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" onclick="closeLightbox()">
+  <span class="lb-close" title="Close">×</span>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-caption" id="lb-caption"></div>
+</div>
+
+<!-- Subscribe modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-wordmark">MarketBullets®</div>
+    <div class="modal-headline">Unlock All 60 Charts</div>
+    <div class="modal-sub">
+      Pre-dawn wheat market intelligence built on verified USDA and CFTC data.
+      Wheat Futures, Spreads &amp; Ratios, Currencies, Interest Rates, and General Macro —
+      every chart updated before the market opens.
+    </div>
+    <div class="modal-tiers">
+      <a class="tier-btn primary" id="btn-monthly" href="#" target="_blank" rel="noopener">
+        <span class="tier-name">Monthly</span>
+        <span class="tier-price" id="price-monthly">See pricing →</span>
+      </a>
+      <a class="tier-btn outline" id="btn-annual" href="#" target="_blank" rel="noopener">
+        <span class="tier-name">Annual</span>
+        <span class="tier-price" id="price-annual">See pricing →</span>
+      </a>
+    </div>
+    <div class="modal-guarantee">marketbulletsllc.com &nbsp;·&nbsp; More Sense Per Bushel®</div>
+  </div>
+</div>
+
+<script>
+// ─── CONFIG — update these when Stripe links are available ──────────────────
+const STRIPE_MONTHLY = '#';          // ← paste monthly Stripe Payment Link
+const STRIPE_ANNUAL  = '#';          // ← paste annual Stripe Payment Link
+const PRICE_MONTHLY  = '';           // ← e.g. '$29 / month'
+const PRICE_ANNUAL   = '';           // ← e.g. '$249 / year  ·  save 28%'
+
+const REPO_RAW = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS';
+const TRADING_DAYS_DELAY = 10;
+// ─── END CONFIG ─────────────────────────────────────────────────────────────
+
+
+// ── Chart roster (free, delayed) ────────────────────────────────────────────
+const WHEAT_CHARTS = [
+  { file:'wheat-srw-30min.jpg',     label:'Chicago SRW',         sub:'30-Minute',           exch:'CBOT'  },
+  { file:'wheat-srw-daily.jpg',     label:'Chicago SRW',         sub:'Daily',               exch:'CBOT'  },
+  { file:'wheat-srw-weekly.jpg',    label:'Chicago SRW',         sub:'Weekly',              exch:'CBOT'  },
+  { file:'wheat-srw-monthly.jpg',   label:'Chicago SRW',         sub:'Monthly',             exch:'CBOT'  },
+  { file:'wheat-srw-monthly-lt.jpg',label:'Chicago SRW',         sub:'Monthly · Long-Term', exch:'CBOT'  },
+  { file:'wheat-srw-annual.jpg',    label:'Chicago SRW',         sub:'Annual',              exch:'CBOT'  },
+  { file:'wheat-hrw-weekly.jpg',    label:'Kansas City HRW',     sub:'Weekly',              exch:'KCBT'  },
+  { file:'wheat-hrs-weekly.jpg',    label:'Minneapolis HRS',     sub:'Weekly',              exch:'MGEX'  },
+  { file:'wheat-paris-daily.jpg',   label:'Paris Milling Wheat', sub:'Daily',               exch:'MATIF' },
+  { file:'wheat-paris-weekly.jpg',  label:'Paris Milling Wheat', sub:'Weekly',              exch:'MATIF' },
+];
+
+// ── Locked categories (subscriber-only) ─────────────────────────────────────
+const LOCKED_CATS = [
+  {
+    name:'Spreads & Ratios', count:23, icon:'⇌',
+    desc:'SRW/HRW premium, SRW/Paris differential, calendar spreads, and carry analysis across contract months.'
+  },
+  {
+    name:'Currencies', count:6, icon:'◈',
+    desc:'DXY, EUR/USD, and key FX markets driving U.S. wheat export competitiveness.'
+  },
+  {
+    name:'Interest Rates', count:4, icon:'~',
+    desc:'10-Year Treasury and Fed Funds — the macro headwind or tailwind that moves before wheat does.'
+  },
+  {
+    name:'General Macro', count:13, icon:'◉',
+    desc:'Crude oil, gold, S&P 500, Baltic Dry Index — correlated markets that signal where wheat is heading.'
+  },
+];
+
+
+// ── Trading day math ─────────────────────────────────────────────────────────
+function isTradingDay(d) {
+  const dow = d.getDay();
+  if (dow === 0 || dow === 6) return false;
+  const y = d.getFullYear(), m = d.getMonth() + 1, day = d.getDate();
+
+  // New Year's Day (and observed)
+  if (m === 1 && day === 1) return false;
+  if (m === 1 && day === 2 && dow === 1) return false;
+  if (m === 12 && day === 31 && dow === 5) return false;
+
+  // Memorial Day: last Monday in May
+  if (m === 5 && dow === 1 && day >= 25) return false;
+
+  // Independence Day
+  if (m === 7 && day === 4) return false;
+  if (m === 7 && day === 3 && dow === 5) return false;
+  if (m === 7 && day === 5 && dow === 1) return false;
+
+  // Labor Day: first Monday in September
+  if (m === 9 && dow === 1 && day <= 7) return false;
+
+  // Thanksgiving: 4th Thursday in November
+  if (m === 11 && dow === 4) {
+    const firstDow = new Date(y, 10, 1).getDay();
+    const firstThu = firstDow <= 4 ? 5 - firstDow : 12 - firstDow;
+    if (day === firstThu + 21) return false;
+  }
+
+  // Christmas
+  if (m === 12 && day === 25) return false;
+  if (m === 12 && day === 24 && dow === 5) return false;
+  if (m === 12 && day === 26 && dow === 1) return false;
+
+  return true;
+}
+
+function subtractTradingDays(dateStr, n) {
+  let d = new Date(dateStr + 'T12:00:00');
+  while (n > 0) {
+    d.setDate(d.getDate() - 1);
+    if (isTradingDay(d)) n--;
+  }
+  return d.toISOString().slice(0, 10);
+}
+
+function fmtDate(dateStr) {
+  const [y, m, day] = dateStr.split('-').map(Number);
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${months[m-1]} ${day}, ${y}`;
+}
+
+
+// ── Render functions ─────────────────────────────────────────────────────────
+function renderCharts(sha) {
+  const base = `${REPO_RAW}/${sha}/charts`;
+  const grid = document.createElement('div');
+  grid.className = 'chart-grid';
+
+  WHEAT_CHARTS.forEach(c => {
+    const url = `${base}/${c.file}`;
+    const card = document.createElement('div');
+    card.className = 'chart-card';
+    card.title = `${c.label} — ${c.sub}`;
+    card.innerHTML = `
+      <img src="${url}" alt="${c.label} ${c.sub}" loading="lazy">
+      <div class="chart-meta">
+        <div>
+          <div class="chart-label">${c.label}</div>
+          <div class="chart-sub">${c.sub}</div>
+        </div>
+        <div class="chart-exch">${c.exch}</div>
+      </div>`;
+    card.querySelector('img').addEventListener('click', () => openLightbox(url, `${c.label} — ${c.sub} (${c.exch})`));
+    grid.appendChild(card);
+  });
+  return grid;
+}
+
+function renderLockedSection() {
+  const section = document.createElement('section');
+  section.className = 'section';
+  section.innerHTML = `
+    <div class="section-eyebrow">Subscriber Access</div>
+    <div class="section-title">46 Additional Charts</div>
+    <div class="section-desc">
+      Spreads, currencies, rates, and macro context — the full picture behind every wheat futures move.
+      Updated daily before the open. Available to subscribers only.
+    </div>
+    <div class="locked-grid" id="locked-grid"></div>`;
+
+  const grid = section.querySelector('#locked-grid');
+  LOCKED_CATS.forEach(cat => {
+    const card = document.createElement('div');
+    card.className = 'locked-card';
+    card.innerHTML = `
+      <div class="locked-icon">${cat.icon}</div>
+      <div class="locked-name">${cat.name}</div>
+      <div class="locked-count">${cat.count} <span>charts</span></div>
+      <div class="locked-desc">${cat.desc}</div>
+      <button class="locked-btn" onclick="openModal()">Subscribe to Unlock →</button>`;
+    grid.appendChild(card);
+  });
+  return section;
+}
+
+function renderCTA() {
+  const s = document.createElement('section');
+  s.className = 'section';
+  s.innerHTML = `
+    <div class="cta-strip">
+      <div class="cta-headline">Pre-dawn wheat intelligence. Every trading day.</div>
+      <div class="cta-sub">
+        Producers, merchandisers, and traders who make pricing decisions before 5 AM
+        deserve the same quality of analysis that institutional trading desks take for granted.
+        MarketBullets delivers it before the session opens.
+      </div>
+      <div class="cta-buttons">
+        <a class="cta-btn" id="cta-monthly" href="${STRIPE_MONTHLY}" target="_blank" rel="noopener">
+          Subscribe Monthly
+          ${PRICE_MONTHLY ? `<span class="cta-price">${PRICE_MONTHLY}</span>` : ''}
+        </a>
+        <a class="cta-btn secondary" id="cta-annual" href="${STRIPE_ANNUAL}" target="_blank" rel="noopener">
+          Subscribe Annual
+          ${PRICE_ANNUAL ? `<span class="cta-price">${PRICE_ANNUAL}</span>` : ''}
+        </a>
+      </div>
+      <div class="cta-tagline">MarketBullets® &nbsp;·&nbsp; More Sense Per Bushel®</div>
+    </div>`;
+  return s;
+}
+
+function showError(msg) {
+  document.getElementById('main').innerHTML =
+    `<div class="state-msg"><strong>Unable to load preview</strong>${msg}</div>`;
+}
+
+function showNotice(headline, body) {
+  document.getElementById('main').innerHTML =
+    `<div class="state-msg"><strong>${headline}</strong>${body}</div>`;
+}
+
+
+// ── Main init ────────────────────────────────────────────────────────────────
+async function init() {
+  // Wire up Stripe links and prices
+  document.getElementById('btn-monthly').href = STRIPE_MONTHLY;
+  document.getElementById('btn-annual').href  = STRIPE_ANNUAL;
+  if (PRICE_MONTHLY) document.getElementById('price-monthly').textContent = PRICE_MONTHLY;
+  if (PRICE_ANNUAL)  document.getElementById('price-annual').textContent  = PRICE_ANNUAL;
+  if (PRICE_MONTHLY) document.getElementById('cta-monthly') && (document.getElementById('cta-monthly').href = STRIPE_MONTHLY);
+  if (PRICE_ANNUAL)  document.getElementById('cta-annual')  && (document.getElementById('cta-annual').href  = STRIPE_ANNUAL);
+
+  // Fetch push log
+  let log;
+  try {
+    const resp = await fetch('./push-log.json', { cache: 'no-cache' });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    log = await resp.json();
+  } catch (e) {
+    showError('Chart history unavailable. Please check back shortly.');
+    return;
+  }
+
+  if (!Array.isArray(log) || log.length === 0) {
+    showNotice(
+      'Preview gallery coming soon.',
+      'Check back in a few trading sessions as the chart history builds.'
+    );
+    return;
+  }
+
+  // Sort newest first, deduplicate by date (keep latest SHA per date)
+  log.sort((a, b) => b.date.localeCompare(a.date));
+  const deduped = [];
+  const seen = new Set();
+  for (const entry of log) {
+    if (!seen.has(entry.date)) { seen.add(entry.date); deduped.push(entry); }
+  }
+
+  const mostRecentDate = deduped[0].date;
+  const targetDate = subtractTradingDays(mostRecentDate, TRADING_DAYS_DELAY);
+
+  // Find the last push on or before targetDate
+  const targetEntry = deduped.find(e => e.date <= targetDate);
+
+  if (!targetEntry) {
+    const remaining = TRADING_DAYS_DELAY - deduped.length;
+    showNotice(
+      'Preview gallery builds over time.',
+      `${remaining > 0 ? remaining + ' more' : 'A few more'} trading sessions needed before the 10-day preview is available. Subscribe now for immediate access to all 60 charts.`
+    );
+    // Still render the CTA and locked section
+    const main = document.getElementById('main');
+    main.innerHTML = '';
+    main.appendChild(renderLockedSection());
+    main.appendChild(renderCTA());
+    return;
+  }
+
+  // Show status bar
+  const bar = document.getElementById('status-bar');
+  bar.style.display = 'flex';
+  document.getElementById('preview-date').textContent = fmtDate(targetEntry.date);
+  document.getElementById('status-live').textContent =
+    `Most recent push: ${fmtDate(mostRecentDate)}`;
+
+  // Render wheat futures section
+  const wheatSection = document.createElement('section');
+  wheatSection.className = 'section';
+  wheatSection.innerHTML = `
+    <div class="section-eyebrow">Free Preview · ${TRADING_DAYS_DELAY}-Day Delay</div>
+    <div class="section-title">Wheat Futures — Core Analysis</div>
+    <div class="section-desc">
+      Chicago SRW, Kansas City HRW, Minneapolis HRS, and Paris Milling Wheat —
+      across multiple timeframes. Click any chart to view full size.<br>
+      Subscribers receive this analysis the morning it's published.
+    </div>`;
+  wheatSection.appendChild(renderCharts(targetEntry.sha));
+
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+  main.appendChild(wheatSection);
+  main.appendChild(renderLockedSection());
+  main.appendChild(renderCTA());
+}
+
+
+// ── Lightbox ─────────────────────────────────────────────────────────────────
+function openLightbox(url, caption) {
+  document.getElementById('lb-img').src = url;
+  document.getElementById('lb-caption').textContent = caption;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeLightbox(); closeModal(); }
+});
+
+
+// ── Subscribe modal ───────────────────────────────────────────────────────────
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+
+init();
+</script>
+</body>
+</html>
