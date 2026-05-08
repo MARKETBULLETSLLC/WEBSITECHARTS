@@ -357,56 +357,64 @@ const REGIONS = [
     name: 'US — Winter Wheat', sub: 'HRW · KS · OK · TX · CO · NE',
     type: 'noaa', lat: 37.69, lon: -97.34, states: 'KS,OK,TX,CO,NE',
     bounds: [[26.5, -104], [41, -94]],
-    norm: [32,37,47,57,66,76,81,80,70,59,46,35]
+    norm: [32,37,47,57,66,76,81,80,70,59,46,35],
+    precipNorm: [0.79,1.01,1.83,2.69,3.86,3.64,3.22,2.88,2.85,2.20,1.25,0.78]
   },
   {
     id: 'spring-wheat', group: 'us',
     name: 'US — Spring Wheat', sub: 'HRS · ND · SD · MN · MT',
     type: 'noaa', lat: 46.87, lon: -96.79, states: 'ND,SD,MN,MT',
     bounds: [[43.5,-106],[49.5,-96]],
-    norm: [12,18,30,45,56,65,72,70,59,46,30,16]
+    norm: [12,18,30,45,56,65,72,70,59,46,30,16],
+    precipNorm: [0.55,0.45,0.68,1.21,2.27,3.08,2.78,2.57,1.75,1.10,0.71,0.48]
   },
   {
     id: 'pacific-nw', group: 'us',
     name: 'US — Pacific NW', sub: 'SWW · WA · OR · ID',
     type: 'noaa', lat: 46.73, lon: -117.17, states: 'WA,OR,ID',
     bounds: [[44.5,-121],[49,-115]],
-    norm: [34,39,44,50,57,63,72,72,64,53,42,35]
+    norm: [34,39,44,50,57,63,72,72,64,53,42,35],
+    precipNorm: [2.14,1.63,1.69,1.31,1.30,0.87,0.37,0.53,0.74,1.45,2.23,2.54]
   },
   {
     id: 'ukraine', group: 'global',
     name: 'Ukraine', sub: 'Kyiv · Kharkiv wheat zones',
     type: 'openmeteo', lat: 49.45, lon: 31.52, lat2: 50.00, lon2: 36.23,
     bounds: [[46,26],[52,40]],
-    norm: [27,30,40,52,63,70,75,73,63,50,37,29]
+    norm: [27,30,40,52,63,70,75,73,63,50,37,29],
+    precipNorm: [1.57,1.50,1.65,1.85,2.09,2.68,2.83,2.17,1.97,1.50,1.77,1.73]
   },
   {
     id: 'russia', group: 'global',
     name: 'Russia', sub: 'Krasnodar · Stavropol belt',
     type: 'openmeteo', lat: 45.04, lon: 38.98, lat2: 45.05, lon2: 41.97,
     bounds: [[43,36],[47,45]],
-    norm: [37,40,49,60,68,77,82,80,70,58,47,39]
+    norm: [37,40,49,60,68,77,82,80,70,58,47,39],
+    precipNorm: [2.56,2.28,2.17,2.05,2.17,2.28,2.01,1.57,1.57,2.05,2.56,2.68]
   },
   {
     id: 'canada', group: 'global',
     name: 'Canada', sub: 'Saskatchewan · Alberta',
     type: 'openmeteo', lat: 51.17, lon: -106.67, lat2: 53.55, lon2: -113.47,
     bounds: [[49,-116],[55,-100]],
-    norm: [7,13,24,40,52,61,67,65,53,39,23,10]
+    norm: [7,13,24,40,52,61,67,65,53,39,23,10],
+    precipNorm: [0.71,0.51,0.55,0.71,1.57,2.36,2.05,1.73,1.30,0.75,0.71,0.79]
   },
   {
     id: 'argentina', group: 'global',
     name: 'Argentina', sub: 'Buenos Aires · Córdoba · Santa Fe',
     type: 'openmeteo', lat: -34.61, lon: -60.72, lat2: -31.42, lon2: -64.19,
     bounds: [[-38,-66],[-28,-58]],
-    norm: [77,75,71,63,56,51,49,52,58,64,70,75]
+    norm: [77,75,71,63,56,51,49,52,58,64,70,75],
+    precipNorm: [4.84,4.25,5.04,3.70,2.64,2.32,2.24,2.40,2.99,4.21,3.78,3.98]
   },
   {
     id: 'australia', group: 'global',
     name: 'Australia', sub: 'WA Wheatbelt · NSW Riverina',
     type: 'openmeteo', lat: -31.95, lon: 117.85, lat2: -34.40, lon2: 146.00,
     bounds: [[-37,115],[-27,150]],
-    norm: [84,82,77,68,59,53,51,55,62,68,76,82]
+    norm: [84,82,77,68,59,53,51,55,62,68,76,82],
+    precipNorm: [0.94,0.96,1.14,1.40,2.42,3.13,3.44,2.88,2.17,1.47,0.92,0.79]
   }
 ];
 
@@ -450,6 +458,39 @@ function openMeteo(lat, lon) {
   return getJSON(`https://api.open-meteo.com/v1/forecast?${p}`);
 }
 
+function fetchYTDArchive(lat, lon) {
+  const now   = new Date();
+  const year  = now.getFullYear();
+  const start = `${year}-01-01`;
+  const endD  = new Date(now.getTime() - 2 * 86400000);
+  const end   = endD.toISOString().slice(0, 10);
+  const p = new URLSearchParams({
+    latitude: lat, longitude: lon,
+    start_date: start, end_date: end,
+    daily: 'precipitation_sum',
+    timezone: 'UTC',
+    precipitation_unit: 'inch'
+  });
+  return getJSON(`https://archive-api.open-meteo.com/v1/archive?${p}`)
+    .then(d => {
+      const vals = (d.daily.precipitation_sum || []).filter(v => v !== null);
+      return vals.reduce((a, b) => a + b, 0);
+    });
+}
+
+function computeYTDNormal(r) {
+  const now   = new Date();
+  const year  = now.getFullYear();
+  const endD  = new Date(now.getTime() - 2 * 86400000);
+  const month = endD.getMonth();
+  const day   = endD.getDate();
+  let total = 0;
+  for (let m = 0; m < month; m++) total += r.precipNorm[m];
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  total += r.precipNorm[month] * (day / daysInMonth);
+  return total;
+}
+
 function averageMeteo(a, b) {
   const out = JSON.parse(JSON.stringify(a));
   ['temperature_2m_max','temperature_2m_min','precipitation_sum','windspeed_10m_max'].forEach(k => {
@@ -477,10 +518,24 @@ async function noaaData(r) {
 }
 
 async function loadRegionData(r) {
-  const m1    = await openMeteo(r.lat, r.lon);
-  const meteo = r.lat2 != null
-    ? averageMeteo(m1, await openMeteo(r.lat2, r.lon2))
-    : m1;
+  const fetches = [
+    openMeteo(r.lat, r.lon),
+    fetchYTDArchive(r.lat, r.lon).catch(() => null)
+  ];
+  if (r.lat2 != null) {
+    fetches.push(openMeteo(r.lat2, r.lon2));
+    fetches.push(fetchYTDArchive(r.lat2, r.lon2).catch(() => null));
+  }
+  const [m1, arch1, m2, arch2] = await Promise.all(fetches);
+
+  const meteo = r.lat2 != null ? averageMeteo(m1, m2) : m1;
+
+  const archVals = [arch1, r.lat2 != null ? arch2 : undefined]
+    .filter(v => v !== null && v !== undefined);
+  const ytdActual = archVals.length
+    ? archVals.reduce((a, b) => a + b, 0) / archVals.length
+    : null;
+  const ytdNormal = ytdActual !== null ? computeYTDNormal(r) : null;
 
   let noaa = null;
   if (r.type === 'noaa') {
@@ -489,7 +544,7 @@ async function loadRegionData(r) {
       return null;
     });
   }
-  return { meteo, noaa };
+  return { meteo, noaa, ytdActual, ytdNormal };
 }
 
 // ── ALERT COMPUTATION ─────────────────────────────────────────────────────────
@@ -641,7 +696,7 @@ function metricRow(icon, label, valueHtml) {
   </div>`;
 }
 
-function metricsHTML(c) {
+function metricsHTML(c, ytdActual, ytdNormal) {
   const tC       = ((c.currentT - 32) * 5/9).toFixed(0);
   const aCls     = c.anomaly > 3 ? 'wwd-warm' : c.anomaly < -3 ? 'wwd-cool' : 'wwd-mc';
   const aStr     = (c.anomaly >= 0 ? '+' : '') + c.anomaly.toFixed(1) + '°F';
@@ -649,16 +704,26 @@ function metricsHTML(c) {
   const frostLbl = c.minT <= 28 ? 'HIGH' : c.minT <= 33 ? 'Low' : 'None';
   const kph      = (c.maxWind * 1.60934).toFixed(0);
 
+  let ytdRow = '';
+  if (ytdActual !== null && ytdNormal !== null && ytdNormal > 0) {
+    const pct    = (ytdActual - ytdNormal) / ytdNormal * 100;
+    const pctStr = (pct >= 0 ? '+' : '') + pct.toFixed(0) + '%';
+    const pctCls = pct >= 10 ? 'wwd-cool' : pct <= -20 ? 'wwd-red' : pct <= -5 ? 'wwd-org' : 'wwd-mc';
+    ytdRow = metricRow('💧', 'YTD moisture',
+      `${ytdActual.toFixed(2)}" <span class="${pctCls}">${pctStr}</span> <span class="wwd-mc">vs ${ytdNormal.toFixed(2)}" avg</span>`);
+  }
+
   return [
     metricRow('🌡', 'Temp',
       `${c.currentT.toFixed(0)}°F <span class="wwd-mc">(${tC}°C)</span> <span class="${aCls}">${aStr} norm</span>`),
     metricRow('🌧', '7-day precip',
       `${c.totalPrecip.toFixed(2)}" <span class="wwd-mc">(${(c.totalPrecip*25.4).toFixed(0)} mm)</span>`),
+    ytdRow,
     metricRow('❄', 'Frost risk',
       `<span class="${frostCls}">${frostLbl}</span>`),
     metricRow('💨', 'Max wind',
       `${c.maxWind.toFixed(0)} mph <span class="wwd-mc">(${kph} kph)</span>`)
-  ].join('');
+  ].filter(Boolean).join('');
 }
 
 function badgesHTML(badges) {
@@ -674,11 +739,11 @@ function updateCard(r, data) {
   const card = document.getElementById(`card-${r.id}`);
   if (!card) return [];
 
-  const { meteo, noaa } = data;
+  const { meteo, noaa, ytdActual, ytdNormal } = data;
   const c = computeAlerts(r, meteo, noaa);
 
   card.classList.remove('err');
-  document.getElementById(`metrics-${r.id}`).innerHTML  = metricsHTML(c);
+  document.getElementById(`metrics-${r.id}`).innerHTML  = metricsHTML(c, ytdActual, ytdNormal);
   document.getElementById(`badges-${r.id}`).innerHTML   = badgesHTML(c.badges);
   document.getElementById(`forecast-${r.id}`).textContent =
     noaaForecastText(noaa) || generateText(r, meteo, c);
