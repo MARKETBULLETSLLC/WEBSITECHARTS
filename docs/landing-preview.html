@@ -410,28 +410,29 @@ body{
 
 <script>
 // ─── CONFIG — update these when Stripe links are available ──────────────────
-const STRIPE_MONTHLY = '#';          // ← paste monthly Stripe Payment Link
-const STRIPE_ANNUAL  = '#';          // ← paste annual Stripe Payment Link
-const PRICE_MONTHLY  = '';           // ← e.g. '$29 / month'
-const PRICE_ANNUAL   = '';           // ← e.g. '$249 / year  ·  save 28%'
+const STRIPE_MONTHLY = '#';   // ← paste monthly Stripe Payment Link
+const STRIPE_ANNUAL  = '#';   // ← paste annual Stripe Payment Link
+const PRICE_MONTHLY  = '';    // ← e.g. '$29 / month'
+const PRICE_ANNUAL   = '';    // ← e.g. '$249 / year  ·  save 28%'
 
-const REPO_RAW = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS';
-const TRADING_DAYS_DELAY = 10;
+const DELAY_BASE = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/10daydelay';
+const LAST_UPDATED_URL = `${DELAY_BASE}/.last_updated`;
 // ─── END CONFIG ─────────────────────────────────────────────────────────────
 
 
-// ── Chart roster (free, delayed) ────────────────────────────────────────────
+// ── Wheat futures chart roster (free, 10-day delayed) ────────────────────────
 const WHEAT_CHARTS = [
-  { file:'wheat-srw-30min.png',     label:'Chicago SRW',         sub:'30-Minute',           exch:'CBOT'  },
-  { file:'wheat-srw-daily.png',     label:'Chicago SRW',         sub:'Daily',               exch:'CBOT'  },
-  { file:'wheat-srw-weekly.png',    label:'Chicago SRW',         sub:'Weekly',              exch:'CBOT'  },
-  { file:'wheat-srw-monthly.png',   label:'Chicago SRW',         sub:'Monthly',             exch:'CBOT'  },
-  { file:'wheat-srw-monthly-lt.png',label:'Chicago SRW',         sub:'Monthly · Long-Term', exch:'CBOT'  },
-  { file:'wheat-srw-annual.png',    label:'Chicago SRW',         sub:'Annual',              exch:'CBOT'  },
-  { file:'wheat-hrw-weekly.png',    label:'Kansas City HRW',     sub:'Weekly',              exch:'KCBT'  },
-  { file:'wheat-hrs-weekly.png',    label:'Minneapolis HRS',     sub:'Weekly',              exch:'MGEX'  },
-  { file:'wheat-paris-daily.png',   label:'Paris Milling Wheat', sub:'Daily',               exch:'MATIF' },
-  { file:'wheat-paris-weekly.png',  label:'Paris Milling Wheat', sub:'Weekly',              exch:'MATIF' },
+  { file:'WHEAT_SRW_30MinOLD.png',   label:'Chicago SRW',          sub:'30-Minute',           exch:'CBOT'  },
+  { file:'WHEAT_SRW_DOLD.png',       label:'Chicago SRW',          sub:'Daily',               exch:'CBOT'  },
+  { file:'WHEAT_SRW_WOLD.png',       label:'Chicago SRW',          sub:'Weekly',              exch:'CBOT'  },
+  { file:'WHEAT_SRW_MOLD.png',       label:'Chicago SRW',          sub:'Monthly',             exch:'CBOT'  },
+  { file:'WHEAT_SRW_Special_MOLD.png',label:'Chicago SRW',         sub:'Monthly · Long-Term', exch:'CBOT'  },
+  { file:'WHEAT_SRW_AOLD.png',       label:'Chicago SRW',          sub:'Annual',              exch:'CBOT'  },
+  { file:'WHEAT_SRW_BOR_DOLD.png',   label:'Chicago SRW · Box-o-Rox', sub:'Daily Signal',    exch:'CBOT'  },
+  { file:'WHEAT_HRW_WOLD.png',       label:'Kansas City HRW',      sub:'Weekly',              exch:'KCBT'  },
+  { file:'WHEAT_HRS_WOLD.png',       label:'Minneapolis HRS',      sub:'Weekly',              exch:'MGEX'  },
+  { file:'WHEAT_FWH_DOLD.png',       label:'Paris Milling Wheat',  sub:'Daily',               exch:'MATIF' },
+  { file:'WHEAT_FWH_WOLD.png',       label:'Paris Milling Wheat',  sub:'Weekly',              exch:'MATIF' },
 ];
 
 // ── Locked categories (subscriber-only) ─────────────────────────────────────
@@ -460,44 +461,28 @@ function isTradingDay(d) {
   const dow = d.getDay();
   if (dow === 0 || dow === 6) return false;
   const y = d.getFullYear(), m = d.getMonth() + 1, day = d.getDate();
-
-  // New Year's Day (and observed)
   if (m === 1 && day === 1) return false;
   if (m === 1 && day === 2 && dow === 1) return false;
   if (m === 12 && day === 31 && dow === 5) return false;
-
-  // Memorial Day: last Monday in May
   if (m === 5 && dow === 1 && day >= 25) return false;
-
-  // Independence Day
   if (m === 7 && day === 4) return false;
   if (m === 7 && day === 3 && dow === 5) return false;
   if (m === 7 && day === 5 && dow === 1) return false;
-
-  // Labor Day: first Monday in September
   if (m === 9 && dow === 1 && day <= 7) return false;
-
-  // Thanksgiving: 4th Thursday in November
   if (m === 11 && dow === 4) {
     const firstDow = new Date(y, 10, 1).getDay();
     const firstThu = firstDow <= 4 ? 5 - firstDow : 12 - firstDow;
     if (day === firstThu + 21) return false;
   }
-
-  // Christmas
   if (m === 12 && day === 25) return false;
   if (m === 12 && day === 24 && dow === 5) return false;
   if (m === 12 && day === 26 && dow === 1) return false;
-
   return true;
 }
 
 function subtractTradingDays(dateStr, n) {
   let d = new Date(dateStr + 'T12:00:00');
-  while (n > 0) {
-    d.setDate(d.getDate() - 1);
-    if (isTradingDay(d)) n--;
-  }
+  while (n > 0) { d.setDate(d.getDate() - 1); if (isTradingDay(d)) n--; }
   return d.toISOString().slice(0, 10);
 }
 
@@ -508,17 +493,14 @@ function fmtDate(dateStr) {
 }
 
 
-// ── Render functions ─────────────────────────────────────────────────────────
-function renderCharts(sha) {
-  const base = `${REPO_RAW}/${sha}/charts`;
+// ── Render ───────────────────────────────────────────────────────────────────
+function renderCharts() {
   const grid = document.createElement('div');
   grid.className = 'chart-grid';
-
   WHEAT_CHARTS.forEach(c => {
-    const url = `${base}/${c.file}`;
+    const url = `${DELAY_BASE}/${c.file}`;
     const card = document.createElement('div');
     card.className = 'chart-card';
-    card.title = `${c.label} — ${c.sub}`;
     card.innerHTML = `
       <img src="${url}" alt="${c.label} ${c.sub}" loading="lazy">
       <div class="chart-meta">
@@ -528,7 +510,8 @@ function renderCharts(sha) {
         </div>
         <div class="chart-exch">${c.exch}</div>
       </div>`;
-    card.querySelector('img').addEventListener('click', () => openLightbox(url, `${c.label} — ${c.sub} (${c.exch})`));
+    card.querySelector('img').addEventListener('click',
+      () => openLightbox(url, `${c.label} — ${c.sub} (${c.exch})`));
     grid.appendChild(card);
   });
   return grid;
@@ -545,7 +528,6 @@ function renderLockedSection() {
       Updated daily before the open. Available to subscribers only.
     </div>
     <div class="locked-grid" id="locked-grid"></div>`;
-
   const grid = section.querySelector('#locked-grid');
   LOCKED_CATS.forEach(cat => {
     const card = document.createElement('div');
@@ -573,11 +555,11 @@ function renderCTA() {
         MarketBullets delivers it before the session opens.
       </div>
       <div class="cta-buttons">
-        <a class="cta-btn" id="cta-monthly" href="${STRIPE_MONTHLY}" target="_blank" rel="noopener">
+        <a class="cta-btn" href="${STRIPE_MONTHLY}" target="_blank" rel="noopener">
           Subscribe Monthly
           ${PRICE_MONTHLY ? `<span class="cta-price">${PRICE_MONTHLY}</span>` : ''}
         </a>
-        <a class="cta-btn secondary" id="cta-annual" href="${STRIPE_ANNUAL}" target="_blank" rel="noopener">
+        <a class="cta-btn secondary" href="${STRIPE_ANNUAL}" target="_blank" rel="noopener">
           Subscribe Annual
           ${PRICE_ANNUAL ? `<span class="cta-price">${PRICE_ANNUAL}</span>` : ''}
         </a>
@@ -587,93 +569,46 @@ function renderCTA() {
   return s;
 }
 
-function showError(msg) {
-  document.getElementById('main').innerHTML =
-    `<div class="state-msg"><strong>Unable to load preview</strong>${msg}</div>`;
-}
-
-function showNotice(headline, body) {
-  document.getElementById('main').innerHTML =
-    `<div class="state-msg"><strong>${headline}</strong>${body}</div>`;
-}
-
 
 // ── Main init ────────────────────────────────────────────────────────────────
 async function init() {
-  // Wire up Stripe links and prices
   document.getElementById('btn-monthly').href = STRIPE_MONTHLY;
   document.getElementById('btn-annual').href  = STRIPE_ANNUAL;
   if (PRICE_MONTHLY) document.getElementById('price-monthly').textContent = PRICE_MONTHLY;
   if (PRICE_ANNUAL)  document.getElementById('price-annual').textContent  = PRICE_ANNUAL;
-  if (PRICE_MONTHLY) document.getElementById('cta-monthly') && (document.getElementById('cta-monthly').href = STRIPE_MONTHLY);
-  if (PRICE_ANNUAL)  document.getElementById('cta-annual')  && (document.getElementById('cta-annual').href  = STRIPE_ANNUAL);
 
-  // Fetch push log
-  let log;
+  // Read the date the 10daydelay folder was last refreshed
+  let lastUpdated;
   try {
-    const resp = await fetch('./push-log.json', { cache: 'no-cache' });
+    const resp = await fetch(LAST_UPDATED_URL, { cache: 'no-cache' });
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    log = await resp.json();
+    lastUpdated = (await resp.text()).trim();
   } catch (e) {
-    showError('Chart history unavailable. Please check back shortly.');
-    return;
+    // Charts still render — just skip the status bar if date unavailable
+    lastUpdated = null;
   }
 
-  if (!Array.isArray(log) || log.length === 0) {
-    showNotice(
-      'Preview gallery coming soon.',
-      'Check back in a few trading sessions as the chart history builds.'
-    );
-    return;
+  // Show status bar with source date
+  if (lastUpdated) {
+    const sourceDate = subtractTradingDays(lastUpdated, 10);
+    document.getElementById('status-bar').style.display = 'flex';
+    document.getElementById('preview-date').textContent = fmtDate(sourceDate);
+    document.getElementById('status-live').textContent =
+      `Gallery updated: ${fmtDate(lastUpdated)}`;
   }
 
-  // Sort newest first, deduplicate by date (keep latest SHA per date)
-  log.sort((a, b) => b.date.localeCompare(a.date));
-  const deduped = [];
-  const seen = new Set();
-  for (const entry of log) {
-    if (!seen.has(entry.date)) { seen.add(entry.date); deduped.push(entry); }
-  }
-
-  const mostRecentDate = deduped[0].date;
-  const targetDate = subtractTradingDays(mostRecentDate, TRADING_DAYS_DELAY);
-
-  // Find the last push on or before targetDate
-  const targetEntry = deduped.find(e => e.date <= targetDate);
-
-  if (!targetEntry) {
-    const remaining = TRADING_DAYS_DELAY - deduped.length;
-    showNotice(
-      'Preview gallery builds over time.',
-      `${remaining > 0 ? remaining + ' more' : 'A few more'} trading sessions needed before the 10-day preview is available. Subscribe now for immediate access to all 60 charts.`
-    );
-    // Still render the CTA and locked section
-    const main = document.getElementById('main');
-    main.innerHTML = '';
-    main.appendChild(renderLockedSection());
-    main.appendChild(renderCTA());
-    return;
-  }
-
-  // Show status bar
-  const bar = document.getElementById('status-bar');
-  bar.style.display = 'flex';
-  document.getElementById('preview-date').textContent = fmtDate(targetEntry.date);
-  document.getElementById('status-live').textContent =
-    `Most recent push: ${fmtDate(mostRecentDate)}`;
-
-  // Render wheat futures section
+  // Render
   const wheatSection = document.createElement('section');
   wheatSection.className = 'section';
   wheatSection.innerHTML = `
-    <div class="section-eyebrow">Free Preview · ${TRADING_DAYS_DELAY}-Day Delay</div>
+    <div class="section-eyebrow">Free Preview · 10-Trading-Day Delay</div>
     <div class="section-title">Wheat Futures — Core Analysis</div>
     <div class="section-desc">
       Chicago SRW, Kansas City HRW, Minneapolis HRS, and Paris Milling Wheat —
       across multiple timeframes. Click any chart to view full size.<br>
       Subscribers receive this analysis the morning it's published.
     </div>`;
-  wheatSection.appendChild(renderCharts(targetEntry.sha));
+  wheatSection.appendChild(renderCharts());
 
   const main = document.getElementById('main');
   main.innerHTML = '';
