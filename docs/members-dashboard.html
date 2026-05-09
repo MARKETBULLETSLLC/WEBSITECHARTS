@@ -6,7 +6,7 @@
 <title>MarketBullets® — Members Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&family=Alfa+Slab+One&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════════
    TOKENS & RESET
@@ -606,6 +606,214 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .lb-next{right:12px;}
 
 /* ════════════════════════════════════════════════════
+   HERITAGE SECTION
+════════════════════════════════════════════════════ */
+.heritage{
+  max-width:1440px;margin:0 auto;
+  padding:56px 48px 68px;
+  border-bottom:1px solid var(--border-lt);
+  background:var(--soil-mid);
+}
+.heritage-eyebrow{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(200,150,10,.45);
+  margin-bottom:30px;
+}
+.heritage-top{
+  position:relative;
+  overflow:hidden;
+  cursor:zoom-in;
+  margin-bottom:10px;
+}
+.heritage-top img{
+  width:100%;height:420px;
+  object-fit:cover;object-position:center 40%;
+  display:block;
+  filter:sepia(.62) brightness(.50) contrast(1.12);
+  transition:filter .3s;
+}
+.heritage-top:hover img{filter:sepia(.62) brightness(.60) contrast(1.12);}
+.heritage-top::after{
+  content:'';position:absolute;inset:0;
+  border:1px solid rgba(200,150,10,.18);
+  pointer-events:none;
+}
+.heritage-caption{
+  font-family:var(--mono);font-size:9px;
+  letter-spacing:.08em;
+  color:rgba(245,230,192,.26);
+  font-style:italic;
+  margin-bottom:40px;
+  padding-top:9px;
+}
+.heritage-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:start;
+}
+.heritage-heading{
+  font-family:var(--serif);
+  font-size:clamp(22px,2.3vw,36px);
+  color:var(--cream);
+  line-height:1.15;font-weight:400;
+  margin-bottom:22px;
+}
+.heritage-body{
+  font-family:var(--body);
+  font-size:15px;line-height:1.8;
+  color:rgba(245,230,192,.6);
+  margin-bottom:28px;
+}
+.heritage-sig{
+  font-family:var(--mono);
+  font-size:10px;letter-spacing:.16em;
+  color:rgba(200,150,10,.55);
+  text-transform:uppercase;
+}
+.heritage-photo-wrap{
+  position:relative;overflow:hidden;cursor:zoom-in;
+}
+.heritage-photo-wrap img{
+  width:100%;height:360px;
+  object-fit:cover;object-position:center top;
+  display:block;
+  filter:sepia(.55) brightness(.48) contrast(1.14);
+  transition:filter .3s;
+}
+.heritage-photo-wrap:hover img{filter:sepia(.55) brightness(.58) contrast(1.14);}
+.heritage-photo-wrap::after{
+  content:'';position:absolute;inset:0;
+  border:1px solid rgba(200,150,10,.18);
+  pointer-events:none;
+}
+.heritage-snark{
+  padding-top:14px;
+}
+.heritage-snark-main{
+  font-family:var(--body);
+  font-size:13px;font-style:italic;
+  line-height:1.7;
+  color:rgba(245,230,192,.55);
+  margin-bottom:8px;
+}
+.heritage-snark-credit{
+  font-family:var(--mono);font-size:9px;
+  letter-spacing:.08em;
+  color:rgba(245,230,192,.22);
+  font-style:italic;
+}
+@media(max-width:960px){
+  .heritage{padding:40px 24px 52px;}
+  .heritage-bottom{grid-template-columns:1fr;gap:32px;}
+  .heritage-top img{height:280px;}
+  .heritage-photo-wrap img{height:260px;}
+}
+@media(max-width:600px){
+  .heritage{padding:28px 16px 40px;}
+  .heritage-top img{height:200px;}
+  .heritage-photo-wrap img{height:220px;}
+}
+
+/* ════════════════════════════════════════════════════
+   FILTHY RICH BRAND STRIP
+════════════════════════════════════════════════════ */
+.filthy-rich-strip{
+  max-width:1440px;margin:0 auto;
+  height:440px;
+  background:#F5F5F0;
+  position:relative;
+  overflow:hidden;
+}
+.filthy-rich-strip::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:400px 400px;
+  opacity:0.04;
+  pointer-events:none;
+  z-index:1;
+}
+.fr-content{
+  position:absolute;
+  left:72px;
+  top:50%;
+  transform:translateY(calc(-50% - 20px));
+  z-index:2;
+}
+.fr-label{
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:28px;
+  color:#8B6F47;
+  letter-spacing:.10em;
+  line-height:1;
+}
+.fr-label.fr-italic{
+  font-style:italic;
+  margin-top:5px;
+}
+.fr-filthy{
+  display:block;
+  font-family:'Alfa Slab One',serif;
+  font-size:120px;
+  color:#4A3425;
+  letter-spacing:-.02em;
+  line-height:.88;
+  margin-top:3px;
+  filter:url(#fr-grain);
+}
+.fr-rule{
+  height:1px;
+  background:#D4A574;
+  margin:22px 0;
+}
+.fr-rich{
+  display:block;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:120px;
+  color:#D4A051;
+  letter-spacing:.01em;
+  line-height:.88;
+  margin-top:3px;
+}
+.fr-lockup{
+  position:absolute;
+  left:72px;bottom:36px;
+  z-index:2;
+}
+.fr-brand{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px;
+  color:#4A3425;
+  letter-spacing:.35em;
+}
+.fr-tagline{
+  font-family:'EB Garamond',Georgia,serif;
+  font-style:italic;
+  font-size:14px;
+  color:#8B6F47;
+  letter-spacing:.12em;
+  margin-top:4px;
+}
+@media(max-width:900px){
+  .filthy-rich-strip{height:320px;}
+  .fr-filthy,.fr-rich{font-size:80px;}
+  .fr-label{font-size:22px;}
+  .fr-content{left:32px;}
+  .fr-lockup{left:32px;bottom:24px;}
+}
+@media(max-width:500px){
+  .filthy-rich-strip{height:240px;}
+  .fr-filthy,.fr-rich{font-size:56px;}
+  .fr-label{font-size:16px;}
+  .fr-content{left:20px;}
+  .fr-lockup{left:20px;bottom:16px;}
+}
+
+/* ════════════════════════════════════════════════════
    FOOTER
 ════════════════════════════════════════════════════ */
 footer{
@@ -841,6 +1049,90 @@ footer{
     loading="lazy"
     title="Global Wheat Weather Dashboard"
   ></iframe>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FILTHY RICH BRAND STRIP
+     Transitions from analytical content → Guardian arc
+══════════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden;">
+  <defs>
+    <filter id="fr-grain" x="-2%" y="-2%" width="104%" height="104%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" seed="7" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feComponentTransfer in="grayNoise" result="dimNoise">
+        <feFuncA type="linear" slope="0.18"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="dimNoise" mode="multiply" result="blended"/>
+      <feComposite in="blended" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+<section class="filthy-rich-strip">
+  <div class="fr-content">
+    <div class="fr-label">you've got the</div>
+    <span class="fr-filthy">FILTHY</span>
+    <div class="fr-label fr-italic">covered.</div>
+    <div class="fr-rule" id="fr-rule"></div>
+    <div class="fr-label">we'll handle the</div>
+    <span class="fr-rich">RICH.</span>
+  </div>
+  <div class="fr-lockup">
+    <div class="fr-brand">MARKETBULLETS®</div>
+    <div class="fr-tagline">More Sense Per Bushel™</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     8. HERITAGE
+     Placed just before footer — emotional close, Guardian arc
+     Images: add heritage-table.jpg + heritage-crew.jpg to docs/
+══════════════════════════════════════════════════ -->
+<section class="heritage">
+  <div class="heritage-eyebrow">The People This Is Built For</div>
+
+  <!-- Harvest table — dominant photo -->
+  <div class="heritage-top lb-trigger"
+       data-src="./heritage-table.jpg"
+       data-title="Harvest crew lunch — Great Plains, c. 1940s">
+    <img src="./heritage-table.jpg"
+         alt="Harvest crew eating together at a table in the field">
+  </div>
+  <div class="heritage-caption">Harvest crew lunch, Great Plains &nbsp;·&nbsp; c. 1940s</div>
+
+  <!-- Copy + crew portrait -->
+  <div class="heritage-bottom">
+    <div class="heritage-copy">
+      <h2 class="heritage-heading">Harvest has always been a team effort.</h2>
+      <p class="heritage-body">
+        Before yield monitors. Before WASDE reports. Before closing prices
+        landed in anyone's inbox before sunrise — these people made their
+        marketing decisions with a handshake and whatever the elevator had
+        chalked on the board. The farms those calls built are still being farmed.
+        MarketBullets exists because the people farming them now deserve the same
+        quality of market intelligence that institutional desks take for granted.
+        They always did.
+      </p>
+      <div class="heritage-sig">More Sense Per Bushel™</div>
+    </div>
+
+    <div>
+      <div class="heritage-photo-wrap lb-trigger"
+           data-src="./heritage-crew.jpg"
+           data-title="Threshing crew on grain bags — Pacific Northwest, c. 1910s">
+        <img src="./heritage-crew.jpg"
+             alt="Large threshing crew posed on grain sacks at harvest">
+      </div>
+      <div class="heritage-snark">
+        <p class="heritage-snark-main">
+          A mountain of grain that would make any merchandiser smile.
+          The crew that moved it worked for day wages.
+          Filthy? Undeniably. Rich? Ask the elevator.
+        </p>
+        <div class="heritage-snark-credit">Threshing crew &nbsp;·&nbsp; Pacific Northwest, c. 1910s</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -1356,6 +1648,13 @@ function wireStaticTriggers(){
       openLightbox(borCard.dataset.src, borCard.dataset.title);
     });
   }
+  // Heritage photos
+  document.querySelectorAll('.heritage .lb-trigger').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(el.dataset.src, el.dataset.title);
+    });
+  });
 }
 
 /* ════════════════════════════════════════════════════
@@ -1381,6 +1680,13 @@ document.addEventListener('DOMContentLoaded', function(){
   renderNavigator();
   wireStaticTriggers();
   wireCommentaryTriggers();
+});
+
+// Size fr-rule to match FILTHY letterblock after fonts load
+document.fonts.ready.then(function(){
+  var filthy = document.querySelector('.fr-filthy');
+  var rule   = document.getElementById('fr-rule');
+  if(filthy && rule) rule.style.width = filthy.offsetWidth + 'px';
 });
 </script>
 </body>
