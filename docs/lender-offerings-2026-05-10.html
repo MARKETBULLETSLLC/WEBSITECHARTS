@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBullets — Farm Lender Offerings | May 10, 2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, 'Freight Text', serif;
+    background: #F5F5F0;
+    color: #2C1A0E;
+    padding: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .header {
+    border-bottom: 3px solid #4A3425;
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+  }
+  .brand {
+    font-family: 'Trade Gothic', 'Futura', 'Gill Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8B6F47;
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-family: 'Trade Gothic', 'Futura', 'Gill Sans', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #4A3425;
+    letter-spacing: 0.03em;
+  }
+  .dateline {
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8B6F47;
+    margin-top: 6px;
+  }
+
+  /* Context box */
+  .context-box {
+    background: #4A3425;
+    color: #F5F5F0;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    border-radius: 2px;
+  }
+  .context-box h2 {
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #D4A574;
+    margin-bottom: 10px;
+  }
+  .context-box p {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #F5F5F0;
+  }
+
+  /* Section headers */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #D4A051;
+    margin-bottom: 6px;
+  }
+  .section-number {
+    display: inline-block;
+    background: #4A3425;
+    color: #F5F5F0;
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 2px;
+    margin-right: 8px;
+    letter-spacing: 0.08em;
+  }
+  h2 {
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #4A3425;
+    margin-bottom: 6px;
+    display: inline;
+  }
+  .subtitle {
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 11px;
+    color: #8B6F47;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    margin-top: 4px;
+  }
+  .rule { border: none; border-top: 1px solid #D4A574; margin: 12px 0 18px 0; }
+
+  /* Commentary pullquote */
+  .pullquote {
+    background: #fff;
+    border-left: 4px solid #D4A051;
+    padding: 18px 22px;
+    margin: 0 0 10px 0;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #2C1A0E;
+  }
+  .note {
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 11px;
+    color: #8B6F47;
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  th {
+    background: #4A3425;
+    color: #F5F5F0;
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 9px 12px;
+    text-align: left;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #D4A574;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #EDE8E2; }
+  tr:last-child td { border-bottom: none; }
+  td.month { font-weight: 700; color: #4A3425; }
+  td.range { font-family: monospace; font-size: 13px; }
+  td.flag { color: #8B2500; font-weight: 700; }
+
+  /* Intro text above chart table */
+  .intro-text {
+    background: #fff;
+    border: 1px solid #D4A574;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    color: #2C1A0E;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 2px solid #4A3425;
+    padding-top: 18px;
+    margin-top: 48px;
+    font-family: 'Trade Gothic', 'Futura', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #8B6F47;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    body { padding: 28px; }
+    .section { page-break-inside: avoid; }
+    .context-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="brand">MarketBullets® — Internal Working Document</div>
+  <h1>Farm Lender Member Offerings</h1>
+  <div class="dateline">May 10, 2026 &nbsp;·&nbsp; Prepared for Gary Hofer</div>
+</div>
+
+<div class="context-box">
+  <h2>Background</h2>
+  <p>Three ready-to-deploy offerings targeting the farm lender and ag banker segment of the MarketBullets subscriber base. Lenders are already in the audience but underserved by producer-framed commentary. These leverage existing data, existing charts, and existing publishing schedule — no new infrastructure required.</p>
+</div>
+
+
+<!-- OFFERING 1 -->
+<div class="section">
+  <div class="section-label">Offering</div>
+  <div><span class="section-number">01</span><h2>Collateral Risk Briefing</h2></div>
+  <div class="subtitle">Commentary Insert — Drop into Daily Analysis</div>
+  <hr class="rule">
+
+  <div class="pullquote">
+    <strong>LENDER NOTE:</strong> If your borrower holds unpriced grain today, the collateral under that operating loan just moved. July SRW touched $6.50/bu on April 28 — a nearly two-year high — before retreating below $6.00 on improving Plains weather forecasts. That's a 50-cent swing in twelve trading sessions. A 10,000-bushel position that looked like $65,000 in collateral two weeks ago now appraises closer to $59,000. Not a crisis — but a number worth recalculating before the May 12 WASDE lands.
+  </div>
+  <p class="note">⚠ Verify ZW July closing price against Trade Navigator before publishing. Adjust bushel/dollar figures to match actual settlement.</p>
+</div>
+
+
+<!-- OFFERING 3 -->
+<div class="section">
+  <div class="section-label">Offering</div>
+  <div><span class="section-number">03</span><h2>Lender Dashboard View</h2></div>
+  <div class="subtitle">Squarespace Section Spec — No Embed Changes Required</div>
+  <hr class="rule">
+
+  <p style="margin-bottom:14px;">A dedicated member dashboard section pulling existing charts into a single lender-oriented view. No new charts. No new embed codes. One new labeled section block in Squarespace.</p>
+
+  <p style="margin-bottom:10px; font-family: 'Trade Gothic','Futura',sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#8B6F47;">Section Label: <strong style="color:#4A3425;">Credit &amp; Collateral Context</strong></p>
+
+  <table>
+    <thead>
+      <tr><th>Chart</th><th>Category</th><th>Why It Belongs Here</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>U.S. 10-Year Treasury Yield</td><td>Interest Rates</td><td>Benchmark for ag loan pricing</td></tr>
+      <tr><td>Fed Funds Rate / SOFR</td><td>Interest Rates</td><td>Operating loan rate environment</td></tr>
+      <tr><td>2/10 Yield Curve</td><td>Interest Rates</td><td>Credit tightening signal</td></tr>
+      <tr><td>DXY U.S. Dollar Index</td><td>Currencies</td><td>Export competitiveness → borrower cash flow</td></tr>
+      <tr><td>ZW Daily (front month)</td><td>Wheat Futures</td><td>Collateral flat price — SRW</td></tr>
+      <tr><td>KE Daily (front month)</td><td>Wheat Futures</td><td>Collateral flat price — HRW</td></tr>
+    </tbody>
+  </table>
+
+  <div class="intro-text">
+    Wheat loan collateral moves daily. The six charts below give ag lenders a single-stop read on flat price, interest rate environment, and dollar-driven export demand — the three variables that most directly affect borrower repayment capacity.
+  </div>
+  <p class="note">Placement: below Spreads &amp; Ratios, above General Macro. 40-word intro text above chart block.</p>
+</div>
+
+
+<!-- OFFERING 4 -->
+<div class="section">
+  <div class="section-label">Offering</div>
+  <div><span class="section-number">04</span><h2>Seasonal Loan Sizing Reference</h2></div>
+  <div class="subtitle">Annual Reference Table — One Build, Updated Each Crop Year</div>
+  <hr class="rule">
+
+  <p style="margin-bottom:14px;">Historical ZW (CBOT SRW) price range by calendar month. Helps ag lenders calibrate operating loan limits at spring origination and identify high-volatility windows requiring collateral review.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Typical Range ($/bu)</th>
+        <th>Seasonal Phase</th>
+        <th>Loan Sizing Implication</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="month">January</td><td class="range">$4.75 – $6.50</td><td>Winter carry / old-crop</td><td>Moderate — old-crop still moving</td></tr>
+      <tr><td class="month">February</td><td class="range">$4.75 – $6.75</td><td>Weather premium builds</td><td>Moderate — watch Plains dryness</td></tr>
+      <tr><td class="month">March</td><td class="range">$5.00 – $7.25</td><td>Spring uncertainty premium</td><td>Elevated — collateral improving</td></tr>
+      <tr><td class="month">April</td><td class="range">$4.75 – $7.50</td><td>Planting weather volatility</td><td class="flag">High volatility — recalculate monthly</td></tr>
+      <tr><td class="month">May</td><td class="range">$4.50 – $7.50</td><td>Crop condition reports begin</td><td class="flag">High volatility — WASDE month</td></tr>
+      <tr><td class="month">June</td><td class="range">$4.25 – $7.00</td><td>Harvest pressure begins</td><td>Declining — new crop arriving</td></tr>
+      <tr><td class="month">July</td><td class="range">$4.00 – $6.75</td><td>Harvest lows</td><td class="flag">Lowest — do not base annual loan on July price</td></tr>
+      <tr><td class="month">August</td><td class="range">$4.25 – $6.75</td><td>Post-harvest consolidation</td><td>Low — new crop in position</td></tr>
+      <tr><td class="month">September</td><td class="range">$4.50 – $7.00</td><td>Demand season begins</td><td>Recovering</td></tr>
+      <tr><td class="month">October</td><td class="range">$4.50 – $7.25</td><td>Export pace builds</td><td>Moderate — use for fall loan sizing</td></tr>
+      <tr><td class="month">November</td><td class="range">$4.75 – $7.25</td><td>Old-crop stocks tighten</td><td>Moderate to firm</td></tr>
+      <tr><td class="month">December</td><td class="range">$4.75 – $7.50</td><td>Year-end positioning</td><td>Firm — good annual baseline month</td></tr>
+    </tbody>
+  </table>
+
+  <div class="intro-text">
+    <strong>Rule of thumb for lenders:</strong> Size operating loans against the October–December average, not the spring peak. Producers who priced in spring look fully collateralized in April; borrowers who held into July can gap 15–20% below origination value. Review collateral any time the market moves more than 40 cents in a 30-day window.
+  </div>
+  <p class="note">⚠ Approximate 10-year ranges excluding 2022 Ukraine spike outliers. Verify against Trade Navigator historical data before distributing to lenders.</p>
+</div>
+
+
+<div class="footer">
+  <span>MarketBullets® · More Sense Per Bushel™</span>
+  <span>marketbulletsllc.com</span>
+  <span>Internal — May 10, 2026</span>
+</div>
+
+</body>
+</html>
