@@ -719,101 +719,6 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 }
 
 /* ════════════════════════════════════════════════════
-   FILTHY RICH BRAND STRIP
-════════════════════════════════════════════════════ */
-.filthy-rich-strip{
-  max-width:1440px;margin:0 auto;
-  height:440px;
-  background:#F5F5F0;
-  position:relative;
-  overflow:hidden;
-}
-.filthy-rich-strip::before{
-  content:'';
-  position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:400px 400px;
-  opacity:0.04;
-  pointer-events:none;
-  z-index:1;
-}
-.fr-content{
-  position:absolute;
-  left:72px;
-  top:50%;
-  transform:translateY(calc(-50% - 20px));
-  z-index:2;
-}
-.fr-label{
-  font-family:'EB Garamond',Georgia,serif;
-  font-size:28px;
-  color:#8B6F47;
-  letter-spacing:.10em;
-  line-height:1;
-}
-.fr-label.fr-italic{
-  font-style:italic;
-  margin-top:5px;
-}
-.fr-filthy{
-  display:block;
-  font-family:'Alfa Slab One',serif;
-  font-size:120px;
-  color:#4A3425;
-  letter-spacing:-.02em;
-  line-height:.88;
-  margin-top:3px;
-  filter:url(#fr-grain);
-}
-.fr-rule{
-  height:1px;
-  background:#D4A574;
-  margin:22px 0;
-}
-.fr-rich{
-  display:block;
-  font-family:'Bebas Neue',sans-serif;
-  font-size:120px;
-  color:#D4A051;
-  letter-spacing:.01em;
-  line-height:.88;
-  margin-top:3px;
-}
-.fr-lockup{
-  position:absolute;
-  left:72px;bottom:36px;
-  z-index:2;
-}
-.fr-brand{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:18px;
-  color:#4A3425;
-  letter-spacing:.35em;
-}
-.fr-tagline{
-  font-family:'EB Garamond',Georgia,serif;
-  font-style:italic;
-  font-size:14px;
-  color:#8B6F47;
-  letter-spacing:.12em;
-  margin-top:4px;
-}
-@media(max-width:900px){
-  .filthy-rich-strip{height:320px;}
-  .fr-filthy,.fr-rich{font-size:80px;}
-  .fr-label{font-size:22px;}
-  .fr-content{left:32px;}
-  .fr-lockup{left:32px;bottom:24px;}
-}
-@media(max-width:500px){
-  .filthy-rich-strip{height:240px;}
-  .fr-filthy,.fr-rich{font-size:56px;}
-  .fr-label{font-size:16px;}
-  .fr-content{left:20px;}
-  .fr-lockup{left:20px;bottom:16px;}
-}
-
-/* ════════════════════════════════════════════════════
    FOOTER
 ════════════════════════════════════════════════════ */
 footer{
@@ -1049,38 +954,6 @@ footer{
     loading="lazy"
     title="Global Wheat Weather Dashboard"
   ></iframe>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-     FILTHY RICH BRAND STRIP
-     Transitions from analytical content → Guardian arc
-══════════════════════════════════════════════════ -->
-<svg width="0" height="0" style="position:absolute;overflow:hidden;">
-  <defs>
-    <filter id="fr-grain" x="-2%" y="-2%" width="104%" height="104%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="4" seed="7" result="noise"/>
-      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
-      <feComponentTransfer in="grayNoise" result="dimNoise">
-        <feFuncA type="linear" slope="0.18"/>
-      </feComponentTransfer>
-      <feBlend in="SourceGraphic" in2="dimNoise" mode="multiply" result="blended"/>
-      <feComposite in="blended" in2="SourceGraphic" operator="in"/>
-    </filter>
-  </defs>
-</svg>
-<section class="filthy-rich-strip">
-  <div class="fr-content">
-    <div class="fr-label">you've got the</div>
-    <span class="fr-filthy">FILTHY</span>
-    <div class="fr-label fr-italic">covered.</div>
-    <div class="fr-rule" id="fr-rule"></div>
-    <div class="fr-label">we'll handle the</div>
-    <span class="fr-rich">RICH.</span>
-  </div>
-  <div class="fr-lockup">
-    <div class="fr-brand">MARKETBULLETS®</div>
-    <div class="fr-tagline">More Sense Per Bushel™</div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════
@@ -1682,12 +1555,6 @@ document.addEventListener('DOMContentLoaded', function(){
   wireCommentaryTriggers();
 });
 
-// Size fr-rule to match FILTHY letterblock after fonts load
-document.fonts.ready.then(function(){
-  var filthy = document.querySelector('.fr-filthy');
-  var rule   = document.getElementById('fr-rule');
-  if(filthy && rule) rule.style.width = filthy.offsetWidth + 'px';
-});
 </script>
 </body>
 </html>
