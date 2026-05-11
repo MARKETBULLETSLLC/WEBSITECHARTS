@@ -5,7 +5,7 @@ TRUCK = r"C:\Users\hofer\OneDrive\MBLLC.COM CLOUD\Site Development\images\202303
 LOGO  = r"C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\MarketBullets_Logo.png"
 OUT   = r"C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\hero_banner.jpg"
 
-DOOR_CX   = 0.145   # door center as fraction of image width  (~left 14.5%)
+DOOR_CX   = 0.195   # door center as fraction of image width  (~left 19.5%)
 DOOR_CY   = 0.525   # door center as fraction of image height (~52% down)
 LOGO_FRAC = 0.28    # logo diameter = 28% of image height
 OPACITY   = 0.68    # weathered/faded painted-on look
