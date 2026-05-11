@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Mother's Day Karen</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #d8cfc4; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+.card { width: 600px; height: 840px; background: white; box-shadow: 0 12px 48px rgba(0,0,0,0.35); overflow: hidden; }
+@media print {
+  @page { size: 5in 7in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: none; width: 5in; height: 7in; }
+  .card { box-shadow: none; width: 5in; height: 7in; }
+  .card svg { width: 5in; height: 7in; }
+}
+</style>
+</head>
+<body>
+<div class="card">
+<svg viewBox="0 0 600 840" xmlns="http://www.w3.org/2000/svg" width="600" height="840">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#c5dff7"/>
+    <stop offset="55%" stop-color="#dff0e8"/>
+    <stop offset="100%" stop-color="#c2e8a8"/>
+  </linearGradient>
+  <linearGradient id="rockBody" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#9a8870"/>
+    <stop offset="100%" stop-color="#5e4e3c"/>
+  </linearGradient>
+  <linearGradient id="meadow" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#88c050"/>
+    <stop offset="100%" stop-color="#4e7e28"/>
+  </linearGradient>
+  <radialGradient id="faceGrad" cx="45%" cy="40%">
+    <stop offset="0%" stop-color="#d8b888"/>
+    <stop offset="100%" stop-color="#b89060"/>
+  </radialGradient>
+</defs>
+
+<!-- Sky -->
+<rect width="600" height="840" fill="url(#sky)"/>
+
+<!-- Distant Palouse hills -->
+<ellipse cx="80"  cy="310" rx="180" ry="90"  fill="#a0c070" opacity="0.7"/>
+<ellipse cx="310" cy="288" rx="230" ry="105" fill="#b0d080" opacity="0.7"/>
+<ellipse cx="540" cy="305" rx="175" ry="88"  fill="#98b860" opacity="0.7"/>
+
+<!-- ── BASALT ROCK FORMATION ── -->
+<path d="M 130 545 Q 145 370 195 340 Q 250 312 300 308 Q 350 312 405 340 Q 455 370 470 545 Z"
+      fill="url(#rockBody)" stroke="#4a3a2a" stroke-width="2"/>
+<!-- rock strata lines -->
+<path d="M 198 352 Q 250 332 300 328 Q 350 332 402 352" fill="none" stroke="#7a6a52" stroke-width="1.2" opacity="0.5"/>
+<path d="M 178 400 Q 240 376 300 372 Q 360 376 422 400" fill="none" stroke="#7a6a52" stroke-width="1" opacity="0.4"/>
+<path d="M 160 455 Q 235 428 300 424 Q 365 428 440 455" fill="none" stroke="#7a6a52" stroke-width="1" opacity="0.3"/>
+<!-- side rocks -->
+<path d="M 88 550 Q 98 478 132 455 Q 165 445 178 530 Z" fill="#8a7a62"/>
+<path d="M 422 530 Q 435 455 462 452 Q 495 448 510 540 Z" fill="#8a7a62"/>
+
+<!-- ── TSAGAGLALAL — SHE WHO WATCHES ── -->
+<!-- outer stone ring -->
+<circle cx="300" cy="408" r="80" fill="#a89070" stroke="#7a6048" stroke-width="3"/>
+<circle cx="300" cy="408" r="75" fill="none" stroke="#907858" stroke-width="1.5" opacity="0.5"/>
+<!-- face disc -->
+<circle cx="300" cy="408" r="68" fill="url(#faceGrad)" stroke="#8a6840" stroke-width="2"/>
+
+<!-- forehead arch marks -->
+<path d="M 268 352 Q 300 342 332 352" fill="none" stroke="#8a5028" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M 278 360 Q 300 352 322 360" fill="none" stroke="#9a5830" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+
+<!-- LEFT EYE — large concentric-circle hallmark -->
+<circle cx="276" cy="396" r="22" fill="#7a5030" stroke="#4a2810" stroke-width="1.5"/>
+<circle cx="276" cy="396" r="16" fill="#a86030" stroke="#784020" stroke-width="1.2"/>
+<circle cx="276" cy="396" r="10" fill="#1e1008"/>
+<circle cx="276" cy="396" r="5"  fill="#c07840"/>
+<circle cx="274" cy="394" r="2.5" fill="white" opacity="0.55"/>
+
+<!-- RIGHT EYE -->
+<circle cx="324" cy="396" r="22" fill="#7a5030" stroke="#4a2810" stroke-width="1.5"/>
+<circle cx="324" cy="396" r="16" fill="#a86030" stroke="#784020" stroke-width="1.2"/>
+<circle cx="324" cy="396" r="10" fill="#1e1008"/>
+<circle cx="324" cy="396" r="5"  fill="#c07840"/>
+<circle cx="322" cy="394" r="2.5" fill="white" opacity="0.55"/>
+
+<!-- nose bridge -->
+<line x1="300" y1="418" x2="300" y2="432" stroke="#8a5028" stroke-width="2.2"/>
+<path d="M 293 432 Q 300 435 307 432" fill="none" stroke="#8a5028" stroke-width="1.5"/>
+
+<!-- WIDE MOUTH — signature of Tsagaglalal -->
+<path d="M 264 448 Q 300 470 336 448" fill="none" stroke="#7a3018" stroke-width="3.5" stroke-linecap="round"/>
+<!-- tooth-line suggestion -->
+<path d="M 268 450 L 332 450" fill="none" stroke="#c8a060" stroke-width="0.8" opacity="0.35"/>
+
+<!-- cheek marks -->
+<path d="M 244 412 L 256 416" stroke="#9a5830" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+<path d="M 344 412 L 356 416" stroke="#9a5830" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+
+<!-- chin -->
+<path d="M 283 460 Q 300 468 317 460" fill="none" stroke="#8a5028" stroke-width="1.5" opacity="0.6"/>
+
+<!-- reverent label -->
+<text x="300" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="9"
+      fill="#5a3820" font-style="italic" letter-spacing="0.8">She Who Watches · Tsagaglalal</text>
+
+<!-- ═══════════════════════════════════════════
+     SHRINE FLOWERS SURROUNDING HER ON THE ROCK
+═══════════════════════════════════════════ -->
+
+<!-- LEFT SIDE SHRINE -->
+
+<!-- Lupine spire — far left rock -->
+<line x1="155" y1="530" x2="158" y2="455" stroke="#3a7020" stroke-width="2"/>
+<ellipse cx="158" cy="450" rx="5.5" ry="9"  fill="#7060c8"/>
+<ellipse cx="158" cy="436" rx="5"   ry="8"  fill="#8070d8"/>
+<ellipse cx="158" cy="424" rx="4.5" ry="7"  fill="#9080e8"/>
+<ellipse cx="158" cy="413" rx="4"   ry="6.5" fill="#a090f8"/>
+<ellipse cx="145" cy="490" rx="13"  ry="5"  fill="#4a8a28" transform="rotate(-28,145,490)"/>
+<ellipse cx="168" cy="488" rx="12"  ry="5"  fill="#4a8a28" transform="rotate(22,168,488)"/>
+
+<!-- second lupine -->
+<line x1="170" y1="532" x2="172" y2="462" stroke="#3a7020" stroke-width="1.5"/>
+<ellipse cx="172" cy="457" rx="4.5" ry="8"  fill="#6050b8"/>
+<ellipse cx="172" cy="444" rx="4"   ry="7"  fill="#7060c8"/>
+<ellipse cx="172" cy="433" rx="3.5" ry="6"  fill="#8070d8"/>
+
+<!-- Camas cluster — left -->
+<line x1="205" y1="525" x2="208" y2="480" stroke="#3a7030" stroke-width="1.5"/>
+<line x1="215" y1="528" x2="217" y2="484" stroke="#3a7030" stroke-width="1.5"/>
+<g transform="translate(208,474)"><line x1="0" y1="0" x2="0" y2="-7" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="-5" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="-5" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="5" y2="3" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-5" y2="3" stroke="#7068d8" stroke-width="2"/><circle cx="0" cy="0" r="2.5" fill="#8878e8"/></g>
+<g transform="translate(208,459)"><line x1="0" y1="0" x2="0" y2="-7" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="-5" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="-5" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="5" y2="3" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="-5" y2="3" stroke="#6058c8" stroke-width="2"/><circle cx="0" cy="0" r="2.5" fill="#7068d8"/></g>
+<g transform="translate(217,477)"><line x1="0" y1="0" x2="0" y2="-7" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="-5" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="-5" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="5" y2="3" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-5" y2="3" stroke="#7068d8" stroke-width="2"/><circle cx="0" cy="0" r="2.5" fill="#8878e8"/></g>
+
+<!-- Phlox cushion — lower left rock -->
+<ellipse cx="235" cy="528" rx="22" ry="9" fill="#8a6a98"/>
+<circle cx="224" cy="523" r="5.5" fill="#d8a8e8"/><circle cx="224" cy="523" r="2" fill="#f0e0f8"/>
+<circle cx="235" cy="521" r="5.5" fill="#e8b8f8"/><circle cx="235" cy="521" r="2" fill="#f8f0ff"/>
+<circle cx="246" cy="523" r="5.5" fill="#d0a0e0"/><circle cx="246" cy="523" r="2" fill="#f0e0f8"/>
+<circle cx="229" cy="530" r="4.5" fill="#c898d8"/>
+<circle cx="241" cy="530" r="4.5" fill="#e0b8f0"/>
+
+<!-- Yarrow — left base -->
+<line x1="193" y1="530" x2="195" y2="486" stroke="#5a7a30" stroke-width="1.5"/>
+<ellipse cx="195" cy="482" rx="13" ry="5.5" fill="#f5f0e8"/>
+<circle cx="189" cy="480" r="4.5" fill="#f8f5ec"/>
+<circle cx="195" cy="478" r="4.5" fill="#f5f0e8"/>
+<circle cx="201" cy="480" r="4.5" fill="#f8f5ec"/>
+<circle cx="192" cy="485" r="3.5" fill="#f2ede4"/>
+<circle cx="198" cy="485" r="3.5" fill="#f5f0e8"/>
+
+<!-- RIGHT SIDE SHRINE -->
+
+<!-- Balsamroot — right rock -->
+<line x1="420" y1="525" x2="416" y2="468" stroke="#4a7020" stroke-width="2.5"/>
+<ellipse cx="416" cy="458" rx="16" ry="7" fill="#f0c030" transform="rotate(-12,416,458)"/>
+<ellipse cx="416" cy="458" rx="16" ry="7" fill="#f0c030" transform="rotate(33,416,458)"/>
+<ellipse cx="416" cy="458" rx="16" ry="7" fill="#f0c030" transform="rotate(78,416,458)"/>
+<ellipse cx="416" cy="458" rx="16" ry="7" fill="#f0c030" transform="rotate(123,416,458)"/>
+<ellipse cx="416" cy="458" rx="16" ry="7" fill="#f0c030" transform="rotate(168,416,458)"/>
+<ellipse cx="416" cy="458" rx="16" ry="7" fill="#e8b820" transform="rotate(-57,416,458)"/>
+<circle cx="416" cy="458" r="9" fill="#a04820"/>
+<path d="M 428 497 L 450 512 L 436 507 Z" fill="#5a7a28"/>
+<path d="M 406 499 L 383 513 L 399 508 Z" fill="#5a7a28"/>
+
+<!-- second balsamroot -->
+<line x1="442" y1="532" x2="439" y2="480" stroke="#4a7020" stroke-width="2"/>
+<ellipse cx="439" cy="470" rx="12" ry="5.5" fill="#f0c030" transform="rotate(20,439,470)"/>
+<ellipse cx="439" cy="470" rx="12" ry="5.5" fill="#f0c030" transform="rotate(80,439,470)"/>
+<ellipse cx="439" cy="470" rx="12" ry="5.5" fill="#f0c030" transform="rotate(140,439,470)"/>
+<circle cx="439" cy="470" r="7" fill="#a04820"/>
+
+<!-- Shooting star — right -->
+<path d="M 392 525 Q 395 498 388 480" stroke="#4a7028" stroke-width="1.5" fill="none"/>
+<g transform="translate(388,478) rotate(22)">
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(-20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c82070" transform="rotate(20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d82890" transform="rotate(60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c02068" transform="rotate(-60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(100)"/>
+  <line x1="0" y1="0" x2="0" y2="9" stroke="#e8d020" stroke-width="2.2"/>
+  <circle cx="0" cy="9" r="2.2" fill="#f0e030"/>
+</g>
+<path d="M 408 528 Q 411 500 404 481" stroke="#4a7028" stroke-width="1.5" fill="none"/>
+<g transform="translate(404,479) rotate(-14)">
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(-20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c82070" transform="rotate(20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d82890" transform="rotate(60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c02068" transform="rotate(-60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(100)"/>
+  <line x1="0" y1="0" x2="0" y2="9" stroke="#e8d020" stroke-width="2.2"/>
+  <circle cx="0" cy="9" r="2.2" fill="#f0e030"/>
+</g>
+
+<!-- Bitterroot — right phlox / bitterroot grouping -->
+<g transform="translate(365,524)">
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#e8a0c0" transform="rotate(0)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#f0b0d0" transform="rotate(40)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#e8a0c0" transform="rotate(80)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#f0b0d0" transform="rotate(120)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#e8a0c0" transform="rotate(160)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#f0b0d0" transform="rotate(200)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#e8a0c0" transform="rotate(240)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#f0b0d0" transform="rotate(280)"/>
+  <ellipse cx="0" cy="-8" rx="3.5" ry="7" fill="#e8a0c0" transform="rotate(320)"/>
+  <circle cx="0" cy="0" r="3.5" fill="#f8d0a0"/>
+</g>
+
+<!-- Phlox — right base -->
+<ellipse cx="364" cy="530" rx="20" ry="8" fill="#9a7aaa"/>
+<circle cx="355" cy="526" r="5" fill="#d8a8e8"/><circle cx="355" cy="526" r="2" fill="#f0e0f8"/>
+<circle cx="364" cy="524" r="5" fill="#e0b8f8"/><circle cx="364" cy="524" r="2" fill="#f8f0ff"/>
+<circle cx="373" cy="526" r="5" fill="#d0a0e0"/><circle cx="373" cy="526" r="2" fill="#f0e0f8"/>
+<circle cx="360" cy="532" r="4" fill="#c898d8"/>
+<circle cx="369" cy="531" r="4" fill="#e0b8f0"/>
+
+<!-- Yarrow — right base -->
+<line x1="380" y1="530" x2="378" y2="488" stroke="#5a7a30" stroke-width="1.5"/>
+<ellipse cx="378" cy="484" rx="12" ry="5" fill="#f5f0e8"/>
+<circle cx="372" cy="482" r="4" fill="#f8f5ec"/>
+<circle cx="378" cy="480" r="4" fill="#f5f0e8"/>
+<circle cx="384" cy="482" r="4" fill="#f8f5ec"/>
+
+<!-- Lupine — far right rock -->
+<line x1="448" y1="535" x2="451" y2="463" stroke="#3a7020" stroke-width="2"/>
+<ellipse cx="451" cy="458" rx="5"   ry="9"  fill="#6858b8"/>
+<ellipse cx="451" cy="444" rx="4.5" ry="8"  fill="#7868c8"/>
+<ellipse cx="451" cy="432" rx="4"   ry="7"  fill="#8878d8"/>
+<ellipse cx="451" cy="421" rx="3.5" ry="6"  fill="#9888e8"/>
+<ellipse cx="440" cy="496" rx="13"  ry="5"  fill="#4a8a28" transform="rotate(-25,440,496)"/>
+<ellipse cx="462" cy="493" rx="12"  ry="5"  fill="#4a8a28" transform="rotate(20,462,493)"/>
+
+<!-- ── MEADOW ── -->
+<path d="M 0 568 Q 150 548 300 558 Q 450 548 600 562 L 600 840 L 0 840 Z" fill="url(#meadow)"/>
+
+<!-- meadow lupine left -->
+<line x1="45"  y1="720" x2="48"  y2="655" stroke="#3a6818" stroke-width="2.2"/>
+<line x1="58"  y1="725" x2="61"  y2="658" stroke="#3a6818" stroke-width="2"/>
+<ellipse cx="48"  cy="649" rx="6" ry="10" fill="#7060c8"/>
+<ellipse cx="48"  cy="634" rx="5.5" ry="9" fill="#8070d8"/>
+<ellipse cx="48"  cy="620" rx="5" ry="8" fill="#9080e8"/>
+<ellipse cx="48"  cy="608" rx="4.5" ry="7" fill="#a090f8"/>
+<ellipse cx="61"  cy="651" rx="5.5" ry="9" fill="#6858b8"/>
+<ellipse cx="61"  cy="637" rx="5" ry="8" fill="#7868c8"/>
+<ellipse cx="61"  cy="625" rx="4.5" ry="7" fill="#8878d8"/>
+<ellipse cx="38"  cy="685" rx="15" ry="6" fill="#4a8a28" transform="rotate(-26,38,685)"/>
+<ellipse cx="65"  cy="680" rx="15" ry="6" fill="#4a8a28" transform="rotate(20,65,680)"/>
+
+<!-- meadow balsamroot left -->
+<line x1="92" y1="732" x2="88" y2="668" stroke="#4a6818" stroke-width="2.5"/>
+<ellipse cx="88" cy="658" rx="17" ry="7" fill="#f0c030" transform="rotate(-10,88,658)"/>
+<ellipse cx="88" cy="658" rx="17" ry="7" fill="#f0c030" transform="rotate(34,88,658)"/>
+<ellipse cx="88" cy="658" rx="17" ry="7" fill="#f0c030" transform="rotate(78,88,658)"/>
+<ellipse cx="88" cy="658" rx="17" ry="7" fill="#f0c030" transform="rotate(122,88,658)"/>
+<ellipse cx="88" cy="658" rx="17" ry="7" fill="#f0c030" transform="rotate(166,88,658)"/>
+<ellipse cx="88" cy="658" rx="17" ry="7" fill="#e8b820" transform="rotate(-54,88,658)"/>
+<circle cx="88" cy="658" r="9.5" fill="#a04820"/>
+<path d="M 103 700 L 124 716 L 111 711 Z" fill="#5a7a28"/>
+<path d="M 74 702 L 52 718 L 67 713 Z" fill="#5a7a28"/>
+
+<!-- meadow camas center -->
+<line x1="300" y1="725" x2="302" y2="676" stroke="#3a6830" stroke-width="1.8"/>
+<line x1="312" y1="728" x2="314" y2="678" stroke="#3a6830" stroke-width="1.5"/>
+<line x1="288" y1="722" x2="290" y2="673" stroke="#3a6830" stroke-width="1.5"/>
+<g transform="translate(302,670)"><line x1="0" y1="0" x2="0" y2="-8" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="7" y2="-6" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-7" y2="-6" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="4" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="4" stroke="#7068d8" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#8878e8"/></g>
+<g transform="translate(302,653)"><line x1="0" y1="0" x2="0" y2="-8" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="7" y2="-6" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-7" y2="-6" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="4" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="4" stroke="#7068d8" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#8878e8"/></g>
+<g transform="translate(302,638)"><line x1="0" y1="0" x2="0" y2="-8" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="7" y2="-6" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="-7" y2="-6" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="4" stroke="#6058c8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="4" stroke="#6058c8" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#7068d8"/></g>
+<g transform="translate(314,671)"><line x1="0" y1="0" x2="0" y2="-8" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="7" y2="-6" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-7" y2="-6" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="6" y2="4" stroke="#7068d8" stroke-width="2"/><line x1="0" y1="0" x2="-6" y2="4" stroke="#7068d8" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#8878e8"/></g>
+
+<!-- meadow shooting stars -->
+<path d="M 382 718 Q 385 690 379 672" stroke="#4a7028" stroke-width="1.5" fill="none"/>
+<g transform="translate(379,670) rotate(22)">
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(-20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c82070" transform="rotate(20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d82890" transform="rotate(60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c02068" transform="rotate(-60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(100)"/>
+  <line x1="0" y1="0" x2="0" y2="9" stroke="#e8d020" stroke-width="2.2"/>
+  <circle cx="0" cy="9" r="2.2" fill="#f0e030"/>
+</g>
+<path d="M 398 722 Q 401 693 394 674" stroke="#4a7028" stroke-width="1.5" fill="none"/>
+<g transform="translate(394,672) rotate(-12)">
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(-20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c82070" transform="rotate(20)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d82890" transform="rotate(60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#c02068" transform="rotate(-60)"/>
+  <ellipse cx="0" cy="-9" rx="3" ry="8" fill="#d02880" transform="rotate(100)"/>
+  <line x1="0" y1="0" x2="0" y2="9" stroke="#e8d020" stroke-width="2.2"/>
+  <circle cx="0" cy="9" r="2.2" fill="#f0e030"/>
+</g>
+
+<!-- meadow phlox left -->
+<ellipse cx="195" cy="730" rx="24" ry="10" fill="#8a6898"/>
+<circle cx="184" cy="725" r="5.5" fill="#d8a8e8"/><circle cx="184" cy="725" r="2.2" fill="#f0e0f8"/>
+<circle cx="195" cy="723" r="5.5" fill="#e8b8f8"/><circle cx="195" cy="723" r="2.2" fill="#fff0ff"/>
+<circle cx="206" cy="725" r="5.5" fill="#d0a0e0"/><circle cx="206" cy="725" r="2.2" fill="#f0e0f8"/>
+<circle cx="189" cy="732" r="4.5" fill="#c898d8"/>
+<circle cx="200" cy="731" r="4.5" fill="#e0b8f0"/>
+
+<!-- meadow phlox right -->
+<ellipse cx="542" cy="732" rx="22" ry="9" fill="#9a7aaa"/>
+<circle cx="532" cy="727" r="5" fill="#d8a8e8"/><circle cx="532" cy="727" r="2" fill="#f0e0f8"/>
+<circle cx="542" cy="725" r="5" fill="#e8b8f8"/><circle cx="542" cy="725" r="2" fill="#fff0ff"/>
+<circle cx="552" cy="727" r="5" fill="#d0a0e0"/><circle cx="552" cy="727" r="2" fill="#f0e0f8"/>
+
+<!-- meadow yarrow -->
+<line x1="155" y1="718" x2="157" y2="674" stroke="#5a7a30" stroke-width="1.5"/>
+<ellipse cx="157" cy="670" rx="13" ry="5.5" fill="#f5f0e8"/>
+<circle cx="151" cy="668" r="4.5" fill="#f8f5ec"/>
+<circle cx="157" cy="666" r="4.5" fill="#f5f0e8"/>
+<circle cx="163" cy="668" r="4.5" fill="#f8f5ec"/>
+
+<line x1="260" y1="728" x2="262" y2="682" stroke="#5a7a30" stroke-width="1.5"/>
+<ellipse cx="262" cy="678" rx="12" ry="5" fill="#f5f0e8"/>
+<circle cx="256" cy="676" r="4" fill="#f8f5ec"/>
+<circle cx="262" cy="674" r="4" fill="#f5f0e8"/>
+<circle cx="268" cy="676" r="4" fill="#f8f5ec"/>
+
+<!-- meadow bitterroot -->
+<g transform="translate(172,745)">
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8a0c0" transform="rotate(0)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#f0b0d0" transform="rotate(40)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8a0c0" transform="rotate(80)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#f0b0d0" transform="rotate(120)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8a0c0" transform="rotate(160)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#f0b0d0" transform="rotate(200)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8a0c0" transform="rotate(240)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#f0b0d0" transform="rotate(280)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8a0c0" transform="rotate(320)"/>
+  <circle cx="0" cy="0" r="4" fill="#f8d0a0"/>
+</g>
+<g transform="translate(432,748)">
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e0a8c8" transform="rotate(0)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8b0d0" transform="rotate(40)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e0a8c8" transform="rotate(80)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8b0d0" transform="rotate(120)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e0a8c8" transform="rotate(160)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8b0d0" transform="rotate(200)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e0a8c8" transform="rotate(240)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e8b0d0" transform="rotate(280)"/>
+  <ellipse cx="0" cy="-9" rx="4" ry="8" fill="#e0a8c8" transform="rotate(320)"/>
+  <circle cx="0" cy="0" r="4" fill="#f8d0a0"/>
+</g>
+
+<!-- meadow lupine right -->
+<line x1="518" y1="712" x2="521" y2="645" stroke="#3a6818" stroke-width="2.2"/>
+<line x1="530" y1="716" x2="533" y2="650" stroke="#3a6818" stroke-width="2"/>
+<ellipse cx="521" cy="639" rx="6"   ry="10" fill="#5050a8"/>
+<ellipse cx="521" cy="624" rx="5.5" ry="9"  fill="#6060b8"/>
+<ellipse cx="521" cy="611" rx="5"   ry="8"  fill="#7070c8"/>
+<ellipse cx="533" cy="644" rx="5.5" ry="9"  fill="#6060b0"/>
+<ellipse cx="533" cy="630" rx="5"   ry="8"  fill="#7070c0"/>
+<ellipse cx="533" cy="618" rx="4.5" ry="7"  fill="#8080d0"/>
+<ellipse cx="508" cy="678" rx="14"  ry="6"  fill="#4a8a28" transform="rotate(-24,508,678)"/>
+<ellipse cx="543" cy="675" rx="14"  ry="6"  fill="#4a8a28" transform="rotate(20,543,675)"/>
+
+<!-- meadow balsamroot right -->
+<line x1="462" y1="725" x2="459" y2="662" stroke="#4a6818" stroke-width="2.5"/>
+<ellipse cx="459" cy="652" rx="16" ry="7" fill="#f0c030" transform="rotate(-10,459,652)"/>
+<ellipse cx="459" cy="652" rx="16" ry="7" fill="#f0c030" transform="rotate(34,459,652)"/>
+<ellipse cx="459" cy="652" rx="16" ry="7" fill="#f0c030" transform="rotate(78,459,652)"/>
+<ellipse cx="459" cy="652" rx="16" ry="7" fill="#f0c030" transform="rotate(122,459,652)"/>
+<ellipse cx="459" cy="652" rx="16" ry="7" fill="#f0c030" transform="rotate(166,459,652)"/>
+<circle cx="459" cy="652" r="9" fill="#a04820"/>
+<path d="M 473 692 L 492 707 L 480 702 Z" fill="#5a7a28"/>
+<path d="M 446 694 L 426 709 L 441 704 Z" fill="#5a7a28"/>
+
+<!-- grass texture meadow -->
+<path d="M 25 578 Q 27 562 29 568" stroke="#5a9820" stroke-width="1" fill="none"/>
+<path d="M 48 575 Q 50 559 52 565" stroke="#4a8818" stroke-width="1" fill="none"/>
+<path d="M 330 570 Q 332 554 334 560" stroke="#5a9820" stroke-width="1" fill="none"/>
+<path d="M 485 572 Q 487 556 489 562" stroke="#4a8818" stroke-width="1" fill="none"/>
+<path d="M 568 575 Q 570 559 572 565" stroke="#5a9820" stroke-width="1" fill="none"/>
+
+<!-- ── CARD TEXT ── -->
+<!-- Top heading -->
+<text x="300" y="52" text-anchor="middle"
+      font-family="'Palatino Linotype',Palatino,Georgia,serif"
+      font-size="30" font-style="italic" fill="#6a408a" letter-spacing="1">Happy Mother's Day</text>
+
+<text x="300" y="98" text-anchor="middle"
+      font-family="'Palatino Linotype',Palatino,Georgia,serif"
+      font-size="52" font-weight="700" fill="#9a2858" letter-spacing="3">Karen</text>
+
+<!-- decorative vine line -->
+<path d="M 90 115 Q 300 124 510 115" fill="none" stroke="#b890c0" stroke-width="1.5" opacity="0.7"/>
+<circle cx="90"  cy="115" r="3" fill="#c8a0d0" opacity="0.6"/>
+<circle cx="510" cy="115" r="3" fill="#c8a0d0" opacity="0.6"/>
+<circle cx="300" cy="119" r="3" fill="#c8a0d0" opacity="0.6"/>
+
+<text x="300" y="140" text-anchor="middle"
+      font-family="Georgia,serif" font-size="11"
+      fill="#7a5870" font-style="italic" letter-spacing="0.9">Wildflowers of the Inland Pacific Northwest</text>
+
+<!-- Bottom message panel -->
+<rect x="45" y="768" width="510" height="62" rx="10" fill="white" fill-opacity="0.82"/>
+<text x="300" y="790" text-anchor="middle" font-family="Georgia,serif" font-size="11.5" fill="#5a3858" font-style="italic">
+  May your garden always carry the wild beauty of these hills —</text>
+<text x="300" y="808" text-anchor="middle" font-family="Georgia,serif" font-size="11.5" fill="#5a3858" font-style="italic">
+  and She Who Watches guard everything you grow.</text>
+<text x="300" y="824" text-anchor="middle"
+      font-family="'Palatino Linotype',Palatino,Georgia,serif" font-size="13"
+      fill="#8a2850" font-weight="700">With Love, from Your Neighbors</text>
+
+</svg>
+</div>
+</body>
+</html>
