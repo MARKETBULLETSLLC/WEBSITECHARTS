@@ -161,18 +161,13 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
   50.01%,100%{opacity:.12;box-shadow:none;}
 }
-/* Blinking green — EXECUTE fast (20-D signal, 5s cycle) */
-@keyframes blink-green-fast{
-  0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
-  50.01%,100%{opacity:.12;box-shadow:none;}
-}
 .bor-light.execute{
   background:var(--green);
   animation:blink-green-normal 10s step-start infinite;
 }
 .bor-light.execute-fast{
   background:var(--green);
-  animation:blink-green-fast 5s step-start infinite;
+  animation:blink-green-normal 5s step-start infinite;
 }
 .bor-status-text{
   font-family:var(--serif2);
@@ -278,7 +273,6 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   width:7px;height:7px;
   border-radius:50%;
   margin-top:7px;
-  /* color set inline by JS */
 }
 /* Commentary body */
 .commentary-body{
@@ -604,6 +598,17 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .lb-nav:hover{color:#E8B820;}
 .lb-prev{left:12px;}
 .lb-next{right:12px;}
+
+/* ════════════════════════════════════════════════════
+   WHEAT WEATHER SECTION
+════════════════════════════════════════════════════ */
+.weather-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px 52px;
+  background:var(--soil);
+  border-bottom:1px solid var(--border);
+}
+@media(max-width:700px){.weather-section{padding:24px 16px 40px;}}
 
 /* ════════════════════════════════════════════════════
    HERITAGE SECTION
@@ -942,7 +947,7 @@ footer{
 <!-- ══════════════════════════════════════════════════
      7. WHEAT WEATHER DASHBOARD
 ══════════════════════════════════════════════════ -->
-<section style="max-width:1440px;margin:0 auto;padding:40px 48px 52px;background:var(--soil);border-bottom:1px solid var(--border);">
+<section class="weather-section">
   <div class="section-eyebrow">Crop Conditions</div>
   <h2 class="section-heading">Global Wheat Weather</h2>
   <iframe
@@ -969,7 +974,8 @@ footer{
        data-src="./heritage-table.jpg"
        data-title="Harvest crew lunch — Great Plains, c. 1940s">
     <img src="./heritage-table.jpg"
-         alt="Harvest crew eating together at a table in the field">
+         alt="Harvest crew eating together at a table in the field"
+         loading="lazy">
   </div>
   <div class="heritage-caption">Harvest crew lunch, Great Plains &nbsp;·&nbsp; c. 1940s</div>
 
@@ -994,7 +1000,8 @@ footer{
            data-src="./heritage-crew.jpg"
            data-title="Threshing crew on grain bags — Pacific Northwest, c. 1910s">
         <img src="./heritage-crew.jpg"
-             alt="Large threshing crew posed on grain sacks at harvest">
+             alt="Large threshing crew posed on grain sacks at harvest"
+             loading="lazy">
       </div>
       <div class="heritage-snark">
         <p class="heritage-snark-main">
@@ -1252,6 +1259,7 @@ const NAV_CATEGORIES = [
 ════════════════════════════════════════════════════ */
 var lbIndex = 0;
 var lbItems = [];
+var lbImg, lbTitleEl, lbPrev, lbNext;
 
 function openLightbox(src, title, items, index){
   lbItems  = items  || [{ src:src, title:title }];
@@ -1262,35 +1270,41 @@ function openLightbox(src, title, items, index){
 }
 function showLb(i){
   var it = lbItems[i];
-  document.getElementById('lb-img').src   = it.src;
-  document.getElementById('lb-title').textContent = it.title || '';
-  var prev = document.getElementById('lb-prev');
-  var next = document.getElementById('lb-next');
-  prev.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
-  next.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
+  lbImg.src = it.src;
+  lbTitleEl.textContent = it.title || '';
+  var multi = lbItems.length > 1;
+  lbPrev.style.visibility = multi ? 'visible' : 'hidden';
+  lbNext.style.visibility = multi ? 'visible' : 'hidden';
 }
+var lbEl    = document.getElementById('lb');
+var lbClose = document.getElementById('lb-close');
+lbImg    = document.getElementById('lb-img');
+lbTitleEl= document.getElementById('lb-title');
+lbPrev   = document.getElementById('lb-prev');
+lbNext   = document.getElementById('lb-next');
+
 function closeLightbox(){
-  document.getElementById('lb').classList.remove('open');
-  document.getElementById('lb-img').src = '';
+  lbEl.classList.remove('open');
+  lbImg.src = '';
   document.body.style.overflow = '';
   lbItems = []; lbIndex = 0;
 }
-document.getElementById('lb-close').addEventListener('click', closeLightbox);
-document.getElementById('lb').addEventListener('click', function(e){
+lbClose.addEventListener('click', closeLightbox);
+lbEl.addEventListener('click', function(e){
   if(e.target === this) closeLightbox();
 });
-document.getElementById('lb-prev').addEventListener('click', function(e){
+lbPrev.addEventListener('click', function(e){
   e.stopPropagation();
   lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length;
   showLb(lbIndex);
 });
-document.getElementById('lb-next').addEventListener('click', function(e){
+lbNext.addEventListener('click', function(e){
   e.stopPropagation();
   lbIndex = (lbIndex + 1) % lbItems.length;
   showLb(lbIndex);
 });
 document.addEventListener('keydown', function(e){
-  if(!document.getElementById('lb').classList.contains('open')) return;
+  if(!lbEl.classList.contains('open')) return;
   if(e.key==='Escape') closeLightbox();
   if(e.key==='ArrowLeft'  && lbItems.length>1){ lbIndex=(lbIndex-1+lbItems.length)%lbItems.length; showLb(lbIndex); }
   if(e.key==='ArrowRight' && lbItems.length>1){ lbIndex=(lbIndex+1)%lbItems.length; showLb(lbIndex); }
@@ -1306,6 +1320,10 @@ function buildCard(file, title, sub){
   card.dataset.src   = url;
   card.dataset.title = title;
 
+  var cap = document.createElement('div');
+  cap.className = 'chart-card-cap';
+  cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
+
   var image = document.createElement('img');
   image.alt     = title;
   image.loading = 'lazy';
@@ -1316,18 +1334,11 @@ function buildCard(file, title, sub){
     var inner = document.createElement('div');
     inner.className = 'chart-no-img-inner';
     inner.innerHTML = '<span>&#8987;</span><span>COMING SOON</span><span>' + file + '</span>';
-    var cap = document.createElement('div');
-    cap.className = 'chart-card-cap';
-    cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
     card.appendChild(inner);
     card.appendChild(cap);
     card.style.cursor = 'default';
   };
   card.appendChild(image);
-
-  var cap = document.createElement('div');
-  cap.className = 'chart-card-cap';
-  cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
   card.appendChild(cap);
 
   return card;
@@ -1427,13 +1438,24 @@ function renderWheatGalleries(){
 /* ════════════════════════════════════════════════════
    RENDER CHART NAVIGATOR
 ════════════════════════════════════════════════════ */
+function buildChartGrid(charts){
+  var grid = document.createElement('div');
+  grid.className = 'nav-grid';
+  var lbSet = charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+  charts.forEach(function(c, i){
+    var card = buildCard(c.file, c.title, c.sub);
+    card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+    grid.appendChild(card);
+  });
+  return grid;
+}
+
 function renderNavigator(){
   var tabsEl   = document.getElementById('nav-tabs');
   var panelsEl = document.getElementById('nav-panels');
   var firstTab = null;
 
   NAV_CATEGORIES.forEach(function(cat, ci){
-    // Tab button
     var btn = document.createElement('button');
     btn.className = 'nav-tab';
     btn.textContent = cat.short;
@@ -1441,13 +1463,11 @@ function renderNavigator(){
     tabsEl.appendChild(btn);
     if(ci === 0) firstTab = btn;
 
-    // Panel
     var panel = document.createElement('div');
     panel.className = 'nav-panel';
     panel.id = 'panel-' + cat.id;
 
     if(cat.groups){
-      // Category with sub-groups (Spreads)
       cat.groups.forEach(function(grp){
         var sg = document.createElement('div');
         sg.className = 'nav-subgroup';
@@ -1455,34 +1475,16 @@ function renderNavigator(){
         lbl.className = 'nav-subgroup-label';
         lbl.textContent = grp.label;
         sg.appendChild(lbl);
-        var grid = document.createElement('div');
-        grid.className = 'nav-grid';
-        var lbSet = grp.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
-        grp.charts.forEach(function(c, i){
-          var card = buildCard(c.file, c.title, c.sub);
-          card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
-          grid.appendChild(card);
-        });
-        sg.appendChild(grid);
+        sg.appendChild(buildChartGrid(grp.charts));
         panel.appendChild(sg);
       });
     } else {
-      // Simple category
-      var grid = document.createElement('div');
-      grid.className = 'nav-grid';
-      var lbSet = cat.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
-      cat.charts.forEach(function(c, i){
-        var card = buildCard(c.file, c.title, c.sub);
-        card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
-        grid.appendChild(card);
-      });
-      panel.appendChild(grid);
+      panel.appendChild(buildChartGrid(cat.charts));
     }
 
     panelsEl.appendChild(panel);
   });
 
-  // Tab click handlers
   tabsEl.addEventListener('click', function(e){
     var btn = e.target.closest('.nav-tab');
     if(!btn) return;
@@ -1493,7 +1495,6 @@ function renderNavigator(){
     if(panel) panel.classList.add('active');
   });
 
-  // Activate first tab
   if(firstTab){
     firstTab.classList.add('active');
     var fp = document.getElementById('panel-' + firstTab.dataset.cat);
@@ -1505,7 +1506,6 @@ function renderNavigator(){
    WIRE UP STATIC LB TRIGGERS (BOR chart + SRW gallery)
 ════════════════════════════════════════════════════ */
 function wireStaticTriggers(){
-  // Collect all static SRW chart cards for gallery lightbox
   var srwCards = document.querySelectorAll('.wheat-gallery-section .chart-card.lb-trigger, .bor-chart-card.lb-trigger');
   srwCards.forEach(function(el){
     el.addEventListener('click', function(e){
@@ -1513,15 +1513,6 @@ function wireStaticTriggers(){
       openLightbox(el.dataset.src, el.dataset.title);
     });
   });
-  // BOR chart standalone
-  var borCard = document.querySelector('.bor-chart-card.lb-trigger');
-  if(borCard){
-    borCard.addEventListener('click', function(e){
-      e.preventDefault();
-      openLightbox(borCard.dataset.src, borCard.dataset.title);
-    });
-  }
-  // Heritage photos
   document.querySelectorAll('.heritage .lb-trigger').forEach(function(el){
     el.addEventListener('click', function(e){
       e.preventDefault();
