@@ -51,30 +51,22 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   margin:0 auto;
   height:562px;
   overflow:hidden;
-  background:var(--soil-mid);/* Fallback until hero_banner.jpg is added to repo root */
-  background-image:url('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/hero_banner.jpg');
+  background:var(--soil-mid);
+  background-image:url('./hero_banner.jpg');
   background-size:cover;
-  background-position:center top;
+  background-position:center 35%;
 }
 .hero::after{
   content:'';
   position:absolute;inset:0;
   background:linear-gradient(135deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.20) 50%,rgba(0,0,0,.45) 100%);
 }
-.hero-logo{
-  position:absolute;
-  top:20px;left:24px;
-  width:300px;height:300px;
-  object-fit:contain;
-  z-index:2;
-  filter:drop-shadow(0 2px 12px rgba(0,0,0,.6));
-}
 .hero-title{
   position:absolute;
   top:50px;left:0;right:0;
   text-align:center;
   z-index:2;
-  padding:0 340px;/* clear the logo */
+  padding:0 48px;
 }
 .hero-company{
   font-family:var(--serif);
@@ -96,13 +88,11 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 }
 @media(max-width:900px){
   .hero{height:320px;}
-  .hero-logo{width:160px;height:160px;}
-  .hero-title{top:30px;padding:0 190px;}
+  .hero-title{top:30px;}
 }
 @media(max-width:600px){
   .hero{height:220px;}
-  .hero-logo{width:100px;height:100px;top:12px;left:12px;}
-  .hero-title{top:20px;padding:0 0 0 120px;text-align:left;}
+  .hero-title{top:20px;padding:0 20px;}
   .hero-company{font-size:18px;}
   .hero-tagline{font-size:11px;}
 }
@@ -755,11 +745,6 @@ footer{
      ─ Logo: MarketBullets_Logo.png already in root
 ══════════════════════════════════════════════════ -->
 <section class="hero" id="top">
-  <img
-    src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/MarketBullets_Logo.png"
-    class="hero-logo"
-    alt="MarketBullets Logo"
-  >
   <div class="hero-title">
     <div class="hero-company">MarketBullets</div>
     <div class="hero-tagline">More Sense Per Bushel™</div>
