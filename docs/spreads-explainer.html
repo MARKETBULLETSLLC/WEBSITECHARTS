@@ -148,42 +148,27 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
       display: block;
+      filter: sepia(30%) contrast(1.08) brightness(0.88);
+      transition: filter 0.4s ease;
     }
-    /* Placeholder styling — swap with <img> tag */
-    .photo-panel.placeholder {
-      flex-direction: column;
-      gap: 10px;
+    .photo-panel:hover img {
+      filter: sepia(15%) contrast(1.05) brightness(0.95);
     }
-    .photo-panel.placeholder .ph-icon {
-      opacity: 0.18;
-      width: 36px; height: 36px;
-    }
-    .photo-panel.placeholder .ph-caption {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      text-align: center;
-      max-width: 160px;
-      line-height: 1.5;
-    }
-    /* Unique photo panel backgrounds */
-    .ph-intro        { background: linear-gradient(145deg, #1c1409 0%, #2a1d0c 60%, #1c1409 100%); }
-    .ph-calendar     { background: linear-gradient(145deg, #140f07 0%, #241808 60%, #140f07 100%); }
-    .ph-intermarket  { background: linear-gradient(145deg, #0b1017 0%, #121b26 60%, #0b1017 100%); }
-    .ph-commodity    { background: linear-gradient(145deg, #0b130a 0%, #141e0c 60%, #0b130a 100%); }
-
-    /* Subtle corner glow on placeholders */
-    .photo-panel.placeholder::before {
+    /* Warm vignette overlay on top of photos */
+    .photo-panel.has-photo::after {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 20% 80%, rgba(212,160,81,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 15%, rgba(184,197,214,0.05) 0%, transparent 50%);
+        linear-gradient(to right, rgba(15,11,6,0.55) 0%, transparent 40%),
+        linear-gradient(to top, rgba(15,11,6,0.4) 0%, transparent 50%);
       pointer-events: none;
+    }
+    /* Dark fallback if image fails to load */
+    .photo-panel.has-photo {
+      background: #0f0b06;
     }
 
     /* Content panel */
@@ -664,14 +649,8 @@
   ══════════════════════════════════════════════ -->
   <div class="slide slide-split" id="slide-1">
 
-    <!-- PHOTO: swap placeholder div below with <img src="your-photo.jpg" alt="..."> inside .photo-panel -->
-    <div class="photo-panel placeholder ph-intro">
-      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#D4A051" stroke-width="1.2">
-        <rect x="3" y="3" width="18" height="18" rx="1.5"/>
-        <polyline points="3,15 8,10 13,13 21,6"/>
-        <polyline points="14,6 21,6 21,13"/>
-      </svg>
-      <span class="ph-caption">Photo:<br>grain elevator at dawn<br>or scale ticket close-up</span>
+    <div class="photo-panel has-photo">
+      <img src="img/spreads-slide1-producer.jpg" alt="Wheat farmer tying a grain sack in the field, ca. 1940">
     </div>
 
     <div class="content-panel">
@@ -705,16 +684,8 @@
   ══════════════════════════════════════════════ -->
   <div class="slide slide-split" id="slide-2">
 
-    <!-- PHOTO: suggested = harvest combine at dusk, grain bins in snow, or elevator calendar board -->
-    <div class="photo-panel placeholder ph-calendar">
-      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#D4A051" stroke-width="1.2">
-        <rect x="3" y="4" width="18" height="18" rx="2"/>
-        <line x1="3" y1="9" x2="21" y2="9"/>
-        <line x1="8" y1="2" x2="8" y2="6"/>
-        <line x1="16" y1="2" x2="16" y2="6"/>
-        <circle cx="12" cy="15" r="2.5"/>
-      </svg>
-      <span class="ph-caption">Photo:<br>harvest combine dusk<br>or grain bins in winter</span>
+    <div class="photo-panel has-photo">
+      <img src="img/spreads-slide2-threshing.jpg" alt="Threshing operation with grain pile and horse-drawn wagon, ca. 1940">
     </div>
 
     <div class="content-panel">
@@ -765,14 +736,8 @@
   ══════════════════════════════════════════════ -->
   <div class="slide slide-split" id="slide-3">
 
-    <!-- PHOTO: suggested = loaf of bread next to wheat field, two exchange buildings, PNW export terminal -->
-    <div class="photo-panel placeholder ph-intermarket">
-      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#B8C5D6" stroke-width="1.2">
-        <ellipse cx="12" cy="12" rx="9" ry="9"/>
-        <path d="M12 3 Q16 9 16 12 Q16 15 12 21 Q8 15 8 12 Q8 9 12 3Z"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-      </svg>
-      <span class="ph-caption">Photo:<br>PNW export terminal<br>or bread + wheat field</span>
+    <div class="photo-panel has-photo">
+      <img src="img/spreads-slide3-elevator.jpg" alt="Grain elevator worker sorting numbered wheat sample drawers, ca. 1941">
     </div>
 
     <div class="content-panel">
@@ -827,15 +792,8 @@
   ══════════════════════════════════════════════ -->
   <div class="slide slide-split" id="slide-4">
 
-    <!-- PHOTO: suggested = wheat rows adjacent to corn rows, feedlot fence line, grain price board -->
-    <div class="photo-panel placeholder ph-commodity">
-      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#8fba6e" stroke-width="1.2">
-        <path d="M12 2 Q14 6 14 10 Q14 16 12 22 Q10 16 10 10 Q10 6 12 2Z"/>
-        <path d="M6 8 Q8 10 8 12 Q8 16 6 18"/>
-        <path d="M18 8 Q16 10 16 12 Q16 16 18 18"/>
-        <line x1="3" y1="21" x2="21" y2="21"/>
-      </svg>
-      <span class="ph-caption">Photo:<br>wheat field adjacent to corn<br>or feedlot horizon line</span>
+    <div class="photo-panel has-photo">
+      <img src="img/spreads-slide4-harvest.jpg" alt="Horse-drawn combine harvesting wheat on the Palouse, ca. 1941" style="object-position: center 35%;">
     </div>
 
     <div class="content-panel">
