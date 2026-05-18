@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spreads &amp; Ratios — MarketBullets®</title>
+  <style>
+    :root {
+      --deep-brown: #4A3425;
+      --warm-amber: #D4A574;
+      --moonlight-blue: #B8C5D6;
+      --aged-wood: #8B6F47;
+      --off-white: #F5F5F0;
+      --wheat-gold: #D4A051;
+      --dark-bg: #0f0b06;
+      --card-bg: #171007;
+      --mid-card: #1e1509;
+      --text-body: #c4aa88;
+      --text-dim: #7a6448;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--dark-bg);
+      color: var(--off-white);
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    /* ─── DECK ─────────────────────────────────────────────── */
+    #deck {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ─── GLOBAL UI ─────────────────────────────────────────── */
+    #hud {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      z-index: 200;
+      pointer-events: none;
+    }
+    #hud-left {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    #hud-right {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wheat-gold);
+      opacity: 0.6;
+    }
+
+    #nav {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 200;
+    }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid rgba(212,160,81,0.35);
+      color: var(--wheat-gold);
+      padding: 7px 22px;
+      cursor: pointer;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s;
+      border-radius: 1px;
+    }
+    .nav-btn:hover { background: rgba(212,160,81,0.12); border-color: var(--wheat-gold); }
+    .nav-btn:disabled { opacity: 0.25; cursor: default; }
+
+    #dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .dot.active {
+      background: var(--wheat-gold);
+      transform: scale(1.6);
+    }
+
+    /* ─── SHARED LAYOUT TYPES ───────────────────────────────── */
+
+    /* Full-bleed centered */
+    .slide-center {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 56px 48px 72px;
+    }
+
+    /* Two-column: photo | content */
+    .slide-split {
+      display: grid;
+      grid-template-columns: 42% 58%;
+    }
+
+    /* Photo panel */
+    .photo-panel {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Placeholder styling — swap with <img> tag */
+    .photo-panel.placeholder {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .photo-panel.placeholder .ph-icon {
+      opacity: 0.18;
+      width: 36px; height: 36px;
+    }
+    .photo-panel.placeholder .ph-caption {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-align: center;
+      max-width: 160px;
+      line-height: 1.5;
+    }
+    /* Unique photo panel backgrounds */
+    .ph-intro        { background: linear-gradient(145deg, #1c1409 0%, #2a1d0c 60%, #1c1409 100%); }
+    .ph-calendar     { background: linear-gradient(145deg, #140f07 0%, #241808 60%, #140f07 100%); }
+    .ph-intermarket  { background: linear-gradient(145deg, #0b1017 0%, #121b26 60%, #0b1017 100%); }
+    .ph-commodity    { background: linear-gradient(145deg, #0b130a 0%, #141e0c 60%, #0b130a 100%); }
+
+    /* Subtle corner glow on placeholders */
+    .photo-panel.placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(212,160,81,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 15%, rgba(184,197,214,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Content panel */
+    .content-panel {
+      background: var(--card-bg);
+      padding: 52px 46px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .content-panel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(212,160,81,0.3), transparent);
+    }
+
+    /* ─── TYPOGRAPHY ────────────────────────────────────────── */
+    .eyebrow {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--wheat-gold);
+      margin-bottom: 10px;
+    }
+    .slide-tag {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slide-tag::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(122,100,72,0.3);
+    }
+    h1.hero-title {
+      font-size: clamp(44px, 7.5vw, 88px);
+      font-weight: normal;
+      line-height: 0.95;
+      letter-spacing: -2px;
+      color: var(--off-white);
+      margin-bottom: 12px;
+    }
+    h2.slide-headline {
+      font-size: clamp(20px, 2.6vw, 30px);
+      font-weight: normal;
+      line-height: 1.18;
+      color: var(--off-white);
+      margin-bottom: 8px;
+    }
+    .hook {
+      font-size: clamp(13px, 1.4vw, 15px);
+      color: var(--wheat-gold);
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .body-text {
+      font-size: clamp(12.5px, 1.3vw, 14.5px);
+      line-height: 1.78;
+      color: var(--text-body);
+      margin-bottom: 14px;
+    }
+    .gold-rule {
+      width: 64px;
+      height: 2px;
+      background: var(--wheat-gold);
+      margin: 24px auto;
+    }
+
+    /* ─── SIGNAL BOX ────────────────────────────────────────── */
+    .signal-box {
+      margin-top: 18px;
+      border-left: 2px solid var(--wheat-gold);
+      padding: 10px 14px;
+      background: rgba(212,160,81,0.05);
+    }
+    .signal-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8.5px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wheat-gold);
+      margin-bottom: 5px;
+    }
+    .signal-box .body-text {
+      margin-bottom: 0;
+      font-size: 13px;
+      color: var(--off-white);
+    }
+
+    /* ─── INFOGRAPHIC SHARED ────────────────────────────────── */
+    .infographic-wrap {
+      margin-top: 22px;
+      padding: 14px 16px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 2px;
+    }
+    .infographic-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    /* ─── INFOGRAPHIC: CALENDAR CARRY ───────────────────────── */
+    .carry-chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 0;
+      height: 70px;
+    }
+    .bar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      flex: 1;
+    }
+    .bar-col .bar-id {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .price-bar {
+      width: 32px;
+      border-radius: 2px 2px 0 0;
+      transition: height 0.6s ease-in-out;
+    }
+    .bar-nearby  { background: linear-gradient(to top, var(--wheat-gold), #eaca7a); animation: aNearby 5s ease-in-out infinite; }
+    .bar-deferred{ background: linear-gradient(to top, var(--moonlight-blue), #d6e4f0); animation: aDeferred 5s ease-in-out infinite; }
+    @keyframes aNearby  { 0%,100%{height:42px} 55%{height:64px} }
+    @keyframes aDeferred{ 0%,100%{height:64px} 55%{height:66px} }
+
+    .gap-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      padding-bottom: 20px;
+    }
+    .gap-bar {
+      width: 1px;
+      background: rgba(212,160,81,0.6);
+      animation: aGap 5s ease-in-out infinite;
+    }
+    @keyframes aGap { 0%,100%{height:22px} 55%{height:2px} }
+    .gap-tag {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 7.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--wheat-gold);
+      white-space: nowrap;
+      animation: aGapFade 5s ease-in-out infinite;
+    }
+    @keyframes aGapFade { 0%,100%{opacity:0.9} 55%{opacity:0.2} }
+
+    .carry-status {
+      margin-top: 8px;
+      text-align: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: aStatus 5s ease-in-out infinite;
+    }
+    @keyframes aStatus {
+      0%,40%  { color: var(--moonlight-blue); }
+      50%,90% { color: #e87878; }
+      100%    { color: var(--moonlight-blue); }
+    }
+
+    /* ─── INFOGRAPHIC: INTER-MARKET BARS ────────────────────── */
+    .market-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .market-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mkt-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      width: 44px;
+      flex-shrink: 0;
+    }
+    .mkt-track {
+      flex: 1;
+      height: 7px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .mkt-fill { height: 100%; border-radius: 3px; }
+    .fill-srw { background: linear-gradient(to right,var(--wheat-gold),#e8c870); animation: aSRW 6s ease-in-out infinite; }
+    .fill-hrw { background: linear-gradient(to right,var(--moonlight-blue),#9ab8d0); animation: aHRW 6s ease-in-out infinite; }
+    .fill-mwe { background: linear-gradient(to right,#8fba6e,#b0d88a); animation: aMWE 6s ease-in-out infinite; }
+    @keyframes aSRW { 0%,100%{width:62%} 50%{width:70%} }
+    @keyframes aHRW { 0%,100%{width:78%} 50%{width:74%} }
+    @keyframes aMWE { 0%,100%{width:86%} 50%{width:88%} }
+    .mkt-val {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      color: var(--text-dim);
+      width: 36px;
+      text-align: right;
+    }
+    .premium-line {
+      margin-top: 8px;
+      text-align: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--moonlight-blue);
+      animation: aPremLine 6s ease-in-out infinite;
+    }
+    @keyframes aPremLine { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* ─── INFOGRAPHIC: RATIO DIAL ───────────────────────────── */
+    .ratio-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .ratio-number {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 32px;
+      font-weight: 200;
+      color: var(--wheat-gold);
+      letter-spacing: -1px;
+      line-height: 1;
+      animation: aRatioFade 6s ease-in-out infinite;
+    }
+    @keyframes aRatioFade { 0%,100%{opacity:1} 50%{opacity:0.55} }
+    .ratio-sub {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .ratio-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      position: relative;
+    }
+    .ratio-gradient {
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      background: linear-gradient(to right, #c05050 0%, var(--wheat-gold) 38%, #6dbe6d 70%, #c05050 100%);
+      opacity: 0.7;
+    }
+    .ratio-needle {
+      position: absolute;
+      top: 50%;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--off-white);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 2px var(--dark-bg), 0 0 0 3.5px var(--wheat-gold);
+      animation: aNeedle 7s ease-in-out infinite;
+    }
+    @keyframes aNeedle { 0%,100%{left:52%} 30%{left:38%} 65%{left:63%} }
+    .ratio-threshold {
+      position: absolute;
+      left: 38%;
+      top: -14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .rt-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 7px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--wheat-gold);
+      white-space: nowrap;
+    }
+    .rt-tick {
+      width: 1px;
+      height: 10px;
+      background: var(--wheat-gold);
+      opacity: 0.5;
+    }
+    .ratio-axis {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .axis-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 7.5px;
+      letter-spacing: 0.5px;
+    }
+    .axis-label.low  { color: #c05050; }
+    .axis-label.mid  { color: var(--wheat-gold); }
+    .axis-label.high { color: #6dbe6d; }
+
+    /* ─── SLIDE 0: TITLE ────────────────────────────────────── */
+    #slide-0 {
+      background: radial-gradient(ellipse at 30% 60%, #201408 0%, var(--dark-bg) 70%);
+    }
+    #slide-0 h1 { margin: 0 0 6px; }
+    #slide-0 h2 {
+      font-size: clamp(18px, 2.5vw, 28px);
+      font-weight: normal;
+      color: var(--wheat-gold);
+      margin-bottom: 36px;
+      letter-spacing: 0.5px;
+    }
+    #slide-0 .intro-body {
+      max-width: 580px;
+      font-size: clamp(14px, 1.6vw, 17px);
+      line-height: 1.75;
+      color: var(--warm-amber);
+      font-style: italic;
+    }
+    .title-deco {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .title-deco::before {
+      content: '';
+      position: absolute;
+      right: -80px; bottom: -80px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(212,160,81,0.04) 0%, transparent 70%);
+    }
+    .title-deco::after {
+      content: '';
+      position: absolute;
+      left: -60px; top: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(184,197,214,0.03) 0%, transparent 65%);
+    }
+
+    /* ─── SLIDE 5: SYNTHESIS ────────────────────────────────── */
+    #slide-5 {
+      background: linear-gradient(135deg, #0f0b06 0%, #151008 50%, #0c1018 100%);
+    }
+    .three-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 860px;
+      margin: 36px 0;
+    }
+    .pillar {
+      padding: 28px 22px;
+      border: 1px solid rgba(212,160,81,0.15);
+      background: rgba(212,160,81,0.03);
+      text-align: left;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pillar:hover {
+      border-color: rgba(212,160,81,0.5);
+      background: rgba(212,160,81,0.06);
+    }
+    .pillar-kw {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--wheat-gold);
+      margin-bottom: 8px;
+    }
+    .pillar-name {
+      font-size: 17px;
+      font-weight: normal;
+      color: var(--off-white);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+    .pillar-desc {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      line-height: 1.65;
+    }
+    .synthesis-coda {
+      max-width: 620px;
+      font-size: clamp(14px, 1.6vw, 16.5px);
+      line-height: 1.8;
+      color: var(--warm-amber);
+      font-style: italic;
+    }
+    .mb-sig {
+      margin-top: 28px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .slide-split { grid-template-columns: 1fr; }
+      .photo-panel  { height: 180px; }
+      .three-pillars { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HUD -->
+<div id="hud">
+  <div id="hud-left">00 — 05</div>
+  <div id="hud-right">MarketBullets®</div>
+</div>
+
+<!-- Navigation -->
+<div id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+  <div id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Next →</button>
+</div>
+
+<!-- ─────────────────────────────────────────────────────────
+     SLIDE DECK
+──────────────────────────────────────────────────────────── -->
+<div id="deck">
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 0 — TITLE
+  ══════════════════════════════════════════════ -->
+  <div class="slide slide-center active" id="slide-0">
+    <div class="title-deco"></div>
+    <div class="eyebrow">MarketBullets® Chart Series</div>
+    <h1 class="hero-title">Spreads<br>&amp; Ratios</h1>
+    <h2>The market's internal conversation.</h2>
+    <div class="gold-rule"></div>
+    <p class="intro-body">
+      Most people watch price. The ones who consistently make better selling decisions
+      watch the <em>relationship between prices</em> — because the gap often moves
+      before the flat number does.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 1 — WHAT IS A SPREAD?
+  ══════════════════════════════════════════════ -->
+  <div class="slide slide-split" id="slide-1">
+
+    <!-- PHOTO: swap placeholder div below with <img src="your-photo.jpg" alt="..."> inside .photo-panel -->
+    <div class="photo-panel placeholder ph-intro">
+      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#D4A051" stroke-width="1.2">
+        <rect x="3" y="3" width="18" height="18" rx="1.5"/>
+        <polyline points="3,15 8,10 13,13 21,6"/>
+        <polyline points="14,6 21,6 21,13"/>
+      </svg>
+      <span class="ph-caption">Photo:<br>grain elevator at dawn<br>or scale ticket close-up</span>
+    </div>
+
+    <div class="content-panel">
+      <span class="eyebrow">01 — Foundation</span>
+      <div class="slide-tag">What Is a Spread?</div>
+      <h2 class="slide-headline">The gap between two prices<br>is the market's opinion.</h2>
+      <p class="hook">"Strip away the noise of daily price swings. What's left is the relationship."</p>
+      <p class="body-text">
+        A spread chart plots the <em>difference</em> between two prices rather than either price alone.
+        That difference — between contract months, between exchanges, between crops — is not random.
+        It reflects carrying costs, quality differentials, and competitive substitution pressure,
+        updated in real time by every buyer and seller in the market.
+      </p>
+      <p class="body-text">
+        Spreads are the market talking to itself. MarketBullets® tracks three kinds —
+        each one answering a different question a producer needs answered before picking up the phone.
+      </p>
+      <div class="signal-box">
+        <div class="signal-label">Why It Matters</div>
+        <p class="body-text">
+          A producer who reads spread behavior doesn't just know the price — they know the
+          <em>structure</em> underneath it. Structure often shifts before flat price moves.
+          That's the edge.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 2 — CALENDAR SPREAD
+  ══════════════════════════════════════════════ -->
+  <div class="slide slide-split" id="slide-2">
+
+    <!-- PHOTO: suggested = harvest combine at dusk, grain bins in snow, or elevator calendar board -->
+    <div class="photo-panel placeholder ph-calendar">
+      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#D4A051" stroke-width="1.2">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <circle cx="12" cy="15" r="2.5"/>
+      </svg>
+      <span class="ph-caption">Photo:<br>harvest combine dusk<br>or grain bins in winter</span>
+    </div>
+
+    <div class="content-panel">
+      <span class="eyebrow">02 — Calendar Spread</span>
+      <div class="slide-tag">Same Exchange · Different Contract Months</div>
+      <h2 class="slide-headline">The market's live answer<br>to the storage question.</h2>
+      <p class="hook">"Should I sell now or hold for later? The spread already decided — you're just reading the verdict."</p>
+      <p class="body-text">
+        July ZW versus December ZW: the difference between these two contracts is the
+        <strong style="color:var(--off-white)">carrying charge</strong> — what the market will pay you to store wheat
+        from now through harvest and into fall. A wide positive carry says: <em>"We have time — hold it."</em>
+        When that carry collapses — when the nearby price catches deferred — somebody changed their mind.
+        They need grain now.
+      </p>
+      <p class="body-text">
+        That urgency is one of the cleanest timing signals in soft white wheat. You won't find it
+        on a flat-price chart.
+      </p>
+      <div class="signal-box">
+        <div class="signal-label">Decision Signal</div>
+        <p class="body-text">Carry collapse = tightening nearby demand. Watch for the spread narrowing as a trigger to sell nearby before the structure shifts further against storage.</p>
+      </div>
+
+      <!-- ANIMATED: Carry chart -->
+      <div class="infographic-wrap">
+        <div class="infographic-label">Carrying Charge — Animated Illustration</div>
+        <div class="carry-chart">
+          <div class="bar-col">
+            <div class="price-bar bar-nearby"></div>
+            <div class="bar-id">Nearby</div>
+          </div>
+          <div class="gap-col">
+            <div class="gap-tag">Carry</div>
+            <div class="gap-bar"></div>
+          </div>
+          <div class="bar-col">
+            <div class="price-bar bar-deferred"></div>
+            <div class="bar-id">Deferred</div>
+          </div>
+        </div>
+        <div class="carry-status">Normal Carry &nbsp;→&nbsp; Collapse &nbsp;→&nbsp; Signal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 3 — INTER-MARKET SPREAD
+  ══════════════════════════════════════════════ -->
+  <div class="slide slide-split" id="slide-3">
+
+    <!-- PHOTO: suggested = loaf of bread next to wheat field, two exchange buildings, PNW export terminal -->
+    <div class="photo-panel placeholder ph-intermarket">
+      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#B8C5D6" stroke-width="1.2">
+        <ellipse cx="12" cy="12" rx="9" ry="9"/>
+        <path d="M12 3 Q16 9 16 12 Q16 15 12 21 Q8 15 8 12 Q8 9 12 3Z"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+      </svg>
+      <span class="ph-caption">Photo:<br>PNW export terminal<br>or bread + wheat field</span>
+    </div>
+
+    <div class="content-panel">
+      <span class="eyebrow">03 — Inter-Market Spread</span>
+      <div class="slide-tag">Different Exchanges · Same Timeframe</div>
+      <h2 class="slide-headline">The protein elevator:<br>what bakers are paying today.</h2>
+      <p class="hook">"Chicago versus Kansas City — the difference between crackers and bread, priced in real time."</p>
+      <p class="body-text">
+        CBOT SRW versus KCBT HRW: this spread is the live <strong style="color:var(--off-white)">protein premium</strong> —
+        what the market will pay for baking quality above milling quality. When it expands,
+        milling demand is asserting itself and bakers are competing for quality wheat.
+        When it compresses, SRW is catching up — often on export momentum from buyers
+        who will take whatever is priced most competitively.
+      </p>
+      <p class="body-text">
+        For PNW soft white producers, this spread maps where your class sits in the global
+        quality hierarchy at any given moment. It's not your market — but it sets the context
+        for whether your basis is moving for the right reasons.
+      </p>
+      <div class="signal-box">
+        <div class="signal-label">Decision Signal</div>
+        <p class="body-text">Collapsing HRW premium often signals SRW export demand — a potential basis-strengthening window. Expanding premium signals quality competition is driving the complex.</p>
+      </div>
+
+      <!-- ANIMATED: Relative bar chart -->
+      <div class="infographic-wrap">
+        <div class="infographic-label">Relative Futures Price Level — Animated</div>
+        <div class="market-rows">
+          <div class="market-row">
+            <div class="mkt-label" style="color:var(--wheat-gold)">ZW SRW</div>
+            <div class="mkt-track"><div class="mkt-fill fill-srw"></div></div>
+            <div class="mkt-val">CBOT</div>
+          </div>
+          <div class="market-row">
+            <div class="mkt-label" style="color:var(--moonlight-blue)">KE HRW</div>
+            <div class="mkt-track"><div class="mkt-fill fill-hrw"></div></div>
+            <div class="mkt-val">KCBT</div>
+          </div>
+          <div class="market-row">
+            <div class="mkt-label" style="color:#8fba6e">MWE HRS</div>
+            <div class="mkt-track"><div class="mkt-fill fill-mwe"></div></div>
+            <div class="mkt-val">MGEX</div>
+          </div>
+        </div>
+        <div class="premium-line">← Protein Premium: Expanding / Contracting →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 4 — INTER-COMMODITY SPREAD
+  ══════════════════════════════════════════════ -->
+  <div class="slide slide-split" id="slide-4">
+
+    <!-- PHOTO: suggested = wheat rows adjacent to corn rows, feedlot fence line, grain price board -->
+    <div class="photo-panel placeholder ph-commodity">
+      <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#8fba6e" stroke-width="1.2">
+        <path d="M12 2 Q14 6 14 10 Q14 16 12 22 Q10 16 10 10 Q10 6 12 2Z"/>
+        <path d="M6 8 Q8 10 8 12 Q8 16 6 18"/>
+        <path d="M18 8 Q16 10 16 12 Q16 16 18 18"/>
+        <line x1="3" y1="21" x2="21" y2="21"/>
+      </svg>
+      <span class="ph-caption">Photo:<br>wheat field adjacent to corn<br>or feedlot horizon line</span>
+    </div>
+
+    <div class="content-panel">
+      <span class="eyebrow">04 — Inter-Commodity Spread</span>
+      <div class="slide-tag">Wheat vs. Competing Crops</div>
+      <h2 class="slide-headline">Is your wheat cheap or expensive<br>to a feedlot buyer?</h2>
+      <p class="hook">"The question most wheat producers never think to ask — until they wish they had."</p>
+      <p class="body-text">
+        The <strong style="color:var(--off-white)">wheat-to-corn price ratio</strong> is one of the most durable
+        arbitrage relationships in grain markets. When wheat trades below roughly
+        120% of corn on a comparable price basis, feed buyers start substituting wheat for corn —
+        and that substitution demand can build a price floor underneath a declining market.
+        A support level you won't find on a flat-price chart.
+      </p>
+      <p class="body-text">
+        When the ratio extends the other direction — wheat at historically wide premiums —
+        substitution risk increases and demand begins to migrate. This spread answers a question
+        most producers never ask: <em>"Is my wheat expensive or cheap relative to everything else
+        a buyer can purchase today?"</em>
+      </p>
+      <div class="signal-box">
+        <div class="signal-label">Decision Signal</div>
+        <p class="body-text">Wheat near or below the 1.2× threshold = potential feed demand supporting a price floor. Wide premium above that line = rationing risk. Protect the price before the ratio corrects it for you.</p>
+      </div>
+
+      <!-- ANIMATED: Ratio dial -->
+      <div class="infographic-wrap">
+        <div class="infographic-label">Wheat : Corn Price Ratio — Animated</div>
+        <div class="ratio-block">
+          <div class="ratio-number" id="ratioNum">1.18×</div>
+          <div class="ratio-sub">Wheat : Corn Ratio</div>
+          <div class="ratio-track">
+            <div class="ratio-gradient"></div>
+            <div class="ratio-threshold">
+              <div class="rt-label">1.2× Threshold</div>
+              <div class="rt-tick"></div>
+            </div>
+            <div class="ratio-needle"></div>
+          </div>
+          <div class="ratio-axis">
+            <span class="axis-label low">Feed Demand Zone</span>
+            <span class="axis-label mid">Normal</span>
+            <span class="axis-label high">Substitution Risk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 5 — SYNTHESIS
+  ══════════════════════════════════════════════ -->
+  <div class="slide slide-center" id="slide-5">
+    <div class="eyebrow">Putting It Together</div>
+    <h1 class="hero-title" style="font-size:clamp(30px,5vw,52px);letter-spacing:-1px;margin-bottom:10px">
+      Three conversations.<br>One better decision.
+    </h1>
+    <div class="gold-rule"></div>
+
+    <div class="three-pillars">
+      <div class="pillar">
+        <div class="pillar-kw">When</div>
+        <div class="pillar-name">Calendar Spread</div>
+        <div class="pillar-desc">
+          The carrying charge tells you if nearby demand is building — and when the
+          storage premium is evaporating. Your timing signal before you call the elevator.
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-kw">Who &amp; Why</div>
+        <div class="pillar-name">Inter-Market Spread</div>
+        <div class="pillar-desc">
+          The protein premium tells you who is buying and what they need. Expanding premium
+          means quality competition. Narrowing means export opportunism. Your class context.
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-kw">If</div>
+        <div class="pillar-name">Inter-Commodity Spread</div>
+        <div class="pillar-desc">
+          The wheat-to-corn ratio tells you if wheat is expensive or cheap to the buyers
+          who have alternatives. Your price floor — and your ceiling. Don't guess; read the ratio.
+        </div>
+      </div>
+    </div>
+
+    <p class="synthesis-coda">
+      "Use all three together and your elevator call at 7:30am gets a lot more interesting —
+      and a lot more profitable."
+    </p>
+    <div class="mb-sig">MarketBullets® &nbsp;·&nbsp; More Sense Per Bushel™</div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- ─────────────────────────────────────────────────────────
+     JAVASCRIPT
+──────────────────────────────────────────────────────────── -->
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsEl = document.getElementById('dots');
+  const hud    = document.getElementById('hud-left');
+  let current  = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function goTo(n) {
+    n = Math.max(0, Math.min(n, slides.length - 1));
+    if (n === current) return;
+    slides[current].classList.remove('active');
+    document.querySelectorAll('.dot')[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    document.querySelectorAll('.dot')[current].classList.add('active');
+    hud.textContent = String(current).padStart(2,'0') + ' — ' + String(slides.length - 1).padStart(2,'0');
+    document.getElementById('prevBtn').disabled = (current === 0);
+    document.getElementById('nextBtn').disabled = (current === slides.length - 1);
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+  });
+
+  // Touch / swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  });
+
+  // Animated ratio values
+  const ratioEl  = document.getElementById('ratioNum');
+  const ratioSeq = ['1.18×','1.14×','1.22×','1.17×','1.26×','1.13×','1.20×'];
+  let ri = 0;
+  setInterval(() => {
+    ri = (ri + 1) % ratioSeq.length;
+    if (ratioEl) ratioEl.textContent = ratioSeq[ri];
+  }, 1800);
+
+  goTo(0);
+</script>
+</body>
+</html>
