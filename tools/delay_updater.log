@@ -224,3 +224,7 @@
 2026-05-28 01:08:15,574    committed: Auto-update: 10daydelay/ charts from 2026-05-13 [run 2026-05-28]
 2026-05-28 12:43:21,258  delay_updater: already ran today — skipping
 2026-05-28 14:17:10,918  delay_updater: already ran today — skipping
+2026-05-29 00:10:17,489  delay_updater: updating 10daydelay/ → charts from 2026-05-14
+2026-05-29 00:10:36,507    wrote 84/84 delayed charts
+2026-05-29 00:10:37,054  delay_updater: already ran today — skipping
+2026-05-29 00:10:37,267    committed: Auto-update: 10daydelay/ charts from 2026-05-14 [run 2026-05-29]
