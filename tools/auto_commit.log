@@ -1,0 +1,133 @@
+2026-06-02 20:29:45,071  =======================================================
+2026-06-02 20:29:45,071  MarketBullets Auto-Commit Watcher started
+2026-06-02 20:29:45,072  Watching: c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\charts
+2026-06-02 20:29:45,072  Commits AND pushes automatically.
+2026-06-02 20:29:45,072  =======================================================
+2026-06-02 20:30:35,895  =======================================================
+2026-06-02 20:30:35,896  MarketBullets Auto-Commit Watcher started
+2026-06-02 20:30:35,896  Watching: c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\charts
+2026-06-02 20:30:35,896  Poll interval: 10s  |  Commit cooldown: 30s
+2026-06-02 20:30:35,896  Commits AND pushes automatically.
+2026-06-02 20:30:35,897  =======================================================
+2026-06-02 20:34:16,867  =======================================================
+2026-06-02 20:34:16,867  MarketBullets Auto-Commit Watcher started
+2026-06-02 20:34:16,867  Watching: c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\charts
+2026-06-02 20:34:16,867  Poll interval: 10s  |  Commit cooldown: 30s
+2026-06-02 20:34:16,867  Commits AND pushes automatically.
+2026-06-02 20:34:16,867  =======================================================
+2026-06-02 23:58:52,014  Updated chart detected: IDX_GSCI_W.png
+2026-06-02 23:58:52,677  Updated chart detected: IDX_GSCI_W.png
+2026-06-02 23:58:55,531  Committed: IDX_GSCI_W.png
+2026-06-02 23:58:56,207  Skipped (no change): IDX_GSCI_W.png
+2026-06-02 23:58:58,043  Pushed: IDX_GSCI_W.png
+2026-06-03 00:03:06,536  Updated chart detected: FIN_HD_D.png
+2026-06-03 00:03:08,360  Updated chart detected: FIN_HD_D.png
+2026-06-03 00:03:11,435  Skipped (no change): FIN_HD_D.png
+2026-06-03 00:03:24,293  Committed: FIN_HD_D.png
+2026-06-03 00:03:28,174  Pushed: FIN_HD_D.png
+2026-06-03 00:03:58,213  Updated chart detected: FIN_DE_D.png
+2026-06-03 00:04:01,536  Updated chart detected: FIN_DE_D.png
+2026-06-03 00:04:02,068  Committed: FIN_DE_D.png
+2026-06-03 00:04:04,598  Skipped (no change): FIN_DE_D.png
+2026-06-03 00:04:04,744  Pushed: FIN_DE_D.png
+2026-06-03 00:04:44,648  Updated chart detected: MISC_CC_M.png
+2026-06-03 00:04:44,797  Updated chart detected: MISC_CC_M.png
+2026-06-03 00:04:48,313  Skipped (no change): MISC_CC_M.png
+2026-06-03 00:04:48,437  Committed: MISC_CC_M.png
+2026-06-03 00:04:50,972  Pushed: MISC_CC_M.png
+2026-06-03 00:06:31,102  Updated chart detected: BNDS_30YR_Yield_Q.png
+2026-06-03 00:06:34,685  Committed: BNDS_30YR_Yield_Q.png
+2026-06-03 00:06:36,824  Pushed: BNDS_30YR_Yield_Q.png
+2026-06-03 00:06:38,562  Updated chart detected: BNDS_30YR_Yield_Q.png
+2026-06-03 00:06:41,945  Skipped (no change): BNDS_30YR_Yield_Q.png
+2026-06-03 00:07:06,864  Updated chart detected: IDX_BDI_W.png
+2026-06-03 00:07:11,057  Committed: IDX_BDI_W.png
+2026-06-03 00:07:11,988  Updated chart detected: IDX_BDI_W.png
+2026-06-03 00:07:13,413  Pushed: IDX_BDI_W.png
+2026-06-03 00:07:15,322  Skipped (no change): IDX_BDI_W.png
+2026-06-03 00:07:53,467  Updated chart detected: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:07:55,415  Updated chart detected: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:07:56,940  Committed: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:07:58,788  Skipped (no change): BNDS_2YR_TNOTE_W.png
+2026-06-03 00:07:59,292  Pushed: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:08:18,813  Updated chart detected: NRG_CL_D.png
+2026-06-03 00:08:19,370  Updated chart detected: NRG_CL_D.png
+2026-06-03 00:08:22,720  git commit failed — NRG_CL_D.png: fatal: Unable to create 'C:/Users/hofer/OneDrive/Documents/GitHub/WEBSITECHARTS/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+2026-06-03 00:08:23,346  Committed: NRG_CL_D.png
+2026-06-03 00:08:25,479  Pushed: NRG_CL_D.png
+2026-06-03 00:08:45,504  Updated chart detected: NRG_CL_M.png
+2026-06-03 00:08:49,041  Committed: NRG_CL_M.png
+2026-06-03 00:08:51,334  Pushed: NRG_CL_M.png
+2026-06-03 00:08:52,780  Updated chart detected: NRG_CL_M.png
+2026-06-03 00:08:56,484  Skipped (no change): NRG_CL_M.png
+2026-06-03 00:09:31,386  Updated chart detected: NRG_CL_W.png
+2026-06-03 00:09:35,763  Committed: NRG_CL_W.png
+2026-06-03 00:09:36,616  Updated chart detected: NRG_CL_W.png
+2026-06-03 00:09:38,355  Pushed: NRG_CL_W.png
+2026-06-03 00:09:40,004  Skipped (no change): NRG_CL_W.png
+2026-06-03 00:10:58,470  Updated chart detected: NRG_HO_D.png
+2026-06-03 00:11:00,107  Updated chart detected: NRG_HO_D.png
+2026-06-03 00:11:01,938  Committed: NRG_HO_D.png
+2026-06-03 00:11:03,586  Skipped (no change): NRG_HO_D.png
+2026-06-03 00:11:04,386  Pushed: NRG_HO_D.png
+2026-06-03 00:12:33,715  Updated chart detected: METL_GC_D.png
+2026-06-03 00:12:34,507  Updated chart detected: METL_GC_D.png
+2026-06-03 00:12:37,591  Skipped (no change): METL_GC_D.png
+2026-06-03 00:12:37,730  Committed: METL_GC_D.png
+2026-06-03 00:12:40,068  Pushed: METL_GC_D.png
+2026-06-03 00:12:57,636  Updated chart detected: METL_GC_M.png
+2026-06-03 00:13:00,101  Updated chart detected: METL_GC_M.png
+2026-06-03 00:13:01,891  Committed: METL_GC_M.png
+2026-06-03 00:13:03,511  Skipped (no change): METL_GC_M.png
+2026-06-03 00:13:04,227  Pushed: METL_GC_M.png
+2026-06-03 00:13:24,253  Updated chart detected: METL_HG_M.png
+2026-06-03 00:13:28,219  Committed: METL_HG_M.png
+2026-06-03 00:13:30,518  Pushed: METL_HG_M.png
+2026-06-03 00:13:33,636  Updated chart detected: METL_HG_M.png
+2026-06-03 00:13:37,826  Skipped (no change): METL_HG_M.png
+2026-06-03 00:13:50,543  Updated chart detected: NRG_NG_M.png
+2026-06-03 00:13:55,184  Committed: NRG_NG_M.png
+2026-06-03 00:13:57,565  Pushed: NRG_NG_M.png
+2026-06-03 00:13:57,854  Updated chart detected: NRG_NG_M.png
+2026-06-03 00:14:01,926  Skipped (no change): NRG_NG_M.png
+2026-06-03 00:14:37,658  Updated chart detected: METL_SI_D.png
+2026-06-03 00:14:41,143  Committed: METL_SI_D.png
+2026-06-03 00:14:41,984  Updated chart detected: METL_SI_D.png
+2026-06-03 00:14:43,435  Pushed: METL_SI_D.png
+2026-06-03 00:14:45,901  Skipped (no change): METL_SI_D.png
+2026-06-03 00:15:05,928  Updated chart detected: BNDS_10YR_Price_Q.png
+2026-06-03 00:15:10,608  Committed: BNDS_10YR_Price_Q.png
+2026-06-03 00:15:13,434  Pushed: BNDS_10YR_Price_Q.png
+2026-06-03 00:15:13,633  Updated chart detected: BNDS_10YR_Price_Q.png
+2026-06-03 00:15:16,816  Skipped (no change): BNDS_10YR_Price_Q.png
+2026-06-03 00:15:33,461  Updated chart detected: BNDS_30YR_Price_Q.png
+2026-06-03 00:15:36,851  Updated chart detected: BNDS_30YR_Price_Q.png
+2026-06-03 00:15:37,896  Committed: BNDS_30YR_Price_Q.png
+2026-06-03 00:15:39,936  Skipped (no change): BNDS_30YR_Price_Q.png
+2026-06-03 00:15:41,347  Pushed: BNDS_30YR_Price_Q.png
+2026-06-03 00:16:00,133  Updated chart detected: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:16:01,414  Updated chart detected: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:16:03,631  Committed: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:16:04,802  Skipped (no change): BNDS_2YR_TNOTE_W.png
+2026-06-03 00:16:06,605  Pushed: BNDS_2YR_TNOTE_W.png
+2026-06-03 00:20:35,138  Updated chart detected: IDX_ES_D.png
+2026-06-03 00:20:37,011  Updated chart detected: IDX_ES_D.png
+2026-06-03 00:20:39,223  Committed: IDX_ES_D.png
+2026-06-03 00:20:40,084  Skipped (no change): IDX_ES_D.png
+2026-06-03 00:20:42,477  Pushed: IDX_ES_D.png
+2026-06-03 01:01:26,048  Updated chart detected: IDX_ES_M.png
+2026-06-03 01:01:30,364  Committed: IDX_ES_M.png
+2026-06-03 01:01:33,021  Pushed: IDX_ES_M.png
+2026-06-03 01:01:33,442  Updated chart detected: IDX_ES_M.png
+2026-06-03 01:01:36,605  Skipped (no change): IDX_ES_M.png
+2026-06-03 01:02:03,071  Updated chart detected: FX_RUB_USD_M.png
+2026-06-03 01:02:06,666  Updated chart detected: FX_RUB_USD_M.png
+2026-06-03 01:02:07,088  Committed: FX_RUB_USD_M.png
+2026-06-03 01:02:10,165  Pushed: FX_RUB_USD_M.png
+2026-06-03 01:02:10,344  Skipped (no change): FX_RUB_USD_M.png
