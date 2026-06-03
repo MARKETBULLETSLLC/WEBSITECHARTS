@@ -1,7 +1,7 @@
 """
 MarketBullets — Auto Commit Watcher
-Watches WEBSITECHARTS/ for new or updated PNG files exported from Trade Navigator.
-Commits each changed chart automatically. Does NOT push — Gary pushes manually.
+Polls charts/ every 10 seconds for new or updated PNG files exported from Trade Navigator.
+Commits and pushes each changed chart automatically. No third-party libraries required.
 
 Usage:
     python tools/auto_commit_watcher.py
@@ -14,14 +14,13 @@ import subprocess
 import logging
 from datetime import datetime
 from pathlib import Path
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
-WATCH_DIR = Path(r"c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS")
-LOG_FILE = WATCH_DIR / "tools" / "auto_commit.log"
+REPO_ROOT = Path(r"c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS")
+WATCH_DIR = REPO_ROOT / "charts"
+LOG_FILE = REPO_ROOT / "tools" / "auto_commit.log"
 
-# Prevents duplicate commits if watchdog fires multiple events for one file save
-COOLDOWN_SECONDS = 15
+POLL_SECONDS = 10
+COOLDOWN_SECONDS = 30
 
 logging.basicConfig(
     level=logging.INFO,
@@ -32,102 +31,74 @@ logging.basicConfig(
     ]
 )
 
-# Track last commit time per filename
-last_committed: dict[str, float] = {}
+
+def git(cmd: list, cwd: Path) -> tuple[int, str, str]:
+    result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
+    return result.returncode, result.stdout.strip(), result.stderr.strip()
 
 
-def git_commit(filepath: Path) -> None:
+def commit_and_push(filepath: Path) -> None:
     filename = filepath.name
-    now = time.time()
-
-    # Skip if we just committed this file (duplicate event guard)
-    if filename in last_committed and (now - last_committed[filename]) < COOLDOWN_SECONDS:
-        return
-
-    # Brief pause — ensures Trade Navigator has finished writing the file
-    time.sleep(3)
-
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    try:
-        # Stage the file
-        add = subprocess.run(
-            ["git", "add", filename],
-            cwd=WATCH_DIR,
-            capture_output=True,
-            text=True
-        )
-        if add.returncode != 0:
-            logging.error(f"git add failed — {filename}: {add.stderr.strip()}")
-            return
+    rc, _, err = git(["git", "add", f"charts/{filename}"], REPO_ROOT)
+    if rc != 0:
+        logging.error(f"git add failed — {filename}: {err}")
+        return
 
-        # Check if anything is actually staged (file may be identical to last commit)
-        status = subprocess.run(
-            ["git", "diff", "--cached", "--name-only"],
-            cwd=WATCH_DIR,
-            capture_output=True,
-            text=True
-        )
-        if not status.stdout.strip():
-            logging.info(f"Skipped (no change detected): {filename}")
-            return
+    rc, staged, _ = git(["git", "diff", "--cached", "--name-only"], REPO_ROOT)
+    if not staged:
+        logging.info(f"Skipped (no change): {filename}")
+        return
 
-        # Commit
-        commit_msg = f"Auto-commit: {filename} [{timestamp}]"
-        commit = subprocess.run(
-            ["git", "commit", "-m", commit_msg],
-            cwd=WATCH_DIR,
-            capture_output=True,
-            text=True
-        )
-        if commit.returncode == 0:
-            last_committed[filename] = now
-            logging.info(f"Committed: {filename}")
-        else:
-            logging.error(f"git commit failed — {filename}: {commit.stderr.strip()}")
+    rc, _, err = git(["git", "commit", "-m", f"Auto-commit: {filename} [{timestamp}]"], REPO_ROOT)
+    if rc != 0:
+        logging.error(f"git commit failed — {filename}: {err}")
+        return
+    logging.info(f"Committed: {filename}")
 
-    except Exception as e:
-        logging.error(f"Unexpected error processing {filename}: {e}")
+    rc, _, err = git(["git", "push", "origin", "main"], REPO_ROOT)
+    if rc == 0:
+        logging.info(f"Pushed: {filename}")
+    else:
+        logging.error(f"git push failed — {filename}: {err}")
 
 
-class PNGHandler(FileSystemEventHandler):
-    """Handles file system events for PNG files in the root of WATCH_DIR only."""
-
-    def _is_root_png(self, path: str) -> bool:
-        p = Path(path)
-        return (
-            not p.is_dir()
-            and p.suffix.lower() == ".png"
-            and p.parent.resolve() == WATCH_DIR.resolve()
-        )
-
-    def on_created(self, event):
-        if self._is_root_png(event.src_path):
-            logging.info(f"New chart detected: {Path(event.src_path).name}")
-            git_commit(Path(event.src_path))
-
-    def on_modified(self, event):
-        if self._is_root_png(event.src_path):
-            logging.info(f"Updated chart detected: {Path(event.src_path).name}")
-            git_commit(Path(event.src_path))
+def snapshot(directory: Path) -> dict[str, float]:
+    return {
+        p.name: p.stat().st_mtime
+        for p in directory.glob("*.png")
+        if p.is_file()
+    }
 
 
 if __name__ == "__main__":
     logging.info("=" * 55)
     logging.info("MarketBullets Auto-Commit Watcher started")
     logging.info(f"Watching: {WATCH_DIR}")
-    logging.info("Commits automatically. YOU push manually.")
+    logging.info(f"Poll interval: {POLL_SECONDS}s  |  Commit cooldown: {COOLDOWN_SECONDS}s")
+    logging.info("Commits AND pushes automatically.")
     logging.info("=" * 55)
 
-    observer = Observer()
-    observer.schedule(PNGHandler(), str(WATCH_DIR), recursive=False)
-    observer.start()
+    known: dict[str, float] = snapshot(WATCH_DIR)
+    last_committed: dict[str, float] = {}
 
     try:
         while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        observer.stop()
-        logging.info("Auto-Commit Watcher stopped.")
+            time.sleep(POLL_SECONDS)
+            current = snapshot(WATCH_DIR)
 
-    observer.join()
+            for name, mtime in current.items():
+                prev_mtime = known.get(name, 0)
+                last_commit_time = last_committed.get(name, 0)
+                if mtime != prev_mtime and (time.time() - last_commit_time) >= COOLDOWN_SECONDS:
+                    action = "New" if name not in known else "Updated"
+                    logging.info(f"{action} chart detected: {name}")
+                    time.sleep(3)  # wait for TN to finish writing
+                    commit_and_push(WATCH_DIR / name)
+                    last_committed[name] = time.time()
+
+            known = current
+
+    except KeyboardInterrupt:
+        logging.info("Auto-Commit Watcher stopped.")
