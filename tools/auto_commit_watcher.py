@@ -33,7 +33,8 @@ logging.basicConfig(
 
 
 def git(cmd: list, cwd: Path) -> tuple[int, str, str]:
-    result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
+    result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
+                            creationflags=subprocess.CREATE_NO_WINDOW)
     return result.returncode, result.stdout.strip(), result.stderr.strip()
 
 
