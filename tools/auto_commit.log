@@ -2478,3 +2478,71 @@ remove the file manually to continue.
 2026-06-13 21:12:43,653  Updated chart detected: IDX_DXY_M.png
 2026-06-13 21:12:47,116  Committed: IDX_DXY_M.png
 2026-06-13 21:12:49,028  Pushed: IDX_DXY_M.png
+2026-06-13 21:14:09,120  Updated chart detected: IDX_ES_D.png
+2026-06-13 21:14:12,549  Committed: IDX_ES_D.png
+2026-06-13 21:14:14,784  Pushed: IDX_ES_D.png
+2026-06-13 21:14:44,815  Updated chart detected: IDX_ES_M.png
+2026-06-13 21:14:48,256  Committed: IDX_ES_M.png
+2026-06-13 21:14:50,192  Pushed: IDX_ES_M.png
+2026-06-13 21:16:10,278  Updated chart detected: METL_GC_D.png
+2026-06-13 21:16:13,730  Committed: METL_GC_D.png
+2026-06-13 21:16:15,923  Pushed: METL_GC_D.png
+2026-06-13 21:16:25,934  Updated chart detected: METL_GC_M.png
+2026-06-13 21:16:29,358  Committed: METL_GC_M.png
+2026-06-13 21:16:31,573  Pushed: METL_GC_M.png
+2026-06-13 21:22:31,946  Updated chart detected: METL_SI_D.png
+2026-06-13 21:22:35,395  Committed: METL_SI_D.png
+2026-06-13 21:22:37,575  Pushed: METL_SI_D.png
+2026-06-13 21:24:07,674  Updated chart detected: NRG_CL_D.png
+2026-06-13 21:24:11,149  Committed: NRG_CL_D.png
+2026-06-13 21:24:13,117  Pushed: NRG_CL_D.png
+2026-06-13 21:24:43,149  Updated chart detected: NRG_HO_D.png
+2026-06-13 21:24:46,599  Committed: NRG_HO_D.png
+2026-06-13 21:24:48,866  Pushed: NRG_HO_D.png
+2026-06-13 21:25:08,889  Updated chart detected: NRG_CL_W.png
+2026-06-13 21:25:12,362  Committed: NRG_CL_W.png
+2026-06-13 21:25:14,352  Pushed: NRG_CL_W.png
+2026-06-13 21:25:34,376  Updated chart detected: NRG_CL_M.png
+2026-06-13 21:25:37,831  Committed: NRG_CL_M.png
+2026-06-13 21:25:39,954  Pushed: NRG_CL_M.png
+2026-06-14 15:41:48,607  =======================================================
+2026-06-14 15:41:48,608  MarketBullets Auto-Commit Watcher started
+2026-06-14 15:41:48,608  Watching: c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\charts
+2026-06-14 15:41:48,608  Poll interval: 10s  |  Commit cooldown: 30s
+2026-06-14 15:41:48,608  Commits AND pushes automatically.
+2026-06-14 15:41:48,608  =======================================================
+2026-06-15 00:20:22,291  Updated chart detected: METL_GC_D.png
+2026-06-15 00:21:06,663  Committed: METL_GC_D.png
+2026-06-15 00:21:09,763  Pushed: METL_GC_D.png
+2026-06-15 00:21:49,807  Updated chart detected: NRG_CL_D.png
+2026-06-15 00:21:53,222  Committed: NRG_CL_D.png
+2026-06-15 00:21:55,465  Pushed: NRG_CL_D.png
+2026-06-15 00:22:35,510  Updated chart detected: NRG_CL_M.png
+2026-06-15 00:22:38,933  Committed: NRG_CL_M.png
+2026-06-15 00:22:40,951  Pushed: NRG_CL_M.png
+2026-06-15 00:23:00,974  Updated chart detected: NRG_CL_W.png
+2026-06-15 00:23:04,424  Committed: NRG_CL_W.png
+2026-06-15 00:23:06,497  Pushed: NRG_CL_W.png
+2026-06-15 00:24:06,562  Updated chart detected: NRG_HO_D.png
+2026-06-15 00:24:10,004  Committed: NRG_HO_D.png
+2026-06-15 00:24:12,009  Pushed: NRG_HO_D.png
+2026-06-15 00:24:32,033  Updated chart detected: METL_GC_M.png
+2026-06-15 00:24:35,449  Committed: METL_GC_M.png
+2026-06-15 00:24:37,352  Pushed: METL_GC_M.png
+2026-06-15 00:25:17,399  Updated chart detected: METL_HG_M.png
+2026-06-15 00:25:20,856  Committed: METL_HG_M.png
+2026-06-15 00:25:22,935  Pushed: METL_HG_M.png
+2026-06-15 00:25:42,958  Updated chart detected: NRG_NG_M.png
+2026-06-15 00:25:46,456  Committed: NRG_NG_M.png
+2026-06-15 00:25:48,539  Pushed: NRG_NG_M.png
+2026-06-15 00:26:28,586  Updated chart detected: METL_SI_D.png
+2026-06-15 00:26:31,993  Committed: METL_SI_D.png
+2026-06-15 00:26:34,204  Pushed: METL_SI_D.png
+2026-06-15 00:26:54,227  Updated chart detected: BNDS_10YR_Price_Q.png
+2026-06-15 00:26:57,649  Committed: BNDS_10YR_Price_Q.png
+2026-06-15 00:26:59,593  Pushed: BNDS_10YR_Price_Q.png
+2026-06-15 00:27:49,652  Updated chart detected: BNDS_30YR_Price_Q.png
+2026-06-15 00:27:53,071  Committed: BNDS_30YR_Price_Q.png
+2026-06-15 00:27:55,366  Pushed: BNDS_30YR_Price_Q.png
+2026-06-15 00:28:15,390  Updated chart detected: BNDS_2YR_TNOTE_W.png
+2026-06-15 00:28:18,820  Committed: BNDS_2YR_TNOTE_W.png
