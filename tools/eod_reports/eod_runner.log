@@ -3085,4 +3085,101 @@ Fetching EOD data for 2026-06-25...
 ================================================================
 
 Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260625.txt
-^C
+^CHTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWN26.CBT"}}}
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWU26.CBT"}}}
+$MWU26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWU26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+Fetching EOD data for 2026-06-27...
+
+================================================================
+  MARKETBULLETS -- END-OF-DAY FUTURES REPORT
+  Saturday, June 27, 2026  |  CME Settlement
+================================================================
+
+  WHEAT FUTURES                                        c/bu
+  --------------------------------------------------------------
+  CONTRACT         SETTLE        CHANGE     OPEN     HIGH      LOW     VOL
+  --------------------------------------------------------------
+  SRW  ZW JUL26    578.25  -12.75  (-2.2%)     588.50   589.75   574.00     27K
+  SRW  ZW SEP26    589.75  -11.75  (-1.9%)     600.00   600.50   584.75     60K
+  ..............................................................
+  HRW  KE JUL26    611.00   -9.50  (-1.5%)     618.00   619.00   605.75     12K
+  HRW  KE SEP26    619.50  -11.00  (-1.7%)     629.75   629.75   615.00     35K
+  ..............................................................
+  HRS  MW JUL26       N/A       N/A            N/A      N/A      N/A     N/A
+  HRS  MW SEP26       N/A       N/A            N/A      N/A      N/A     N/A
+  ..............................................................
+
+  SPREADS  (front month: JUL26)
+  ----------------------------------------
+  HRW premium over SRW:         -32.75 c/bu
+  HRS premium over SRW:         N/A
+  HRS premium over HRW:         N/A
+
+  CARRY  (JUL26 vs SEP26)
+  ----------------------------------------
+  SRW  ZW         SEP26 vs JUL26:  +11.50 c/bu
+  HRW  KE         SEP26 vs JUL26:  +8.50 c/bu
+  HRS  MW         N/A
+
+  CORRELATED MARKETS
+  ----------------------------------------
+  U.S. Dollar (DXY)           101.43   -0.18  (-0.2%)  
+  Crude Oil WTI                69.23   -2.69  (-3.7%)  
+
+  Data: yfinance / CME  |  Generated 2026-06-27 15:14:07
+================================================================
+
+Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260627.txt
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWN26.CBT"}}}
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWU26.CBT"}}}
+$MWU26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWN26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWU26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+Fetching EOD data for 2026-06-28...
+
+================================================================
+  MARKETBULLETS -- END-OF-DAY FUTURES REPORT
+  Sunday, June 28, 2026  |  CME Settlement
+================================================================
+
+  WHEAT FUTURES                                        c/bu
+  --------------------------------------------------------------
+  CONTRACT         SETTLE        CHANGE     OPEN     HIGH      LOW     VOL
+  --------------------------------------------------------------
+  SRW  ZW JUL26    578.25  -12.75  (-2.2%)     588.50   589.75   574.00     26K
+  SRW  ZW SEP26    589.75  -11.75  (-1.9%)     600.00   600.50   584.75     63K
+  ..............................................................
+  HRW  KE JUL26    611.00   -9.50  (-1.5%)     618.00   619.00   605.75     12K
+  HRW  KE SEP26    619.50  -11.00  (-1.7%)     629.75   629.75   615.00     31K
+  ..............................................................
+  HRS  MW JUL26       N/A       N/A            N/A      N/A      N/A     N/A
+  HRS  MW SEP26       N/A       N/A            N/A      N/A      N/A     N/A
+  ..............................................................
+
+  SPREADS  (front month: JUL26)
+  ----------------------------------------
+  HRW premium over SRW:         -32.75 c/bu
+  HRS premium over SRW:         N/A
+  HRS premium over HRW:         N/A
+
+  CARRY  (JUL26 vs SEP26)
+  ----------------------------------------
+  SRW  ZW         SEP26 vs JUL26:  +11.50 c/bu
+  HRW  KE         SEP26 vs JUL26:  +8.50 c/bu
+  HRS  MW         N/A
+
+  CORRELATED MARKETS
+  ----------------------------------------
+  U.S. Dollar (DXY)           101.36  + -0.00  (+-0.0%) 
+  Crude Oil WTI                69.23  + -0.00  (+-0.0%) 
+
+  Data: yfinance / CME  |  Generated 2026-06-28 15:14:06
+================================================================
+
+Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260628.txt
