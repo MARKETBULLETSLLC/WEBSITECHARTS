@@ -7473,3 +7473,11 @@ error: failed to execute prompt script (exit code 1)
 fatal: could not read Username for 'https://github.com': No such file or directory
 2026-07-09 01:10:26,042  Updated chart detected: WHEAT_SRW_30Min.png
 2026-07-09 01:10:29,643  Committed: WHEAT_SRW_30Min.png
+2026-07-14 15:06:12,886  =======================================================
+2026-07-14 15:06:12,889  MarketBullets Auto-Commit Watcher started
+2026-07-14 15:06:12,889  Watching: c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\charts
+2026-07-14 15:06:12,889  Poll interval: 10s  |  Commit cooldown: 30s
+2026-07-14 15:06:12,889  Commits AND pushes automatically.
+2026-07-14 15:06:12,890  =======================================================
+2026-07-14 15:18:55,333  Updated chart detected: WHEAT_SRW_30Min.png
+2026-07-14 15:18:59,208  Committed: WHEAT_SRW_30Min.png
