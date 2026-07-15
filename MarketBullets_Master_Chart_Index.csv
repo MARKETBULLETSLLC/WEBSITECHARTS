@@ -1,78 +1,88 @@
-Row #,Category,Filename (ACTUAL),Chart Title,Timeframe,Status,Dashboard Location,Update Frequency,NOTES
-1,WHEATS,WHEAT_SRW_BOR_D.png,Box-o-Rox Daily,Daily,Published,Top,Daily,THE signal. SRW price vs 60MA
-2,WHEATS,WHEAT_SRW_30M.png,Chicago SRW 30-Minute,30-Min,Published,Top,Live/Daily,Session momentum
-3,WHEATS,WHEAT_SRW_D.png,Chicago SRW Daily,Daily,Published,Top,Daily,Primary chart
-4,WHEATS,WHEAT_SRW_W.png,Chicago SRW Weekly,Weekly,Published,Top,Weekly,Intermediate trend
-5,WHEATS,WHEAT_SRW_M.png,Chicago SRW Monthly,Monthly,Published,Top,Monthly,Seasonal patterns
-6,WHEATS,WHEAT_SRW_Special_M.png,Chicago SRW Monthly (Annotated),Monthly,Published,Top,Monthly,Pattern identification
-7,WHEATS,WHEAT_SRW_A.png,Chicago SRW Annual,Annual,Published,Top,Annually,50+ year view
-8,WHEATS,WHEAT_HRW_W.png,Kansas City HRW Weekly,Weekly,Published,Top,Weekly,HRW intermediate trend
-9,WHEATS,WHEAT_HRS_W.png,Minneapolis HRS Weekly,Weekly,Published,Top,Weekly,Spring wheat trend
-10,WHEATS,WHEAT_FWH_D.png,Paris 11% Milling Wheat Daily,Daily,Published,Top,Daily,European benchmark
-11,WHEATS,WHEAT_FWH_W.png,Paris 11% Milling Wheat Weekly,Weekly,Published,Top,Weekly,Global price discovery
-12,GRAINS,GRAIN_C_D.png,CBOT Corn Daily,Daily,Published,Mid,Daily,Feed substitution
-13,GRAINS,GRAIN_C_W.png,CBOT Corn Weekly,Weekly,Published,Mid,Weekly,Corn intermediate trend
-14,GRAINS,GRAIN_S_D.png,CBOT Soybeans Daily,Daily,Published,Mid,Daily,Row crop bellwether
-15,GRAINS,GRAIN_S_W.png,CBOT Soybeans Weekly,Weekly,Published,Mid,Weekly,Soybean intermediate trend
-16,SPD_INTRA,SPD_SRW_H_K.png,Chicago SRW Spread: Mar/May,Weekly,In Development,Mid,Daily,Near-term carry
-17,SPD_INTRA,SPD_SRW_K_N.png,Chicago SRW Spread: May/Jul,Weekly,Published,Mid,Daily,Pre-harvest carry signal
-18,SPD_INTRA,SPD_SRW_N_U.png,Chicago SRW Spread: Jul/Sep,Weekly,Published,Mid,Daily,Harvest pressure spread
-19,SPD_INTRA,SPD_SRW_U_Z.png,Chicago SRW Spread: Sep/Dec,Weekly,Published,Mid,Daily,Post-harvest carry
-20,SPD_INTRA,SPD_SRW_Z_H2.png,Chicago SRW Spread: Dec/Mar+1yr,Weekly,In Development,Mid,Daily,Winter carry
-21,SPD_INTRA,SPD_HRW_H_K.png,Kansas City HRW Spread: Mar/May,Weekly,In Development,Mid,Daily,HRW near-term carry
-22,SPD_INTRA,SPD_HRW_K_N.png,Kansas City HRW Spread: May/Jul,Weekly,Published,Mid,Daily,HRW pre-harvest
-23,SPD_INTRA,SPD_HRW_N_U.png,Kansas City HRW Spread: Jul/Sep,Weekly,Published,Mid,Daily,HRW harvest-to-fall
-24,SPD_INTRA,SPD_HRW_U_Z.png,Kansas City HRW Spread: Sep/Dec,Weekly,Published,Mid,Daily,HRW fall carry
-25,SPD_INTRA,SPD_HRW_Z_H2.png,Kansas City HRW Spread: Dec/Mar+1yr,Weekly,In Development,Mid,Daily,HRW winter carry
-26,SPD_INTRA,SPD_HRS_H_K.png,Minneapolis HRS Spread: Mar/May,Weekly,In Development,Mid,Daily,HRS near-term carry
-27,SPD_INTRA,SPD_HRS_K_N.png,Minneapolis HRS Spread: May/Jul,Weekly,Published,Mid,Daily,HRS pre-harvest
-28,SPD_INTRA,SPD_HRS_N_U.png,Minneapolis HRS Spread: Jul/Sep,Weekly,Published,Mid,Daily,HRS harvest-to-fall
-29,SPD_INTRA,SPD_HRS_U_Z.png,Minneapolis HRS Spread: Sep/Dec,Weekly,Published,Mid,Daily,HRS fall carry
-30,SPD_INTRA,SPD_HRS_Z_H2.png,Minneapolis HRS Spread: Dec/Mar+1yr,Weekly,In Development,Mid,Daily,HRS winter carry
-31,SPD_INTRA,SPD_FWH_H_K.png,Paris Milling Spread: Mar/May,Weekly,In Development,Mid,Daily,European pre-harvest
-32,SPD_INTRA,SPD_FWH_K_U.png,Paris Milling Spread: May/Sep,Weekly,Published,Mid,Daily,European pre-harvest carry
-33,SPD_INTRA,SPD_FWH_K2_U2.png,Paris Milling Spread: May+1/Sep+1,Weekly,Unknown,Mid,Unknown,EXTRA - undocumented variant
-34,SPD_INTRA,SPD_FWH_U_Z.png,Paris Milling Spread: Sep/Dec,Weekly,Published,Mid,Daily,European fall carry
-35,SPD_INTRA,SPD_FWH_Z_H2.png,Paris Milling Spread: Dec/Mar+1yr,Weekly,Published,Mid,Daily,European winter carry
-36,SPD_INTER,SPDINTER_SRW_HRW_M.png,Chicago SRW minus Kansas City HRW,Monthly,Published,Mid,Periodic,Class premium/discount
-37,SPD_INTER,SPDINTER_SRW_HRS_M.png,Chicago SRW minus Minneapolis HRS,Monthly,Published,Mid,Periodic,Protein premium
-38,SPD_INTER,SPDINTER_SRW_HRS_W.png,Chicago SRW minus Minneapolis HRS (Weekly),Weekly,In Development,Mid,Periodic,Protein premium weekly
-39,SPD_INTER,SPDINTER_HRS_HRW_M.png,Minneapolis HRS minus Kansas City HRW,Monthly,Published,Mid,Periodic,Quality differential
-40,SPD_INTER,SPDINTER_HRW_FWH_M.png,Kansas City HRW minus Paris Milling Wheat: Monthly,Monthly,Published,Mid,Periodic,HRW-FWH spread
-41,SPD_INTER,SPDINTER_HRW_FWH_W.png,Kansas City HRW minus Paris Milling Wheat: Weekly,Weekly,Published,Mid,Periodic,HRW-FWH spread weekly
-42,RATIO,RATIO_SRW_C_M.png,Wheat/Corn Ratio: Monthly,Monthly,Published,Bot,Periodic,Substitution economics
-43,RATIO,RATIO_S_C_W.png,Soybeans/Corn Ratio: Weekly,Weekly,Published,Bot,Periodic,Planting decision ratio
-44,COT,COT_SRW_W.png,Commitment of Traders: Chicago SRW,Weekly,Published,Mid,Weekly,Managed money positioning
-45,COT,COT_HRW_W.png,Commitment of Traders: Kansas City HRW,Weekly,Published,Mid,Weekly,HRW positioning
-46,BNDS,BNDS_2YR_TNOTE_W.png,2-Year T-Note Weekly,Weekly,Published,Bot,Weekly,Near-term rate expectations
-47,BNDS,BNDS_10YR_Price_Q.png,10-Year Treasury Bond Price: Quarterly,Quarterly,Published,Bot,Quarterly,Economic outlook gauge
-48,BNDS,BNDS_30YR_Price_Q.png,30-Year Treasury Bond Price: Quarterly,Quarterly,Published,Bot,Quarterly,Flight to quality signal
-49,BNDS,BNDS_30YR_Yield_Q.png,30-Year Treasury Bond Yield: Quarterly,Quarterly,Published,Bot,Quarterly,Long-term borrowing cost
-50,FX,FX_WD_D.png,Australian Dollar Daily,Daily,Published,Bot,Daily,Competitor currency (AUD)
-51,FX,FX_WD_M.png,Australian Dollars per US Dollar: Monthly,Monthly,Published,Bot,Monthly,Long-term AUD trend
-52,FX,FX_RUB_USD_M.png,Russian Rubles per US Dollar: Monthly,Monthly,Published,Bot,Monthly,Russian export competitiveness
-53,FX,FX_CNY_USD_M.png,Chinese Yuan per US Dollar: Monthly,Monthly,Published,Bot,Monthly,China trade dynamics
-54,FX,FX_RUB_CNY_W.png,Russian Rubles per Chinese Yuan: Weekly,Weekly,Published,Bot,Weekly,Black Sea-China corridor
-55,NRG,NRG_CL_M.png,Crude Oil: Monthly,Monthly,Published,Bot,Monthly,Energy trend
-56,NRG,NRG_CL_W.png,Crude Oil: Weekly,Weekly,Published,Bot,Weekly,Energy intermediate trend
-57,NRG,NRG_HO_D.png,Diesel/Heating Oil Daily,Daily,Published,Bot,Daily,Input cost - immediate
-58,NRG,NRG_NG_M.png,Natural Gas: Henry Hub Monthly,Monthly,Published,Bot,Monthly,Fertilizer feedstock
-59,METL,METL_GC_D.png,Gold (COMEX) Daily,Daily,Published,Bot,Daily,Risk sentiment - immediate
-60,METL,METL_GC_M.png,Gold (COMEX) Monthly,Monthly,Published,Bot,Monthly,Long-term risk gauge
-61,METL,METL_SI_D.png,Silver (COMEX) Daily,Daily,Published,Bot,Daily,Industrial/monetary hybrid
-62,METL,METL_HG_M.png,Copper (COMEX) Monthly,Monthly,Published,Bot,Monthly,Dr. Copper - economist's metal
-63,IDX,IDX_DXY_W.png,US Dollar Index Weekly,Weekly,Published,Bot,Weekly,Currency impact
-64,IDX,IDX_DXY_M.png,US Dollar Index Monthly,Monthly,In Development,Bot,Monthly,Dollar long-term trend
-65,IDX,IDX_BDI_W.png,Baltic Dry Index (Bulk Freight) Weekly,Weekly,Published,Bot,Weekly,Shipping costs
-66,IDX,IDX_ES_D.png,S&P 500 Index Daily,Daily,Published,Bot,Daily,Risk appetite
-67,IDX,IDX_ES_M.png,S&P 500 Index Monthly,Monthly,Published,Bot,Monthly,Equity trend
-68,IDX,IDX_GSCI_W.png,Goldman Sachs Commodity Index Weekly,Weekly,Published,Bot,Weekly,Commodity complex barometer
-69,FIN,FIN_DE_D.png,John Deere & Co. Daily,Daily,Published,Bot,Daily,Farm economy bellwether
-70,FIN,FIN_HD_D.png,The Home Depot Daily,Daily,Published,Bot,Daily,Consumer strength proxy
-71,FIN,FIN_CAT_D.png,Caterpillar Inc. Daily,Daily,In Development,Bot,Daily,Agricultural equipment sector - AWAITING EXPORT
-72,MISC,MISC_CC_M.png,Cocoa (ICE) Monthly,Monthly,Published,Bot,Monthly,Soft commodity / global demand proxy
-
-,TOTAL ACTUAL FILES:,72,,,,,,
-,Published:,61,,,,,,
-,In Development:,10,,,,,,
-,Unknown:,1,,,,,,
+﻿Row #,Category,Filename,Chart Title,SNIPPET,Timeframe,Status,NOTES,Dashboard Location,Update Frequency
+1,WHEATS,WHEAT_SRW_BOR_D.png,Box-o-Rox Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,THE signal. SRW price vs 60MA â€“ drives the sell/suspend decision for every tranche.,Top,Daily
+2,WHEATS,WHEAT_SRW_30Min.png,Chicago SRW 30-Minute,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",30-Min,Published,RENAMED: was WHEAT_SRW_30M.png — updated to WHEAT_SRW_30Min.png to match new naming convention.,Top,Live/Daily
+3,WHEATS,WHEAT_SRW_D.png,Chicago SRW Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,"Primary chart. Trend direction, moving averages, and daily close relative to BoR triggers.",Top,Daily
+4,WHEATS,WHEAT_SRW_W.png,Chicago SRW Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Intermediate trend. Key for timing scale-in sales and identifying seasonal turning points.,Top,Weekly
+5,WHEATS,WHEAT_SRW_M.png,Chicago SRW Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Seasonal patterns and longer-term support/resistance levels. Context for annual marketing plan.,Top,Monthly
+6,WHEATS,WHEAT_SRW_Special_M.png,Chicago SRW Monthly (Annotated),"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,"Longer-term pattern identification â€“ head-and-shoulders, channels, multi-year formations.",Top,Monthly
+7,WHEATS,WHEAT_SRW_A.png,Chicago SRW Annual,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Annual,Published,"The 50+ year view. Inflation-adjusted context, generational price cycles, and macro perspective.",Top,Annually
+8,WHEATS,WHEAT_HRW_D.png,Kansas City HRW Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRW_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,"HRW Daily — chart in development, not yet exported to repo.",Top,Daily
+9,WHEATS,WHEAT_HRW_W.png,Kansas City HRW Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRW_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Intermediate HRW trend. Relative strength vs SRW signals class rotation.,Top,Weekly
+10,WHEATS,WHEAT_HRW_M.png,Kansas City HRW Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRW_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,"HRW Monthly — chart in development, not yet exported to repo.",Top,Monthly
+11,WHEATS,WHEAT_HRS_D.png,Minneapolis HRS Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRS_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,"HRS Daily — chart in development, not yet exported to repo.",Top,Daily
+12,WHEATS,WHEAT_HRS_W.png,Minneapolis HRS Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRS_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRS intermediate trend. Spring planting window creates unique seasonal volatility.,Top,Weekly
+13,WHEATS,WHEAT_HRS_M.png,Minneapolis HRS Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_HRS_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,"HRS Monthly — chart in development, not yet exported to repo.",Top,Monthly
+14,WHEATS,WHEAT_FWH_D.png,Paris 11% Milling Wheat Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,European wheat benchmark. Black Sea export competition and EU crop conditions.,Top,Daily
+15,WHEATS,WHEAT_FWH_W.png,Paris 11% Milling Wheat Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Global price discovery. Correlation to Chicago reveals export competitiveness shifts.,Top,Weekly
+16,WHEATS,WHEAT_FWH_M.png,Paris 11% Milling Wheat Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_FWH_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,"FWH Monthly — chart in development, not yet exported to repo.",Top,Monthly
+17,GRAINS,GRAIN_C_D.png,CBOT Corn Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_C_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Feed substitution and row crop bellwether.,Mid,Daily
+18,GRAINS,GRAIN_C_W.png,CBOT Corn Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_C_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Corn intermediate trend.,Mid,Weekly
+19,GRAINS,GRAIN_S_D.png,CBOT Soybeans Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_S_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Row crop bellwether.,Mid,Daily
+20,GRAINS,GRAIN_S_W.png,CBOT Soybeans Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/GRAIN_S_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Soybean intermediate trend.,Mid,Weekly
+21,SPD_INTRA,SPD_SRW_H_K.png,Chicago SRW Spread: Mar/May,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_H_K.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Near-term carry.,Mid,Daily
+22,SPD_INTRA,SPD_SRW_K_N.png,Chicago SRW Spread: May/Jul,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_K_N.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Pre-harvest carry signal.,Mid,Daily
+23,SPD_INTRA,SPD_SRW_N_U.png,Chicago SRW Spread: Jul/Sep,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_N_U.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Harvest pressure spread.,Mid,Daily
+24,SPD_INTRA,SPD_SRW_U_Z.png,Chicago SRW Spread: Sep/Dec,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_U_Z.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Post-harvest carry.,Mid,Daily
+25,SPD_INTRA,SPD_SRW_Z_H2.png,Chicago SRW Spread: Dec/Mar+1yr,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_SRW_Z_H2.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Winter carry.,Mid,Daily
+26,SPD_INTRA,SPD_HRW_H_K.png,Kansas City HRW Spread: Mar/May,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_H_K.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRW near-term carry.,Mid,Daily
+27,SPD_INTRA,SPD_HRW_K_N.png,Kansas City HRW Spread: May/Jul,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_K_N.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRW pre-harvest.,Mid,Daily
+28,SPD_INTRA,SPD_HRW_N_U.png,Kansas City HRW Spread: Jul/Sep,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_N_U.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRW harvest-to-fall.,Mid,Daily
+29,SPD_INTRA,SPD_HRW_U_Z.png,Kansas City HRW Spread: Sep/Dec,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_U_Z.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRW fall carry.,Mid,Daily
+30,SPD_INTRA,SPD_HRW_Z_H2.png,Kansas City HRW Spread: Dec/Mar+1yr,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRW_Z_H2.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRW winter carry.,Mid,Daily
+31,SPD_INTRA,SPD_HRS_H_K.png,Minneapolis HRS Spread: Mar/May,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_H_K.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRS near-term carry.,Mid,Daily
+32,SPD_INTRA,SPD_HRS_K_N.png,Minneapolis HRS Spread: May/Jul,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_K_N.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRS pre-harvest.,Mid,Daily
+33,SPD_INTRA,SPD_HRS_N_U.png,Minneapolis HRS Spread: Jul/Sep,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_N_U.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRS harvest-to-fall.,Mid,Daily
+34,SPD_INTRA,SPD_HRS_U_Z.png,Minneapolis HRS Spread: Sep/Dec,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_U_Z.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRS fall carry.,Mid,Daily
+35,SPD_INTRA,SPD_HRS_Z_H2.png,Minneapolis HRS Spread: Dec/Mar+1yr,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_HRS_Z_H2.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRS winter carry.,Mid,Daily
+36,SPD_INTRA,SPD_FWH_H_K.png,Paris Milling Spread: Mar/May,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_H_K.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,European pre-harvest.,Mid,Daily
+37,SPD_INTRA,SPD_FWH_K_U.png,Paris Milling Spread: May/Sep,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K_U.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,European pre-harvest carry.,Mid,Daily
+38,SPD_INTRA,SPD_FWH_K2_U2.png,Paris Milling Spread: May+1/Sep+1,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_K2_U2.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Unknown,EXTRA â€“ undocumented variant. Needs review.,Mid,Unknown
+39,SPD_INTRA,SPD_FWH_U_Z.png,Paris Milling Spread: Sep/Dec,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_U_Z.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,European fall carry.,Mid,Daily
+40,SPD_INTRA,SPD_FWH_Z_H2.png,Paris Milling Spread: Dec/Mar+1yr,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPD_FWH_Z_H2.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,European winter carry.,Mid,Daily
+41,SPD_INTER,SPDINTER_SRW_HRW_M.png,Chicago SRW vs Kansas City HRW,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRW_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Class premium/discount.,Mid,Periodic
+42,SPD_INTER,SPDINTER_SRW_HRS_M.png,Chicago SRW vs Minneapolis HRS,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Protein premium.,Mid,Periodic
+43,SPD_INTER,SPDINTER_SRW_HRS_W.png,Chicago SRW vs Minneapolis HRS (Weekly),"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_SRW_HRS_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,In Development,Protein premium â€“ weekly.,Mid,Periodic
+44,SPD_INTER,SPDINTER_HRS_HRW_M.png,Minneapolis HRS vs Kansas City HRW,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRS_HRW_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Quality differential.,Mid,Periodic
+45,SPD_INTER,SPDINTER_HRW_FWH_W.png,Paris Milling vs Kansas City HRW (Weekly),"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,RENAMED: was SPDINTER_FWH_HRW_W.png — corrected to match repo filename convention (HRW before FWH).,Mid,Periodic
+46,SPD_INTER,SPDINTER_HRW_FWH_M.png,Paris Milling vs Kansas City HRW (Monthly),"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/SPDINTER_HRW_FWH_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,RENAMED: was SPDINTER_FWH_HRW_M.png — corrected to match repo filename convention (HRW before FWH). File confirmed in repo.,Mid,Periodic
+47,RATIO,RATIO_SRW_C_M.png,Wheat/Corn Ratio: Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_SRW_C_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Substitution economics.,Bot,Periodic
+48,RATIO,RATIO_S_C_W.png,Soybeans/Corn Ratio: Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/RATIO_S_C_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Planting decision ratio.,Bot,Periodic
+49,COT,COT_SRW_W.png,Commitment of Traders: Chicago SRW,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/COT_SRW_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Managed money positioning.,Mid,Weekly
+50,COT,COT_HRW_W.png,Commitment of Traders: Kansas City HRW,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/COT_HRW_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,HRW positioning.,Mid,Weekly
+51,BNDS,BNDS_2YR_TNOTE_W.png,2-Year T-Note Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_2YR_TNOTE_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Near-term rate expectations.,Bot,Weekly
+52,BNDS,BNDS_10YR_Price_Q.png,10-Year Treasury Bond Price: Quarterly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_10YR_Price_Q.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Quarterly,Published,Economic outlook gauge.,Bot,Quarterly
+53,BNDS,BNDS_30YR_Price_Q.png,30-Year Treasury Bond Price: Quarterly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_30YR_Price_Q.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Quarterly,Published,Flight to quality signal.,Bot,Quarterly
+54,BNDS,BNDS_30YR_Yield_Q.png,30-Year Treasury Bond Yield: Quarterly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/BNDS_30YR_Yield_Q.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Quarterly,Published,Long-term borrowing cost.,Bot,Quarterly
+55,FX,FX_WD_D.png,Australian Dollar Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_WD_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Competitor currency (AUD). CORRECTED: prior index had FX_USD_WD_D.png â€“ repo filename is FX_WD_D.png.,Bot,Daily
+56,FX,FX_WD_M.png,Australian Dollar Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_WD_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Long-term AUD trend. CORRECTED: prior index had FX_USD_WD_M.png â€“ repo filename is FX_WD_M.png.,Bot,Monthly
+57,FX,FX_RUB_USD_M.png,Russian Rubles per US Dollar: Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_RUB_USD_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Russian export competitiveness.,Bot,Monthly
+58,FX,FX_CNY_USD_M.png,Chinese Yuan per US Dollar: Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_CNY_USD_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,China trade dynamics.,Bot,Monthly
+59,FX,FX_RUB_CNY_W.png,Russian Rubles per Chinese Yuan: Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FX_RUB_CNY_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Black Sea-China corridor.,Bot,Weekly
+60,NRG,NRG_CL_M.png,Crude Oil: Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_CL_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Energy trend.,Bot,Monthly
+61,NRG,NRG_CL_W.png,Crude Oil: Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_CL_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Energy trend â€“ weekly. ADDED: in repo but absent from prior indexes.,Bot,Weekly
+62,NRG,NRG_HO_D.png,Diesel/Heating Oil Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_HO_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Input cost â€“ immediate.,Bot,Daily
+63,NRG,NRG_NG_M.png,Natural Gas: Henry Hub Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/NRG_NG_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Fertilizer feedstock.,Bot,Monthly
+64,METL,METL_GC_D.png,Gold (COMEX) Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_GC_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Risk sentiment â€“ immediate.,Bot,Daily
+65,METL,METL_GC_M.png,Gold (COMEX) Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_GC_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Long-term risk gauge.,Bot,Monthly
+66,METL,METL_SI_D.png,Silver (COMEX) Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_SI_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Industrial/monetary hybrid.,Bot,Daily
+67,METL,METL_HG_M.png,Copper (COMEX) Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/METL_HG_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Dr. Copper â€“ economist's metal.,Bot,Monthly
+68,IDX,IDX_DXY_W.png,US Dollar Index Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_DXY_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Currency impact.,Bot,Weekly
+69,IDX,IDX_DXY_M.png,US Dollar Index Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_DXY_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Dollar long-term trend. STATUS UPDATED: file confirmed in repo â€“ was incorrectly marked In Development.,Bot,Monthly
+70,IDX,IDX_BDI_W.png,Baltic Dry Index (Bulk Freight) Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_BDI_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Shipping costs.,Bot,Weekly
+71,IDX,IDX_ES_D.png,S&P 500 Index Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_ES_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Risk appetite.,Bot,Daily
+72,IDX,IDX_ES_M.png,S&P 500 Index Monthly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_ES_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Published,Equity trend.,Bot,Monthly
+73,IDX,IDX_GSCI_W.png,Goldman Sachs Commodity Index Weekly,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/IDX_GSCI_W.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Weekly,Published,Commodity complex barometer.,Bot,Weekly
+74,FIN,FIN_DE_D.png,John Deere & Co. Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_DE_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Farm economy bellwether.,Bot,Daily
+75,FIN,FIN_HD_D.png,The Home Depot Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_HD_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,Consumer strength proxy.,Bot,Daily
+76,FIN,FIN_ADM_D.png,Archer-Daniels-Midland Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_ADM_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,ADDED: grain merchandising bellwether.,Bot,Daily
+77,FIN,FIN_BG_D.png,Bunge Global Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_BG_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,ADDED: global grain origination proxy.,Bot,Daily
+78,FIN,FIN_CAT_D.png,Caterpillar Inc. Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_CAT_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,ADDED: infrastructure / farm equipment demand proxy.,Bot,Daily
+79,FIN,FIN_CHSCP_D.png,CHS Inc. Preferred Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_CHSCP_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,ADDED: cooperative grain handler equity signal.,Bot,Daily
+80,FIN,FIN_UNP_D.png,Union Pacific Railroad Daily,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/FIN_UNP_D.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Daily,Published,ADDED: grain rail transport bellwether.,Bot,Daily
+82,MISC,MISC_CC_M.png,Unknown/Crypto,"<img src=""https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/MISC_CC_M.png"" style=""width:100%; display:block; margin:0; padding:0;"" />",Monthly,Unknown,EXTRA â€“ needs documentation. Identify and assign category.,Unknown,Unknown
+,,,,,,,,,
+,TOTAL:,81,,,,,,,
+,In Development:,1,,,,,,,
+,Published:,78,,,,,,,
+,Unknown:,2,,,,,,,
+,CSV regenerated from xlsx + live charts/ on 2026-07-14,,,,,,,,
