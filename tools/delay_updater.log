@@ -3308,3 +3308,21 @@
 2026-07-18 18:12:35,536  delay_updater: already ran today — skipping
 2026-07-18 18:13:41,188  delay_updater: already ran today — skipping
 2026-07-18 18:14:16,781  delay_updater: already ran today — skipping
+2026-07-18 18:14:44,291  delay_updater: already ran today — skipping
+2026-07-18 18:16:32,482  delay_updater: already ran today — skipping
+2026-07-19 12:54:45,589  delay_updater: updating 10daydelay/ → charts from 2026-07-06
+2026-07-19 12:54:48,226    no history found for COT_SRW_W.png — leaving existing file
+2026-07-19 12:54:56,794    no history found for IDX_DXY_M.png — leaving existing file
+2026-07-19 12:54:59,463    no history found for METL_GC_M.png — leaving existing file
+2026-07-19 12:55:01,694    no history found for NRG_CL_D.png — leaving existing file
+2026-07-19 12:55:02,596    no history found for NRG_CL_W.png — leaving existing file
+2026-07-19 12:55:04,076    no history found for RATIO_S_C_W.png — leaving existing file
+2026-07-19 12:55:10,258    no history found for SPD_HRW_K_N.png — leaving existing file
+2026-07-19 12:55:14,186    no history found for SPDINTER_HRS_HRW_M.png — leaving existing file
+2026-07-19 12:55:18,232    no history found for WHEAT_HRS_M.png — leaving existing file
+2026-07-19 12:55:20,379    no history found for WHEAT_SRW_30Min.png — leaving existing file
+2026-07-19 12:55:23,036    wrote 73/83 delayed charts
+2026-07-19 12:55:23,432  delay_updater: already ran today — skipping
+2026-07-19 12:55:23,456    committed: Auto-update: 10daydelay/ charts from 2026-07-06 [run 2026-07-19]
+2026-07-19 12:55:39,676  delay_updater: already ran today — skipping
+2026-07-19 12:57:05,278  delay_updater: already ran today — skipping
