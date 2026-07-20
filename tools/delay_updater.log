@@ -3328,3 +3328,55 @@
 2026-07-19 12:57:05,278  delay_updater: already ran today — skipping
 2026-07-19 15:00:15,672  delay_updater: already ran today — skipping
 2026-07-19 22:47:21,320  delay_updater: already ran today — skipping
+2026-07-19 23:02:22,850  delay_updater: already ran today — skipping
+2026-07-20 00:33:35,023  delay_updater: updating 10daydelay/ → charts from 2026-07-06
+2026-07-20 00:33:37,996    no history found for COT_SRW_W.png — leaving existing file
+2026-07-20 00:33:47,390    no history found for IDX_DXY_M.png — leaving existing file
+2026-07-20 00:33:50,386    no history found for METL_GC_M.png — leaving existing file
+2026-07-20 00:33:53,358    no history found for NRG_CL_D.png — leaving existing file
+2026-07-20 00:33:54,236    no history found for NRG_CL_W.png — leaving existing file
+2026-07-20 00:33:55,576    no history found for RATIO_S_C_W.png — leaving existing file
+2026-07-20 00:34:01,869    no history found for SPD_HRW_K_N.png — leaving existing file
+2026-07-20 00:34:05,824    no history found for SPDINTER_HRS_HRW_M.png — leaving existing file
+2026-07-20 00:34:09,944    no history found for WHEAT_HRS_M.png — leaving existing file
+2026-07-20 00:34:12,529    no history found for WHEAT_SRW_30Min.png — leaving existing file
+2026-07-20 00:34:15,306    wrote 73/83 delayed charts
+2026-07-20 00:34:15,669  delay_updater: already ran today — skipping
+2026-07-20 00:34:15,720    committed: Auto-update: 10daydelay/ charts from 2026-07-06 [run 2026-07-20]
+2026-07-20 00:34:31,944  delay_updater: already ran today — skipping
+2026-07-20 00:34:37,660  delay_updater: already ran today — skipping
+2026-07-20 00:34:43,133  delay_updater: already ran today — skipping
+2026-07-20 00:34:49,518  delay_updater: already ran today — skipping
+2026-07-20 00:35:05,123  delay_updater: already ran today — skipping
+2026-07-20 00:35:10,741  delay_updater: already ran today — skipping
+2026-07-20 00:35:26,226  delay_updater: already ran today — skipping
+2026-07-20 00:35:31,827  delay_updater: already ran today — skipping
+2026-07-20 00:36:28,789  delay_updater: already ran today — skipping
+2026-07-20 00:36:44,343  delay_updater: already ran today — skipping
+2026-07-20 00:36:59,880  delay_updater: already ran today — skipping
+2026-07-20 00:38:15,535  delay_updater: already ran today — skipping
+2026-07-20 00:38:31,140  delay_updater: already ran today — skipping
+2026-07-20 00:38:56,890  delay_updater: already ran today — skipping
+2026-07-20 00:39:22,828  delay_updater: already ran today — skipping
+2026-07-20 00:39:38,721  delay_updater: already ran today — skipping
+2026-07-20 00:39:54,389  delay_updater: already ran today — skipping
+2026-07-20 00:40:10,094  delay_updater: already ran today — skipping
+2026-07-20 00:40:25,782  delay_updater: already ran today — skipping
+2026-07-20 00:41:01,398  delay_updater: already ran today — skipping
+2026-07-20 00:41:27,087  delay_updater: already ran today — skipping
+2026-07-20 00:41:42,744  delay_updater: already ran today — skipping
+2026-07-20 00:42:28,374  delay_updater: already ran today — skipping
+2026-07-20 00:43:03,936  delay_updater: already ran today — skipping
+2026-07-20 00:43:29,479  delay_updater: already ran today — skipping
+2026-07-20 00:43:55,079  delay_updater: already ran today — skipping
+2026-07-20 00:44:30,651  delay_updater: already ran today — skipping
+2026-07-20 00:44:46,125  delay_updater: already ran today — skipping
+2026-07-20 00:45:01,670  delay_updater: already ran today — skipping
+2026-07-20 00:45:17,682  delay_updater: already ran today — skipping
+2026-07-20 00:45:33,237  delay_updater: already ran today — skipping
+2026-07-20 00:45:38,898  delay_updater: already ran today — skipping
+2026-07-20 00:45:54,476  delay_updater: already ran today — skipping
+2026-07-20 00:46:00,077  delay_updater: already ran today — skipping
+2026-07-20 00:46:15,931  delay_updater: already ran today — skipping
+2026-07-20 00:47:31,597  delay_updater: already ran today — skipping
+2026-07-20 00:48:07,268  delay_updater: already ran today — skipping
