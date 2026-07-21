@@ -3450,3 +3450,49 @@
 2026-07-20 20:27:04,288  delay_updater: already ran today — skipping
 2026-07-20 20:28:00,005  delay_updater: already ran today — skipping
 2026-07-20 20:28:36,036  delay_updater: already ran today — skipping
+2026-07-20 20:29:03,378  delay_updater: already ran today — skipping
+2026-07-21 00:57:01,479  delay_updater: updating 10daydelay/ → charts from 2026-07-07
+2026-07-21 00:57:04,640    no history found for COT_SRW_W.png — leaving existing file
+2026-07-21 00:57:28,794    no history found for SPD_HRW_K_N.png — leaving existing file
+2026-07-21 00:57:33,342    no history found for SPDINTER_HRS_HRW_M.png — leaving existing file
+2026-07-21 00:57:43,554    wrote 80/83 delayed charts
+2026-07-21 00:57:44,008  delay_updater: already ran today — skipping
+2026-07-21 00:57:44,071    committed: Auto-update: 10daydelay/ charts from 2026-07-07 [run 2026-07-21]
+2026-07-21 00:58:00,956  delay_updater: already ran today — skipping
+2026-07-21 00:58:06,647  delay_updater: already ran today — skipping
+2026-07-21 00:59:32,279  delay_updater: already ran today — skipping
+2026-07-21 00:59:47,895  delay_updater: already ran today — skipping
+2026-07-21 01:00:03,429  delay_updater: already ran today — skipping
+2026-07-21 01:00:19,389  delay_updater: already ran today — skipping
+2026-07-21 01:00:55,080  delay_updater: already ran today — skipping
+2026-07-21 01:01:40,727  delay_updater: already ran today — skipping
+2026-07-21 01:01:56,381  delay_updater: already ran today — skipping
+2026-07-21 01:02:11,997  delay_updater: already ran today — skipping
+2026-07-21 01:02:37,912  delay_updater: already ran today — skipping
+2026-07-21 01:02:53,589  delay_updater: already ran today — skipping
+2026-07-21 01:03:39,078  delay_updater: already ran today — skipping
+2026-07-21 01:04:04,773  delay_updater: already ran today — skipping
+2026-07-21 01:08:00,647  delay_updater: already ran today — skipping
+2026-07-21 01:09:36,349  delay_updater: already ran today — skipping
+2026-07-21 01:10:12,081  delay_updater: already ran today — skipping
+2026-07-21 01:10:57,968  delay_updater: already ran today — skipping
+2026-07-21 01:11:43,561  delay_updater: already ran today — skipping
+2026-07-21 01:11:59,350  delay_updater: already ran today — skipping
+2026-07-21 01:12:45,218  delay_updater: already ran today — skipping
+2026-07-21 01:13:20,884  delay_updater: already ran today — skipping
+2026-07-21 01:13:56,506  delay_updater: already ran today — skipping
+2026-07-21 01:14:52,189  delay_updater: already ran today — skipping
+2026-07-21 01:15:57,882  delay_updater: already ran today — skipping
+2026-07-21 01:16:14,131  delay_updater: already ran today — skipping
+2026-07-21 01:16:29,796  delay_updater: already ran today — skipping
+2026-07-21 01:19:56,079  delay_updater: already ran today — skipping
+2026-07-21 01:20:31,937  delay_updater: already ran today — skipping
+2026-07-21 01:21:07,869  delay_updater: already ran today — skipping
+2026-07-21 01:21:33,800  delay_updater: already ran today — skipping
+2026-07-21 01:21:49,493  delay_updater: already ran today — skipping
+2026-07-21 01:22:05,224  delay_updater: already ran today — skipping
+2026-07-21 01:25:01,208  delay_updater: already ran today — skipping
+2026-07-21 01:25:27,158  delay_updater: already ran today — skipping
+2026-07-21 01:31:13,688  delay_updater: already ran today — skipping
+2026-07-21 01:32:09,445  delay_updater: already ran today — skipping
+2026-07-21 01:32:45,013  delay_updater: already ran today — skipping
