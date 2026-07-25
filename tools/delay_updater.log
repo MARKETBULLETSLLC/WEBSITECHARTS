@@ -3942,3 +3942,13 @@
 2026-07-24 19:49:50,220  delay_updater: already ran today — skipping
 2026-07-24 20:17:10,051  delay_updater: already ran today — skipping
 2026-07-24 20:17:35,702  delay_updater: already ran today — skipping
+2026-07-24 20:58:54,161  delay_updater: already ran today — skipping
+2026-07-25 01:03:14,097  delay_updater: updating 10daydelay/ → charts from 2026-07-13
+2026-07-25 01:03:49,301    no history found for SPD_HRW_K_N.png — leaving existing file
+2026-07-25 01:04:07,017    wrote 81/82 delayed charts
+2026-07-25 01:04:07,500  delay_updater: already ran today — skipping
+2026-07-25 01:04:07,691    committed: Auto-update: 10daydelay/ charts from 2026-07-13 [run 2026-07-25]
+2026-07-25 01:04:29,843  delay_updater: already ran today — skipping
+2026-07-25 13:17:03,329  delay_updater: already ran today — skipping
+2026-07-25 13:17:39,440  delay_updater: already ran today — skipping
+2026-07-25 13:18:15,096  delay_updater: already ran today — skipping
