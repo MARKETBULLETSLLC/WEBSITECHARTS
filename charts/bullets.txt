@@ -2,5 +2,5 @@ IDX_DXY_W.png
 NRG_CL_W.png
 NRG_HO_D.png
 GRAIN_C_D.png
-GREAIN_C_W.png
+GRAIN_C_M.png
 BNDS_2YR_TNOTE_W.png
