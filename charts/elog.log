@@ -57,3 +57,4 @@
 [Jun 26 16:15:31] t=[31816] 10-02-2019 tradeServerConnection=0 requestCount 1 responseCount 1
 [Jun 26 16:15:33] t=[31816] 10-02-2019 tradeServerConnection=0 requestCount 0 responseCount 0
 [Jun 26 16:15:33] t=[31816] 10-02-2019 tradeServerConnection=0 requestCount 1 responseCount 0
+[Aug 19 00:39:08] t=[29232] 10-02-2019 RequestManager::Request: caught theWhere = 1
