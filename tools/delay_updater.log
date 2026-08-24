@@ -5853,3 +5853,8 @@
 2026-08-21 18:19:12,144  delay_updater: already ran today — skipping
 2026-08-21 18:23:16,128  delay_updater: already ran today — skipping
 2026-08-21 18:23:51,907  delay_updater: already ran today — skipping
+2026-08-21 18:24:33,063  delay_updater: already ran today — skipping
+2026-08-23 21:28:08,757  delay_updater: updating 10daydelay/ → charts from 2026-08-10
+2026-08-23 21:29:00,438    wrote 82/82 delayed charts
+2026-08-23 21:29:01,028  delay_updater: already ran today — skipping
+2026-08-23 21:29:01,198    committed: Auto-update: 10daydelay/ charts from 2026-08-10 [run 2026-08-23]
