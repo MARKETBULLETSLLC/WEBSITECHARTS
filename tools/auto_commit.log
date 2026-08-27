@@ -16346,3 +16346,159 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 2026-08-26 18:11:31,896  Updated chart detected: FX_WD_D.png
 2026-08-26 18:11:35,437  Committed: FX_WD_D.png
 2026-08-26 18:11:37,731  Pushed: FX_WD_D.png
+2026-08-26 18:12:47,819  Updated chart detected: IDX_BDI_W.png
+2026-08-26 18:12:51,331  Committed: IDX_BDI_W.png
+2026-08-26 18:12:53,650  Pushed: IDX_BDI_W.png
+2026-08-26 18:13:13,672  Updated chart detected: BNDS_30YR_Price_Q.png
+2026-08-26 18:13:17,237  Committed: BNDS_30YR_Price_Q.png
+2026-08-26 18:13:19,643  Pushed: BNDS_30YR_Price_Q.png
+2026-08-26 18:13:39,666  Updated chart detected: MISC_CC_M.png
+2026-08-26 18:13:43,174  Committed: MISC_CC_M.png
+2026-08-26 18:13:45,427  Pushed: MISC_CC_M.png
+2026-08-26 18:42:17,327  Updated chart detected: SPDINTER_SRW_HRW_M.png
+2026-08-26 18:42:20,831  Committed: SPDINTER_SRW_HRW_M.png
+2026-08-26 18:42:23,431  Pushed: SPDINTER_SRW_HRW_M.png
+2026-08-26 18:42:33,442  Updated chart detected: SPDINTER_SRW_HRS_M.png
+2026-08-26 18:42:37,042  Committed: SPDINTER_SRW_HRS_M.png
+2026-08-26 18:42:39,503  Pushed: SPDINTER_SRW_HRS_M.png
+2026-08-26 18:44:49,649  Updated chart detected: SPDINTER_HRS_HRW_M.png
+2026-08-26 18:44:53,181  Committed: SPDINTER_HRS_HRW_M.png
+2026-08-26 18:44:55,547  Pushed: SPDINTER_HRS_HRW_M.png
+2026-08-26 18:45:05,562  Updated chart detected: RATIO_SRW_C_M.png
+2026-08-26 18:45:09,074  Committed: RATIO_SRW_C_M.png
+2026-08-26 18:45:11,357  Pushed: RATIO_SRW_C_M.png
+2026-08-26 18:46:01,418  Updated chart detected: RATIO_S_C_W.png
+2026-08-26 18:46:04,900  Committed: RATIO_S_C_W.png
+2026-08-26 18:46:07,123  Pushed: RATIO_S_C_W.png
+2026-08-26 18:46:47,166  Updated chart detected: SPDINTER_HRW_FWH_W.png
+2026-08-26 18:46:50,666  Committed: SPDINTER_HRW_FWH_W.png
+2026-08-26 18:46:52,960  Pushed: SPDINTER_HRW_FWH_W.png
+2026-08-26 18:47:12,983  Updated chart detected: SPDINTER_HRW_FWH_M.png
+2026-08-26 18:47:16,469  Committed: SPDINTER_HRW_FWH_M.png
+2026-08-26 18:47:18,807  Pushed: SPDINTER_HRW_FWH_M.png
+2026-08-26 18:48:48,913  Updated chart detected: FIN_DE_D.png
+2026-08-26 18:48:52,399  Committed: FIN_DE_D.png
+2026-08-26 18:48:54,797  Pushed: FIN_DE_D.png
+2026-08-26 18:49:44,859  Updated chart detected: FIN_HD_D.png
+2026-08-26 18:49:48,406  Committed: FIN_HD_D.png
+2026-08-26 18:49:50,760  Pushed: FIN_HD_D.png
+2026-08-26 18:50:30,806  Updated chart detected: FIN_HD_D.png
+2026-08-26 18:50:34,336  Committed: FIN_HD_D.png
+2026-08-26 18:50:36,823  Pushed: FIN_HD_D.png
+2026-08-26 19:02:37,658  Updated chart detected: SPD_SRW_U_Z.png
+2026-08-26 19:02:41,160  Committed: SPD_SRW_U_Z.png
+2026-08-26 19:02:43,565  Pushed: SPD_SRW_U_Z.png
+2026-08-26 19:03:13,597  Updated chart detected: SPD_SRW_Z_H2.png
+2026-08-26 19:03:17,094  Committed: SPD_SRW_Z_H2.png
+2026-08-26 19:03:19,441  Pushed: SPD_SRW_Z_H2.png
+2026-08-26 19:03:49,482  Updated chart detected: SPD_SRW_H_K.png
+2026-08-26 19:03:52,943  Committed: SPD_SRW_H_K.png
+2026-08-26 19:03:55,164  Pushed: SPD_SRW_H_K.png
+2026-08-26 19:04:25,201  Updated chart detected: SPD_HRW_U_Z.png
+2026-08-26 19:04:28,679  Committed: SPD_HRW_U_Z.png
+2026-08-26 19:04:31,052  Pushed: SPD_HRW_U_Z.png
+2026-08-26 19:04:51,075  Updated chart detected: SPD_HRW_Z_H2.png
+2026-08-26 19:04:54,541  Committed: SPD_HRW_Z_H2.png
+2026-08-26 19:04:56,877  Pushed: SPD_HRW_Z_H2.png
+2026-08-26 19:05:06,890  Updated chart detected: SPD_HRW_H_K.png
+2026-08-26 19:05:10,394  Committed: SPD_HRW_H_K.png
+2026-08-26 19:05:12,760  Pushed: SPD_HRW_H_K.png
+2026-08-26 19:06:02,815  Updated chart detected: SPD_HRS_U_Z.png
+2026-08-26 19:06:06,364  Committed: SPD_HRS_U_Z.png
+2026-08-26 19:06:08,724  Pushed: SPD_HRS_U_Z.png
+2026-08-26 19:06:28,747  Updated chart detected: SPD_HRS_Z_H2.png
+2026-08-26 19:06:32,220  Committed: SPD_HRS_Z_H2.png
+2026-08-26 19:06:34,580  Pushed: SPD_HRS_Z_H2.png
+2026-08-26 19:06:54,603  Updated chart detected: SPD_HRS_H_K.png
+2026-08-26 19:06:58,098  Committed: SPD_HRS_H_K.png
+2026-08-26 19:07:00,436  Pushed: SPD_HRS_H_K.png
+2026-08-26 19:07:30,471  Updated chart detected: SPD_FWH_U_Z.png
+2026-08-26 19:07:34,006  Committed: SPD_FWH_U_Z.png
+2026-08-26 19:07:36,299  Pushed: SPD_FWH_U_Z.png
+2026-08-26 19:07:56,320  Updated chart detected: SPD_FWH_Z_H2.png
+2026-08-26 19:07:59,819  Committed: SPD_FWH_Z_H2.png
+2026-08-26 19:08:02,229  Pushed: SPD_FWH_Z_H2.png
+2026-08-26 19:08:22,250  Updated chart detected: SPD_FWH_H_K.png
+2026-08-26 19:08:25,740  Committed: SPD_FWH_H_K.png
+2026-08-26 19:08:28,049  Pushed: SPD_FWH_H_K.png
+2026-08-27 00:25:48,484  Updated chart detected: SPD_HRW_H_K.png
+2026-08-27 00:26:52,751  Committed: SPD_HRW_H_K.png
+2026-08-27 00:26:55,605  Pushed: SPD_HRW_H_K.png
+2026-08-27 00:41:06,560  Updated chart detected: GRAIN_C_D.png
+2026-08-27 00:41:10,084  Committed: GRAIN_C_D.png
+2026-08-27 00:41:12,552  Pushed: GRAIN_C_D.png
+2026-08-27 00:41:22,564  Updated chart detected: GRAIN_C_W.png
+2026-08-27 00:41:26,098  Committed: GRAIN_C_W.png
+2026-08-27 00:41:28,485  Pushed: GRAIN_C_W.png
+2026-08-27 00:41:58,517  Updated chart detected: GRAIN_S_D.png
+2026-08-27 00:42:02,021  Committed: GRAIN_S_D.png
+2026-08-27 00:42:04,754  Pushed: GRAIN_S_D.png
+2026-08-27 00:42:14,766  Updated chart detected: GRAIN_S_W.png
+2026-08-27 00:42:18,247  Committed: GRAIN_S_W.png
+2026-08-27 00:42:20,797  Pushed: GRAIN_S_W.png
+2026-08-27 00:44:30,939  Updated chart detected: METL_GC_D.png
+2026-08-27 00:44:34,399  Committed: METL_GC_D.png
+2026-08-27 00:44:36,703  Pushed: METL_GC_D.png
+2026-08-27 00:45:06,735  Updated chart detected: METL_SI_D.png
+2026-08-27 00:45:10,324  Committed: METL_SI_D.png
+2026-08-27 00:45:12,713  Pushed: METL_SI_D.png
+2026-08-27 00:46:02,769  Updated chart detected: IDX_DXY_W.png
+2026-08-27 00:46:06,259  Committed: IDX_DXY_W.png
+2026-08-27 00:46:08,668  Pushed: IDX_DXY_W.png
+2026-08-27 00:46:18,680  Updated chart detected: IDX_ES_D.png
+2026-08-27 00:46:22,195  Committed: IDX_ES_D.png
+2026-08-27 00:46:24,484  Pushed: IDX_ES_D.png
+2026-08-27 00:47:34,562  Updated chart detected: NRG_HO_D.png
+2026-08-27 00:47:38,082  Committed: NRG_HO_D.png
+2026-08-27 00:47:40,498  Pushed: NRG_HO_D.png
+2026-08-27 00:49:00,585  Updated chart detected: NRG_CL_D.png
+2026-08-27 00:49:04,100  Committed: NRG_CL_D.png
+2026-08-27 00:49:06,444  Pushed: NRG_CL_D.png
+2026-08-27 00:49:16,454  Updated chart detected: BNDS_2YR_TNOTE_W.png
+2026-08-27 00:49:19,986  Committed: BNDS_2YR_TNOTE_W.png
+2026-08-27 00:49:22,371  Pushed: BNDS_2YR_TNOTE_W.png
+2026-08-27 00:49:52,403  Updated chart detected: FX_WD_D.png
+2026-08-27 00:49:55,942  Committed: FX_WD_D.png
+2026-08-27 00:49:58,228  Pushed: FX_WD_D.png
+2026-08-27 00:50:08,238  Updated chart detected: IDX_ES_M.png
+2026-08-27 00:50:11,802  Committed: IDX_ES_M.png
+2026-08-27 00:50:14,293  Pushed: IDX_ES_M.png
+2026-08-27 00:50:24,306  Updated chart detected: IDX_DXY_M.png
+2026-08-27 00:50:28,306  Committed: IDX_DXY_M.png
+2026-08-27 00:50:30,791  Pushed: IDX_DXY_M.png
+2026-08-27 00:50:50,844  Updated chart detected: FX_RUB_USD_M.png
+2026-08-27 00:50:54,343  Committed: FX_RUB_USD_M.png
+2026-08-27 00:50:56,829  Pushed: FX_RUB_USD_M.png
+2026-08-27 00:51:06,840  Updated chart detected: FX_CNY_USD_M.png
+2026-08-27 00:51:10,338  Committed: FX_CNY_USD_M.png
+2026-08-27 00:51:12,576  Pushed: FX_CNY_USD_M.png
+2026-08-27 00:51:32,599  Updated chart detected: FX_RUB_CNY_W.png
+2026-08-27 00:51:36,106  Committed: FX_RUB_CNY_W.png
+2026-08-27 00:51:38,462  Pushed: FX_RUB_CNY_W.png
+2026-08-27 00:51:48,474  Updated chart detected: FX_WD_M.png
+2026-08-27 00:51:51,970  Committed: FX_WD_M.png
+2026-08-27 00:51:54,282  Pushed: FX_WD_M.png
+2026-08-27 00:52:04,293  Updated chart detected: IDX_GSCI_W.png
+2026-08-27 00:52:07,799  Committed: IDX_GSCI_W.png
+2026-08-27 00:52:10,117  Pushed: IDX_GSCI_W.png
+2026-08-27 00:52:30,139  Updated chart detected: METL_GC_M.png
+2026-08-27 00:52:33,652  Committed: METL_GC_M.png
+2026-08-27 00:52:35,880  Pushed: METL_GC_M.png
+2026-08-27 00:52:45,891  Updated chart detected: BNDS_30YR_Price_Q.png
+2026-08-27 00:52:49,390  Committed: BNDS_30YR_Price_Q.png
+2026-08-27 00:52:51,638  Pushed: BNDS_30YR_Price_Q.png
+2026-08-27 00:53:01,650  Updated chart detected: BNDS_10YR_Price_Q.png
+2026-08-27 00:53:05,140  Committed: BNDS_10YR_Price_Q.png
+2026-08-27 00:53:07,330  Pushed: BNDS_10YR_Price_Q.png
+2026-08-27 00:53:37,363  Updated chart detected: NRG_NG_M.png
+2026-08-27 00:53:40,895  Committed: NRG_NG_M.png
+2026-08-27 00:53:43,229  Pushed: NRG_NG_M.png
+2026-08-27 00:54:03,252  Updated chart detected: METL_HG_M.png
+2026-08-27 00:54:06,751  Committed: METL_HG_M.png
+2026-08-27 00:54:09,220  Pushed: METL_HG_M.png
+2026-08-27 00:54:39,252  Updated chart detected: NRG_CL_W.png
+2026-08-27 00:54:42,742  Committed: NRG_CL_W.png
+2026-08-27 00:54:45,089  Pushed: NRG_CL_W.png
+2026-08-27 00:54:55,100  Updated chart detected: NRG_CL_M.png
+2026-08-27 00:54:58,634  Committed: NRG_CL_M.png
+2026-08-27 00:55:00,943  Pushed: NRG_CL_M.png
