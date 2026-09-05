@@ -6025,3 +6025,52 @@ Fetching EOD data for 2026-09-03...
 ================================================================
 
 Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260903.txt
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWZ26.CBT"}}}
+$MWZ26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: MWH27.CBT"}}}
+$MWH27.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWZ26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWZ26.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+$MWH27.CBT: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+Fetching EOD data for 2026-09-04...
+
+================================================================
+  MARKETBULLETS -- END-OF-DAY FUTURES REPORT
+  Friday, September 04, 2026  |  CME Settlement
+================================================================
+
+  WHEAT FUTURES                                        c/bu
+  --------------------------------------------------------------
+  CONTRACT         SETTLE        CHANGE     OPEN     HIGH      LOW     VOL
+  --------------------------------------------------------------
+  SRW  ZW DEC26    732.75  -21.50  (-2.9%)     751.75   762.50   732.75    100K
+  SRW  ZW MAR27    748.00  -22.00  (-2.9%)     767.75   777.75   748.00     45K
+  ..............................................................
+  HRW  KE DEC26    801.50  -14.00  (-1.7%)     814.75   825.00   801.00     27K
+  HRW  KE MAR27    814.25  -14.00  (-1.7%)     828.00   836.75   814.00     14K
+  ..............................................................
+  HRS  MW DEC26       N/A       N/A            N/A      N/A      N/A     N/A
+  HRS  MW MAR27       N/A       N/A            N/A      N/A      N/A     N/A
+  ..............................................................
+
+  SPREADS  (front month: DEC26)
+  ----------------------------------------
+  HRW premium over SRW:         -68.75 c/bu
+  HRS premium over SRW:         N/A
+  HRS premium over HRW:         N/A
+
+  CARRY  (DEC26 vs MAR27)
+  ----------------------------------------
+  SRW  ZW         MAR27 vs DEC26:  +15.25 c/bu
+  HRW  KE         MAR27 vs DEC26:  +12.75 c/bu
+  HRS  MW         N/A
+
+  CORRELATED MARKETS
+  ----------------------------------------
+  U.S. Dollar (DXY)            99.16  +  0.16  (+0.2%)  
+  Crude Oil WTI                91.22   -0.08  (-0.1%)  
+
+  Data: yfinance / CME  |  Generated 2026-09-04 15:14:16
+================================================================
+
+Saved -> c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\eod_reports\eod_20260904.txt
