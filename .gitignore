@@ -1,1 +1,4 @@
 SPDINTER_FWH_HRW_M.png
+
+# Runtime logs — machine-local, never version-controlled (caused push ref-lock races across clones)
+*.log
