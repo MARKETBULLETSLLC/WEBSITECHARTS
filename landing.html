@@ -25,6 +25,7 @@ a{text-decoration:none;color:inherit;}
   --mono:      'IBM Plex Mono','Courier New',monospace;
 }
 
+html{scroll-behavior:smooth;}
 body{
   background:var(--soil);
   color:var(--cream);
@@ -351,8 +352,204 @@ body{
 }
 
 /* ══════════════════════════════════════
+   MEMBERS COMPARISON
+══════════════════════════════════════ */
+.members{
+  background:var(--soil);
+  border-top:1px solid rgba(200,150,10,0.18);
+  padding:96px 24px 104px;
+}
+.members-inner{max-width:1080px;margin:0 auto;}
+
+.members-head{max-width:700px;margin:0 auto 64px;text-align:center;}
+.members-eyebrow{
+  font-family:var(--mono);
+  font-size:0.72rem;
+  letter-spacing:0.20em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+}
+.members-title{
+  font-family:var(--serif2);
+  font-weight:700;
+  font-size:clamp(1.7rem,3.4vw,2.5rem);
+  line-height:1.25;
+  color:var(--cream);
+  margin-bottom:20px;
+}
+.members-sub{
+  font-family:var(--body);
+  font-size:1rem;
+  color:rgba(240,232,208,0.72);
+  line-height:1.65;
+}
+
+.compare-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:stretch;
+  margin-bottom:64px;
+}
+
+.compare-card{
+  background:#120D07;
+  border:1px solid rgba(200,150,10,0.20);
+  border-radius:6px;
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+}
+.compare-member{
+  border-color:rgba(200,150,10,0.55);
+  background:linear-gradient(180deg,#17110A 0%,#120D07 100%);
+  box-shadow:0 8px 40px rgba(200,150,10,0.08);
+}
+
+.compare-label{
+  font-family:var(--mono);
+  font-size:0.72rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(240,232,208,0.55);
+  margin-bottom:22px;
+}
+.compare-label-gold{color:var(--wheat-lt);}
+
+/* Free preview chart */
+.preview-chart{
+  position:relative;
+  border:1px solid rgba(200,150,10,0.20);
+  border-radius:4px;
+  overflow:hidden;
+  margin-bottom:10px;
+  background:#0A0704;
+}
+.preview-chart-tag{
+  position:absolute;
+  top:10px;left:10px;
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.10em;
+  text-transform:uppercase;
+  color:var(--soil);
+  background:var(--wheat-lt);
+  padding:4px 10px;
+  border-radius:3px;
+}
+.preview-chart-cap{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  letter-spacing:0.05em;
+  color:rgba(240,232,208,0.40);
+  margin-bottom:22px;
+}
+
+/* Free preview commentary teaser */
+.preview-copy{position:relative;margin-bottom:26px;}
+.preview-copy-text{
+  font-family:var(--body);
+  font-style:italic;
+  font-size:0.92rem;
+  line-height:1.7;
+  color:rgba(240,232,208,0.62);
+  max-height:5.2em;
+  overflow:hidden;
+}
+.preview-fade{
+  position:absolute;
+  left:0;right:0;bottom:22px;
+  height:2.4em;
+  background:linear-gradient(180deg,rgba(18,13,7,0) 0%,#120D07 90%);
+}
+.preview-lock{
+  font-family:var(--mono);
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  color:var(--gold);
+  margin-top:8px;
+}
+
+.compare-link{
+  margin-top:auto;
+  font-family:var(--mono);
+  font-size:0.76rem;
+  letter-spacing:0.08em;
+  color:var(--wheat-lt);
+  border-bottom:1px solid rgba(232,184,32,0.35);
+  align-self:flex-start;
+  padding-bottom:2px;
+  transition:border-color 0.2s;
+}
+.compare-link:hover{border-color:rgba(232,184,32,0.90);}
+
+/* Member feature list */
+.member-feature-list{list-style:none;display:flex;flex-direction:column;gap:18px;}
+.member-feature-list li{
+  border-bottom:1px solid rgba(200,150,10,0.12);
+  padding-bottom:16px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  cursor:default;
+  user-select:text;
+}
+.member-feature-list li:last-child{border-bottom:none;padding-bottom:0;}
+.mf-text{flex:1;}
+.mf-name{
+  display:block;
+  font-family:var(--serif);
+  font-size:1.02rem;
+  color:var(--cream);
+  margin-bottom:4px;
+}
+.mf-desc{
+  display:block;
+  font-family:var(--body);
+  font-size:0.88rem;
+  line-height:1.55;
+  color:rgba(240,232,208,0.62);
+}
+.mf-gate{
+  flex-shrink:0;
+  font-family:var(--mono);
+  font-size:0.62rem;
+  letter-spacing:0.06em;
+  color:rgba(212,160,81,0.55);
+  margin-top:3px;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+/* CTA strip */
+.members-cta{
+  text-align:center;
+  max-width:620px;
+  margin:0 auto;
+}
+.members-cta-headline{
+  font-family:var(--serif);
+  font-size:clamp(1.3rem,2.4vw,1.7rem);
+  color:var(--cream);
+  margin-bottom:14px;
+}
+.members-cta-sub{
+  font-family:var(--body);
+  font-size:0.92rem;
+  color:rgba(240,232,208,0.65);
+  line-height:1.65;
+  margin-bottom:28px;
+}
+
+/* ══════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════ */
+@media(max-width:760px){
+  .compare-grid{grid-template-columns:1fr;}
+  .members{padding:72px 20px 80px;}
+}
 @media(max-width:600px){
   .hero-logo-wrap img{width:100px;}
   .hero-nav{top:24px;right:16px;}
@@ -389,13 +586,99 @@ body{
     <p class="hero-tagline">More Sense Per Bushel™</p>
     <div class="hero-cta">
       <button class="btn-primary" id="alerts-signup-btn">Get Free Market Alerts</button>
-      <a href="#" class="btn-secondary" id="learn-more-btn">See What Members Get</a>
+      <a href="#members" class="btn-secondary" id="learn-more-btn">See What Members Get</a>
     </div>
   </div>
 
   <!-- Scroll cue -->
   <div class="hero-scroll">Scroll</div>
 
+</section>
+
+<!-- ══════ MEMBERS COMPARISON ══════ -->
+<section class="members" id="members">
+  <div class="members-inner">
+
+    <div class="members-head">
+      <div class="members-eyebrow">Public Preview vs. Member Session</div>
+      <h2 class="members-title">Two ways to read the market.<br>One of them is ten days late.</h2>
+      <p class="members-sub">Everything public on marketbulletsllc.com right now is real MarketBullets analysis — just not today's. Members get the session the morning it's written, before the day session opens.</p>
+    </div>
+
+    <div class="compare-grid">
+
+      <!-- FREE PREVIEW -->
+      <div class="compare-card compare-free">
+        <div class="compare-label">Free Preview</div>
+
+        <div class="preview-chart">
+          <img
+            src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/10daydelay/WHEAT_SRW_DOLD.png"
+            alt="Chicago SRW daily chart, ten-trading-day delayed"
+            loading="lazy"
+          >
+          <div class="preview-chart-tag">10-Trading-Day Delay</div>
+        </div>
+        <div class="preview-chart-cap">Chicago SRW &middot; Daily — 1 of 11 public charts</div>
+
+        <div class="preview-copy">
+          <p class="preview-copy-text">USDA trimmed old-crop ending stocks in the latest WASDE, and Chicago SRW is pressing against its 60&#x2011;day moving average for the third session running — the kind of setup Box&#x2011;o&#x2011;Rox was built to catch before it's obvious&hellip;</p>
+          <div class="preview-fade"></div>
+        </div>
+        <div class="preview-lock">&#128274;&nbsp; Full report &mdash; members only</div>
+
+        <a href="#" class="compare-link" id="chart-gallery-link">View the Free Chart Gallery &rarr;</a>
+      </div>
+
+      <!-- MEMBER SESSION -->
+      <div class="compare-card compare-member">
+        <div class="compare-label compare-label-gold">Full Member Session</div>
+
+        <ul class="member-feature-list">
+          <li>
+            <span class="mf-text"><span class="mf-name">Daily Commentary</span><span class="mf-desc">The full Sage-Hero-Guardian report, delivered before the session opens — not ten days after it mattered.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">Box-o-Rox</span><span class="mf-desc">Know whether you're in SUSPEND or EXECUTE before you call your elevator.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">60-Chart Gallery</span><span class="mf-desc">Wheat Futures, Spreads &amp; Ratios, Currencies, Interest Rates, General Macro — the whole picture, not eleven charts of it.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">Commitment of Traders</span><span class="mf-desc">See what managed money is actually positioned for, updated every Friday.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">Worldwide Wheat Weather</span><span class="mf-desc">Weather where the competition is growing, not just where you are.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">Breakeven Calculator</span><span class="mf-desc">Your actual input costs, tracked against your actual price — no back-of-napkin math.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">Commentary Archive</span><span class="mf-desc">Every call, on the record — read what we said and what happened next.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+          <li>
+            <span class="mf-text"><span class="mf-name">Supplemental Library</span><span class="mf-desc">Glossary, pattern ID, and cycle reference for readers who already know the basics.</span></span>
+            <span class="mf-gate">Members&nbsp;only</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="members-cta">
+      <div class="members-cta-headline">The dashboard opens soon. The list doesn't wait.</div>
+      <p class="members-cta-sub">Membership pricing isn't live yet — the free alert list is. Get on it now and you'll be first in line when the full member session opens.</p>
+      <button class="btn-primary" id="members-alerts-btn">Get Free Market Alerts</button>
+    </div>
+
+  </div>
 </section>
 
 <!-- ══════ EMAIL ALERTS MODAL ══════ -->
@@ -424,6 +707,15 @@ openBtn.addEventListener('click', function(){ modal.classList.add('open'); });
 closeBtn.addEventListener('click', function(){ modal.classList.remove('open'); });
 modal.addEventListener('click', function(e){ if(e.target === modal) modal.classList.remove('open'); });
 document.addEventListener('keydown', function(e){ if(e.key === 'Escape') modal.classList.remove('open'); });
+
+// Members-section CTA opens the same free-alerts modal
+document.getElementById('members-alerts-btn').addEventListener('click', function(){ modal.classList.add('open'); });
+
+// Free chart gallery link — placeholder until docs/landing-preview.html has a published URL
+document.getElementById('chart-gallery-link').addEventListener('click', function(e){
+  e.preventDefault();
+  alert('Chart gallery preview URL not yet configured. Point this to the published docs/landing-preview.html URL.');
+});
 
 // Member login — placeholder until Squarespace member area URL is set
 document.getElementById('member-login-btn').addEventListener('click', function(e){
