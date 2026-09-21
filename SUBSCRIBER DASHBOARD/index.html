@@ -878,18 +878,21 @@ const MB_CONFIG = {
      FWH: €/tonne (e.g. '211.00')
      chgDir: 'up', 'dn', or 'flat'                   */
   prices: [
-    { contract:'Chicago SRW',       exchange:'CBOT',      ticker:'ZW',  unit:'¢/bu',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
-    { contract:'Kansas City HRW',   exchange:'KCBT',      ticker:'KE',  unit:'¢/bu',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
-    { contract:'Minneapolis HRS',   exchange:'MGEX',      ticker:'MWE', unit:'¢/bu',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
-    { contract:'Paris Milling FWH', exchange:'Euronext',  ticker:'EBM', unit:'€/t',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
+    { contract:'Chicago SRW (Dec)',       exchange:'CBOT',      ticker:'ZW',  unit:'$/bu',
+      open:'—',  high:'—',  low:'—',  close:'7.14¼',  chg:'-0.12¾',  chgDir:'dn' },
+    { contract:'Kansas City HRW (Dec)',   exchange:'KCBT',      ticker:'KE',  unit:'$/bu',
+      open:'—',  high:'—',  low:'—',  close:'7.83¾',  chg:'-0.10¾',  chgDir:'dn' },
+    { contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',      ticker:'MWE', unit:'$/bu',
+      open:'—',  high:'—',  low:'—',  close:'—',  chg:'— NOT PUBLISHED',  chgDir:'flat' },
+    { contract:'Paris Milling FWH (Dec)', exchange:'Euronext',  ticker:'EBM', unit:'€/t',
+      open:'—',  high:'—',  low:'—',  close:'241.50',  chg:'-0.8%',  chgDir:'dn' },
   ],
+  /* NOTE 2026-09-22: Friday 9/18 settles only — Monday 9/21 settles, Crop Progress,
+     and export inspections were not yet published when this draft was built.
+     Replace OHL '—' and MPLS close from Trade Navigator before publishing. */
 
   /* ── COMMENTARY DATELINE ────────────────────────── */
-  dateline: 'WEDNESDAY, MAY 7, 2026 · Pre-Dawn Update',
+  dateline: 'TUESDAY, SEPTEMBER 22, 2026 · Pre-Dawn Update',
 
   /* ── BULLET POINTS ───────────────────────────────────
      Each bullet has a color and text.
@@ -902,29 +905,45 @@ const MB_CONFIG = {
        Neutral/Macro:     '#B0C0D0'
        Default:           '#F5E6C0'                   */
   bullets: [
-    { color: '#E8B820', text: 'Box-o-Rox® SUSPEND — ZW holds above 60-day MA — tranches accumulate, system engaged.' },
-    { color: '#7BBFDE', text: 'Dollar index [DXY VALUE] — the variable swamping the spring crop narrative. Verify before publishing.' },
-    { color: '#B0C0D0', text: 'Managed Money net position [COT VALUE contracts] — stored energy, not a directional signal. Verify before publishing.' },
+    { color: '#E08050', text: 'Dec Chicago slid to $7.14¼ Friday — an 11¢ weekly loss and 68¢ off the Sept. 1 close — before Monday\'s overnight bounce (SRW +7½¢, HRW +9¢) put a floor under the three-week low.' },
+    { color: '#7BBFDE', text: 'Trump and Xi meet Thursday, Sept. 24 — the market wants a wheat line item inside China\'s pledged $17B/year in farm purchases, and hasn\'t gotten one yet.' },
+    { color: '#8FCB8A', text: 'September WASDE raised the farm price to $6.40, but cut Russia\'s export forecast 3.0 MMT to 43.0 and Ukraine\'s 1.0 MMT to 12.5 — more wheat exists, less of it can reach a boat.' },
+    { color: '#B0C0D0', text: 'Managed Money flipped back net short in Chicago (4,706 contracts) as of Sept. 15, while KC\'s net long was trimmed to 45,758 — stored energy on both sides, not a directional signal by itself.' },
+    { color: '#E08050', text: '2026/27 export sales are running 30% behind last year at 44% of USDA\'s pace target — though last week\'s sales were a 3-week high, led by the Philippines.' },
   ],
 
   /* ── COMMENTARY BODY ─────────────────────────────────
-     KIRK ERROR PROTOCOL DRAFT — May 7, 2026
-     Replace all [BRACKETED PLACEHOLDERS] with verified
-     data before publishing. All USDA/CFTC figures must
-     be sourced — no estimated stats in print.
+     DRAFT — built from 2026-09-22 research packet.
+     Fact-check status (per Kirk Error Protocol):
+       - Settlements, WASDE, COT, export-sales figures below
+         were re-traced to source and hold up as printed.
+       - [BRACKETED PLACEHOLDERS] remain for items the
+         packet could NOT verify (BOR/60-day MA reading,
+         Monday settles, Trade Navigator high, crude/urea
+         figures that conflicted across sources). Replace
+         before publishing — do not print an unsourced stat.
+       - Moscow refinery strike figures attributed to
+         Russian MOD via Bloomberg, per source chain.
+       - "Lowest HRW production in 40-50 years" softened to
+         attributed quote — it was one farm-leader's
+         characterization, not a USDA-verified figure.
      ─────────────────────────────────────────────────── */
   body: `
-    <p style="color:#E8B820">The market knows exactly what you're worried about. Since the first Monday in April, Chicago SRW has been trading the same spring anxiety loop — crop condition percentages, moisture maps, a frost headline to spark a rally, a weather-model revision to take it back. The ritual of Spring Silly Season, right on schedule. And yet here's the thing the market isn't advertising: ZW closed above its 60-day moving average. Box-o-Rox® is in SUSPEND. [chart:WHEAT_SRW_BOR_D.png]</p>
+    <p style="color:#E08050">Wheat is still the weakest link on the grain board, but it found a floor overnight. Dec Chicago settled Friday at $7.14¼, down 12¾¢ on the day and 11¢ on the week — the fourth straight losing week since the $7.82½ close on September 1, a 68¢ slide in under three weeks. Dec KC held up better, off 10¾¢ to $7.83¾. Monday overnight, both came back: Dec SRW +7½¢, Dec HRW +9¢ by 6 a.m. Chicago time, with the most-active contract up as much as 2% at one point — its sharpest intraday jump in almost two weeks. That's a bounce, not yet a reversal.</p>
 
-    <p>That word — <em>suspend</em> — tends to generate the wrong reaction. "Suspend" does not mean "don't worry." It means the trend filter says we're in an up-phase, tranches are accumulating in suspended status, and we wait for the signal to flip before executing. It means the system is working. The wily critter has a plan; let it run.</p>
+    <p style="color:#7BBFDE"><strong>Thursday is the test.</strong> Trump and Xi sit down September 24, and the market wants to see a wheat line item inside China's pledged $17 billion a year in farm purchases — on top of the soybean commitment already in hand. It hasn't shown up yet, and the trade truce itself expires in November. That's the catalyst the summit-optimism bounce is actually pricing.</p>
 
-    <p>Now, the Kirk Error Protocol. In the old television science fiction that some of us watched in reruns on a 19-inch Sony while grain prices were still printed in the morning paper, a certain Starfleet cadet refused to accept an unwinnable scenario. Changed the parameters of the simulation. Refused the premise. Here's the spring 2026 version: everyone you know has been bearish on wheat. Global ending stocks are [LARGE/ADEQUATE — verify current WASDE figure]. Russian FOB Black Sea prices remain competitive at approximately [$XXX/tonne — verify current Black Sea quote]. Export inspections [lagging/meeting/exceeding] the pace needed to reach USDA's projection. The elevator conversation is not optimistic. And yet — price is above the 60-day MA. The premise of the unwinnable scenario is that those two things are incompatible. They're not. Change what you're looking at.</p>
+    <p>Underneath the price action, the KC-over-Chicago premium has widened to roughly 69½¢. [chart:SPDINTER_SRW_HRW_M.png] A year ago at this point, KC was trading <em>behind</em> Chicago — this HRW-over-SRW flip is a chart worth sitting with this morning, not just a spread number. [PNW board-level source: HRW crop described as the "lowest production in 40 to 50 years" — attributed quote, not a USDA-verified figure. Confirm before using.]</p>
 
-    <p style="color:#7BBFDE"><strong>Look at the dollar.</strong> [chart:IDX_DXY_W.png] The DXY closed [at/near] [VALUE] on Tuesday, [up/down] on the session. There is no more important correlated variable for U.S. wheat export competitiveness than the U.S. Dollar Index. Strength in the dollar is a ceiling; weakness is a pillow. Funds watching the euro-dollar relationship are moving more wheat tonnage right now than any single USDA crop condition number. If the dollar continues to [weaken/hold here], the technical picture in SRW has room to develop further. That's the parameter the elevator conversation is missing.</p>
+    <p style="color:#8FCB8A">September's WASDE kept US production at 1.531 billion bushels and ending stocks at 717 million, and raised the season-average farm price to $6.40. World production and world stocks both moved up — but Russia's export forecast was trimmed 3.0 MMT to 43.0, and Ukraine's cut 1.0 MMT to 12.5. Read together: more wheat exists in the world than it did a month ago, but less of it is cleared to leave the Black Sea. That's a supportive undertow running beneath a bearish tape.</p>
 
-    <p style="color:#B0C0D0"><strong>Look at the fund position.</strong> Per Friday's <a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank">CFTC Commitment of Traders report</a>, Managed Money in Chicago SRW held a net [long/short] of approximately [NUMBER] contracts. [If net short: That's compressed energy — coiled short-covering waiting for a match. Large spec shorts don't evaporate; they cover, and they cover hard, often when the fundamental story is still ugly. The beastie doesn't need good news to squeeze. It needs a trigger and a crowded trade.] [If net long: That's stored selling pressure. Longs who entered late are nervous, and nervous longs sell into any disappointing development. Watch for liquidation risk on a bearish surprise.] COT doesn't tell you <em>when</em> the energy releases. It tells you how much is in the chamber.</p>
+    <p>Russian September exports are projected to drop roughly threefold to 1.6–2.0 MMT on port disruption. Ukraine, per Russia's own Defense Ministry account as relayed by Bloomberg, launched its largest drone barrage of the year at a Moscow-area refinery over the weekend. Saudi Arabia passed entirely on its 535,000-tonne tender, with traders citing Black Sea-elevated pricing. Chicago sold off through all of it anyway — a sign the market has already done some pricing-in of Black Sea risk. [Confirm your own read on how much of that risk premium is left to give back.]</p>
 
-    <p>Marketing posture unchanged: SUSPEND. Tranches accumulate. The moment Chicago SRW prints a close below the 60-day MA, the protocol flips — we execute, we accelerate, we move grain. Not before. The system doesn't care about the elevator conversation. Neither should your marketing decisions. Meanwhile, back at the ranch, the crop is growing and the market is doing what markets do — making everyone feel wrong at precisely the right moment.</p>
+    <p style="color:#B0C0D0"><strong>Demand isn't picking up the slack.</strong> 2026/27 export sales are running 30% behind last year and sit at 44% of USDA's full-year projection, against a 53% average pace for this point in the marketing year. Last week's sales were a three-week high, led by the Philippines — a green shoot, not a trend yet. Add the dollar: DXY hit a seven-week high Friday with the Fed, ECB and BOJ all still in tightening mode, and the 10-year sat near 4.95% Monday morning. [chart:IDX_DXY_W.png] That's a second headwind stacked on the Black Sea one — export competitiveness doesn't need Russian logistics to get worse, it just needs the dollar to keep climbing.</p>
+
+    <p><strong>Marketing posture:</strong> [BOR STATUS — 60-day MA reading not available from this draft's source material; confirm SUSPEND vs. EXECUTE against your own Trade Navigator chart before publishing]. [chart:WHEAT_SRW_BOR_D.png] Whichever side of that line Chicago sits on this morning, an oversold market heading into a summit with real two-sided optionality is not the place to chase either direction hard.</p>
+
+    <p>Here at home, the numbers tell two stories at once. PNW yields ran at least 20% above average this harvest — soft white protein came in low early, and the trade has since worked through it. But the growers we talked to say prices are still a little short of covering costs, fuel especially. A big crop and a thin margin, sitting on top of each other — the story this market doesn't put on a chart. Watch Thursday. Watch the 60-day. Don't let a two-day bounce talk you out of the marketing plan you built for reasons that are still true.</p>
 
     <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gary</p>
   `
