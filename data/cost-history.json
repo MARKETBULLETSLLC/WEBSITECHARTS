@@ -40,5 +40,12 @@
     "seed_chem": 122.8,
     "fuel_ops": 78.07,
     "source_notes": "USDA ERS Commodity Costs and Returns, Wheat \u2014 Basin and Range region, 2025 forecast (ers.usda.gov/data-products/commodity-costs-and-returns). land_fixed = land + machinery capital recovery + taxes/insurance + farm overhead; seed_chem = seed + fertilizer + chemicals; fuel_ops = fuel/lube/electricity + repairs + custom services + hired labor + interest + other."
+  },
+  {
+    "timestamp": "2026-09-23T02:15:02-07:00",
+    "land_fixed": 244.53,
+    "seed_chem": 122.8,
+    "fuel_ops": 78.07,
+    "source_notes": "USDA ERS Commodity Costs and Returns, Wheat \u2014 Basin and Range region, 2025 forecast (ers.usda.gov/data-products/commodity-costs-and-returns). land_fixed = land + machinery capital recovery + taxes/insurance + farm overhead; seed_chem = seed + fertilizer + chemicals; fuel_ops = fuel/lube/electricity + repairs + custom services + hired labor + interest + other."
   }
 ]
