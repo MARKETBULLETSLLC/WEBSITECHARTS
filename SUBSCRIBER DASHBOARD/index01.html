@@ -870,8 +870,8 @@ const MB_CONFIG = {
      'suspend'      Condition 1 — price above 60-D MA
      'execute-60d'  Condition 2 — price below 60-D MA
      'execute-20d'  Condition 3 — 20-D signal active   */
-  borStatus: 'suspend',                        // ← 'suspend' | 'execute-60d' | 'execute-20d'
-  borDate:   'May 7, 2026',                    // ← Update each session
+  borStatus: 'execute-60d',                    // ← 'suspend' | 'execute-60d' | 'execute-20d'
+  borDate:   'Oct 6, 2026',                    // ← Update each session
 
   /* ── CLOSING PRICES ─────────────────────────────────
      SRW/HRW/HRS: $/bu with fractions (e.g. '5.44¾')
@@ -879,20 +879,23 @@ const MB_CONFIG = {
      chgDir: 'up', 'dn', or 'flat'                   */
   prices: [
     { contract:'Chicago SRW (Dec)',       exchange:'CBOT',      ticker:'ZW',  unit:'$/bu',
-      open:'—',  high:'—',  low:'—',  close:'7.14¼',  chg:'-0.12¾',  chgDir:'dn' },
+      open:'6.83',  high:'6.98½',  low:'6.79¾',  close:'6.92¼',  chg:'+0.09¼',  chgDir:'up' },
     { contract:'Kansas City HRW (Dec)',   exchange:'KCBT',      ticker:'KE',  unit:'$/bu',
-      open:'—',  high:'—',  low:'—',  close:'7.83¾',  chg:'-0.10¾',  chgDir:'dn' },
+      open:'7.35¼',  high:'7.51¾',  low:'7.32',  close:'7.42¼',  chg:'+0.07',  chgDir:'up' },
     { contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',      ticker:'MWE', unit:'$/bu',
-      open:'—',  high:'—',  low:'—',  close:'—',  chg:'— NOT PUBLISHED',  chgDir:'flat' },
+      open:'—',  high:'—',  low:'—',  close:'7.09',  chg:'+0.10¾',  chgDir:'up' },
     { contract:'Paris Milling FWH (Dec)', exchange:'Euronext',  ticker:'EBM', unit:'€/t',
-      open:'—',  high:'—',  low:'—',  close:'241.50',  chg:'-0.8%',  chgDir:'dn' },
+      open:'—',  high:'—',  low:'—',  close:'245.00',  chg:'+3.75',  chgDir:'up' },
   ],
-  /* NOTE 2026-09-22: Friday 9/18 settles only — Monday 9/21 settles, Crop Progress,
-     and export inspections were not yet published when this draft was built.
-     Replace OHL '—' and MPLS close from Trade Navigator before publishing. */
+  /* NOTE 2026-10-06: Monday 10/5 settles.
+     - SRW close/chg = CME settle 692¼ (+9¼): Brownfield closing report, and
+       matches Trade Navigator (pre-dawn 698¼ less +6). The yfinance EOD file
+       shows 691½ (+8½), which is a last-trade print, not the settle.
+     - SRW/HRW open/high/low from the yfinance EOD file (tools/eod_reports).
+     - MPLS and Paris closes from Trade Navigator; OHL not available. */
 
   /* ── COMMENTARY DATELINE ────────────────────────── */
-  dateline: 'TUESDAY, SEPTEMBER 22, 2026 · Pre-Dawn Update',
+  dateline: 'TUESDAY, OCTOBER 6, 2026 · Pre-Dawn Update',
 
   /* ── BULLET POINTS ───────────────────────────────────
      Each bullet has a color and text.
@@ -905,45 +908,64 @@ const MB_CONFIG = {
        Neutral/Macro:     '#B0C0D0'
        Default:           '#F5E6C0'                   */
   bullets: [
-    { color: '#E08050', text: 'Dec Chicago slid to $7.14¼ Friday — an 11¢ weekly loss and 68¢ off the Sept. 1 close — before Monday\'s overnight bounce (SRW +7½¢, HRW +9¢) put a floor under the three-week low.' },
-    { color: '#7BBFDE', text: 'Trump and Xi meet Thursday, Sept. 24 — the market wants a wheat line item inside China\'s pledged $17B/year in farm purchases, and hasn\'t gotten one yet.' },
-    { color: '#8FCB8A', text: 'September WASDE raised the farm price to $6.40, but cut Russia\'s export forecast 3.0 MMT to 43.0 and Ukraine\'s 1.0 MMT to 12.5 — more wheat exists, less of it can reach a boat.' },
-    { color: '#B0C0D0', text: 'Managed Money flipped back net short in Chicago (4,706 contracts) as of Sept. 15, while KC\'s net long was trimmed to 45,758 — stored energy on both sides, not a directional signal by itself.' },
-    { color: '#E08050', text: '2026/27 export sales are running 30% behind last year at 44% of USDA\'s pace target — though last week\'s sales were a 3-week high, led by the Philippines.' },
+    { color: '#E8B820', text: 'Dec Chicago settled at $6.92¼ Monday, up 9¼¢, its third straight gain off Thursday\'s $6.71¼ low. Overnight it added 6¢ more to $6.98¼ by 4 a.m. Pacific.' },
+    { color: '#F5E6C0', text: 'Box-o-Rox is still EXECUTE (since the Sept. 28 close below $6.96¼). The 60-day line sits at $7.02¾, 4½¢ above the overnight. A settle above it is what changes the signal; a bounce under it does not.' },
+    { color: '#7BBFDE', text: 'Russia\'s September wheat exports fell 75% from a year ago to 1.36 MMT (Bloomberg). Sovecon cut its 2026/27 Russian wheat export forecast 4.7 MMT to 36.7 and sees Azov–Black Sea ports shut until 2027. USDA has 43.0, and Friday\'s WASDE has to answer for the gap.' },
+    { color: '#7BBFDE', text: 'Saudi Arabia\'s GFSA sought 535,000 tonnes and bought 683,000, at $334.60–$348/t C&F against $267.70–$272.80 in July. Importers are paying up.' },
+    { color: '#8FCB8A', text: 'USDA Sept. 30: wheat stocks 1.85 billion bu (−14%), production 1.534 billion (−23%). HRW fell to 466 million from 804 million. White winter was the only class to grow, to 259 million from 244 million.' },
+    { color: '#8FCB8A', text: 'Winter wheat 36% planted vs. 46% average; Kansas 24% vs. 40%, slowed by rain.' },
   ],
 
   /* ── COMMENTARY BODY ─────────────────────────────────
-     DRAFT — built from 2026-09-22 research packet.
+     DRAFT — built 2026-10-06 for Tuesday pre-dawn.
+     Data window: Monday 10/5 settles + Monday-night trade
+     through ~4 a.m. PDT (Trade Navigator chart stamps).
+     Tuesday 10/6 day-session data deliberately excluded.
      Fact-check status (per Kirk Error Protocol):
-       - Settlements, WASDE, COT, export-sales figures below
-         were re-traced to source and hold up as printed.
-       - [BRACKETED PLACEHOLDERS] remain for items the
-         packet could NOT verify (BOR/60-day MA reading,
-         Monday settles, Trade Navigator high, crude/urea
-         figures that conflicted across sources). Replace
-         before publishing — do not print an unsourced stat.
-       - Moscow refinery strike figures attributed to
-         Russian MOD via Bloomberg, per source chain.
-       - "Lowest HRW production in 40-50 years" softened to
-         attributed quote — it was one farm-leader's
-         characterization, not a USDA-verified figure.
+       - Settles: Brownfield (SRW), Trade Navigator (KC, MPLS, Paris).
+       - Overnight & BOR/MA values: Gary's TN charts, 10/6 03:11–03:59 PDT.
+       - Grain Stocks / Small Grains: USDA NASS 9/30; class split via DTN.
+       - Crop Progress: USDA NASS 10/5 via DTN.
+       - Russia Sept. exports: Bloomberg via UkrAgroConsult (10/5).
+       - Sovecon cut: dated 9/30 (Maritime Professional / Reuters chain).
+       - Putin rail order: Kommersant via The Moscow Times, dated 10/6.
+         CONFIRM it was out before your publish time; cut it if not.
+       - Saudi GFSA tender: UkrAgroConsult / Reuters chain.
+       - COT: Large Spec / Commercials from TN COT charts (as of 9/29).
+         These are non-commercial figures, NOT Managed Money, so
+         they are not directly comparable to the 9/22 piece's numbers.
+       - WASDE Friday Oct. 9, 12:00 ET (9:00 a.m. PT).
+     Gary to add: PNW cash bids / SWW basis, local color.
      ─────────────────────────────────────────────────── */
   body: `
-    <p style="color:#E08050">Wheat is still the weakest link on the grain board, but it found a floor overnight. Dec Chicago settled Friday at $7.14¼, down 12¾¢ on the day and 11¢ on the week — the fourth straight losing week since the $7.82½ close on September 1, a 68¢ slide in under three weeks. Dec KC held up better, off 10¾¢ to $7.83¾. Monday overnight, both came back: Dec SRW +7½¢, Dec HRW +9¢ by 6 a.m. Chicago time, with the most-active contract up as much as 2% at one point — its sharpest intraday jump in almost two weeks. That's a bounce, not yet a reversal.</p>
+    <p style="font-size:1.15em;color:#E8B820"><strong>Wheat Takes the Train to the Green Line</strong></p>
 
-    <p style="color:#7BBFDE"><strong>Thursday is the test.</strong> Trump and Xi sit down September 24, and the market wants to see a wheat line item inside China's pledged $17 billion a year in farm purchases — on top of the soybean commitment already in hand. It hasn't shown up yet, and the trade truce itself expires in November. That's the catalyst the summit-optimism bounce is actually pricing.</p>
+    <p style="color:#E8B820">Wheat led the grain board Monday, and this time it led upward. Dec Chicago settled at $6.92¼, up 9¼¢, for a third straight gain off Thursday's $6.71¼ low. Dec KC added 7¢ to $7.42¼. Dec Minneapolis was the strongest of the three, up 10¾¢ to $7.09. Dec corn slipped ½¢ and Nov soybeans added 2½¢, so this was a wheat story, not a sector tide. Chicago was 12 to 15¢ higher before Monday's open, touched $6.98½, and gave back about half of that by the close. The night session picked up where the day left off: by 4 a.m. Pacific, Dec Chicago was $6.98¼, up 6¢, and Dec KC $7.49½, up 7¼¢. [chart:WHEAT_SRW_30Min.png]</p>
 
-    <p>Underneath the price action, the KC-over-Chicago premium has widened to roughly 69½¢. [chart:SPDINTER_SRW_HRW_M.png] A year ago at this point, KC was trading <em>behind</em> Chicago — this HRW-over-SRW flip is a chart worth sitting with this morning, not just a spread number. [PNW board-level source: HRW crop described as the "lowest production in 40 to 50 years" — attributed quote, not a USDA-verified figure. Confirm before using.]</p>
+    <p>On the chart, Monday's settle landed almost exactly on the 61.8% retracement of the August rally: $6.91, measured from the $6.26¾ August low to the $7.95 top. [chart:WHEAT_SRW_D.png] Overhead, the 20-day moving average sits at $7.10¼ and the 60-day at $7.02¾, with $7.00 as the round number in between. Dec Chicago has gone back to old support from below and is now testing whether it has turned into resistance.</p>
 
-    <p style="color:#8FCB8A">September's WASDE kept US production at 1.531 billion bushels and ending stocks at 717 million, and raised the season-average farm price to $6.40. World production and world stocks both moved up — but Russia's export forecast was trimmed 3.0 MMT to 43.0, and Ukraine's cut 1.0 MMT to 12.5. Read together: more wheat exists in the world than it did a month ago, but less of it is cleared to leave the Black Sea. That's a supportive undertow running beneath a bearish tape.</p>
+    <p><strong>Box-o-Rox: EXECUTE, and the bounce hasn't changed that.</strong> The benchmark went to EXECUTE on the Sept. 28 close below $6.96¼, following the Sept. 14 close below $7.31½ that triggered the exit from deferred tranches. [chart:WHEAT_SRW_BOR_D.png] All three days of this rally have happened under the green line. The rule is plain: until Dec Chicago <em>settles</em> above the 60-day, now $7.02¾ and moving each session, deferred sales stay executed and new tranches go out on schedule. That line is 10½¢ above Monday's settle and 4½¢ above the overnight.</p>
 
-    <p>Russian September exports are projected to drop roughly threefold to 1.6–2.0 MMT on port disruption. Ukraine, per Russia's own Defense Ministry account as relayed by Bloomberg, launched its largest drone barrage of the year at a Moscow-area refinery over the weekend. Saudi Arabia passed entirely on its 535,000-tonne tender, with traders citing Black Sea-elevated pricing. Chicago sold off through all of it anyway — a sign the market has already done some pricing-in of Black Sea risk. [Confirm your own read on how much of that risk premium is left to give back.]</p>
+    <p style="color:#7BBFDE"><strong>The rally's driver is the Black Sea.</strong> Three weeks ago we passed along a projection that Russia's September exports would drop to 1.6–2.0 MMT. The actual number was lower: Russian wheat exports fell 75% from a year ago to <a href="https://ukragroconsult.com/en/news/wheat-extends-gains-as-russia-ukraine-escalation-risks-threaten-black-sea-supplies/" target="_blank" rel="noopener">1.36 MMT in September</a>, per Bloomberg. On Sept. 30, Sovecon <a href="http://www.maritimeprofessional.com/news/sovecon-cuts-russian-grain-forecast-423324" target="_blank" rel="noopener">cut its 2026/27 Russian wheat export forecast</a> 4.7 MMT to 36.7 MMT and said it doesn't expect normal Azov–Black Sea port operations before 2027. USDA's September WASDE has Russia at 43.0 MMT. Friday's WASDE has to account for that 6.3 MMT gap, and that is the week's scheduled event risk. Meanwhile, Russia's Defense Ministry vowed over the weekend to intensify strikes on Ukrainian infrastructure, and the trade added risk premium accordingly.</p>
 
-    <p style="color:#B0C0D0"><strong>Demand isn't picking up the slack.</strong> 2026/27 export sales are running 30% behind last year and sit at 44% of USDA's full-year projection, against a 53% average pace for this point in the marketing year. Last week's sales were a three-week high, led by the Philippines — a green shoot, not a trend yet. Add the dollar: DXY hit a seven-week high Friday with the Fed, ECB and BOJ all still in tightening mode, and the 10-year sat near 4.95% Monday morning. [chart:IDX_DXY_W.png] That's a second headwind stacked on the Black Sea one — export competitiveness doesn't need Russian logistics to get worse, it just needs the dollar to keep climbing.</p>
+    <p style="color:#7BBFDE">The more telling detail is what Moscow is doing about it. Per Kommersant, as <a href="https://www.themoscowtimes.com/2026/10/06/putin-orders-priority-rail-transit-for-russian-grain-kommersant-a93896" target="_blank" rel="noopener">reported by The Moscow Times</a>, Putin has ordered Russian Railways to give grain priority on routes to Baltic and Arctic ports, ahead of coal. Daily rail deliveries of farm goods to northwest Russia ran 465% above a year ago in September. The world's biggest wheat exporter is putting its crop on trains to route it around a war, through ports analysts say lack the storage and specialized handling of the southern terminals. That tells you how badly Russia needs the wheat out, and that every tonne leaving that way costs more than it used to. Paris has noticed: Dec Euronext milling wheat closed Monday at €245.00, up €3.75, within €5 of its Sept. 2 high and well above its own Box-o-Rox line. [chart:WHEAT_FWH_D.png]</p>
 
-    <p><strong>Marketing posture:</strong> [BOR STATUS — 60-day MA reading not available from this draft's source material; confirm SUSPEND vs. EXECUTE against your own Trade Navigator chart before publishing]. [chart:WHEAT_SRW_BOR_D.png] Whichever side of that line Chicago sits on this morning, an oversold market heading into a summit with real two-sided optionality is not the place to chase either direction hard.</p>
+    <p style="color:#7BBFDE"><strong>The buyers are paying.</strong> Three weeks ago Saudi Arabia walked away from a tender. Last week its GFSA came back for 535,000 tonnes and <a href="https://ukragroconsult.com/en/news/saudi-arabia-buys-683-thsd-tons-of-wheat-in-tender/" target="_blank" rel="noopener">bought 683,000</a>, 28% more than it asked for, at $334.60 to $348 a tonne C&amp;F. In July it bought at $267.70 to $272.80. When a major importer stops walking away and starts overbuying at $60-plus a tonne over summer prices, demand is making a statement the Chicago chart hasn't fully priced in.</p>
 
-    <p>Here at home, the numbers tell two stories at once. PNW yields ran at least 20% above average this harvest — soft white protein came in low early, and the trade has since worked through it. But the growers we talked to say prices are still a little short of covering costs, fuel especially. A big crop and a thin margin, sitting on top of each other — the story this market doesn't put on a chart. Watch Thursday. Watch the 60-day. Don't let a two-day bounce talk you out of the marketing plan you built for reasons that are still true.</p>
+    <p style="color:#8FCB8A">USDA's <a href="https://www.nass.usda.gov/Newsroom/2026/09-30-2026.php" target="_blank" rel="noopener">Sept. 30 reports</a> were neutral on the headline numbers. Sept. 1 wheat stocks were 1.85 billion bushels, down 14% from a year ago and in line with trade estimates. All-wheat production was 1.534 billion, down 23% and a hair above the trade's 1.527. The <a href="https://www.dtnpf.com/agriculture/web/ag/news/article/2026/09/30/usda-releases-quarterly-grain-stocks-2" target="_blank" rel="noopener">class detail</a> is where it gets interesting. HRW came in at 466 million bushels against 804 million last year, a 42% drop. SRW was 294 million, down 17%. Other spring wheat was 450 million and durum 65 million. White winter, our crop, was the only class that grew: 259 million against 244 million.</p>
+
+    <p>Now set that against the spread. With the hard red winter crop cut by more than 40%, KC's premium over Chicago has <em>narrowed</em>, to 50¢ Monday from 69½¢ on Sept. 18. [chart:SPDINTER_SRW_HRW_M.png] A smaller HRW crop and a smaller HRW premium don't usually travel together. One reading is that the market is putting the Black Sea premium on Chicago, the world benchmark, first. Merchandisers should watch whether that holds once WASDE puts its own number on Russia.</p>
+
+    <p style="color:#8FCB8A">On the next crop, Monday's <a href="https://www.dtnpf.com/agriculture/web/ag/news/article/2026/10/05/usda-crop-progress-corn-23-harvested" target="_blank" rel="noopener">Crop Progress</a> put winter wheat at 36% planted against a 46% five-year average and 16% emerged against 20%. Kansas is only 24% planted against 40%, held up by rain. For a HRW belt coming off a 466-million-bushel year, wet soil at seeding is the better problem to have. But DTN's meteorologist cautioned that drought persists underneath the recent rain and the Plains will need more before winter. A rain delay costs time on the calendar; drought costs yield.</p>
+
+    <p style="color:#B0C0D0">On positioning, as of Sept. 29 per CFTC, large speculators held a net short of 16,462 contracts in Chicago. Their KC net long was 20,964, down from a recent 35,387. [chart:COT_SRW_W.png] A spec short in Chicago heading into a Black Sea escalation is fuel for a short-covering bounce, but fuel doesn't light itself; it takes a catalyst. Outside the grain pit, Nov crude fell $1.68 to $89.43 and the dollar index held near 102, neither enough to move wheat Monday.</p>
+
+    <p><strong>Marketing posture: EXECUTE. The bounce is the sale.</strong> For the 7:30 call to the elevator:</p>
+    <p>&bull; <strong>Until Dec Chicago settles above the 60-day</strong> ($7.02¾ this morning; check it daily, because it moves), scheduled tranches go out, and they go out into strength. Three up days is the market handing you a better price for a sale the plan already called for.<br>
+    &bull; <strong>On a settle above the green line,</strong> the benchmark moves to SUSPEND and new tranches pause. That is the market's job to prove, not ours to predict.<br>
+    &bull; <strong>Friday, 9 a.m. Pacific:</strong> WASDE. If USDA moves Russia toward Sovecon's 36.7, that's the kind of catalyst that could put a close above the line in play. If it holds at 43.0, the bounce has less underneath it.</p>
+
+    <p>The hardest part of this week isn't the selling. It's the third up day, which makes a producer who rode $7.95 down to $6.71 want to wait for $7.50 again. Weigh the two ways of being wrong. Sell a scheduled tranche at $6.98 and the market runs to $7.30: you still own the unsold balance, and the benchmark tells you when to stop selling. Sell nothing and the market slips back to Thursday's low: that's 27¢ gone, or $10,800 on 40,000 bushels, taken straight out of the operating note. The plan exists so this decision doesn't depend on how the last three days felt. In white wheat country, with the one class that grew this year, there are more bushels riding on that discipline than usual.</p>
 
     <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gary</p>
   `
