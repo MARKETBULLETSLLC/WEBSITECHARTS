@@ -870,7 +870,7 @@ const MB_CONFIG = {
      'suspend'      Condition 1 — price above 60-D MA
      'execute-60d'  Condition 2 — price below 60-D MA
      'execute-20d'  Condition 3 — 20-D signal active   */
-  borStatus: 'execute-60d',                    // ← 'suspend' | 'execute-60d' | 'execute-20d'
+  borStatus: 'suspend',                        // ← 'suspend' | 'execute-60d' | 'execute-20d'
   borDate:   'Oct 6, 2026',                    // ← Update each session
 
   /* ── CLOSING PRICES ─────────────────────────────────
@@ -909,7 +909,7 @@ const MB_CONFIG = {
        Default:           '#F5E6C0'                   */
   bullets: [
     { color: '#E8B820', text: 'Dec Chicago settled at $6.92¼ Monday, up 9¼¢, its third straight gain off Thursday\'s $6.71¼ low. Overnight it added 6¢ more to $6.98¼ by 4 a.m. Pacific.' },
-    { color: '#F5E6C0', text: 'Box-o-Rox is still EXECUTE (since the Sept. 28 close below $6.96¼). The 60-day line sits at $7.02¾, 4½¢ above the overnight. A settle above it is what changes the signal; a bounce under it does not.' },
+    { color: '#F5E6C0', text: 'Box-o-Rox flips to SUSPEND. Dec Chicago settled Tuesday at $7.04¼, up 12¢ and half a cent above the 60-day line at $7.03¾, ending the EXECUTE phase that began Sept. 28. New tranches pause.' },
     { color: '#7BBFDE', text: 'Russia\'s September wheat exports fell 75% from a year ago to 1.36 MMT (Bloomberg). Sovecon cut its 2026/27 Russian wheat export forecast 4.7 MMT to 36.7 and sees Azov–Black Sea ports shut until 2027. USDA has 43.0, and Friday\'s WASDE has to answer for the gap.' },
     { color: '#7BBFDE', text: 'Saudi Arabia\'s GFSA sought 535,000 tonnes and bought 683,000, at $334.60–$348/t C&F against $267.70–$272.80 in July. Importers are paying up.' },
     { color: '#8FCB8A', text: 'USDA Sept. 30: wheat stocks 1.85 billion bu (−14%), production 1.534 billion (−23%). HRW fell to 466 million from 804 million. White winter was the only class to grow, to 259 million from 244 million.' },
@@ -920,7 +920,10 @@ const MB_CONFIG = {
      DRAFT — built 2026-10-06 for Tuesday pre-dawn.
      Data window: Monday 10/5 settles + Monday-night trade
      through ~4 a.m. PDT (Trade Navigator chart stamps).
-     Tuesday 10/6 day-session data deliberately excluded.
+     EXCEPTION (per Gary): BOR flip to SUSPEND on Tuesday 10/6
+     settle 704¼ (+12, Brownfield / TN) vs 60-D 703¾ (TN 18:40).
+     The BOR chart annotation still read EXECUTE at 18:40 —
+     re-export WHEAT_SRW_BOR_D.png with the SUSPEND label.
      Fact-check status (per Kirk Error Protocol):
        - Settles: Brownfield (SRW), Trade Navigator (KC, MPLS, Paris).
        - Overnight & BOR/MA values: Gary's TN charts, 10/6 03:11–03:59 PDT.
@@ -944,7 +947,7 @@ const MB_CONFIG = {
 
     <p>On the chart, Monday's settle landed almost exactly on the 61.8% retracement of the August rally: $6.91, measured from the $6.26¾ August low to the $7.95 top. [chart:WHEAT_SRW_D.png] Overhead, the 20-day moving average sits at $7.10¼ and the 60-day at $7.02¾, with $7.00 as the round number in between. Dec Chicago has gone back to old support from below and is now testing whether it has turned into resistance.</p>
 
-    <p><strong>Box-o-Rox: EXECUTE, and the bounce hasn't changed that.</strong> The benchmark went to EXECUTE on the Sept. 28 close below $6.96¼, following the Sept. 14 close below $7.31½ that triggered the exit from deferred tranches. [chart:WHEAT_SRW_BOR_D.png] All three days of this rally have happened under the green line. The rule is plain: until Dec Chicago <em>settles</em> above the 60-day, now $7.02¾ and moving each session, deferred sales stay executed and new tranches go out on schedule. That line is 10½¢ above Monday's settle and 4½¢ above the overnight.</p>
+    <p><strong>Box-o-Rox: SUSPEND.</strong> The benchmark went to EXECUTE on the Sept. 28 close below $6.96¼, following the Sept. 14 close below $7.31½ that triggered the exit from deferred tranches. [chart:WHEAT_SRW_BOR_D.png] The rule has always been the same: EXECUTE holds until Dec Chicago <em>settles</em> back above the 60-day. Tuesday it did. Dec Chicago closed at $7.04¼, up 12¢ on the day and a fourth straight gain, half a cent above the 60-day at $7.03¾. That ends the EXECUTE phase, and new tranches pause. Half a cent is a thin margin, and the 20-day at $7.08½ is still overhead, so this is the start of a SUSPEND phase that has to hold, not one that has been proven.</p>
 
     <p style="color:#7BBFDE"><strong>The rally's driver is the Black Sea.</strong> Three weeks ago we passed along a projection that Russia's September exports would drop to 1.6–2.0 MMT. The actual number was lower: Russian wheat exports fell 75% from a year ago to <a href="https://ukragroconsult.com/en/news/wheat-extends-gains-as-russia-ukraine-escalation-risks-threaten-black-sea-supplies/" target="_blank" rel="noopener">1.36 MMT in September</a>, per Bloomberg. On Sept. 30, Sovecon <a href="http://www.maritimeprofessional.com/news/sovecon-cuts-russian-grain-forecast-423324" target="_blank" rel="noopener">cut its 2026/27 Russian wheat export forecast</a> 4.7 MMT to 36.7 MMT and said it doesn't expect normal Azov–Black Sea port operations before 2027. USDA's September WASDE has Russia at 43.0 MMT. Friday's WASDE has to account for that 6.3 MMT gap, and that is the week's scheduled event risk. Meanwhile, Russia's Defense Ministry vowed over the weekend to intensify strikes on Ukrainian infrastructure, and the trade added risk premium accordingly.</p>
 
@@ -960,12 +963,12 @@ const MB_CONFIG = {
 
     <p style="color:#B0C0D0">On positioning, as of Sept. 29 per CFTC, large speculators held a net short of 16,462 contracts in Chicago. Their KC net long was 20,964, down from a recent 35,387. [chart:COT_SRW_W.png] A spec short in Chicago heading into a Black Sea escalation is fuel for a short-covering bounce, but fuel doesn't light itself; it takes a catalyst. Outside the grain pit, Nov crude fell $1.68 to $89.43 and the dollar index held near 102, neither enough to move wheat Monday.</p>
 
-    <p><strong>Marketing posture: EXECUTE. The bounce is the sale.</strong> For the 7:30 call to the elevator:</p>
-    <p>&bull; <strong>Until Dec Chicago settles above the 60-day</strong> ($7.02¾ this morning; check it daily, because it moves), scheduled tranches go out, and they go out into strength. Three up days is the market handing you a better price for a sale the plan already called for.<br>
-    &bull; <strong>On a settle above the green line,</strong> the benchmark moves to SUSPEND and new tranches pause. That is the market's job to prove, not ours to predict.<br>
-    &bull; <strong>Friday, 9 a.m. Pacific:</strong> WASDE. If USDA moves Russia toward Sovecon's 36.7, that's the kind of catalyst that could put a close above the line in play. If it holds at 43.0, the bounce has less underneath it.</p>
+    <p><strong>Marketing posture: SUSPEND. Let the bounce prove itself.</strong> For the 7:30 call to the elevator:</p>
+    <p>&bull; <strong>New tranches pause</strong> while Dec Chicago settles above the 60-day ($7.03¾ at Tuesday's close; check it daily, because it moves). Sales already made under EXECUTE stand. Nothing about this signal says buy any of them back.<br>
+    &bull; <strong>On a settle back below the green line,</strong> the benchmark returns to EXECUTE and scheduled tranches resume. With only half a cent of cushion, that could come quickly. That is the market's job to prove, not ours to predict.<br>
+    &bull; <strong>Friday, 9 a.m. Pacific:</strong> WASDE. If USDA moves Russia toward Sovecon's 36.7, that's the kind of catalyst that could carry Chicago through the 20-day at $7.08½ and give SUSPEND some room. If it holds at 43.0, the close above the line has less underneath it.</p>
 
-    <p>The hardest part of this week isn't the selling. It's the third up day, which makes a producer who rode $7.95 down to $6.71 want to wait for $7.50 again. Weigh the two ways of being wrong. Sell a scheduled tranche at $6.98 and the market runs to $7.30: you still own the unsold balance, and the benchmark tells you when to stop selling. Sell nothing and the market slips back to Thursday's low: that's 27¢ gone, or $10,800 on 40,000 bushels, taken straight out of the operating note. The plan exists so this decision doesn't depend on how the last three days felt. In white wheat country, with the one class that grew this year, there are more bushels riding on that discipline than usual.</p>
+    <p>The hard part of a SUSPEND signal is not getting greedy with it. Four up days from $6.71 makes it easy to start picturing $7.95 again, and SUSPEND makes no promise about getting there. It only means the market has earned a pause in new sales. The bushels already sold on the way down were sold for reasons that were true when the benchmark said EXECUTE, and they don't need defending now. The bushels still in the bin get a chance to prove the bounce, with a line on the chart that says when the chance is over. In white wheat country, with the one class that grew this year, there are more bushels riding on that discipline than usual.</p>
 
     <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gabriel</p>
   `
