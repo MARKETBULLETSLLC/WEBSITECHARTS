@@ -1412,7 +1412,43 @@ document.addEventListener('DOMContentLoaded', function(){
   renderNavigator();
   wireStaticTriggers();
   wireCommentaryTriggers();
+  loadLiveConfig();
 });
+
+/* ════════════════════════════════════════════════════
+   LIVE UPDATE
+   The copy pasted into Squarespace keeps itself current:
+   on each page load it fetches this same file from GitHub,
+   pulls out the DAILY UPDATE ZONE (MB_CONFIG), and re-renders
+   the BoR badge, prices and commentary. Publishing = pushing
+   index01.html to GitHub. Re-paste into Squarespace only when
+   the layout or code (not the daily content) changes.
+   If GitHub can't be reached, the pasted copy's own MB_CONFIG
+   stays on screen.
+════════════════════════════════════════════════════ */
+var LIVE_CONFIG_URL = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html';
+
+function loadLiveConfig(){
+  if(!window.fetch) return;
+  fetch(LIVE_CONFIG_URL + '?t=' + Date.now(), { cache:'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(function(src){
+      var m = src.match(/const MB_CONFIG = (\{[\s\S]*?\r?\n\});/);
+      if(!m) throw new Error('MB_CONFIG not found');
+      var live = (new Function('return ' + m[1]))();
+      if(!live || !live.dateline || !live.body) throw new Error('MB_CONFIG incomplete');
+      if(live.dateline === MB_CONFIG.dateline && live.body === MB_CONFIG.body
+         && live.borStatus === MB_CONFIG.borStatus
+         && JSON.stringify(live.prices) === JSON.stringify(MB_CONFIG.prices)) return;
+      Object.keys(live).forEach(function(k){ MB_CONFIG[k] = live[k]; });
+      renderCommandBar();
+      renderCommentary();
+      wireCommentaryTriggers();
+    })
+    .catch(function(err){
+      if(window.console) console.warn('MarketBullets live update skipped:', err.message);
+    });
+}
 </script>
 </body>
 </html>
