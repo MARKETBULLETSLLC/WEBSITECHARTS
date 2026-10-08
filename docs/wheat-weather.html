@@ -350,6 +350,8 @@ body {
 (function () {
 'use strict';
 
+const CARTO_API_KEY = 'cb1_4e35_1_abb10b8066022732197f10f0';
+
 // ── REGION CONFIG ─────────────────────────────────────────────────────────────
 const REGIONS = [
   {
@@ -628,14 +630,15 @@ function initMap(r) {
   if (!el || maps[r.id]) return;
 
   const map = L.map(el, {
-    zoomControl: false, attributionControl: false,
+    zoomControl: false, attributionControl: true,
     dragging: false, scrollWheelZoom: false,
     doubleClickZoom: false, keyboard: false, touchZoom: false
   });
 
-  /* Light tile layer — clearly readable */
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 })
-    .addTo(map);
+  L.tileLayer(
+    `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${encodeURIComponent(CARTO_API_KEY)}`,
+    { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors &copy; CARTO' }
+  ).addTo(map);
 
   const rect = L.rectangle(r.bounds, {
     color: '#8B6400', weight: 1.5,
