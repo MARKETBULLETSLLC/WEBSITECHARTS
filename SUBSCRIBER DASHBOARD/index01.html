@@ -49,25 +49,26 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   width:100%;
   max-width:1440px;
   margin:0 auto;
-  height:562px;
+  height:510px;
   overflow:hidden;
-  background:var(--soil-mid);/* Fallback until hero_banner.jpg is added to repo root */
+  background:var(--soil-mid);
   background-image:url('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/hero_banner.jpg');
   background-size:cover;
   background-position:center center;
+  box-shadow:inset 0 -65px 120px rgba(7,5,3,.52);
 }
 .hero::after{
   content:'';
   position:absolute;inset:0;
   background:linear-gradient(to right,
-    rgba(0,0,0,.20) 0%,
-    rgba(0,0,0,.15) 35%,
-    rgba(0,0,0,.55) 65%,
-    rgba(0,0,0,.75) 100%);
+    rgba(6,4,2,.18) 0%,
+    rgba(6,4,2,.22) 20%,
+    rgba(16,10,7,.55) 52%,
+    rgba(9,6,4,.82) 100%);
 }
 .hero-title{
   position:absolute;
-  top:50px;left:0;right:0;
+  top:78px;left:0;right:0;
   text-align:center;
   z-index:2;
   padding:0 80px;
@@ -78,27 +79,39 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--cream);
-  text-shadow:0 2px 16px rgba(0,0,0,.8);
-  line-height:1.1;
+  text-shadow:0 2px 14px rgba(0,0,0,.8),0 0 26px rgba(212,160,81,.18);
+  line-height:1.05;
+}
+.hero-kicker{
+  display:inline-block;
+  margin-top:10px;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--wheat-lt);
+  text-shadow:0 0 18px rgba(232,184,32,.32);
 }
 .hero-tagline{
   font-family:var(--body);
   font-size:clamp(13px,1.4vw,20px);
   font-style:italic;
   color:var(--wheat-pal);
-  margin-top:10px;
-  text-shadow:0 1px 8px rgba(0,0,0,.7);
-  letter-spacing:.04em;
+  margin-top:12px;
+  text-shadow:0 1px 8px rgba(0,0,0,.72);
+  letter-spacing:.05em;
+  text-transform:none;
 }
 @media(max-width:900px){
   .hero{height:320px;}
-  .hero-title{top:30px;padding:0 48px;}
+  .hero-title{top:32px;padding:0 48px;}
 }
 @media(max-width:600px){
   .hero{height:220px;}
   .hero-title{top:20px;padding:0 24px;text-align:right;}
-  .hero-company{font-size:18px;}
-  .hero-tagline{font-size:11px;}
+  .hero-company{font-size:18px;letter-spacing:.12em;}
+  .hero-kicker{font-size:9px;letter-spacing:.15em;margin-top:6px;}
+  .hero-tagline{font-size:11px;letter-spacing:.04em;}
 }
 
 /* ════════════════════════════════════════════════════
@@ -633,6 +646,7 @@ footer{
 <section class="hero" id="top">
   <div class="hero-title">
     <div class="hero-company">MarketBullets</div>
+    <div class="hero-kicker">Wheat signal before the open</div>
     <div class="hero-tagline">More Sense Per Bushel™</div>
   </div>
 </section>
