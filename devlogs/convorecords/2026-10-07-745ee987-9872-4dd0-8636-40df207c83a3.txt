@@ -1,0 +1,3931 @@
+﻿MarketBullets - Claude Conversation Record
+Session : 745ee987-9872-4dd0-8636-40df207c83a3
+Date    : 2026-10-07
+======================================================================
+
+-- USER [2026-10-07T01:56:13.295Z] --
+<ide_opened_file>The user opened the file c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\SUBSCRIBER DASHBOARD\index01.html in the IDE. This may or may not be related to the current task.</ide_opened_file>
+update commentary for publishing Tuesday Octobere 6, 2026 pre dawn to relect market as of end of monday night session in index01.html
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:14.543Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:14.903Z] --
+I'll start by reading the current commentary in index01.html.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:15.943Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:56:18.592Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:20.271Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:56:20.393Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:23.420Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:23.433Z] --
+The live config is still on the Sept. 22 draft. Before I research, I'll check the repo for any rough notes or newer commentary from you.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:25.455Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:56:27.523Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:28.561Z] --
+There are EOD reports for Oct. 5 and 6 â€” those likely hold the settlement data. I'll read them.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:29.701Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:56:30.621Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:42.024Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:42.063Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:56:43.231Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:56:44.457Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:07.043Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:07.062Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:07.336Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:08.121Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:11.650Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:13.385Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:15.240Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:15.277Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:16.288Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:16.320Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:17.233Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:17.269Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:28.483Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:28.509Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:28.527Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:28.569Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:29.745Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:29.773Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:30.995Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:31.024Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:32.296Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:32.325Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:33.491Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:33.532Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:42.535Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:42.586Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:42.592Z] --
+[Tool call: ToolSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:42.617Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:44.128Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:44.777Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:45.328Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:57:45.914Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:50.048Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:50.055Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:51.833Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:57:51.982Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:00.546Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:00.580Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:00.978Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:01.979Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:03.531Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:04.668Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:07.450Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:09.598Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:10.299Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:10.498Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:14.580Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:14.590Z] --
+The Sept. 30 numbers are a strong Sage hook: white winter is **up** to 259M bu while HRW was cut to 466M from 804M. Next I'm looking for Monday's rally driver, export inspections, and Black Sea news.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:15.181Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:15.941Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:16.255Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:19.533Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:22.816Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:23.017Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:25.696Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:25.770Z] --
+The export inspections hit cites the 2025-26 marketing year, so it's last year's story. I'm leaving it out. I'll read the Black Sea and Tuesday pre-open pieces directly to pin down dates and figures.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:27.098Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:28.056Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:29.351Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:30.148Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:30.697Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:30.738Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:33.992Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:34.347Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:37.477Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:38.230Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:38.832Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:39.389Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:44.186Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:44.683Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:44.966Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:48.473Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:49.422Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:58:50.455Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:54.466Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:58:55.890Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:59:49.960Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:59:50.038Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:59:50.040Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T01:59:50.802Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:59:51.582Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T01:59:53.188Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:43.153Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:43.160Z] --
+WASDE is out Friday, Oct. 9 at 9 a.m. Pacific. Next I'll check whether the commentary block has a headline field.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:44.262Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:00:44.877Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:49.573Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:49.583Z] --
+No headline field exists, so I'll lead the body with one. `borDate` renders as "Updated: â€¦", so it gets today's date, not the trigger date. Writing the update now.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:51.306Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:00:52.893Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:00:54.395Z] --
+Now the prices, dateline, bullets, and body. I'll write the replacement block to the scratchpad and splice it in with a short script, since the block runs about 60 lines.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:40.987Z] --
+[Tool call: Write]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:01:42.052Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:44.923Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:44.927Z] --
+Splicing the block in place of the old prices-through-body section:
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:50.207Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:01:52.084Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:54.390Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:54.401Z] --
+The splice worked. Node isn't installed, so I'll validate with Python instead: chart files exist, no stray backticks or `${` in the body, and consistent line endings.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:01:57.230Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:01:58.341Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:02:07.368Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:02:15.459Z] --
+I've rewritten the Tuesday Oct. 6 pre-dawn commentary in [index01.html](SUBSCRIBER%20DASHBOARD/index01.html#L873-L973). It covers Monday's settles plus the night session through your ~4 a.m. PDT chart stamps, and leaves out Tuesday's day-session trade. All six inline charts exist in `charts/` and the config parses cleanly; I haven't viewed the page in a browser or committed it.
+
+**What changed**
+- **Box-o-Rox:** the badge was still on SUSPEND from May 7. I set it to EXECUTE (60-day), from your chart showing the Sept. 28 close below $6.96Â¼.
+- **Prices:** Monday settles for Chicago ($6.92Â¼, +9Â¼Â¢), KC ($7.42Â¼, +7Â¢), Minneapolis ($7.09, +10Â¾Â¢) and Paris (â‚¬245.00, +3.75). Minneapolis and Paris have no open/high/low, so those cells show "â€”".
+- **Headline:** "Wheat Takes the Train to the Green Line." The dashboard has no headline field, so it's the first line of the body.
+- **Six bullets:** the price action, the BOR line, Russian exports (down 75% in September; Sovecon cut its forecast to 36.7 MMT against USDA's 43.0), the Saudi purchase, the USDA Sept. 30 numbers, and Monday's Crop Progress.
+- **Body:** the chart levels, BOR, the Black Sea, Russia moving grain by rail to Baltic ports, Paris, Saudi, the USDA class detail, the KCâ€“Chicago spread, planting, and COT. Source hyperlinks are in place.
+- **Fresh angles, so it doesn't repeat Sept. 22:**
+  - It checks last piece's 1.6â€“2.0 MMT Russian export projection against the actual 1.36 MMT.
+  - White winter was the only class whose crop grew this year.
+  - KC's premium over Chicago shrank from 69Â½Â¢ to 50Â¢ even though the HRW crop fell 42%.
+- **Close:** a three-point plan for the 7:30 call, then a protective ending. It weighs selling a tranche on schedule against waiting: if the market slips back to Thursday's low, that's 27Â¢ a bushel, or $10,800 on 40,000 bushels, out of the operating note.
+
+**Check before publishing**
+1. **Putin rail order:** the Moscow Times story is dated Oct. 6. Confirm it was out before your publish time; if not, cut that paragraph.
+2. **Settle conflict:** the auto-generated end-of-day file shows Chicago at $6.91Â½ (+8Â½), but that's a last-trade price. The official settle of $6.92Â¼ (+9Â¼) comes from Brownfield and matches your Trade Navigator numbers.
+3. **COT:** the figures are the large-speculator numbers from your Trade Navigator charts, not Managed Money, so they don't compare directly with the Sept. 22 piece.
+4. **Your additions:** there are no placeholders in the live text. A note in the code reminds you to add PNW cash bids, soft white basis and local color.
+
+**Bug in the end-of-day script:** the "HRW premium over SRW" line prints âˆ’52Â¢ when KC is actually 52Â¢ *over* Chicago (Tuesday's report has the same flipped sign). Want me to fix it?
+
+**Timing:** Tuesday's settles are already in (Chicago $7.04Â½, +12Â¼Â¢, above the 60-day line). If this edition is going out late, Wednesday's edition will need to address that possible flip to SUSPEND.
+
+Sources: [Brownfield closing futures 10/5](https://www.brownfieldagnews.com/market-news/closing-grain-and-livestock-futures-october-5-2026/) Â· [USDA NASS 9/30](https://www.nass.usda.gov/Newsroom/2026/09-30-2026.php) Â· [DTN Grain Stocks](https://www.dtnpf.com/agriculture/web/ag/news/article/2026/09/30/usda-releases-quarterly-grain-stocks-2) Â· [DTN Crop Progress 10/5](https://www.dtnpf.com/agriculture/web/ag/news/article/2026/10/05/usda-crop-progress-corn-23-harvested) Â· [UkrAgroConsult/Bloomberg](https://ukragroconsult.com/en/news/wheat-extends-gains-as-russia-ukraine-escalation-risks-threaten-black-sea-supplies/) Â· [Sovecon cut](http://www.maritimeprofessional.com/news/sovecon-cuts-russian-grain-forecast-423324) Â· [Moscow Times rail order](https://www.themoscowtimes.com/2026/10/06/putin-orders-priority-rail-transit-for-russian-grain-kommersant-a93896) Â· [Saudi GFSA tender](https://ukragroconsult.com/en/news/saudi-arabia-buys-683-thsd-tons-of-wheat-in-tender/) Â· [Pro Farmer Ahead of the Open](https://www.profarmer.com/news/ahead-open/ahead-open-grains-surge-start-week) Â· [Price Group 10/5](https://blog.pricegroup.com/2026/10/05/grains-report-10-05-2026/) Â· [Moscow Times strikes vow](https://www.themoscowtimes.com/2026/10/04/russia-to-intensify-strikes-on-ukraine-after-zelensky-interview-a93867) Â· [CME 2026 USDA report calendar](https://www.cmegroup.com/articles/2026/understanding-major-usda-reports-in-2026.html)
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:02:39.631Z] --
+link to download updated html
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:02:42.356Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:02:45.165Z] --
+The updated file is on your machine at this path, so there's nothing to download:
+
+**[SUBSCRIBER DASHBOARD/index01.html](SUBSCRIBER%20DASHBOARD/index01.html)**
+
+Full path: `C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\SUBSCRIBER DASHBOARD\index01.html`
+
+Click the link to open it in VS Code. To copy the file elsewhere, right-click it in the Explorer panel and choose **Reveal in File Explorer**. It's also in OneDrive, so it syncs to your other devices, and Gabe can reach it if the folder is shared with him.
+
+There isn't a web download link yet because the change hasn't been committed or pushed to GitHub. Once it's pushed, the raw-file link for Gabe would be:
+`https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html`
+
+Want me to commit and push it?
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:07:30.712Z] --
+<ide_selection>The user selected the lines 1 to 1418 from c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\SUBSCRIBER DASHBOARD\index01.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBulletsÂ® â€” Members Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TOKENS & RESET
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+img{display:block;max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+:root{
+  --soil:       #0A0704;
+  --soil-mid:   #0F0B07;
+  --soil-lt:    #1A1208;
+  --charcoal:   #231A0E;
+  --char-lt:    #2E2213;
+  --cream:      #FBF7EE;
+  --parchment:  #F0E8D0;
+  --buff:       #E4D9BA;
+  --wheat:      #C8960A;
+  --wheat-lt:   #E8B820;
+  --wheat-pal:  #F5E6C0;
+  --wheat-dim:  rgba(200,150,10,.12);
+  --gold:       #D4A051;
+  --red:        #DC3220;
+  --green:      #32C850;
+  --up:         #5AAA70;
+  --dn:         #E05030;
+  --border:     rgba(200,150,10,.20);
+  --border-lt:  rgba(200,150,10,.09);
+  --serif:      'DM Serif Display',Georgia,serif;
+  --serif2:     'Playfair Display',Georgia,serif;
+  --body:       'Lora',Georgia,serif;
+  --mono:       'IBM Plex Mono','Courier New',monospace;
+}
+body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-size:16px;line-height:1.6;}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HERO BANNER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.hero{
+  position:relative;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+  height:562px;
+  overflow:hidden;
+  background:var(--soil-mid);/* Fallback until hero_banner.jpg is added to repo root */
+  background-image:url('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/hero_banner.jpg');
+  background-size:cover;
+  background-position:center center;
+}
+.hero::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(to right,
+    rgba(0,0,0,.20) 0%,
+    rgba(0,0,0,.15) 35%,
+    rgba(0,0,0,.55) 65%,
+    rgba(0,0,0,.75) 100%);
+}
+.hero-title{
+  position:absolute;
+  top:50px;left:0;right:0;
+  text-align:center;
+  z-index:2;
+  padding:0 80px;
+}
+.hero-company{
+  font-family:var(--serif);
+  font-size:clamp(28px,3.2vw,52px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--cream);
+  text-shadow:0 2px 16px rgba(0,0,0,.8);
+  line-height:1.1;
+}
+.hero-tagline{
+  font-family:var(--body);
+  font-size:clamp(13px,1.4vw,20px);
+  font-style:italic;
+  color:var(--wheat-pal);
+  margin-top:10px;
+  text-shadow:0 1px 8px rgba(0,0,0,.7);
+  letter-spacing:.04em;
+}
+@media(max-width:900px){
+  .hero{height:320px;}
+  .hero-title{top:30px;padding:0 48px;}
+}
+@media(max-width:600px){
+  .hero{height:220px;}
+  .hero-title{top:20px;padding:0 24px;text-align:right;}
+  .hero-company{font-size:18px;}
+  .hero-tagline{font-size:11px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   COMMAND BAR  (BoR status + Prices)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.command-bar{
+  max-width:1440px;margin:0 auto;
+  background:var(--soil-mid);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+}
+/* â”€â”€ BoR Status â”€â”€ */
+.bor-widget{
+  flex:0 0 340px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:8px;
+  padding:24px 32px;
+  border-right:1px solid var(--border);
+  background:var(--soil-lt);
+}
+.bor-label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(245,230,192,.45);
+}
+.bor-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.bor-light{
+  flex-shrink:0;
+  width:22px;height:22px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,.4);
+}
+/* Breathing blue â€” SUSPEND (price above 60-D MA, tranches accumulating) */
+@keyframes breathe-blue{
+  0%,100%{opacity:.22;box-shadow:0 0 5px 2px rgba(77,166,255,.2);}
+  50%{opacity:1;box-shadow:0 0 18px 7px rgba(77,166,255,.85),0 0 36px 14px rgba(77,166,255,.25);}
+}
+.bor-light.suspend{
+  background:#4da6ff;
+  animation:breathe-blue 6s ease-in-out infinite;
+}
+/* Blinking green â€” EXECUTE (60-D breach, 10s cycle) */
+@keyframes blink-green-normal{
+  0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
+  50.01%,100%{opacity:.12;box-shadow:none;}
+}
+/* Blinking green â€” EXECUTE fast (20-D signal, 5s cycle) */
+@keyframes blink-green-fast{
+  0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
+  50.01%,100%{opacity:.12;box-shadow:none;}
+}
+.bor-light.execute{
+  background:var(--green);
+  animation:blink-green-normal 10s step-start infinite;
+}
+.bor-light.execute-fast{
+  background:var(--green);
+  animation:blink-green-fast 5s step-start infinite;
+}
+.bor-status-text{
+  font-family:var(--serif2);
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:.03em;
+  line-height:1.1;
+}
+.bor-status-text.suspend{color:#4da6ff;}
+.bor-status-text.execute{color:var(--green);}
+.bor-updated{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.35);
+  letter-spacing:.06em;
+}
+/* â”€â”€ Prices Table â”€â”€ */
+.prices-wrap{
+  flex:1 1 0;
+  padding:18px 28px;
+  overflow-x:auto;
+}
+.prices-heading{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(245,230,192,.45);
+  margin-bottom:10px;
+}
+.prices-table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:var(--mono);
+  font-size:12px;
+}
+.prices-table th{
+  text-align:left;
+  padding:5px 12px 5px 0;
+  font-size:10px;
+  letter-spacing:.10em;
+  color:rgba(245,230,192,.45);
+  border-bottom:1px solid var(--border-lt);
+  white-space:nowrap;
+}
+.prices-table td{
+  padding:7px 12px 7px 0;
+  border-bottom:1px solid var(--border-lt);
+  white-space:nowrap;
+  vertical-align:middle;
+}
+.prices-table tr:last-child td{border-bottom:none;}
+.pt-contract{font-size:13px;font-weight:600;color:var(--cream);letter-spacing:.02em;}
+.pt-exchange{font-size:9px;color:rgba(245,230,192,.45);display:block;margin-top:1px;letter-spacing:.06em;}
+.pt-close{font-size:14px;font-weight:600;color:var(--wheat-lt);}
+.pt-chg.up{color:var(--up);}
+.pt-chg.dn{color:var(--dn);}
+.pt-val{color:var(--wheat-pal);}
+@media(max-width:900px){
+  .command-bar{flex-direction:column;}
+  .bor-widget{flex:unset;border-right:none;border-bottom:1px solid var(--border);}
+  .prices-wrap{padding:16px 20px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   COMMENTARY SECTION
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.commentary-wrap{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px;
+  background:var(--soil);
+  border-bottom:1px solid var(--border-lt);
+}
+.commentary-dateline{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--wheat);
+  margin-bottom:20px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border-lt);
+}
+/* Bullets */
+.bullets-list{
+  list-style:none;
+  margin-bottom:32px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.bullet-item{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  font-family:var(--serif2);
+  font-size:18px;
+  font-weight:700;
+  line-height:1.35;
+}
+.bullet-mark{
+  flex-shrink:0;
+  width:7px;height:7px;
+  border-radius:50%;
+  margin-top:7px;
+  /* color set inline by JS */
+}
+/* Commentary body */
+.commentary-body{
+  max-width:860px;
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.8;
+  color:var(--buff);
+}
+.commentary-body p{margin-bottom:20px;}
+.commentary-body p:last-child{margin-bottom:0;}
+.commentary-body a{
+  color:var(--wheat-lt);
+  border-bottom:1px solid rgba(232,184,32,.35);
+  transition:border-color .15s;
+}
+.commentary-body a:hover{border-color:var(--wheat-lt);}
+/* Inline chart thumbnails (from [chart:FILENAME] shortcode) */
+.inline-chart-link{
+  display:inline-block;
+  vertical-align:middle;
+  margin:0 6px 4px;
+  cursor:pointer;
+}
+.inline-chart-thumb{
+  width:130px;
+  height:auto;
+  border:1px solid var(--border);
+  border-radius:2px;
+  transition:transform .15s,border-color .15s;
+}
+.inline-chart-link:hover .inline-chart-thumb{
+  transform:scale(1.06);
+  border-color:var(--wheat);
+}
+@media(max-width:700px){
+  .commentary-wrap{padding:28px 20px;}
+  .bullet-item{font-size:15px;}
+  .commentary-body{font-size:15px;}
+  .inline-chart-thumb{width:90px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BOR CHART STANDALONE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.bor-chart-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px;
+  background:var(--soil-mid);
+  border-bottom:1px solid var(--border);
+}
+.section-eyebrow{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--wheat);
+  margin-bottom:8px;
+}
+.section-heading{
+  font-family:var(--serif);
+  font-size:clamp(20px,2vw,30px);
+  color:var(--cream);
+  margin-bottom:20px;
+}
+.bor-chart-card{
+  border:1px solid rgba(200,150,10,.35);
+  border-radius:3px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .18s;
+  display:block;
+  max-width:1200px;
+}
+.bor-chart-card:hover{border-color:var(--wheat);}
+.bor-chart-card img{width:100%;height:auto;}
+.bor-chart-caption{
+  padding:10px 16px;
+  background:var(--charcoal);
+  border-top:1px solid var(--border-lt);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.bor-chart-caption-title{
+  font-family:var(--serif2);
+  font-size:14px;
+  font-weight:700;
+  color:var(--wheat-lt);
+}
+.bor-chart-caption-sub{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.45);
+  letter-spacing:.06em;
+  margin-left:auto;
+}
+@media(max-width:700px){
+  .bor-chart-section{padding:24px 16px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WHEAT GALLERY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.wheat-gallery-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px 52px;
+  background:var(--soil);
+  border-bottom:1px solid var(--border);
+}
+.exchange-block{margin-bottom:44px;}
+.exchange-block:last-child{margin-bottom:0;}
+.exchange-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border-lt);
+}
+.exchange-badge{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.10em;
+  background:var(--charcoal);
+  border:1px solid var(--border);
+  color:var(--wheat);
+  padding:3px 9px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+.exchange-name{
+  font-family:var(--serif2);
+  font-size:18px;
+  font-weight:700;
+  color:var(--cream);
+}
+.exchange-contract{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.4);
+  letter-spacing:.06em;
+  margin-left:auto;
+}
+/* Gallery grids */
+.gallery-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.gallery-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+/* Chart card (reusable) */
+.chart-card{
+  background:var(--soil-lt);
+  border:1px solid var(--border-lt);
+  border-radius:3px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .18s,transform .18s;
+}
+.chart-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.chart-card img{width:100%;height:auto;display:block;}
+.chart-card-cap{
+  padding:8px 12px 9px;
+  border-top:1px solid var(--border-lt);
+  background:var(--charcoal);
+}
+.chart-card-title{
+  font-size:12px;
+  font-weight:bold;
+  color:var(--wheat-pal);
+  line-height:1.3;
+}
+.chart-card-sub{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.42);
+  margin-top:2px;
+  letter-spacing:.04em;
+}
+/* Coming-soon placeholder */
+.chart-card.no-image{
+  background:var(--charcoal);
+  border-style:dashed;
+  border-color:rgba(200,150,10,.15);
+  display:flex;
+  flex-direction:column;
+  min-height:200px;
+}
+.chart-card.no-image .chart-no-img-inner{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:24px;
+  color:rgba(245,230,192,.25);
+}
+.chart-card.no-image .chart-no-img-inner span{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.08em;
+  text-align:center;
+}
+@media(max-width:900px){
+  .gallery-grid-2,.gallery-grid-3{grid-template-columns:repeat(2,1fr);}
+  .wheat-gallery-section{padding:28px 20px 40px;}
+}
+@media(max-width:500px){
+  .gallery-grid-2,.gallery-grid-3{grid-template-columns:1fr;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CHART NAVIGATOR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.navigator-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px 60px;
+  background:var(--soil-mid);
+}
+/* Category tab strip */
+.nav-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 5px;
+  margin-bottom:28px;
+}
+.nav-tab{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--wheat-pal);
+  background:var(--soil-lt);
+  border:1px solid var(--border-lt);
+  padding:7px 16px;
+  border-radius:2px;
+  cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+  white-space:nowrap;
+}
+.nav-tab:hover,.nav-tab.active{
+  background:var(--charcoal);
+  border-color:var(--wheat);
+  color:var(--wheat-lt);
+}
+/* Navigator panel */
+.nav-panel{display:none;}
+.nav-panel.active{display:block;}
+.nav-subgroup{margin-bottom:32px;}
+.nav-subgroup:last-child{margin-bottom:0;}
+.nav-subgroup-label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(245,230,192,.45);
+  margin-bottom:10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--border-lt);
+}
+.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:1100px){.nav-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:760px){
+  .nav-grid{grid-template-columns:repeat(2,1fr);}
+  .navigator-section{padding:28px 16px 48px;}
+}
+@media(max-width:420px){.nav-grid{grid-template-columns:1fr;}}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   LIGHTBOX
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.lb{
+  display:none;
+  position:fixed;inset:0;
+  z-index:9999;
+  background:rgba(6,4,2,.96);
+  cursor:zoom-out;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.lb.open{display:flex;}
+.lb-img-wrap{
+  max-width:95vw;max-height:88vh;
+  overflow:auto;
+  cursor:default;
+}
+.lb-img-wrap img{
+  max-width:100%;height:auto;
+  display:block;
+  box-shadow:0 8px 40px rgba(0,0,0,.8);
+}
+.lb-title{
+  margin-top:12px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.08em;
+  color:rgba(245,230,192,.55);
+}
+.lb-close{
+  position:fixed;
+  top:18px;right:22px;
+  font-family:var(--mono);
+  font-size:22px;
+  color:rgba(245,230,192,.5);
+  cursor:pointer;
+  line-height:1;
+  padding:4px 8px;
+  border:1px solid rgba(245,230,192,.15);
+  border-radius:2px;
+  transition:color .15s,border-color .15s;
+}
+.lb-close:hover{color:var(--cream);border-color:rgba(245,230,192,.5);}
+.lb-nav{
+  position:fixed;
+  top:50%;transform:translateY(-50%);
+  font-family:var(--mono);
+  font-size:28px;
+  color:rgba(245,230,192,.35);
+  cursor:pointer;
+  padding:12px 16px;
+  transition:color .15s;
+  user-select:none;
+}
+.lb-nav:hover{color:var(--wheat-lt);}
+.lb-prev{left:12px;}
+.lb-next{right:12px;}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   FOOTER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+footer{
+  max-width:1440px;margin:0 auto;
+  border-top:1px solid var(--border-lt);
+  padding:24px 48px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 24px;
+  align-items:center;
+}
+.footer-brand{font-family:var(--serif2);font-size:13px;font-weight:700;color:var(--wheat);}
+.footer-copy{font-family:var(--mono);font-size:10px;color:rgba(245,230,192,.30);letter-spacing:.05em;}
+.footer-tag{
+  margin-left:auto;
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.25);
+  letter-spacing:.08em;
+}
+</style>
+</head>
+
+<body>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     1. HERO BANNER
+     â”€ Add hero_banner.jpg (1440Ã—562) to repo root
+     â”€ Logo: MarketBullets_Logo.png already in root
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="hero" id="top">
+  <div class="hero-title">
+    <div class="hero-company">MarketBullets</div>
+    <div class="hero-tagline">More Sense Per Bushelâ„¢</div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     2. COMMAND BAR â€” BoR Status + Closing Prices
+     (populated by JS from MB_CONFIG below)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="command-bar" id="command-bar">
+  <div class="bor-widget">
+    <div class="bor-label">Box&#x2011;o&#x2011;Rox Status</div>
+    <div class="bor-row">
+      <div class="bor-light" id="bor-light"></div>
+      <div class="bor-status-text" id="bor-status-text"></div>
+    </div>
+    <div class="bor-updated" id="bor-updated"></div>
+  </div>
+  <div class="prices-wrap">
+    <div class="prices-heading">Latest Closing Prices</div>
+    <table class="prices-table" id="prices-table"></table>
+  </div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     3. COMMENTARY
+     (populated by JS from MB_CONFIG below)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="commentary-wrap" id="commentary-wrap">
+  <div class="commentary-dateline" id="dateline"></div>
+  <ul class="bullets-list" id="bullets-list"></ul>
+  <div class="commentary-body" id="commentary-body"></div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     4. BOX-O-ROX CHART â€” Standalone Signal Chart
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="bor-chart-section">
+  <div class="section-eyebrow">The Warm Signal</div>
+  <h2 class="section-heading">Box&#x2011;o&#x2011;Rox Signal Chart</h2>
+  <a class="bor-chart-card lb-trigger"
+     data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
+     data-title="Box-o-Rox Daily â€” SRW Price vs 60-Day MA"
+     href="#"
+  >
+    <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
+         alt="Box-o-Rox Daily" loading="lazy">
+    <div class="bor-chart-caption">
+      <div class="bor-chart-caption-title">Box&#x2011;o&#x2011;Rox Daily â€” SRW Price vs 60-Day MA</div>
+      <div class="bor-chart-caption-sub">CLICK TO EXPAND</div>
+    </div>
+  </a>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     5. WHEAT CHART GALLERY
+     Organized by exchange â€” SRW priority
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="wheat-gallery-section">
+  <div class="section-eyebrow">Chart Gallery</div>
+  <h2 class="section-heading">Wheat Futures</h2>
+
+  <!-- â”€â”€ CHICAGO SRW â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">CBOT Â· ZW</span>
+      <span class="exchange-name">Chicago Soft Red Winter (SRW)</span>
+      <span class="exchange-contract">6 CHARTS</span>
+    </div>
+    <!-- Row 1: 30-Min + Daily -->
+    <div class="gallery-grid-2" style="margin-bottom:14px;">
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png"
+           data-title="Chicago SRW 30-Minute">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png"
+             alt="SRW 30-Min" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW 30-Minute</div>
+          <div class="chart-card-sub">INTRADAY Â· SESSION MOMENTUM</div>
+        </div>
+      </div>
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png"
+           data-title="Chicago SRW Daily">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png"
+             alt="SRW Daily" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Daily</div>
+          <div class="chart-card-sub">DAILY Â· TREND &amp; MOVING AVERAGES</div>
+        </div>
+      </div>
+    </div>
+    <!-- Row 2: Weekly + Monthly -->
+    <div class="gallery-grid-2" style="margin-bottom:14px;">
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png"
+           data-title="Chicago SRW Weekly">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png"
+             alt="SRW Weekly" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Weekly</div>
+          <div class="chart-card-sub">WEEKLY Â· INTERMEDIATE TREND</div>
+        </div>
+      </div>
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png"
+           data-title="Chicago SRW Monthly">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png"
+             alt="SRW Monthly" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Monthly</div>
+          <div class="chart-card-sub">MONTHLY Â· SEASONAL PATTERNS</div>
+        </div>
+      </div>
+    </div>
+    <!-- Row 3: Annual + Monthly Annotated -->
+    <div class="gallery-grid-2">
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png"
+           data-title="Chicago SRW Annual â€” 50+ Year View">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png"
+             alt="SRW Annual" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Annual</div>
+          <div class="chart-card-sub">ANNUAL Â· 50+ YEAR CYCLE VIEW</div>
+        </div>
+      </div>
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png"
+           data-title="Chicago SRW Monthly â€” World Events Timeline">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png"
+             alt="SRW Monthly Annotated" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Monthly (Annotated)</div>
+          <div class="chart-card-sub">WORLD EVENTS TIMELINE OVERLAY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- â”€â”€ KANSAS CITY HRW â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">KCBT Â· KE</span>
+      <span class="exchange-name">Kansas City Hard Red Winter (HRW)</span>
+      <span class="exchange-contract">3 CHARTS</span>
+    </div>
+    <div class="gallery-grid-3" id="hrw-gallery"></div>
+  </div>
+
+  <!-- â”€â”€ MINNEAPOLIS HRS â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">MGEX Â· MWE</span>
+      <span class="exchange-name">Minneapolis Hard Red Spring (HRS)</span>
+      <span class="exchange-contract">3 CHARTS</span>
+    </div>
+    <div class="gallery-grid-3" id="hrs-gallery"></div>
+  </div>
+
+  <!-- â”€â”€ PARIS MILLING FWH â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">Euronext Â· EBM</span>
+      <span class="exchange-name">Paris 11% Milling Wheat (FWH)</span>
+      <span class="exchange-contract">3 CHARTS</span>
+    </div>
+    <div class="gallery-grid-3" id="fwh-gallery"></div>
+  </div>
+
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     6. CHART NAVIGATOR
+     Category tabs â†’ galleries for all non-wheat charts
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="navigator-section">
+  <div class="section-eyebrow">Full Chart Index</div>
+  <h2 class="section-heading">Chart Navigator</h2>
+  <div class="nav-tabs" id="nav-tabs"></div>
+  <div id="nav-panels"></div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     7. WHEAT WEATHER DASHBOARD
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section style="max-width:1440px;margin:0 auto;padding:40px 48px 52px;background:var(--soil);border-bottom:1px solid var(--border);">
+  <div class="section-eyebrow">Crop Conditions</div>
+  <h2 class="section-heading">Global Wheat Weather</h2>
+  <iframe
+    src="https://marketbulletsllc.github.io/WEBSITECHARTS/wheat-weather.html"
+    width="100%"
+    height="1100"
+    frameborder="0"
+    style="border:none;display:block;border-radius:3px;"
+    loading="lazy"
+    title="Global Wheat Weather Dashboard"
+  ></iframe>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">MarketBulletsÂ®</span>
+  <span class="footer-copy">Â© MarketBullets LLC Â· All rights reserved Â· marketbulletsllc.com</span>
+  <span class="footer-tag">MORE SENSE PER BUSHELâ„¢</span>
+</footer>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     LIGHTBOX OVERLAY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="lb" id="lb" role="dialog" aria-label="Chart viewer">
+  <div class="lb-close" id="lb-close" title="Close (Esc)">&#x2715;</div>
+  <span class="lb-nav lb-prev" id="lb-prev" title="Previous">&#8249;</span>
+  <div class="lb-img-wrap">
+    <img src="" id="lb-img" alt="">
+  </div>
+  <div class="lb-title" id="lb-title"></div>
+  <span class="lb-nav lb-next" id="lb-next" title="Next">&#8250;</span>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     SCRIPT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<script>
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+   â–ˆâ–ˆ                                              â–ˆâ–ˆ
+   â–ˆâ–ˆ   DAILY UPDATE ZONE â€” Edit values below     â–ˆâ–ˆ
+   â–ˆâ–ˆ   at each publishing update                 â–ˆâ–ˆ
+   â–ˆâ–ˆ                                              â–ˆâ–ˆ
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+const MB_CONFIG = {
+
+  /* â”€â”€ BOX-O-ROX STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     'suspend'      Condition 1 â€” price above 60-D MA
+     'execute-60d'  Condition 2 â€” price below 60-D MA
+     'execute-20d'  Condition 3 â€” 20-D signal active   */
+  borStatus: 'execute-60d',                    // â† 'suspend' | 'execute-60d' | 'execute-20d'
+  borDate:   'Oct 6, 2026',                    // â† Update each session
+
+  /* â”€â”€ CLOSING PRICES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     SRW/HRW/HRS: $/bu with fractions (e.g. '5.44Â¾')
+     FWH: â‚¬/tonne (e.g. '211.00')
+     chgDir: 'up', 'dn', or 'flat'                   */
+  prices: [
+    { contract:'Chicago SRW (Dec)',       exchange:'CBOT',      ticker:'ZW',  unit:'$/bu',
+      open:'6.83',  high:'6.98Â½',  low:'6.79Â¾',  close:'6.92Â¼',  chg:'+0.09Â¼',  chgDir:'up' },
+    { contract:'Kansas City HRW (Dec)',   exchange:'KCBT',      ticker:'KE',  unit:'$/bu',
+      open:'7.35Â¼',  high:'7.51Â¾',  low:'7.32',  close:'7.42Â¼',  chg:'+0.07',  chgDir:'up' },
+    { contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',      ticker:'MWE', unit:'$/bu',
+      open:'â€”',  high:'â€”',  low:'â€”',  close:'7.09',  chg:'+0.10Â¾',  chgDir:'up' },
+    { contract:'Paris Milling FWH (Dec)', exchange:'Euronext',  ticker:'EBM', unit:'â‚¬/t',
+      open:'â€”',  high:'â€”',  low:'â€”',  close:'245.00',  chg:'+3.75',  chgDir:'up' },
+  ],
+  /* NOTE 2026-10-06: Monday 10/5 settles.
+     - SRW close/chg = CME settle 692Â¼ (+9Â¼): Brownfield closing report, and
+       matches Trade Navigator (pre-dawn 698Â¼ less +6). The yfinance EOD file
+       shows 691Â½ (+8Â½), which is a last-trade print, not the settle.
+     - SRW/HRW open/high/low from the yfinance EOD file (tools/eod_reports).
+     - MPLS and Paris closes from Trade Navigator; OHL not available. */
+
+  /* â”€â”€ COMMENTARY DATELINE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  dateline: 'TUESDAY, OCTOBER 6, 2026 Â· Pre-Dawn Update',
+
+  /* â”€â”€ BULLET POINTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     Each bullet has a color and text.
+     Color should match the tone of its commentary paragraph.
+     Suggested palette:
+       Wheat/Bullish:     '#E8B820'
+       Export/Global:     '#7BBFDE'
+       USDA/Fundamental:  '#8FCB8A'
+       Bearish/Warning:   '#E08050'
+       Neutral/Macro:     '#B0C0D0'
+       Default:           '#F5E6C0'                   */
+  bullets: [
+    { color: '#E8B820', text: 'Dec Chicago settled at $6.92Â¼ Monday, up 9Â¼Â¢, its third straight gain off Thursday\'s $6.71Â¼ low. Overnight it added 6Â¢ more to $6.98Â¼ by 4 a.m. Pacific.' },
+    { color: '#F5E6C0', text: 'Box-o-Rox is still EXECUTE (since the Sept. 28 close below $6.96Â¼). The 60-day line sits at $7.02Â¾, 4Â½Â¢ above the overnight. A settle above it is what changes the signal; a bounce under it does not.' },
+    { color: '#7BBFDE', text: 'Russia\'s September wheat exports fell 75% from a year ago to 1.36 MMT (Bloomberg). Sovecon cut its 2026/27 Russian wheat export forecast 4.7 MMT to 36.7 and sees Azovâ€“Black Sea ports shut until 2027. USDA has 43.0, and Friday\'s WASDE has to answer for the gap.' },
+    { color: '#7BBFDE', text: 'Saudi Arabia\'s GFSA sought 535,000 tonnes and bought 683,000, at $334.60â€“$348/t C&F against $267.70â€“$272.80 in July. Importers are paying up.' },
+    { color: '#8FCB8A', text: 'USDA Sept. 30: wheat stocks 1.85 billion bu (âˆ’14%), production 1.534 billion (âˆ’23%). HRW fell to 466 million from 804 million. White winter was the only class to grow, to 259 million from 244 million.' },
+    { color: '#8FCB8A', text: 'Winter wheat 36% planted vs. 46% average; Kansas 24% vs. 40%, slowed by rain.' },
+  ],
+
+  /* â”€â”€ COMMENTARY BODY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     DRAFT â€” built 2026-10-06 for Tuesday pre-dawn.
+     Data window: Monday 10/5 settles + Monday-night trade
+     through ~4 a.m. PDT (Trade Navigator chart stamps).
+     Tuesday 10/6 day-session data deliberately excluded.
+     Fact-check status (per Kirk Error Protocol):
+       - Settles: Brownfield (SRW), Trade Navigator (KC, MPLS, Paris).
+       - Overnight & BOR/MA values: Gary's TN charts, 10/6 03:11â€“03:59 PDT.
+       - Grain Stocks / Small Grains: USDA NASS 9/30; class split via DTN.
+       - Crop Progress: USDA NASS 10/5 via DTN.
+       - Russia Sept. exports: Bloomberg via UkrAgroConsult (10/5).
+       - Sovecon cut: dated 9/30 (Maritime Professional / Reuters chain).
+       - Putin rail order: Kommersant via The Moscow Times, dated 10/6.
+         CONFIRM it was out before your publish time; cut it if not.
+       - Saudi GFSA tender: UkrAgroConsult / Reuters chain.
+       - COT: Large Spec / Commercials from TN COT charts (as of 9/29).
+         These are non-commercial figures, NOT Managed Money, so
+         they are not directly comparable to the 9/22 piece's numbers.
+       - WASDE Friday Oct. 9, 12:00 ET (9:00 a.m. PT).
+     Gary to add: PNW cash bids / SWW basis, local color.
+     â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  body: `
+    <p style="font-size:1.15em;color:#E8B820"><strong>Wheat Takes the Train to the Green Line</strong></p>
+
+    <p style="color:#E8B820">Wheat led the grain board Monday, and this time it led upward. Dec Chicago settled at $6.92Â¼, up 9Â¼Â¢, for a third straight gain off Thursday's $6.71Â¼ low. Dec KC added 7Â¢ to $7.42Â¼. Dec Minneapolis was the strongest of the three, up 10Â¾Â¢ to $7.09. Dec corn slipped Â½Â¢ and Nov soybeans added 2Â½Â¢, so this was a wheat story, not a sector tide. Chicago was 12 to 15Â¢ higher before Monday's open, touched $6.98Â½, and gave back about half of that by the close. The night session picked up where the day left off: by 4 a.m. Pacific, Dec Chicago was $6.98Â¼, up 6Â¢, and Dec KC $7.49Â½, up 7Â¼Â¢. [chart:WHEAT_SRW_30Min.png]</p>
+
+    <p>On the chart, Monday's settle landed almost exactly on the 61.8% retracement of the August rally: $6.91, measured from the $6.26Â¾ August low to the $7.95 top. [chart:WHEAT_SRW_D.png] Overhead, the 20-day moving average sits at $7.10Â¼ and the 60-day at $7.02Â¾, with $7.00 as the round number in between. Dec Chicago has gone back to old support from below and is now testing whether it has turned into resistance.</p>
+
+    <p><strong>Box-o-Rox: EXECUTE, and the bounce hasn't changed that.</strong> The benchmark went to EXECUTE on the Sept. 28 close below $6.96Â¼, following the Sept. 14 close below $7.31Â½ that triggered the exit from deferred tranches. [chart:WHEAT_SRW_BOR_D.png] All three days of this rally have happened under the green line. The rule is plain: until Dec Chicago <em>settles</em> above the 60-day, now $7.02Â¾ and moving each session, deferred sales stay executed and new tranches go out on schedule. That line is 10Â½Â¢ above Monday's settle and 4Â½Â¢ above the overnight.</p>
+
+    <p style="color:#7BBFDE"><strong>The rally's driver is the Black Sea.</strong> Three weeks ago we passed along a projection that Russia's September exports would drop to 1.6â€“2.0 MMT. The actual number was lower: Russian wheat exports fell 75% from a year ago to <a href="https://ukragroconsult.com/en/news/wheat-extends-gains-as-russia-ukraine-escalation-risks-threaten-black-sea-supplies/" target="_blank" rel="noopener">1.36 MMT in September</a>, per Bloomberg. On Sept. 30, Sovecon <a href="http://www.maritimeprofessional.com/news/sovecon-cuts-russian-grain-forecast-423324" target="_blank" rel="noopener">cut its 2026/27 Russian wheat export forecast</a> 4.7 MMT to 36.7 MMT and said it doesn't expect normal Azovâ€“Black Sea port operations before 2027. USDA's September WASDE has Russia at 43.0 MMT. Friday's WASDE has to account for that 6.3 MMT gap, and that is the week's scheduled event risk. Meanwhile, Russia's Defense Ministry vowed over the weekend to intensify strikes on Ukrainian infrastructure, and the trade added risk premium accordingly.</p>
+
+    <p style="color:#7BBFDE">The more telling detail is what Moscow is doing about it. Per Kommersant, as <a href="https://www.themoscowtimes.com/2026/10/06/putin-orders-priority-rail-transit-for-russian-grain-kommersant-a93896" target="_blank" rel="noopener">reported by The Moscow Times</a>, Putin has ordered Russian Railways to give grain priority on routes to Baltic and Arctic ports, ahead of coal. Daily rail deliveries of farm goods to northwest Russia ran 465% above a year ago in September. The world's biggest wheat exporter is putting its crop on trains to route it around a war, through ports analysts say lack the storage and specialized handling of the southern terminals. That tells you how badly Russia needs the wheat out, and that every tonne leaving that way costs more than it used to. Paris has noticed: Dec Euronext milling wheat closed Monday at â‚¬245.00, up â‚¬3.75, within â‚¬5 of its Sept. 2 high and well above its own Box-o-Rox line. [chart:WHEAT_FWH_D.png]</p>
+
+    <p style="color:#7BBFDE"><strong>The buyers are paying.</strong> Three weeks ago Saudi Arabia walked away from a tender. Last week its GFSA came back for 535,000 tonnes and <a href="https://ukragroconsult.com/en/news/saudi-arabia-buys-683-thsd-tons-of-wheat-in-tender/" target="_blank" rel="noopener">bought 683,000</a>, 28% more than it asked for, at $334.60 to $348 a tonne C&amp;F. In July it bought at $267.70 to $272.80. When a major importer stops walking away and starts overbuying at $60-plus a tonne over summer prices, demand is making a statement the Chicago chart hasn't fully priced in.</p>
+
+    <p style="color:#8FCB8A">USDA's <a href="https://www.nass.usda.gov/Newsroom/2026/09-30-2026.php" target="_blank" rel="noopener">Sept. 30 reports</a> were neutral on the headline numbers. Sept. 1 wheat stocks were 1.85 billion bushels, down 14% from a year ago and in line with trade estimates. All-wheat production was 1.534 billion, down 23% and a hair above the trade's 1.527. The <a href="https://www.dtnpf.com/agriculture/web/ag/news/article/2026/09/30/usda-releases-quarterly-grain-stocks-2" target="_blank" rel="noopener">class detail</a> is where it gets interesting. HRW came in at 466 million bushels against 804 million last year, a 42% drop. SRW was 294 million, down 17%. Other spring wheat was 450 million and durum 65 million. White winter, our crop, was the only class that grew: 259 million against 244 million.</p>
+
+    <p>Now set that against the spread. With the hard red winter crop cut by more than 40%, KC's premium over Chicago has <em>narrowed</em>, to 50Â¢ Monday from 69Â½Â¢ on Sept. 18. [chart:SPDINTER_SRW_HRW_M.png] A smaller HRW crop and a smaller HRW premium don't usually travel together. One reading is that the market is putting the Black Sea premium on Chicago, the world benchmark, first. Merchandisers should watch whether that holds once WASDE puts its own number on Russia.</p>
+
+    <p style="color:#8FCB8A">On the next crop, Monday's <a href="https://www.dtnpf.com/agriculture/web/ag/news/article/2026/10/05/usda-crop-progress-corn-23-harvested" target="_blank" rel="noopener">Crop Progress</a> put winter wheat at 36% planted against a 46% five-year average and 16% emerged against 20%. Kansas is only 24% planted against 40%, held up by rain. For a HRW belt coming off a 466-million-bushel year, wet soil at seeding is the better problem to have. But DTN's meteorologist cautioned that drought persists underneath the recent rain and the Plains will need more before winter. A rain delay costs time on the calendar; drought costs yield.</p>
+
+    <p style="color:#B0C0D0">On positioning, as of Sept. 29 per CFTC, large speculators held a net short of 16,462 contracts in Chicago. Their KC net long was 20,964, down from a recent 35,387. [chart:COT_SRW_W.png] A spec short in Chicago heading into a Black Sea escalation is fuel for a short-covering bounce, but fuel doesn't light itself; it takes a catalyst. Outside the grain pit, Nov crude fell $1.68 to $89.43 and the dollar index held near 102, neither enough to move wheat Monday.</p>
+
+    <p><strong>Marketing posture: EXECUTE. The bounce is the sale.</strong> For the 7:30 call to the elevator:</p>
+    <p>&bull; <strong>Until Dec Chicago settles above the 60-day</strong> ($7.02Â¾ this morning; check it daily, because it moves), scheduled tranches go out, and they go out into strength. Three up days is the market handing you a better price for a sale the plan already called for.<br>
+    &bull; <strong>On a settle above the green line,</strong> the benchmark moves to SUSPEND and new tranches pause. That is the market's job to prove, not ours to predict.<br>
+    &bull; <strong>Friday, 9 a.m. Pacific:</strong> WASDE. If USDA moves Russia toward Sovecon's 36.7, that's the kind of catalyst that could put a close above the line in play. If it holds at 43.0, the bounce has less underneath it.</p>
+
+    <p>The hardest part of this week isn't the selling. It's the third up day, which makes a producer who rode $7.95 down to $6.71 want to wait for $7.50 again. Weigh the two ways of being wrong. Sell a scheduled tranche at $6.98 and the market runs to $7.30: you still own the unsold balance, and the benchmark tells you when to stop selling. Sell nothing and the market slips back to Thursday's low: that's 27Â¢ gone, or $10,800 on 40,000 bushels, taken straight out of the operating note. The plan exists so this decision doesn't depend on how the last three days felt. In white wheat country, with the one class that grew this year, there are more bushels riding on that discipline than usual.</p>
+
+    <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gary</p>
+  `
+
+};
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   END DAILY UPDATE ZONE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+
+/* â”€â”€ Image base URL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const BASE = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/';
+function img(filename){ return BASE + filename; }
+
+/* â”€â”€ Chart data for secondary galleries â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const WHEAT_EXCHANGES = [
+  { id:'hrw-gallery', charts:[
+    { file:'WHEAT_HRW_D.png', title:'Kansas City HRW Daily',   sub:'DAILY Â· HRW TREND' },
+    { file:'WHEAT_HRW_W.png', title:'Kansas City HRW Weekly',  sub:'WEEKLY Â· INTERMEDIATE' },
+    { file:'WHEAT_HRW_M.png', title:'Kansas City HRW Monthly', sub:'MONTHLY Â· SEASONAL' },
+  ]},
+  { id:'hrs-gallery', charts:[
+    { file:'WHEAT_HRS_D.png', title:'Minneapolis HRS Daily',   sub:'DAILY Â· SPRING WHEAT' },
+    { file:'WHEAT_HRS_W.png', title:'Minneapolis HRS Weekly',  sub:'WEEKLY Â· INTERMEDIATE' },
+    { file:'WHEAT_HRS_M.png', title:'Minneapolis HRS Monthly', sub:'MONTHLY Â· SEASONAL' },
+  ]},
+  { id:'fwh-gallery', charts:[
+    { file:'WHEAT_FWH_D.png', title:'Paris FWH Daily',   sub:'DAILY Â· EU BENCHMARK' },
+    { file:'WHEAT_FWH_W.png', title:'Paris FWH Weekly',  sub:'WEEKLY Â· GLOBAL PRICE DISCOVERY' },
+    { file:'WHEAT_FWH_M.png', title:'Paris FWH Monthly', sub:'MONTHLY Â· SEASONAL' },
+  ]},
+];
+
+const NAV_CATEGORIES = [
+  {
+    id:'cot', label:'Commitment of Traders', short:'COT',
+    charts:[
+      { file:'COT_SRW_W.png',  title:'Chicago SRW',      sub:'Managed Money Â· Weekly' },
+      { file:'COT_HRW_W.png',  title:'Kansas City HRW',  sub:'Managed Money Â· Weekly' },
+    ]
+  },
+  {
+    id:'spreads', label:'Spreads', short:'Spreads',
+    groups:[
+      { label:'Inter-Market', charts:[
+        { file:'SPDINTER_SRW_HRW_M.png',  title:'SRW vs HRW',          sub:'Class Premium Â· Monthly' },
+        { file:'SPDINTER_SRW_HRS_M.png',  title:'SRW vs HRS',          sub:'Protein Premium Â· Monthly' },
+        { file:'SPDINTER_HRS_HRW_M.png',  title:'HRS vs HRW',          sub:'Quality Differential Â· Monthly' },
+        { file:'SPDINTER_HRW_FWH_W.png',  title:'HRW vs FWH',          sub:'US vs Europe Â· Weekly' },
+        { file:'SPDINTER_HRW_FWH_M.png',  title:'HRW vs FWH',          sub:'US vs Europe Â· Monthly' },
+      ]},
+      { label:'SRW Calendar', charts:[
+        { file:'SPD_SRW_H_K.png',   title:'SRW Mar/May',    sub:'Near-term Carry' },
+        { file:'SPD_SRW_K_N.png',   title:'SRW May/Jul',    sub:'Pre-Harvest Carry' },
+        { file:'SPD_SRW_N_U.png',   title:'SRW Jul/Sep',    sub:'Harvest Pressure' },
+        { file:'SPD_SRW_U_Z.png',   title:'SRW Sep/Dec',    sub:'Post-Harvest Carry' },
+        { file:'SPD_SRW_Z_H2.png',  title:'SRW Dec/Mar+1',  sub:'Winter Carry' },
+      ]},
+      { label:'HRW Calendar', charts:[
+        { file:'SPD_HRW_H_K.png',   title:'HRW Mar/May',    sub:'Near-term Carry' },
+        { file:'SPD_HRW_K_N.png',   title:'HRW May/Jul',    sub:'Pre-Harvest' },
+        { file:'SPD_HRW_N_U.png',   title:'HRW Jul/Sep',    sub:'Harvest-to-Fall' },
+        { file:'SPD_HRW_U_Z.png',   title:'HRW Sep/Dec',    sub:'Fall Carry' },
+        { file:'SPD_HRW_Z_H2.png',  title:'HRW Dec/Mar+1',  sub:'Winter Carry' },
+      ]},
+      { label:'HRS Calendar', charts:[
+        { file:'SPD_HRS_H_K.png',   title:'HRS Mar/May',    sub:'Near-term Carry' },
+        { file:'SPD_HRS_K_N.png',   title:'HRS May/Jul',    sub:'Pre-Harvest' },
+        { file:'SPD_HRS_N_U.png',   title:'HRS Jul/Sep',    sub:'Harvest-to-Fall' },
+        { file:'SPD_HRS_U_Z.png',   title:'HRS Sep/Dec',    sub:'Fall Carry' },
+        { file:'SPD_HRS_Z_H2.png',  title:'HRS Dec/Mar+1',  sub:'Winter Carry' },
+      ]},
+      { label:'Paris FWH Calendar', charts:[
+        { file:'SPD_FWH_H_K.png',   title:'FWH Mar/May',    sub:'European Pre-Harvest' },
+        { file:'SPD_FWH_K_U.png',   title:'FWH May/Sep',    sub:'European Pre-Harvest Carry' },
+        { file:'SPD_FWH_U_Z.png',   title:'FWH Sep/Dec',    sub:'European Fall Carry' },
+        { file:'SPD_FWH_Z_H2.png',  title:'FWH Dec/Mar+1',  sub:'European Winter Carry' },
+      ]},
+      { label:'Ratios', charts:[
+        { file:'RATIO_SRW_C_M.png', title:'Wheat / Corn',       sub:'Substitution Economics Â· Monthly' },
+        { file:'RATIO_S_C_W.png',   title:'Soybeans / Corn',    sub:'Planting Decision Â· Weekly' },
+      ]},
+    ]
+  },
+  {
+    id:'currencies', label:'Currencies', short:'Currencies',
+    charts:[
+      { file:'FX_WD_D.png',      title:'Australian Dollar',         sub:'AUD Â· Daily' },
+      { file:'FX_WD_M.png',      title:'Australian Dollar',         sub:'AUD Â· Monthly' },
+      { file:'FX_RUB_USD_M.png', title:'Russian Ruble / USD',       sub:'RUB/USD Â· Monthly' },
+      { file:'FX_CNY_USD_M.png', title:'Chinese Yuan / USD',        sub:'CNY/USD Â· Monthly' },
+      { file:'FX_RUB_CNY_W.png', title:'Russian Ruble / Yuan',      sub:'RUB/CNY Â· Weekly' },
+    ]
+  },
+  {
+    id:'energy', label:'Energy', short:'Energy',
+    charts:[
+      { file:'NRG_CL_M.png', title:'Crude Oil',             sub:'WTI Â· Monthly' },
+      { file:'NRG_CL_W.png', title:'Crude Oil',             sub:'WTI Â· Weekly' },
+      { file:'NRG_HO_D.png', title:'Diesel / Heating Oil',  sub:'HO Â· Daily' },
+      { file:'NRG_NG_M.png', title:'Natural Gas',           sub:'Henry Hub Â· Monthly' },
+    ]
+  },
+  {
+    id:'metals', label:'Metals', short:'Metals',
+    charts:[
+      { file:'METL_GC_D.png', title:'Gold',    sub:'COMEX Â· Daily' },
+      { file:'METL_GC_M.png', title:'Gold',    sub:'COMEX Â· Monthly' },
+      { file:'METL_SI_D.png', title:'Silver',  sub:'COMEX Â· Daily' },
+      { file:'METL_HG_M.png', title:'Copper',  sub:'COMEX Â· Monthly' },
+    ]
+  },
+  {
+    id:'indices', label:'Dollar & Indices', short:'Indices',
+    charts:[
+      { file:'IDX_DXY_W.png',   title:'US Dollar Index',         sub:'DXY Â· Weekly' },
+      { file:'IDX_DXY_M.png',   title:'US Dollar Index',         sub:'DXY Â· Monthly' },
+      { file:'IDX_BDI_W.png',   title:'Baltic Dry Index',        sub:'Freight Costs Â· Weekly' },
+      { file:'IDX_GSCI_W.png',  title:'GSCI Commodity Index',    sub:'Weekly' },
+      { file:'IDX_ES_D.png',    title:'S&amp;P 500',             sub:'ES Â· Daily' },
+      { file:'IDX_ES_M.png',    title:'S&amp;P 500',             sub:'ES Â· Monthly' },
+      { file:'FIN_DE_D.png',    title:'John Deere &amp; Co.',    sub:'Farm Economy Â· Daily' },
+      { file:'FIN_HD_D.png',    title:'The Home Depot',          sub:'Consumer Strength Â· Daily' },
+    ]
+  },
+  {
+    id:'rates', label:'Interest Rates', short:'Rates',
+    charts:[
+      { file:'BNDS_2YR_TNOTE_W.png',  title:'2-Year T-Note',              sub:'Weekly' },
+      { file:'BNDS_10YR_Price_Q.png',  title:'10-Year Treasury Price',     sub:'Quarterly' },
+      { file:'BNDS_30YR_Price_Q.png',  title:'30-Year Treasury Price',     sub:'Quarterly' },
+      { file:'BNDS_30YR_Yield_Q.png',  title:'30-Year Treasury Yield',     sub:'Quarterly' },
+    ]
+  },
+  {
+    id:'grains', label:'Correlated Grains', short:'Grains',
+    charts:[
+      { file:'GRAIN_C_D.png', title:'Corn',       sub:'CBOT Â· Daily' },
+      { file:'GRAIN_C_W.png', title:'Corn',       sub:'CBOT Â· Weekly' },
+      { file:'GRAIN_S_D.png', title:'Soybeans',   sub:'CBOT Â· Daily' },
+      { file:'GRAIN_S_W.png', title:'Soybeans',   sub:'CBOT Â· Weekly' },
+    ]
+  },
+];
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   LIGHTBOX ENGINE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+var lbIndex = 0;
+var lbItems = [];
+
+function openLightbox(src, title, items, index){
+  lbItems  = items  || [{ src:src, title:title }];
+  lbIndex  = index !== undefined ? index : 0;
+  showLb(lbIndex);
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function showLb(i){
+  var it = lbItems[i];
+  document.getElementById('lb-img').src   = it.src;
+  document.getElementById('lb-title').textContent = it.title || '';
+  var prev = document.getElementById('lb-prev');
+  var next = document.getElementById('lb-next');
+  prev.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
+  next.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+  lbItems = []; lbIndex = 0;
+}
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb').addEventListener('click', function(e){
+  if(e.target === this) closeLightbox();
+});
+document.getElementById('lb-prev').addEventListener('click', function(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length;
+  showLb(lbIndex);
+});
+document.getElementById('lb-next').addEventListener('click', function(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % lbItems.length;
+  showLb(lbIndex);
+});
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('lb').classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowLeft'  && lbItems.length>1){ lbIndex=(lbIndex-1+lbItems.length)%lbItems.length; showLb(lbIndex); }
+  if(e.key==='ArrowRight' && lbItems.length>1){ lbIndex=(lbIndex+1)%lbItems.length; showLb(lbIndex); }
+});
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CHART CARD BUILDER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function buildCard(file, title, sub){
+  var url = img(file);
+  var card = document.createElement('div');
+  card.className = 'chart-card';
+  card.dataset.src   = url;
+  card.dataset.title = title;
+
+  var image = document.createElement('img');
+  image.alt     = title;
+  image.loading = 'lazy';
+  image.src     = url;
+  image.onerror = function(){
+    card.classList.add('no-image');
+    card.innerHTML = '';
+    var inner = document.createElement('div');
+    inner.className = 'chart-no-img-inner';
+    inner.innerHTML = '<span>&#8987;</span><span>COMING SOON</span><span>' + file + '</span>';
+    var cap = document.createElement('div');
+    cap.className = 'chart-card-cap';
+    cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
+    card.appendChild(inner);
+    card.appendChild(cap);
+    card.style.cursor = 'default';
+  };
+  card.appendChild(image);
+
+  var cap = document.createElement('div');
+  cap.className = 'chart-card-cap';
+  cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
+  card.appendChild(cap);
+
+  return card;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER COMMAND BAR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function renderCommandBar(){
+  var cfg = MB_CONFIG;
+  var st  = cfg.borStatus.toLowerCase();
+
+  var light = document.getElementById('bor-light');
+  var lightClass = st === 'suspend' ? 'suspend' : (st === 'execute-20d' ? 'execute-fast' : 'execute');
+  light.className = 'bor-light ' + lightClass;
+
+  var txt = document.getElementById('bor-status-text');
+  var txtClass = st === 'suspend' ? 'suspend' : 'execute';
+  txt.className = 'bor-status-text ' + txtClass;
+  var stateLabels = {
+    'suspend':     'Suspend Sales',
+    'execute-60d': 'Execute Sales â€” 60-D',
+    'execute-20d': 'Execute Sales â€” 20-D'
+  };
+  txt.textContent = stateLabels[st] || 'Suspend Sales';
+
+  document.getElementById('bor-updated').textContent = 'Updated: ' + cfg.borDate;
+
+  // Prices table
+  var tbl = document.getElementById('prices-table');
+  var thead = '<thead><tr>'
+    + '<th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th>'
+    + '</tr></thead>';
+  var tbody = '<tbody>';
+  cfg.prices.forEach(function(p){
+    var chgClass = p.chgDir === 'up' ? 'pt-chg up' : p.chgDir === 'dn' ? 'pt-chg dn' : 'pt-val';
+    var arrow = p.chgDir === 'up' ? ' â–²' : p.chgDir === 'dn' ? ' â–¼' : '';
+    tbody += '<tr>'
+      + '<td><span class="pt-contract">'+p.contract+'</span>'
+        + '<span class="pt-exchange">'+p.exchange+' Â· '+p.ticker+' Â· '+p.unit+'</span></td>'
+      + '<td class="pt-val">'+p.open+'</td>'
+      + '<td class="pt-val">'+p.high+'</td>'
+      + '<td class="pt-val">'+p.low+'</td>'
+      + '<td class="pt-close">'+p.close+'</td>'
+      + '<td class="'+chgClass+'">'+p.chg+arrow+'</td>'
+      + '</tr>';
+  });
+  tbody += '</tbody>';
+  tbl.innerHTML = thead + tbody;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER COMMENTARY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function processShortcodes(html){
+  return html.replace(/\[chart:([^\]]+)\]/g, function(_, filename){
+    var url = img(filename.trim());
+    return '<a href="'+url+'" class="inline-chart-link lb-trigger" data-src="'+url+'" data-title="'+filename.replace('.png','')+'">'
+      + '<img src="'+url+'" class="inline-chart-thumb" alt="'+filename+'" loading="lazy">'
+      + '</a>';
+  });
+}
+function renderCommentary(){
+  var cfg = MB_CONFIG;
+  document.getElementById('dateline').textContent = cfg.dateline;
+
+  var ul = document.getElementById('bullets-list');
+  ul.innerHTML = '';
+  cfg.bullets.forEach(function(b){
+    var li = document.createElement('li');
+    li.className = 'bullet-item';
+    li.innerHTML = '<div class="bullet-mark" style="background:'+b.color+';box-shadow:0 0 6px 2px '+b.color+'40;"></div>'
+      + '<span style="color:'+b.color+'">'+b.text+'</span>';
+    ul.appendChild(li);
+  });
+
+  document.getElementById('commentary-body').innerHTML = processShortcodes(cfg.body);
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER WHEAT EXCHANGE GALLERIES (HRW / HRS / FWH)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function renderWheatGalleries(){
+  WHEAT_EXCHANGES.forEach(function(ex){
+    var container = document.getElementById(ex.id);
+    if(!container) return;
+    // Collect lightbox items for this exchange
+    var lbSet = ex.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+    ex.charts.forEach(function(c, i){
+      var card = buildCard(c.file, c.title, c.sub);
+      card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+      container.appendChild(card);
+    });
+  });
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER CHART NAVIGATOR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function renderNavigator(){
+  var tabsEl   = document.getElementById('nav-tabs');
+  var panelsEl = document.getElementById('nav-panels');
+  var firstTab = null;
+
+  NAV_CATEGORIES.forEach(function(cat, ci){
+    // Tab button
+    var btn = document.createElement('button');
+    btn.className = 'nav-tab';
+    btn.textContent = cat.short;
+    btn.dataset.cat = cat.id;
+    tabsEl.appendChild(btn);
+    if(ci === 0) firstTab = btn;
+
+    // Panel
+    var panel = document.createElement('div');
+    panel.className = 'nav-panel';
+    panel.id = 'panel-' + cat.id;
+
+    if(cat.groups){
+      // Category with sub-groups (Spreads)
+      cat.groups.forEach(function(grp){
+        var sg = document.createElement('div');
+        sg.className = 'nav-subgroup';
+        var lbl = document.createElement('div');
+        lbl.className = 'nav-subgroup-label';
+        lbl.textContent = grp.label;
+        sg.appendChild(lbl);
+        var grid = document.createElement('div');
+        grid.className = 'nav-grid';
+        var lbSet = grp.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+        grp.charts.forEach(function(c, i){
+          var card = buildCard(c.file, c.title, c.sub);
+          card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+          grid.appendChild(card);
+        });
+        sg.appendChild(grid);
+        panel.appendChild(sg);
+      });
+    } else {
+      // Simple category
+      var grid = document.createElement('div');
+      grid.className = 'nav-grid';
+      var lbSet = cat.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+      cat.charts.forEach(function(c, i){
+        var card = buildCard(c.file, c.title, c.sub);
+        card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+        grid.appendChild(card);
+      });
+      panel.appendChild(grid);
+    }
+
+    panelsEl.appendChild(panel);
+  });
+
+  // Tab click handlers
+  tabsEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.nav-tab');
+    if(!btn) return;
+    tabsEl.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
+    panelsEl.querySelectorAll('.nav-panel').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    var panel = document.getElementById('panel-' + btn.dataset.cat);
+    if(panel) panel.classList.add('active');
+  });
+
+  // Activate first tab
+  if(firstTab){
+    firstTab.classList.add('active');
+    var fp = document.getElementById('panel-' + firstTab.dataset.cat);
+    if(fp) fp.classList.add('active');
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WIRE UP STATIC LB TRIGGERS (BOR chart + SRW gallery)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function wireStaticTriggers(){
+  // Collect all static SRW chart cards for gallery lightbox
+  var srwCards = document.querySelectorAll('.wheat-gallery-section .chart-card.lb-trigger, .bor-chart-card.lb-trigger');
+  srwCards.forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(el.dataset.src, el.dataset.title);
+    });
+  });
+  // BOR chart standalone
+  var borCard = document.querySelector('.bor-chart-card.lb-trigger');
+  if(borCard){
+    borCard.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(borCard.dataset.src, borCard.dataset.title);
+    });
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WIRE COMMENTARY INLINE CHART TRIGGERS
+   (runs after commentary HTML is injected)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function wireCommentaryTriggers(){
+  document.querySelectorAll('.commentary-body .lb-trigger').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(el.dataset.src, el.dataset.title);
+    });
+  });
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   INIT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+document.addEventListener('DOMContentLoaded', function(){
+  renderCommandBar();
+  renderCommentary();
+  renderWheatGalleries();
+  renderNavigator();
+  wireStaticTriggers();
+  wireCommentaryTriggers();
+});
+</script>
+</body>
+</html>
+
+
+This may or may not be related to the current task.</ide_selection>
+fix bor status to suspend then commit and push
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:07:35.067Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:07:35.353Z] --
+Setting the badge to SUSPEND, then committing and pushing only this file.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:07:36.560Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:07:38.565Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:07:40.558Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:07:44.767Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:07:50.592Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:07:50.629Z] --
+The badge now reads SUSPEND, and the change is committed and pushed to `main` (commit `a3a83b77`, up to date with origin).
+
+Download link: https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html
+GitHub's raw link can take a few minutes to show the new version.
+
+**The commentary text still says EXECUTE.** I only changed the badge, so the page now contradicts itself. These parts still say EXECUTE:
+- Bullet 2 ("Box-o-Rox is still EXECUTEâ€¦")
+- The paragraph starting "Box-o-Rox: EXECUTE, and the bounce hasn't changed that"
+- The "Marketing posture: EXECUTE. The bounce is the sale." section and its three-point plan
+- The closing paragraph about selling a tranche on schedule
+
+Your BOR chart as of 3:45 a.m. Tuesday still showed EXECUTE, with Dec Chicago at $6.98 under the 60-day line at $7.02Â¾. If SUSPEND is because of Tuesday's settle at $7.04Â½, it belongs in Wednesday's edition rather than this pre-dawn Tuesday one.
+
+Should I rewrite those sections for SUSPEND, or put the badge back to EXECUTE?
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:08:20.763Z] --
+put it back
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:08:22.862Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:08:24.584Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:08:26.536Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:08:30.492Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:08:32.638Z] --
+The badge says **EXECUTE (60-D)** again, so it matches the commentary. The change is committed and pushed to `main` as `01ccd049`, and the local copy is in sync with GitHub.
+
+The raw link is the same and may take a few minutes to update:
+https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:09:24.899Z] --
+also attribute to Gabriel not gary
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:09:29.139Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:09:30.344Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:09:31.972Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:09:33.925Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:09:38.089Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:09:40.587Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:09:40.594Z] --
+The commentary now signs off "â€”Gabriel" instead of "â€”Gary". The change is committed and pushed to `main` as `41241474`.
+
+The notes inside the code still say "Gary's TN charts" and "Gary to add". I left those alone because readers never see them.
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:24:05.767Z] --
+I ERRORED...IOT IS IN FACT SUSPEND STATUS
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:13.881Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:14.329Z] --
+Understood. I'll check the latest BOR chart in the repo first so the rewritten text matches what subscribers will see on it.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:16.888Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:24:18.140Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:20.305Z] --
+[Tool call: Read]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:24:20.348Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:39.441Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:39.464Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:24:40.914Z] --
+[Tool call: AskUserQuestion]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:24:57.113Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:07.257Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:07.270Z] --
+Keeping the Tuesday dateline and adding the flip. First I'll pin down Tuesday's official settle: Trade Navigator implies $7.04Â¼ and the yfinance file says $7.04Â½.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:08.122Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:10.524Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:12.359Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:12.366Z] --
+Brownfield confirms **$7.04Â¼, up 12Â¢**, which matches Trade Navigator. That's half a cent above the 60-day at $7.03Â¾. Rewriting the four BOR sections now.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:13.564Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:16.163Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:21.224Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:31.060Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:33.134Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:34.717Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:36.400Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:37.972Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:39.556Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:41.143Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:43.037Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:43.060Z] --
+Checking for any leftover EXECUTE wording, then pushing:
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:45.872Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:50.834Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:55.779Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:55.794Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:55.917Z] --
+[Tool call: Edit]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:25:57.809Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:25:59.691Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:26:04.139Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:26:11.095Z] --
+The dashboard now shows **SUSPEND**, and the commentary matches it. Both changes are pushed to `main`.
+
+Tuesday's close is what flips it. Dec Chicago settled at **$7.04Â¼, up 12Â¢** (Brownfield, and it matches Trade Navigator). That is half a cent above the 60-day at $7.03Â¾.
+
+**What changed in the text**
+- **Bullet 2:** Box-o-Rox flips to SUSPEND on Tuesday's close, ending the EXECUTE phase that began Sept. 28. New tranches pause.
+- **BOR paragraph:** gives the trigger, and warns that a half-cent cushion with the 20-day at $7.08Â½ overhead means SUSPEND isn't proven yet.
+- **Marketing posture:** "SUSPEND. Let the bounce prove itself."
+  - New tranches pause.
+  - Sales already made under EXECUTE stand, and nothing says buy them back.
+  - A settle back below the line returns it to EXECUTE.
+  - Friday's WASDE is the catalyst to watch.
+- **Closing paragraph:** rewritten around not getting greedy with SUSPEND. The old one was built on "sell into the bounce."
+- **Chart paragraph:** the moving averages there are now labeled as overnight values, so they don't clash with the Tuesday-close numbers.
+- **Internal note in the code:** records that the BOR status comes from Tuesday's close by your call, while everything else stays on Monday's data.
+
+**One thing for you:** the BOR chart image still says "CURRENT STATUS: EXECUTE ALL DEFERRED SALES" as of 6:40 p.m. Update that annotation in Trade Navigator and re-export, or subscribers will see EXECUTE on the chart under a SUSPEND badge.
+
+Link: https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:32:23.555Z] --
+updated annotation...badege still reading execute on my phone
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:28.421Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:28.870Z] --
+I'll check what the phone is actually loading. The GitHub file says SUSPEND, so the badge is probably coming from somewhere else.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:30.785Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:32:35.607Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:39.286Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:39.295Z] --
+Several copies of the dashboard carry their own badge setting. I'll check which one is live on GitHub Pages and whether the latest build has deployed.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:42.329Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:32:45.868Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:49.783Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:51.600Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:32:53.125Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:58.615Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:58.636Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:32:59.562Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T02:33:06.621Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:33:12.385Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T02:33:12.451Z] --
+I can't tell where your phone is loading the badge from. Every copy on GitHub reads SUSPEND:
+- **Your edited file** (index01.html, raw link): SUSPEND, and GitHub's cache is serving the current version.
+- **The GitHub Pages dashboard** (marketbulletsllc.github.io/WEBSITECHARTS/members-dashboard.html): also SUSPEND. That page comes from `docs/`, not the folder we edited, and it still carries an old commentary.
+
+I couldn't find the dashboard on marketbulletsllc.com from the outside. It's probably behind a login or on a page name I didn't guess.
+
+**Most likely cause:** the dashboard was pasted into a Squarespace code block. A pasted copy keeps whatever badge setting it had when it was pasted, so pushing to GitHub never updates it. It would need the new index01.html re-pasted (Gabe's step), or a change so Squarespace loads the file from GitHub.
+
+**Less likely:** your phone is showing a cached copy. Open the same link in a private tab to rule that out.
+
+**Which link is open on your phone?** Paste the address from the browser bar and I'll trace it. If it's the Squarespace page, I can get index01.html ready for Gabe to paste.
+
+--------------------------------------------------
+
+-- USER [2026-10-07T04:51:53.147Z] --
+<ide_selection>The user selected the lines 1 to 1421 from c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\SUBSCRIBER DASHBOARD\index01.html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketBulletsÂ® â€” Members Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TOKENS & RESET
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+img{display:block;max-width:100%;height:auto;}
+a{text-decoration:none;color:inherit;}
+:root{
+  --soil:       #0A0704;
+  --soil-mid:   #0F0B07;
+  --soil-lt:    #1A1208;
+  --charcoal:   #231A0E;
+  --char-lt:    #2E2213;
+  --cream:      #FBF7EE;
+  --parchment:  #F0E8D0;
+  --buff:       #E4D9BA;
+  --wheat:      #C8960A;
+  --wheat-lt:   #E8B820;
+  --wheat-pal:  #F5E6C0;
+  --wheat-dim:  rgba(200,150,10,.12);
+  --gold:       #D4A051;
+  --red:        #DC3220;
+  --green:      #32C850;
+  --up:         #5AAA70;
+  --dn:         #E05030;
+  --border:     rgba(200,150,10,.20);
+  --border-lt:  rgba(200,150,10,.09);
+  --serif:      'DM Serif Display',Georgia,serif;
+  --serif2:     'Playfair Display',Georgia,serif;
+  --body:       'Lora',Georgia,serif;
+  --mono:       'IBM Plex Mono','Courier New',monospace;
+}
+body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-size:16px;line-height:1.6;}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HERO BANNER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.hero{
+  position:relative;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+  height:562px;
+  overflow:hidden;
+  background:var(--soil-mid);/* Fallback until hero_banner.jpg is added to repo root */
+  background-image:url('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/hero_banner.jpg');
+  background-size:cover;
+  background-position:center center;
+}
+.hero::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(to right,
+    rgba(0,0,0,.20) 0%,
+    rgba(0,0,0,.15) 35%,
+    rgba(0,0,0,.55) 65%,
+    rgba(0,0,0,.75) 100%);
+}
+.hero-title{
+  position:absolute;
+  top:50px;left:0;right:0;
+  text-align:center;
+  z-index:2;
+  padding:0 80px;
+}
+.hero-company{
+  font-family:var(--serif);
+  font-size:clamp(28px,3.2vw,52px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--cream);
+  text-shadow:0 2px 16px rgba(0,0,0,.8);
+  line-height:1.1;
+}
+.hero-tagline{
+  font-family:var(--body);
+  font-size:clamp(13px,1.4vw,20px);
+  font-style:italic;
+  color:var(--wheat-pal);
+  margin-top:10px;
+  text-shadow:0 1px 8px rgba(0,0,0,.7);
+  letter-spacing:.04em;
+}
+@media(max-width:900px){
+  .hero{height:320px;}
+  .hero-title{top:30px;padding:0 48px;}
+}
+@media(max-width:600px){
+  .hero{height:220px;}
+  .hero-title{top:20px;padding:0 24px;text-align:right;}
+  .hero-company{font-size:18px;}
+  .hero-tagline{font-size:11px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   COMMAND BAR  (BoR status + Prices)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.command-bar{
+  max-width:1440px;margin:0 auto;
+  background:var(--soil-mid);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  flex-wrap:wrap;
+  gap:0;
+}
+/* â”€â”€ BoR Status â”€â”€ */
+.bor-widget{
+  flex:0 0 340px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:8px;
+  padding:24px 32px;
+  border-right:1px solid var(--border);
+  background:var(--soil-lt);
+}
+.bor-label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(245,230,192,.45);
+}
+.bor-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.bor-light{
+  flex-shrink:0;
+  width:22px;height:22px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,.4);
+}
+/* Breathing blue â€” SUSPEND (price above 60-D MA, tranches accumulating) */
+@keyframes breathe-blue{
+  0%,100%{opacity:.22;box-shadow:0 0 5px 2px rgba(77,166,255,.2);}
+  50%{opacity:1;box-shadow:0 0 18px 7px rgba(77,166,255,.85),0 0 36px 14px rgba(77,166,255,.25);}
+}
+.bor-light.suspend{
+  background:#4da6ff;
+  animation:breathe-blue 6s ease-in-out infinite;
+}
+/* Blinking green â€” EXECUTE (60-D breach, 10s cycle) */
+@keyframes blink-green-normal{
+  0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
+  50.01%,100%{opacity:.12;box-shadow:none;}
+}
+/* Blinking green â€” EXECUTE fast (20-D signal, 5s cycle) */
+@keyframes blink-green-fast{
+  0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
+  50.01%,100%{opacity:.12;box-shadow:none;}
+}
+.bor-light.execute{
+  background:var(--green);
+  animation:blink-green-normal 10s step-start infinite;
+}
+.bor-light.execute-fast{
+  background:var(--green);
+  animation:blink-green-fast 5s step-start infinite;
+}
+.bor-status-text{
+  font-family:var(--serif2);
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:.03em;
+  line-height:1.1;
+}
+.bor-status-text.suspend{color:#4da6ff;}
+.bor-status-text.execute{color:var(--green);}
+.bor-updated{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.35);
+  letter-spacing:.06em;
+}
+/* â”€â”€ Prices Table â”€â”€ */
+.prices-wrap{
+  flex:1 1 0;
+  padding:18px 28px;
+  overflow-x:auto;
+}
+.prices-heading{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(245,230,192,.45);
+  margin-bottom:10px;
+}
+.prices-table{
+  width:100%;
+  border-collapse:collapse;
+  font-family:var(--mono);
+  font-size:12px;
+}
+.prices-table th{
+  text-align:left;
+  padding:5px 12px 5px 0;
+  font-size:10px;
+  letter-spacing:.10em;
+  color:rgba(245,230,192,.45);
+  border-bottom:1px solid var(--border-lt);
+  white-space:nowrap;
+}
+.prices-table td{
+  padding:7px 12px 7px 0;
+  border-bottom:1px solid var(--border-lt);
+  white-space:nowrap;
+  vertical-align:middle;
+}
+.prices-table tr:last-child td{border-bottom:none;}
+.pt-contract{font-size:13px;font-weight:600;color:var(--cream);letter-spacing:.02em;}
+.pt-exchange{font-size:9px;color:rgba(245,230,192,.45);display:block;margin-top:1px;letter-spacing:.06em;}
+.pt-close{font-size:14px;font-weight:600;color:var(--wheat-lt);}
+.pt-chg.up{color:var(--up);}
+.pt-chg.dn{color:var(--dn);}
+.pt-val{color:var(--wheat-pal);}
+@media(max-width:900px){
+  .command-bar{flex-direction:column;}
+  .bor-widget{flex:unset;border-right:none;border-bottom:1px solid var(--border);}
+  .prices-wrap{padding:16px 20px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   COMMENTARY SECTION
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.commentary-wrap{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px;
+  background:var(--soil);
+  border-bottom:1px solid var(--border-lt);
+}
+.commentary-dateline{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--wheat);
+  margin-bottom:20px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border-lt);
+}
+/* Bullets */
+.bullets-list{
+  list-style:none;
+  margin-bottom:32px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.bullet-item{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  font-family:var(--serif2);
+  font-size:18px;
+  font-weight:700;
+  line-height:1.35;
+}
+.bullet-mark{
+  flex-shrink:0;
+  width:7px;height:7px;
+  border-radius:50%;
+  margin-top:7px;
+  /* color set inline by JS */
+}
+/* Commentary body */
+.commentary-body{
+  max-width:860px;
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.8;
+  color:var(--buff);
+}
+.commentary-body p{margin-bottom:20px;}
+.commentary-body p:last-child{margin-bottom:0;}
+.commentary-body a{
+  color:var(--wheat-lt);
+  border-bottom:1px solid rgba(232,184,32,.35);
+  transition:border-color .15s;
+}
+.commentary-body a:hover{border-color:var(--wheat-lt);}
+/* Inline chart thumbnails (from [chart:FILENAME] shortcode) */
+.inline-chart-link{
+  display:inline-block;
+  vertical-align:middle;
+  margin:0 6px 4px;
+  cursor:pointer;
+}
+.inline-chart-thumb{
+  width:130px;
+  height:auto;
+  border:1px solid var(--border);
+  border-radius:2px;
+  transition:transform .15s,border-color .15s;
+}
+.inline-chart-link:hover .inline-chart-thumb{
+  transform:scale(1.06);
+  border-color:var(--wheat);
+}
+@media(max-width:700px){
+  .commentary-wrap{padding:28px 20px;}
+  .bullet-item{font-size:15px;}
+  .commentary-body{font-size:15px;}
+  .inline-chart-thumb{width:90px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BOR CHART STANDALONE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.bor-chart-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px;
+  background:var(--soil-mid);
+  border-bottom:1px solid var(--border);
+}
+.section-eyebrow{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--wheat);
+  margin-bottom:8px;
+}
+.section-heading{
+  font-family:var(--serif);
+  font-size:clamp(20px,2vw,30px);
+  color:var(--cream);
+  margin-bottom:20px;
+}
+.bor-chart-card{
+  border:1px solid rgba(200,150,10,.35);
+  border-radius:3px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .18s;
+  display:block;
+  max-width:1200px;
+}
+.bor-chart-card:hover{border-color:var(--wheat);}
+.bor-chart-card img{width:100%;height:auto;}
+.bor-chart-caption{
+  padding:10px 16px;
+  background:var(--charcoal);
+  border-top:1px solid var(--border-lt);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.bor-chart-caption-title{
+  font-family:var(--serif2);
+  font-size:14px;
+  font-weight:700;
+  color:var(--wheat-lt);
+}
+.bor-chart-caption-sub{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.45);
+  letter-spacing:.06em;
+  margin-left:auto;
+}
+@media(max-width:700px){
+  .bor-chart-section{padding:24px 16px;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WHEAT GALLERY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.wheat-gallery-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px 52px;
+  background:var(--soil);
+  border-bottom:1px solid var(--border);
+}
+.exchange-block{margin-bottom:44px;}
+.exchange-block:last-child{margin-bottom:0;}
+.exchange-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border-lt);
+}
+.exchange-badge{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.10em;
+  background:var(--charcoal);
+  border:1px solid var(--border);
+  color:var(--wheat);
+  padding:3px 9px;
+  border-radius:2px;
+  white-space:nowrap;
+}
+.exchange-name{
+  font-family:var(--serif2);
+  font-size:18px;
+  font-weight:700;
+  color:var(--cream);
+}
+.exchange-contract{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.4);
+  letter-spacing:.06em;
+  margin-left:auto;
+}
+/* Gallery grids */
+.gallery-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.gallery-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+/* Chart card (reusable) */
+.chart-card{
+  background:var(--soil-lt);
+  border:1px solid var(--border-lt);
+  border-radius:3px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color .18s,transform .18s;
+}
+.chart-card:hover{border-color:var(--border);transform:translateY(-2px);}
+.chart-card img{width:100%;height:auto;display:block;}
+.chart-card-cap{
+  padding:8px 12px 9px;
+  border-top:1px solid var(--border-lt);
+  background:var(--charcoal);
+}
+.chart-card-title{
+  font-size:12px;
+  font-weight:bold;
+  color:var(--wheat-pal);
+  line-height:1.3;
+}
+.chart-card-sub{
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.42);
+  margin-top:2px;
+  letter-spacing:.04em;
+}
+/* Coming-soon placeholder */
+.chart-card.no-image{
+  background:var(--charcoal);
+  border-style:dashed;
+  border-color:rgba(200,150,10,.15);
+  display:flex;
+  flex-direction:column;
+  min-height:200px;
+}
+.chart-card.no-image .chart-no-img-inner{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:24px;
+  color:rgba(245,230,192,.25);
+}
+.chart-card.no-image .chart-no-img-inner span{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.08em;
+  text-align:center;
+}
+@media(max-width:900px){
+  .gallery-grid-2,.gallery-grid-3{grid-template-columns:repeat(2,1fr);}
+  .wheat-gallery-section{padding:28px 20px 40px;}
+}
+@media(max-width:500px){
+  .gallery-grid-2,.gallery-grid-3{grid-template-columns:1fr;}
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CHART NAVIGATOR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.navigator-section{
+  max-width:1440px;margin:0 auto;
+  padding:40px 48px 60px;
+  background:var(--soil-mid);
+}
+/* Category tab strip */
+.nav-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 5px;
+  margin-bottom:28px;
+}
+.nav-tab{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--wheat-pal);
+  background:var(--soil-lt);
+  border:1px solid var(--border-lt);
+  padding:7px 16px;
+  border-radius:2px;
+  cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+  white-space:nowrap;
+}
+.nav-tab:hover,.nav-tab.active{
+  background:var(--charcoal);
+  border-color:var(--wheat);
+  color:var(--wheat-lt);
+}
+/* Navigator panel */
+.nav-panel{display:none;}
+.nav-panel.active{display:block;}
+.nav-subgroup{margin-bottom:32px;}
+.nav-subgroup:last-child{margin-bottom:0;}
+.nav-subgroup-label{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(245,230,192,.45);
+  margin-bottom:10px;
+  padding-bottom:6px;
+  border-bottom:1px solid var(--border-lt);
+}
+.nav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:1100px){.nav-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:760px){
+  .nav-grid{grid-template-columns:repeat(2,1fr);}
+  .navigator-section{padding:28px 16px 48px;}
+}
+@media(max-width:420px){.nav-grid{grid-template-columns:1fr;}}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   LIGHTBOX
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.lb{
+  display:none;
+  position:fixed;inset:0;
+  z-index:9999;
+  background:rgba(6,4,2,.96);
+  cursor:zoom-out;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.lb.open{display:flex;}
+.lb-img-wrap{
+  max-width:95vw;max-height:88vh;
+  overflow:auto;
+  cursor:default;
+}
+.lb-img-wrap img{
+  max-width:100%;height:auto;
+  display:block;
+  box-shadow:0 8px 40px rgba(0,0,0,.8);
+}
+.lb-title{
+  margin-top:12px;
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.08em;
+  color:rgba(245,230,192,.55);
+}
+.lb-close{
+  position:fixed;
+  top:18px;right:22px;
+  font-family:var(--mono);
+  font-size:22px;
+  color:rgba(245,230,192,.5);
+  cursor:pointer;
+  line-height:1;
+  padding:4px 8px;
+  border:1px solid rgba(245,230,192,.15);
+  border-radius:2px;
+  transition:color .15s,border-color .15s;
+}
+.lb-close:hover{color:var(--cream);border-color:rgba(245,230,192,.5);}
+.lb-nav{
+  position:fixed;
+  top:50%;transform:translateY(-50%);
+  font-family:var(--mono);
+  font-size:28px;
+  color:rgba(245,230,192,.35);
+  cursor:pointer;
+  padding:12px 16px;
+  transition:color .15s;
+  user-select:none;
+}
+.lb-nav:hover{color:var(--wheat-lt);}
+.lb-prev{left:12px;}
+.lb-next{right:12px;}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   FOOTER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+footer{
+  max-width:1440px;margin:0 auto;
+  border-top:1px solid var(--border-lt);
+  padding:24px 48px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 24px;
+  align-items:center;
+}
+.footer-brand{font-family:var(--serif2);font-size:13px;font-weight:700;color:var(--wheat);}
+.footer-copy{font-family:var(--mono);font-size:10px;color:rgba(245,230,192,.30);letter-spacing:.05em;}
+.footer-tag{
+  margin-left:auto;
+  font-family:var(--mono);
+  font-size:10px;
+  color:rgba(245,230,192,.25);
+  letter-spacing:.08em;
+}
+</style>
+</head>
+
+<body>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     1. HERO BANNER
+     â”€ Add hero_banner.jpg (1440Ã—562) to repo root
+     â”€ Logo: MarketBullets_Logo.png already in root
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="hero" id="top">
+  <div class="hero-title">
+    <div class="hero-company">MarketBullets</div>
+    <div class="hero-tagline">More Sense Per Bushelâ„¢</div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     2. COMMAND BAR â€” BoR Status + Closing Prices
+     (populated by JS from MB_CONFIG below)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="command-bar" id="command-bar">
+  <div class="bor-widget">
+    <div class="bor-label">Box&#x2011;o&#x2011;Rox Status</div>
+    <div class="bor-row">
+      <div class="bor-light" id="bor-light"></div>
+      <div class="bor-status-text" id="bor-status-text"></div>
+    </div>
+    <div class="bor-updated" id="bor-updated"></div>
+  </div>
+  <div class="prices-wrap">
+    <div class="prices-heading">Latest Closing Prices</div>
+    <table class="prices-table" id="prices-table"></table>
+  </div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     3. COMMENTARY
+     (populated by JS from MB_CONFIG below)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="commentary-wrap" id="commentary-wrap">
+  <div class="commentary-dateline" id="dateline"></div>
+  <ul class="bullets-list" id="bullets-list"></ul>
+  <div class="commentary-body" id="commentary-body"></div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     4. BOX-O-ROX CHART â€” Standalone Signal Chart
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="bor-chart-section">
+  <div class="section-eyebrow">The Warm Signal</div>
+  <h2 class="section-heading">Box&#x2011;o&#x2011;Rox Signal Chart</h2>
+  <a class="bor-chart-card lb-trigger"
+     data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
+     data-title="Box-o-Rox Daily â€” SRW Price vs 60-Day MA"
+     href="#"
+  >
+    <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
+         alt="Box-o-Rox Daily" loading="lazy">
+    <div class="bor-chart-caption">
+      <div class="bor-chart-caption-title">Box&#x2011;o&#x2011;Rox Daily â€” SRW Price vs 60-Day MA</div>
+      <div class="bor-chart-caption-sub">CLICK TO EXPAND</div>
+    </div>
+  </a>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     5. WHEAT CHART GALLERY
+     Organized by exchange â€” SRW priority
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="wheat-gallery-section">
+  <div class="section-eyebrow">Chart Gallery</div>
+  <h2 class="section-heading">Wheat Futures</h2>
+
+  <!-- â”€â”€ CHICAGO SRW â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">CBOT Â· ZW</span>
+      <span class="exchange-name">Chicago Soft Red Winter (SRW)</span>
+      <span class="exchange-contract">6 CHARTS</span>
+    </div>
+    <!-- Row 1: 30-Min + Daily -->
+    <div class="gallery-grid-2" style="margin-bottom:14px;">
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png"
+           data-title="Chicago SRW 30-Minute">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_30Min.png"
+             alt="SRW 30-Min" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW 30-Minute</div>
+          <div class="chart-card-sub">INTRADAY Â· SESSION MOMENTUM</div>
+        </div>
+      </div>
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png"
+           data-title="Chicago SRW Daily">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_D.png"
+             alt="SRW Daily" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Daily</div>
+          <div class="chart-card-sub">DAILY Â· TREND &amp; MOVING AVERAGES</div>
+        </div>
+      </div>
+    </div>
+    <!-- Row 2: Weekly + Monthly -->
+    <div class="gallery-grid-2" style="margin-bottom:14px;">
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png"
+           data-title="Chicago SRW Weekly">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_W.png"
+             alt="SRW Weekly" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Weekly</div>
+          <div class="chart-card-sub">WEEKLY Â· INTERMEDIATE TREND</div>
+        </div>
+      </div>
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png"
+           data-title="Chicago SRW Monthly">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_M.png"
+             alt="SRW Monthly" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Monthly</div>
+          <div class="chart-card-sub">MONTHLY Â· SEASONAL PATTERNS</div>
+        </div>
+      </div>
+    </div>
+    <!-- Row 3: Annual + Monthly Annotated -->
+    <div class="gallery-grid-2">
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png"
+           data-title="Chicago SRW Annual â€” 50+ Year View">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_A.png"
+             alt="SRW Annual" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Annual</div>
+          <div class="chart-card-sub">ANNUAL Â· 50+ YEAR CYCLE VIEW</div>
+        </div>
+      </div>
+      <div class="chart-card lb-trigger"
+           data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png"
+           data-title="Chicago SRW Monthly â€” World Events Timeline">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_Special_M.png"
+             alt="SRW Monthly Annotated" loading="lazy">
+        <div class="chart-card-cap">
+          <div class="chart-card-title">Chicago SRW Monthly (Annotated)</div>
+          <div class="chart-card-sub">WORLD EVENTS TIMELINE OVERLAY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- â”€â”€ KANSAS CITY HRW â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">KCBT Â· KE</span>
+      <span class="exchange-name">Kansas City Hard Red Winter (HRW)</span>
+      <span class="exchange-contract">3 CHARTS</span>
+    </div>
+    <div class="gallery-grid-3" id="hrw-gallery"></div>
+  </div>
+
+  <!-- â”€â”€ MINNEAPOLIS HRS â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">MGEX Â· MWE</span>
+      <span class="exchange-name">Minneapolis Hard Red Spring (HRS)</span>
+      <span class="exchange-contract">3 CHARTS</span>
+    </div>
+    <div class="gallery-grid-3" id="hrs-gallery"></div>
+  </div>
+
+  <!-- â”€â”€ PARIS MILLING FWH â”€â”€ -->
+  <div class="exchange-block">
+    <div class="exchange-head">
+      <span class="exchange-badge">Euronext Â· EBM</span>
+      <span class="exchange-name">Paris 11% Milling Wheat (FWH)</span>
+      <span class="exchange-contract">3 CHARTS</span>
+    </div>
+    <div class="gallery-grid-3" id="fwh-gallery"></div>
+  </div>
+
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     6. CHART NAVIGATOR
+     Category tabs â†’ galleries for all non-wheat charts
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="navigator-section">
+  <div class="section-eyebrow">Full Chart Index</div>
+  <h2 class="section-heading">Chart Navigator</h2>
+  <div class="nav-tabs" id="nav-tabs"></div>
+  <div id="nav-panels"></div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     7. WHEAT WEATHER DASHBOARD
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section style="max-width:1440px;margin:0 auto;padding:40px 48px 52px;background:var(--soil);border-bottom:1px solid var(--border);">
+  <div class="section-eyebrow">Crop Conditions</div>
+  <h2 class="section-heading">Global Wheat Weather</h2>
+  <iframe
+    src="https://marketbulletsllc.github.io/WEBSITECHARTS/wheat-weather.html"
+    width="100%"
+    height="1100"
+    frameborder="0"
+    style="border:none;display:block;border-radius:3px;"
+    loading="lazy"
+    title="Global Wheat Weather Dashboard"
+  ></iframe>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">MarketBulletsÂ®</span>
+  <span class="footer-copy">Â© MarketBullets LLC Â· All rights reserved Â· marketbulletsllc.com</span>
+  <span class="footer-tag">MORE SENSE PER BUSHELâ„¢</span>
+</footer>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     LIGHTBOX OVERLAY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="lb" id="lb" role="dialog" aria-label="Chart viewer">
+  <div class="lb-close" id="lb-close" title="Close (Esc)">&#x2715;</div>
+  <span class="lb-nav lb-prev" id="lb-prev" title="Previous">&#8249;</span>
+  <div class="lb-img-wrap">
+    <img src="" id="lb-img" alt="">
+  </div>
+  <div class="lb-title" id="lb-title"></div>
+  <span class="lb-nav lb-next" id="lb-next" title="Next">&#8250;</span>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     SCRIPT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<script>
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+   â–ˆâ–ˆ                                              â–ˆâ–ˆ
+   â–ˆâ–ˆ   DAILY UPDATE ZONE â€” Edit values below     â–ˆâ–ˆ
+   â–ˆâ–ˆ   at each publishing update                 â–ˆâ–ˆ
+   â–ˆâ–ˆ                                              â–ˆâ–ˆ
+   â–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆâ–ˆ
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+const MB_CONFIG = {
+
+  /* â”€â”€ BOX-O-ROX STATUS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     'suspend'      Condition 1 â€” price above 60-D MA
+     'execute-60d'  Condition 2 â€” price below 60-D MA
+     'execute-20d'  Condition 3 â€” 20-D signal active   */
+  borStatus: 'suspend',                        // â† 'suspend' | 'execute-60d' | 'execute-20d'
+  borDate:   'Oct 6, 2026',                    // â† Update each session
+
+  /* â”€â”€ CLOSING PRICES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     SRW/HRW/HRS: $/bu with fractions (e.g. '5.44Â¾')
+     FWH: â‚¬/tonne (e.g. '211.00')
+     chgDir: 'up', 'dn', or 'flat'                   */
+  prices: [
+    { contract:'Chicago SRW (Dec)',       exchange:'CBOT',      ticker:'ZW',  unit:'$/bu',
+      open:'6.83',  high:'6.98Â½',  low:'6.79Â¾',  close:'6.92Â¼',  chg:'+0.09Â¼',  chgDir:'up' },
+    { contract:'Kansas City HRW (Dec)',   exchange:'KCBT',      ticker:'KE',  unit:'$/bu',
+      open:'7.35Â¼',  high:'7.51Â¾',  low:'7.32',  close:'7.42Â¼',  chg:'+0.07',  chgDir:'up' },
+    { contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',      ticker:'MWE', unit:'$/bu',
+      open:'â€”',  high:'â€”',  low:'â€”',  close:'7.09',  chg:'+0.10Â¾',  chgDir:'up' },
+    { contract:'Paris Milling FWH (Dec)', exchange:'Euronext',  ticker:'EBM', unit:'â‚¬/t',
+      open:'â€”',  high:'â€”',  low:'â€”',  close:'245.00',  chg:'+3.75',  chgDir:'up' },
+  ],
+  /* NOTE 2026-10-06: Monday 10/5 settles.
+     - SRW close/chg = CME settle 692Â¼ (+9Â¼): Brownfield closing report, and
+       matches Trade Navigator (pre-dawn 698Â¼ less +6). The yfinance EOD file
+       shows 691Â½ (+8Â½), which is a last-trade print, not the settle.
+     - SRW/HRW open/high/low from the yfinance EOD file (tools/eod_reports).
+     - MPLS and Paris closes from Trade Navigator; OHL not available. */
+
+  /* â”€â”€ COMMENTARY DATELINE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  dateline: 'TUESDAY, OCTOBER 6, 2026 Â· Pre-Dawn Update',
+
+  /* â”€â”€ BULLET POINTS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     Each bullet has a color and text.
+     Color should match the tone of its commentary paragraph.
+     Suggested palette:
+       Wheat/Bullish:     '#E8B820'
+       Export/Global:     '#7BBFDE'
+       USDA/Fundamental:  '#8FCB8A'
+       Bearish/Warning:   '#E08050'
+       Neutral/Macro:     '#B0C0D0'
+       Default:           '#F5E6C0'                   */
+  bullets: [
+    { color: '#E8B820', text: 'Dec Chicago settled at $6.92Â¼ Monday, up 9Â¼Â¢, its third straight gain off Thursday\'s $6.71Â¼ low. Overnight it added 6Â¢ more to $6.98Â¼ by 4 a.m. Pacific.' },
+    { color: '#F5E6C0', text: 'Box-o-Rox flips to SUSPEND. Dec Chicago settled Tuesday at $7.04Â¼, up 12Â¢ and half a cent above the 60-day line at $7.03Â¾, ending the EXECUTE phase that began Sept. 28. New tranches pause.' },
+    { color: '#7BBFDE', text: 'Russia\'s September wheat exports fell 75% from a year ago to 1.36 MMT (Bloomberg). Sovecon cut its 2026/27 Russian wheat export forecast 4.7 MMT to 36.7 and sees Azovâ€“Black Sea ports shut until 2027. USDA has 43.0, and Friday\'s WASDE has to answer for the gap.' },
+    { color: '#7BBFDE', text: 'Saudi Arabia\'s GFSA sought 535,000 tonnes and bought 683,000, at $334.60â€“$348/t C&F against $267.70â€“$272.80 in July. Importers are paying up.' },
+    { color: '#8FCB8A', text: 'USDA Sept. 30: wheat stocks 1.85 billion bu (âˆ’14%), production 1.534 billion (âˆ’23%). HRW fell to 466 million from 804 million. White winter was the only class to grow, to 259 million from 244 million.' },
+    { color: '#8FCB8A', text: 'Winter wheat 36% planted vs. 46% average; Kansas 24% vs. 40%, slowed by rain.' },
+  ],
+
+  /* â”€â”€ COMMENTARY BODY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     DRAFT â€” built 2026-10-06 for Tuesday pre-dawn.
+     Data window: Monday 10/5 settles + Monday-night trade
+     through ~4 a.m. PDT (Trade Navigator chart stamps).
+     EXCEPTION (per Gary): BOR flip to SUSPEND on Tuesday 10/6
+     settle 704Â¼ (+12, Brownfield / TN) vs 60-D 703Â¾ (TN 18:40).
+     The BOR chart annotation still read EXECUTE at 18:40 â€”
+     re-export WHEAT_SRW_BOR_D.png with the SUSPEND label.
+     Fact-check status (per Kirk Error Protocol):
+       - Settles: Brownfield (SRW), Trade Navigator (KC, MPLS, Paris).
+       - Overnight & BOR/MA values: Gary's TN charts, 10/6 03:11â€“03:59 PDT.
+       - Grain Stocks / Small Grains: USDA NASS 9/30; class split via DTN.
+       - Crop Progress: USDA NASS 10/5 via DTN.
+       - Russia Sept. exports: Bloomberg via UkrAgroConsult (10/5).
+       - Sovecon cut: dated 9/30 (Maritime Professional / Reuters chain).
+       - Putin rail order: Kommersant via The Moscow Times, dated 10/6.
+         CONFIRM it was out before your publish time; cut it if not.
+       - Saudi GFSA tender: UkrAgroConsult / Reuters chain.
+       - COT: Large Spec / Commercials from TN COT charts (as of 9/29).
+         These are non-commercial figures, NOT Managed Money, so
+         they are not directly comparable to the 9/22 piece's numbers.
+       - WASDE Friday Oct. 9, 12:00 ET (9:00 a.m. PT).
+     Gary to add: PNW cash bids / SWW basis, local color.
+     â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+  body: `
+    <p style="font-size:1.15em;color:#E8B820"><strong>Wheat Takes the Train to the Green Line</strong></p>
+
+    <p style="color:#E8B820">Wheat led the grain board Monday, and this time it led upward. Dec Chicago settled at $6.92Â¼, up 9Â¼Â¢, for a third straight gain off Thursday's $6.71Â¼ low. Dec KC added 7Â¢ to $7.42Â¼. Dec Minneapolis was the strongest of the three, up 10Â¾Â¢ to $7.09. Dec corn slipped Â½Â¢ and Nov soybeans added 2Â½Â¢, so this was a wheat story, not a sector tide. Chicago was 12 to 15Â¢ higher before Monday's open, touched $6.98Â½, and gave back about half of that by the close. The night session picked up where the day left off: by 4 a.m. Pacific, Dec Chicago was $6.98Â¼, up 6Â¢, and Dec KC $7.49Â½, up 7Â¼Â¢. [chart:WHEAT_SRW_30Min.png]</p>
+
+    <p>On the chart, Monday's settle landed almost exactly on the 61.8% retracement of the August rally: $6.91, measured from the $6.26Â¾ August low to the $7.95 top. [chart:WHEAT_SRW_D.png] Overhead in the overnight, the 20-day moving average sat at $7.10Â¼ and the 60-day at $7.02Â¾, with $7.00 as the round number in between. Dec Chicago has gone back to old support from below and is now testing whether it has turned into resistance.</p>
+
+    <p><strong>Box-o-Rox: SUSPEND.</strong> The benchmark went to EXECUTE on the Sept. 28 close below $6.96Â¼, following the Sept. 14 close below $7.31Â½ that triggered the exit from deferred tranches. [chart:WHEAT_SRW_BOR_D.png] The rule has always been the same: EXECUTE holds until Dec Chicago <em>settles</em> back above the 60-day. Tuesday it did. Dec Chicago closed at $7.04Â¼, up 12Â¢ on the day and a fourth straight gain, half a cent above the 60-day at $7.03Â¾. That ends the EXECUTE phase, and new tranches pause. Half a cent is a thin margin, and the 20-day at $7.08Â½ is still overhead, so this is the start of a SUSPEND phase that has to hold, not one that has been proven.</p>
+
+    <p style="color:#7BBFDE"><strong>The rally's driver is the Black Sea.</strong> Three weeks ago we passed along a projection that Russia's September exports would drop to 1.6â€“2.0 MMT. The actual number was lower: Russian wheat exports fell 75% from a year ago to <a href="https://ukragroconsult.com/en/news/wheat-extends-gains-as-russia-ukraine-escalation-risks-threaten-black-sea-supplies/" target="_blank" rel="noopener">1.36 MMT in September</a>, per Bloomberg. On Sept. 30, Sovecon <a href="http://www.maritimeprofessional.com/news/sovecon-cuts-russian-grain-forecast-423324" target="_blank" rel="noopener">cut its 2026/27 Russian wheat export forecast</a> 4.7 MMT to 36.7 MMT and said it doesn't expect normal Azovâ€“Black Sea port operations before 2027. USDA's September WASDE has Russia at 43.0 MMT. Friday's WASDE has to account for that 6.3 MMT gap, and that is the week's scheduled event risk. Meanwhile, Russia's Defense Ministry vowed over the weekend to intensify strikes on Ukrainian infrastructure, and the trade added risk premium accordingly.</p>
+
+    <p style="color:#7BBFDE">The more telling detail is what Moscow is doing about it. Per Kommersant, as <a href="https://www.themoscowtimes.com/2026/10/06/putin-orders-priority-rail-transit-for-russian-grain-kommersant-a93896" target="_blank" rel="noopener">reported by The Moscow Times</a>, Putin has ordered Russian Railways to give grain priority on routes to Baltic and Arctic ports, ahead of coal. Daily rail deliveries of farm goods to northwest Russia ran 465% above a year ago in September. The world's biggest wheat exporter is putting its crop on trains to route it around a war, through ports analysts say lack the storage and specialized handling of the southern terminals. That tells you how badly Russia needs the wheat out, and that every tonne leaving that way costs more than it used to. Paris has noticed: Dec Euronext milling wheat closed Monday at â‚¬245.00, up â‚¬3.75, within â‚¬5 of its Sept. 2 high and well above its own Box-o-Rox line. [chart:WHEAT_FWH_D.png]</p>
+
+    <p style="color:#7BBFDE"><strong>The buyers are paying.</strong> Three weeks ago Saudi Arabia walked away from a tender. Last week its GFSA came back for 535,000 tonnes and <a href="https://ukragroconsult.com/en/news/saudi-arabia-buys-683-thsd-tons-of-wheat-in-tender/" target="_blank" rel="noopener">bought 683,000</a>, 28% more than it asked for, at $334.60 to $348 a tonne C&amp;F. In July it bought at $267.70 to $272.80. When a major importer stops walking away and starts overbuying at $60-plus a tonne over summer prices, demand is making a statement the Chicago chart hasn't fully priced in.</p>
+
+    <p style="color:#8FCB8A">USDA's <a href="https://www.nass.usda.gov/Newsroom/2026/09-30-2026.php" target="_blank" rel="noopener">Sept. 30 reports</a> were neutral on the headline numbers. Sept. 1 wheat stocks were 1.85 billion bushels, down 14% from a year ago and in line with trade estimates. All-wheat production was 1.534 billion, down 23% and a hair above the trade's 1.527. The <a href="https://www.dtnpf.com/agriculture/web/ag/news/article/2026/09/30/usda-releases-quarterly-grain-stocks-2" target="_blank" rel="noopener">class detail</a> is where it gets interesting. HRW came in at 466 million bushels against 804 million last year, a 42% drop. SRW was 294 million, down 17%. Other spring wheat was 450 million and durum 65 million. White winter, our crop, was the only class that grew: 259 million against 244 million.</p>
+
+    <p>Now set that against the spread. With the hard red winter crop cut by more than 40%, KC's premium over Chicago has <em>narrowed</em>, to 50Â¢ Monday from 69Â½Â¢ on Sept. 18. [chart:SPDINTER_SRW_HRW_M.png] A smaller HRW crop and a smaller HRW premium don't usually travel together. One reading is that the market is putting the Black Sea premium on Chicago, the world benchmark, first. Merchandisers should watch whether that holds once WASDE puts its own number on Russia.</p>
+
+    <p style="color:#8FCB8A">On the next crop, Monday's <a href="https://www.dtnpf.com/agriculture/web/ag/news/article/2026/10/05/usda-crop-progress-corn-23-harvested" target="_blank" rel="noopener">Crop Progress</a> put winter wheat at 36% planted against a 46% five-year average and 16% emerged against 20%. Kansas is only 24% planted against 40%, held up by rain. For a HRW belt coming off a 466-million-bushel year, wet soil at seeding is the better problem to have. But DTN's meteorologist cautioned that drought persists underneath the recent rain and the Plains will need more before winter. A rain delay costs time on the calendar; drought costs yield.</p>
+
+    <p style="color:#B0C0D0">On positioning, as of Sept. 29 per CFTC, large speculators held a net short of 16,462 contracts in Chicago. Their KC net long was 20,964, down from a recent 35,387. [chart:COT_SRW_W.png] A spec short in Chicago heading into a Black Sea escalation is fuel for a short-covering bounce, but fuel doesn't light itself; it takes a catalyst. Outside the grain pit, Nov crude fell $1.68 to $89.43 and the dollar index held near 102, neither enough to move wheat Monday.</p>
+
+    <p><strong>Marketing posture: SUSPEND. Let the bounce prove itself.</strong> For the 7:30 call to the elevator:</p>
+    <p>&bull; <strong>New tranches pause</strong> while Dec Chicago settles above the 60-day ($7.03Â¾ at Tuesday's close; check it daily, because it moves). Sales already made under EXECUTE stand. Nothing about this signal says buy any of them back.<br>
+    &bull; <strong>On a settle back below the green line,</strong> the benchmark returns to EXECUTE and scheduled tranches resume. With only half a cent of cushion, that could come quickly. That is the market's job to prove, not ours to predict.<br>
+    &bull; <strong>Friday, 9 a.m. Pacific:</strong> WASDE. If USDA moves Russia toward Sovecon's 36.7, that's the kind of catalyst that could carry Chicago through the 20-day at $7.08Â½ and give SUSPEND some room. If it holds at 43.0, the close above the line has less underneath it.</p>
+
+    <p>The hard part of a SUSPEND signal is not getting greedy with it. Four up days from $6.71 makes it easy to start picturing $7.95 again, and SUSPEND makes no promise about getting there. It only means the market has earned a pause in new sales. The bushels already sold on the way down were sold for reasons that were true when the benchmark said EXECUTE, and they don't need defending now. The bushels still in the bin get a chance to prove the bounce, with a line on the chart that says when the chance is over. In white wheat country, with the one class that grew this year, there are more bushels riding on that discipline than usual.</p>
+
+    <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gabriel</p>
+  `
+
+};
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   END DAILY UPDATE ZONE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+
+/* â”€â”€ Image base URL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const BASE = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/';
+function img(filename){ return BASE + filename; }
+
+/* â”€â”€ Chart data for secondary galleries â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+const WHEAT_EXCHANGES = [
+  { id:'hrw-gallery', charts:[
+    { file:'WHEAT_HRW_D.png', title:'Kansas City HRW Daily',   sub:'DAILY Â· HRW TREND' },
+    { file:'WHEAT_HRW_W.png', title:'Kansas City HRW Weekly',  sub:'WEEKLY Â· INTERMEDIATE' },
+    { file:'WHEAT_HRW_M.png', title:'Kansas City HRW Monthly', sub:'MONTHLY Â· SEASONAL' },
+  ]},
+  { id:'hrs-gallery', charts:[
+    { file:'WHEAT_HRS_D.png', title:'Minneapolis HRS Daily',   sub:'DAILY Â· SPRING WHEAT' },
+    { file:'WHEAT_HRS_W.png', title:'Minneapolis HRS Weekly',  sub:'WEEKLY Â· INTERMEDIATE' },
+    { file:'WHEAT_HRS_M.png', title:'Minneapolis HRS Monthly', sub:'MONTHLY Â· SEASONAL' },
+  ]},
+  { id:'fwh-gallery', charts:[
+    { file:'WHEAT_FWH_D.png', title:'Paris FWH Daily',   sub:'DAILY Â· EU BENCHMARK' },
+    { file:'WHEAT_FWH_W.png', title:'Paris FWH Weekly',  sub:'WEEKLY Â· GLOBAL PRICE DISCOVERY' },
+    { file:'WHEAT_FWH_M.png', title:'Paris FWH Monthly', sub:'MONTHLY Â· SEASONAL' },
+  ]},
+];
+
+const NAV_CATEGORIES = [
+  {
+    id:'cot', label:'Commitment of Traders', short:'COT',
+    charts:[
+      { file:'COT_SRW_W.png',  title:'Chicago SRW',      sub:'Managed Money Â· Weekly' },
+      { file:'COT_HRW_W.png',  title:'Kansas City HRW',  sub:'Managed Money Â· Weekly' },
+    ]
+  },
+  {
+    id:'spreads', label:'Spreads', short:'Spreads',
+    groups:[
+      { label:'Inter-Market', charts:[
+        { file:'SPDINTER_SRW_HRW_M.png',  title:'SRW vs HRW',          sub:'Class Premium Â· Monthly' },
+        { file:'SPDINTER_SRW_HRS_M.png',  title:'SRW vs HRS',          sub:'Protein Premium Â· Monthly' },
+        { file:'SPDINTER_HRS_HRW_M.png',  title:'HRS vs HRW',          sub:'Quality Differential Â· Monthly' },
+        { file:'SPDINTER_HRW_FWH_W.png',  title:'HRW vs FWH',          sub:'US vs Europe Â· Weekly' },
+        { file:'SPDINTER_HRW_FWH_M.png',  title:'HRW vs FWH',          sub:'US vs Europe Â· Monthly' },
+      ]},
+      { label:'SRW Calendar', charts:[
+        { file:'SPD_SRW_H_K.png',   title:'SRW Mar/May',    sub:'Near-term Carry' },
+        { file:'SPD_SRW_K_N.png',   title:'SRW May/Jul',    sub:'Pre-Harvest Carry' },
+        { file:'SPD_SRW_N_U.png',   title:'SRW Jul/Sep',    sub:'Harvest Pressure' },
+        { file:'SPD_SRW_U_Z.png',   title:'SRW Sep/Dec',    sub:'Post-Harvest Carry' },
+        { file:'SPD_SRW_Z_H2.png',  title:'SRW Dec/Mar+1',  sub:'Winter Carry' },
+      ]},
+      { label:'HRW Calendar', charts:[
+        { file:'SPD_HRW_H_K.png',   title:'HRW Mar/May',    sub:'Near-term Carry' },
+        { file:'SPD_HRW_K_N.png',   title:'HRW May/Jul',    sub:'Pre-Harvest' },
+        { file:'SPD_HRW_N_U.png',   title:'HRW Jul/Sep',    sub:'Harvest-to-Fall' },
+        { file:'SPD_HRW_U_Z.png',   title:'HRW Sep/Dec',    sub:'Fall Carry' },
+        { file:'SPD_HRW_Z_H2.png',  title:'HRW Dec/Mar+1',  sub:'Winter Carry' },
+      ]},
+      { label:'HRS Calendar', charts:[
+        { file:'SPD_HRS_H_K.png',   title:'HRS Mar/May',    sub:'Near-term Carry' },
+        { file:'SPD_HRS_K_N.png',   title:'HRS May/Jul',    sub:'Pre-Harvest' },
+        { file:'SPD_HRS_N_U.png',   title:'HRS Jul/Sep',    sub:'Harvest-to-Fall' },
+        { file:'SPD_HRS_U_Z.png',   title:'HRS Sep/Dec',    sub:'Fall Carry' },
+        { file:'SPD_HRS_Z_H2.png',  title:'HRS Dec/Mar+1',  sub:'Winter Carry' },
+      ]},
+      { label:'Paris FWH Calendar', charts:[
+        { file:'SPD_FWH_H_K.png',   title:'FWH Mar/May',    sub:'European Pre-Harvest' },
+        { file:'SPD_FWH_K_U.png',   title:'FWH May/Sep',    sub:'European Pre-Harvest Carry' },
+        { file:'SPD_FWH_U_Z.png',   title:'FWH Sep/Dec',    sub:'European Fall Carry' },
+        { file:'SPD_FWH_Z_H2.png',  title:'FWH Dec/Mar+1',  sub:'European Winter Carry' },
+      ]},
+      { label:'Ratios', charts:[
+        { file:'RATIO_SRW_C_M.png', title:'Wheat / Corn',       sub:'Substitution Economics Â· Monthly' },
+        { file:'RATIO_S_C_W.png',   title:'Soybeans / Corn',    sub:'Planting Decision Â· Weekly' },
+      ]},
+    ]
+  },
+  {
+    id:'currencies', label:'Currencies', short:'Currencies',
+    charts:[
+      { file:'FX_WD_D.png',      title:'Australian Dollar',         sub:'AUD Â· Daily' },
+      { file:'FX_WD_M.png',      title:'Australian Dollar',         sub:'AUD Â· Monthly' },
+      { file:'FX_RUB_USD_M.png', title:'Russian Ruble / USD',       sub:'RUB/USD Â· Monthly' },
+      { file:'FX_CNY_USD_M.png', title:'Chinese Yuan / USD',        sub:'CNY/USD Â· Monthly' },
+      { file:'FX_RUB_CNY_W.png', title:'Russian Ruble / Yuan',      sub:'RUB/CNY Â· Weekly' },
+    ]
+  },
+  {
+    id:'energy', label:'Energy', short:'Energy',
+    charts:[
+      { file:'NRG_CL_M.png', title:'Crude Oil',             sub:'WTI Â· Monthly' },
+      { file:'NRG_CL_W.png', title:'Crude Oil',             sub:'WTI Â· Weekly' },
+      { file:'NRG_HO_D.png', title:'Diesel / Heating Oil',  sub:'HO Â· Daily' },
+      { file:'NRG_NG_M.png', title:'Natural Gas',           sub:'Henry Hub Â· Monthly' },
+    ]
+  },
+  {
+    id:'metals', label:'Metals', short:'Metals',
+    charts:[
+      { file:'METL_GC_D.png', title:'Gold',    sub:'COMEX Â· Daily' },
+      { file:'METL_GC_M.png', title:'Gold',    sub:'COMEX Â· Monthly' },
+      { file:'METL_SI_D.png', title:'Silver',  sub:'COMEX Â· Daily' },
+      { file:'METL_HG_M.png', title:'Copper',  sub:'COMEX Â· Monthly' },
+    ]
+  },
+  {
+    id:'indices', label:'Dollar & Indices', short:'Indices',
+    charts:[
+      { file:'IDX_DXY_W.png',   title:'US Dollar Index',         sub:'DXY Â· Weekly' },
+      { file:'IDX_DXY_M.png',   title:'US Dollar Index',         sub:'DXY Â· Monthly' },
+      { file:'IDX_BDI_W.png',   title:'Baltic Dry Index',        sub:'Freight Costs Â· Weekly' },
+      { file:'IDX_GSCI_W.png',  title:'GSCI Commodity Index',    sub:'Weekly' },
+      { file:'IDX_ES_D.png',    title:'S&amp;P 500',             sub:'ES Â· Daily' },
+      { file:'IDX_ES_M.png',    title:'S&amp;P 500',             sub:'ES Â· Monthly' },
+      { file:'FIN_DE_D.png',    title:'John Deere &amp; Co.',    sub:'Farm Economy Â· Daily' },
+      { file:'FIN_HD_D.png',    title:'The Home Depot',          sub:'Consumer Strength Â· Daily' },
+    ]
+  },
+  {
+    id:'rates', label:'Interest Rates', short:'Rates',
+    charts:[
+      { file:'BNDS_2YR_TNOTE_W.png',  title:'2-Year T-Note',              sub:'Weekly' },
+      { file:'BNDS_10YR_Price_Q.png',  title:'10-Year Treasury Price',     sub:'Quarterly' },
+      { file:'BNDS_30YR_Price_Q.png',  title:'30-Year Treasury Price',     sub:'Quarterly' },
+      { file:'BNDS_30YR_Yield_Q.png',  title:'30-Year Treasury Yield',     sub:'Quarterly' },
+    ]
+  },
+  {
+    id:'grains', label:'Correlated Grains', short:'Grains',
+    charts:[
+      { file:'GRAIN_C_D.png', title:'Corn',       sub:'CBOT Â· Daily' },
+      { file:'GRAIN_C_W.png', title:'Corn',       sub:'CBOT Â· Weekly' },
+      { file:'GRAIN_S_D.png', title:'Soybeans',   sub:'CBOT Â· Daily' },
+      { file:'GRAIN_S_W.png', title:'Soybeans',   sub:'CBOT Â· Weekly' },
+    ]
+  },
+];
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   LIGHTBOX ENGINE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+var lbIndex = 0;
+var lbItems = [];
+
+function openLightbox(src, title, items, index){
+  lbItems  = items  || [{ src:src, title:title }];
+  lbIndex  = index !== undefined ? index : 0;
+  showLb(lbIndex);
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function showLb(i){
+  var it = lbItems[i];
+  document.getElementById('lb-img').src   = it.src;
+  document.getElementById('lb-title').textContent = it.title || '';
+  var prev = document.getElementById('lb-prev');
+  var next = document.getElementById('lb-next');
+  prev.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
+  next.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
+}
+function closeLightbox(){
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+  lbItems = []; lbIndex = 0;
+}
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb').addEventListener('click', function(e){
+  if(e.target === this) closeLightbox();
+});
+document.getElementById('lb-prev').addEventListener('click', function(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length;
+  showLb(lbIndex);
+});
+document.getElementById('lb-next').addEventListener('click', function(e){
+  e.stopPropagation();
+  lbIndex = (lbIndex + 1) % lbItems.length;
+  showLb(lbIndex);
+});
+document.addEventListener('keydown', function(e){
+  if(!document.getElementById('lb').classList.contains('open')) return;
+  if(e.key==='Escape') closeLightbox();
+  if(e.key==='ArrowLeft'  && lbItems.length>1){ lbIndex=(lbIndex-1+lbItems.length)%lbItems.length; showLb(lbIndex); }
+  if(e.key==='ArrowRight' && lbItems.length>1){ lbIndex=(lbIndex+1)%lbItems.length; showLb(lbIndex); }
+});
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CHART CARD BUILDER
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function buildCard(file, title, sub){
+  var url = img(file);
+  var card = document.createElement('div');
+  card.className = 'chart-card';
+  card.dataset.src   = url;
+  card.dataset.title = title;
+
+  var image = document.createElement('img');
+  image.alt     = title;
+  image.loading = 'lazy';
+  image.src     = url;
+  image.onerror = function(){
+    card.classList.add('no-image');
+    card.innerHTML = '';
+    var inner = document.createElement('div');
+    inner.className = 'chart-no-img-inner';
+    inner.innerHTML = '<span>&#8987;</span><span>COMING SOON</span><span>' + file + '</span>';
+    var cap = document.createElement('div');
+    cap.className = 'chart-card-cap';
+    cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
+    card.appendChild(inner);
+    card.appendChild(cap);
+    card.style.cursor = 'default';
+  };
+  card.appendChild(image);
+
+  var cap = document.createElement('div');
+  cap.className = 'chart-card-cap';
+  cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
+  card.appendChild(cap);
+
+  return card;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER COMMAND BAR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function renderCommandBar(){
+  var cfg = MB_CONFIG;
+  var st  = cfg.borStatus.toLowerCase();
+
+  var light = document.getElementById('bor-light');
+  var lightClass = st === 'suspend' ? 'suspend' : (st === 'execute-20d' ? 'execute-fast' : 'execute');
+  light.className = 'bor-light ' + lightClass;
+
+  var txt = document.getElementById('bor-status-text');
+  var txtClass = st === 'suspend' ? 'suspend' : 'execute';
+  txt.className = 'bor-status-text ' + txtClass;
+  var stateLabels = {
+    'suspend':     'Suspend Sales',
+    'execute-60d': 'Execute Sales â€” 60-D',
+    'execute-20d': 'Execute Sales â€” 20-D'
+  };
+  txt.textContent = stateLabels[st] || 'Suspend Sales';
+
+  document.getElementById('bor-updated').textContent = 'Updated: ' + cfg.borDate;
+
+  // Prices table
+  var tbl = document.getElementById('prices-table');
+  var thead = '<thead><tr>'
+    + '<th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th>'
+    + '</tr></thead>';
+  var tbody = '<tbody>';
+  cfg.prices.forEach(function(p){
+    var chgClass = p.chgDir === 'up' ? 'pt-chg up' : p.chgDir === 'dn' ? 'pt-chg dn' : 'pt-val';
+    var arrow = p.chgDir === 'up' ? ' â–²' : p.chgDir === 'dn' ? ' â–¼' : '';
+    tbody += '<tr>'
+      + '<td><span class="pt-contract">'+p.contract+'</span>'
+        + '<span class="pt-exchange">'+p.exchange+' Â· '+p.ticker+' Â· '+p.unit+'</span></td>'
+      + '<td class="pt-val">'+p.open+'</td>'
+      + '<td class="pt-val">'+p.high+'</td>'
+      + '<td class="pt-val">'+p.low+'</td>'
+      + '<td class="pt-close">'+p.close+'</td>'
+      + '<td class="'+chgClass+'">'+p.chg+arrow+'</td>'
+      + '</tr>';
+  });
+  tbody += '</tbody>';
+  tbl.innerHTML = thead + tbody;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER COMMENTARY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function processShortcodes(html){
+  return html.replace(/\[chart:([^\]]+)\]/g, function(_, filename){
+    var url = img(filename.trim());
+    return '<a href="'+url+'" class="inline-chart-link lb-trigger" data-src="'+url+'" data-title="'+filename.replace('.png','')+'">'
+      + '<img src="'+url+'" class="inline-chart-thumb" alt="'+filename+'" loading="lazy">'
+      + '</a>';
+  });
+}
+function renderCommentary(){
+  var cfg = MB_CONFIG;
+  document.getElementById('dateline').textContent = cfg.dateline;
+
+  var ul = document.getElementById('bullets-list');
+  ul.innerHTML = '';
+  cfg.bullets.forEach(function(b){
+    var li = document.createElement('li');
+    li.className = 'bullet-item';
+    li.innerHTML = '<div class="bullet-mark" style="background:'+b.color+';box-shadow:0 0 6px 2px '+b.color+'40;"></div>'
+      + '<span style="color:'+b.color+'">'+b.text+'</span>';
+    ul.appendChild(li);
+  });
+
+  document.getElementById('commentary-body').innerHTML = processShortcodes(cfg.body);
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER WHEAT EXCHANGE GALLERIES (HRW / HRS / FWH)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function renderWheatGalleries(){
+  WHEAT_EXCHANGES.forEach(function(ex){
+    var container = document.getElementById(ex.id);
+    if(!container) return;
+    // Collect lightbox items for this exchange
+    var lbSet = ex.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+    ex.charts.forEach(function(c, i){
+      var card = buildCard(c.file, c.title, c.sub);
+      card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+      container.appendChild(card);
+    });
+  });
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   RENDER CHART NAVIGATOR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function renderNavigator(){
+  var tabsEl   = document.getElementById('nav-tabs');
+  var panelsEl = document.getElementById('nav-panels');
+  var firstTab = null;
+
+  NAV_CATEGORIES.forEach(function(cat, ci){
+    // Tab button
+    var btn = document.createElement('button');
+    btn.className = 'nav-tab';
+    btn.textContent = cat.short;
+    btn.dataset.cat = cat.id;
+    tabsEl.appendChild(btn);
+    if(ci === 0) firstTab = btn;
+
+    // Panel
+    var panel = document.createElement('div');
+    panel.className = 'nav-panel';
+    panel.id = 'panel-' + cat.id;
+
+    if(cat.groups){
+      // Category with sub-groups (Spreads)
+      cat.groups.forEach(function(grp){
+        var sg = document.createElement('div');
+        sg.className = 'nav-subgroup';
+        var lbl = document.createElement('div');
+        lbl.className = 'nav-subgroup-label';
+        lbl.textContent = grp.label;
+        sg.appendChild(lbl);
+        var grid = document.createElement('div');
+        grid.className = 'nav-grid';
+        var lbSet = grp.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+        grp.charts.forEach(function(c, i){
+          var card = buildCard(c.file, c.title, c.sub);
+          card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+          grid.appendChild(card);
+        });
+        sg.appendChild(grid);
+        panel.appendChild(sg);
+      });
+    } else {
+      // Simple category
+      var grid = document.createElement('div');
+      grid.className = 'nav-grid';
+      var lbSet = cat.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+      cat.charts.forEach(function(c, i){
+        var card = buildCard(c.file, c.title, c.sub);
+        card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+        grid.appendChild(card);
+      });
+      panel.appendChild(grid);
+    }
+
+    panelsEl.appendChild(panel);
+  });
+
+  // Tab click handlers
+  tabsEl.addEventListener('click', function(e){
+    var btn = e.target.closest('.nav-tab');
+    if(!btn) return;
+    tabsEl.querySelectorAll('.nav-tab').forEach(function(t){ t.classList.remove('active'); });
+    panelsEl.querySelectorAll('.nav-panel').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    var panel = document.getElementById('panel-' + btn.dataset.cat);
+    if(panel) panel.classList.add('active');
+  });
+
+  // Activate first tab
+  if(firstTab){
+    firstTab.classList.add('active');
+    var fp = document.getElementById('panel-' + firstTab.dataset.cat);
+    if(fp) fp.classList.add('active');
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WIRE UP STATIC LB TRIGGERS (BOR chart + SRW gallery)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function wireStaticTriggers(){
+  // Collect all static SRW chart cards for gallery lightbox
+  var srwCards = document.querySelectorAll('.wheat-gallery-section .chart-card.lb-trigger, .bor-chart-card.lb-trigger');
+  srwCards.forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(el.dataset.src, el.dataset.title);
+    });
+  });
+  // BOR chart standalone
+  var borCard = document.querySelector('.bor-chart-card.lb-trigger');
+  if(borCard){
+    borCard.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(borCard.dataset.src, borCard.dataset.title);
+    });
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   WIRE COMMENTARY INLINE CHART TRIGGERS
+   (runs after commentary HTML is injected)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function wireCommentaryTriggers(){
+  document.querySelectorAll('.commentary-body .lb-trigger').forEach(function(el){
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      openLightbox(el.dataset.src, el.dataset.title);
+    });
+  });
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   INIT
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+document.addEventListener('DOMContentLoaded', function(){
+  renderCommandBar();
+  renderCommentary();
+  renderWheatGalleries();
+  renderNavigator();
+  wireStaticTriggers();
+  wireCommentaryTriggers();
+});
+</script>
+</body>
+</html>
+
+
+This may or may not be related to the current task.</ide_selection>
+just finished reading the comment.  like it but first impression is its lack of expression.  garys voice.  warmer.  cleverer, humor but not jokey (although if you have studied 30 rock screenplay dialogue much, we always seek to hit that shakespearean way of layering plots, characters, settings, and bits in the writing whenevewr chance in the research permits
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:09.740Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:12.093Z] --
+I'll rewrite it with more voice and layering, keeping every number, source link and chart exactly as they are. The structure:
+
+- **Three plot lines that meet at the end:**
+  - Russia puts its wheat on trains.
+  - Somebody pays for the trains, and it turns out to be Saudi Arabia.
+  - Paris has already priced that cost in.
+- **A recurring "half a cent" line** that pays off at the BOR call.
+- **A soft white grower** introduced mid-piece and brought back for the closing paragraph.
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:13.381Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T04:53:14.904Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:22.329Z] --
+[Tool call: Write]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T04:53:23.401Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:50.081Z] --
+[Tool call: Write]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T04:53:51.136Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:53.330Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:53.344Z] --
+Splicing in the new bullets and body, checking them, and pushing:
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:53:59.085Z] --
+[Tool call: Bash]
+
+--------------------------------------------------
+
+-- USER [2026-10-07T04:54:04.657Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:54:13.966Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-07T04:54:14.417Z] --
+I rewrote the bullets and body for voice and pushed them to `main`. The numbers, links, charts and SUSPEND call are unchanged, except for one fix: the old text said Chicago gave back "about half" of Monday's gain, but it was 6Â¼Â¢ of a 15Â½Â¢ move, so it now says 6Â¼Â¢.
+
+**The plot lines** (30 Rock style, each paying off later):
+- **Trains:** the headline sets it up, "Why now? Follow the trains" opens the Russia story, and "every tonne that takes the long way northâ€¦ somebody downstream pays it" leads into the next section. "Somebody, it turns out, is Saudi Arabia" pays it off. Paris has already priced it in; Chicago is still catching up.
+- **Half a cent:** it comes up four times. The bullet, then "Half a cent won't buy a cup of coffee at the co-op, but the rule doesn't grade on margin," then the cushion in the posture section, and finally "the half cent has less holding it up" on Friday's WASDE.
+- **Fuel to pilot light to catalyst:** the specs' net short is "a coiled spring" and Tuesday's flip is "a pilot light, not a warm signal." WASDE could turn the pilot light "into something warmer."
+- **The soft white grower:** introduced in the USDA section ("thought about bin space before price. Hold that thought.") and brought back for the close ("Now, back to that soft white growerâ€¦"). The close ends on "the one class that grew is the one in our bins," which pays off "the crop outside our window" from earlier.
+
+**Smaller beats:**
+- The KC spread is "the strangest character in this episodeâ€¦ a short crop asking for a pay cut," and KC is "waiting by the phone."
+- Kansas is "waiting for the rain to quit so they can plant a crop that's going to need rain."
+- Section-ending lines: "The tide was wheat." "Premium first, questions later." "Wheat moved itself."
+- For the closing paragraph: "A marketing plan is a promise you make to yourself on a calmer day."
+
+The two weakest lines are the Fibonacci aside ("circle in red and everyone else swears they don't watch") and "stocking the pantry." Tell me if either reads too cute and I'll cut it.
+
+Your phone will still show the old version until index01.html is re-pasted into Squarespace.
+
+--------------------------------------------------
+
