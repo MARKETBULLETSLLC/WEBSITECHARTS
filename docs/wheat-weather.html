@@ -625,7 +625,8 @@ const WX = {
   71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',
   80:'Showers',81:'Heavy showers',82:'Violent showers',
   85:'Snow showers',86:'Heavy snow showers',
-  95:'Thunderstorm',96:'Thunderstorm+hail',99:'Severe thunderstorm'
+  95:'Thunderstorm',96:'Thunderstorm with slight hail',
+  97:'Heavy thunderstorm',99:'Thunderstorm with heavy hail'
 };
 
 const REFRESH_MS = 30 * 60 * 1000;
@@ -764,7 +765,8 @@ async function loadRegionData(r) {
 // ── ALERT COMPUTATION ─────────────────────────────────────────────────────────
 function computeAlerts(r, meteo, noaa) {
   const d      = meteo.daily;
-  const month  = new Date().getMonth();
+  const forecastDate = d.time?.[0];
+  const month  = forecastDate ? Number(forecastDate.slice(5, 7)) - 1 : new Date().getMonth();
   const normal = r.norm[month];
 
   const currentT = meteo.current
@@ -777,7 +779,7 @@ function computeAlerts(r, meteo, noaa) {
   const maxT        = Math.max(...noNull(d.temperature_2m_max));
   const maxWind     = Math.max(...noNull(d.windspeed_10m_max));
   const totalPrecip = noNull(d.precipitation_sum).reduce((a, b) => a + b, 0);
-  const maxCode     = d.weathercode ? Math.max(...noNull(d.weathercode)) : 0;
+  const forecastCodes = new Set(noNull(d.weathercode));
 
   const badges = [];
 
@@ -786,16 +788,22 @@ function computeAlerts(r, meteo, noaa) {
 
   if (maxT >= 102)     badges.push({ sev:'warn',   label:'HEAT STRESS',     detail:`${maxT.toFixed(0)}°F forecast` });
 
-  if (totalPrecip === 0 && anomaly > 8)
-    badges.push({ sev:'danger', label:'DROUGHT WARNING',  detail:`No precip, +${anomaly.toFixed(1)}°F` });
-  else if (totalPrecip < 0.05 && anomaly > 5)
-    badges.push({ sev:'warn',   label:'DRY ADVISORY',     detail:`${totalPrecip.toFixed(2)}" 7-day` });
+  if (totalPrecip < 0.05 && anomaly > 5)
+    badges.push({ sev:'warn', label:'DRY SPELL ADVISORY', detail:`${totalPrecip.toFixed(2)}" forecast precip; current temperature +${anomaly.toFixed(1)}°F vs monthly normal` });
 
   if (maxWind >= 60)       badges.push({ sev:'danger', label:'WIND WARNING',   detail:`${maxWind.toFixed(0)} mph` });
   else if (maxWind >= 45)  badges.push({ sev:'warn',   label:'WIND ADVISORY',  detail:`${maxWind.toFixed(0)} mph` });
 
-  if (!noaa && maxCode >= 95)
-    badges.push({ sev:'danger', label:'SEVERE WEATHER', detail: WX[maxCode] || `Code ${maxCode}` });
+  if (!noaa) {
+    const weatherCode = [99, 97, 96, 95].find(code => forecastCodes.has(code));
+    if (weatherCode != null) {
+      const isSevere = weatherCode === 97 || weatherCode === 99;
+      const label = weatherCode === 99 ? 'THUNDERSTORM + HEAVY HAIL'
+        : weatherCode === 97 ? 'HEAVY THUNDERSTORM'
+          : weatherCode === 96 ? 'THUNDERSTORM + HAIL' : 'THUNDERSTORM';
+      badges.push({ sev: isSevere ? 'danger' : 'warn', label, detail: WX[weatherCode] });
+    }
+  }
 
   if (noaa?.alerts?.features) {
     const SEVERE = ['Tornado','Blizzard','Ice Storm','Severe Thunderstorm','Flash Flood','Winter Storm','Hurricane'];
@@ -822,17 +830,20 @@ function generateText(r, meteo, c) {
   const avg = (arr) => arr.reduce((a,b)=>a+b,0)/arr.length;
   const sign = c.anomaly >= 0 ? `+${c.anomaly.toFixed(1)}°F above` : `${Math.abs(c.anomaly).toFixed(1)}°F below`;
   const name = r.name.replace('US — ','');
+  const monthName = meteo.daily.time?.[0]
+    ? new Date(`${meteo.daily.time[0]}T12:00:00`).toLocaleString('en-US', { month: 'long' })
+    : new Date().toLocaleString('en-US', { month: 'long' });
 
-  let t = `${name} temperatures ${avg(mn).toFixed(0)}–${avg(mx).toFixed(0)}°F 7-day avg, ${sign} seasonal normal.`;
+  let t = `${name}: average 7-day lows/highs ${avg(mn).toFixed(0)}–${avg(mx).toFixed(0)}°F. Current temperature ${c.currentT.toFixed(0)}°F is ${sign} the 1991–2020 ${monthName} normal.`;
   t += ` Precipitation: ${c.totalPrecip.toFixed(2)}" (${(c.totalPrecip*25.4).toFixed(0)} mm) over 7 days.`;
 
   const notes = [];
   if (c.minT <= 33)              notes.push(`frost risk with lows near ${c.minT.toFixed(0)}°F`);
   if (c.maxT >= 95)              notes.push(`heat stress at ${c.maxT.toFixed(0)}°F`);
   if (c.maxWind >= 35)           notes.push(`wind advisory conditions at ${c.maxWind.toFixed(0)} mph`);
-  if (c.totalPrecip < 0.1 && c.anomaly > 3) notes.push('dry, warmer-than-normal pattern');
+  if (c.totalPrecip < 0.1) notes.push('very little precipitation forecast over the next 7 days');
 
-  t += notes.length ? ` Notable: ${notes.join('; ')}.` : ' No significant weather hazards currently forecast.';
+  t += notes.length ? ` Notable: ${notes.join('; ')}.` : ' No frost, heat, high-wind, or dry-spell thresholds are currently triggered.';
   return t;
 }
 
