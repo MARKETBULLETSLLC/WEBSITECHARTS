@@ -377,6 +377,8 @@ body {
   text-transform: uppercase;
 }
 .wwd-significance-copy { margin: 0; font: 13px/1.7 Georgia, 'Times New Roman', serif; }
+.wwd-significance-sources { display: flex; flex-direction: column; gap: 5px; margin-top: 16px; }
+.wwd-significance-sources a { color: var(--cool); font-size: 10px; line-height: 1.5; overflow-wrap: anywhere; }
 .wwd-card-ts {
   font-size: 8px;
   color: rgba(240,232,208,.40);
@@ -466,7 +468,7 @@ body {
     <div id="wwd-mast-eyebrow">MarketBullets® &nbsp;·&nbsp; The Warm Signal™ &nbsp;·&nbsp; Global Intelligence Series</div>
     <div id="wwd-mast-title">Wheat Weather<br>World Wide</div>
     <div id="wwd-mast-rule">◆ &nbsp; Global Crop Condition Intelligence &nbsp; ◆</div>
-    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 17 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
+    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 24 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
     <div id="wwd-mast-method">Representative-location forecasts · 1991–2020 climate normals</div>
   </div>
   <div id="wwd-mast-footer">
@@ -494,6 +496,7 @@ body {
   <div class="wwd-significance-body">
     <div class="wwd-significance-label">Regional significance</div>
     <p class="wwd-significance-copy" id="wwd-significance-copy"></p>
+    <div class="wwd-significance-sources" id="wwd-significance-sources" aria-label="Sources"></div>
   </div>
 </dialog>
 
@@ -517,7 +520,33 @@ const SIGNIFICANCE = {
   'france': 'France is the European Union’s largest wheat producer, typically yielding 30 to 36 million metric tons annually. Production is anchored in the fertile northern plains, especially the Paris Basin, and focuses primarily on soft wheat for domestic consumption and intra-EU and global exports.',
   'germany': 'Germany ranks among Europe’s top wheat producers, typically yielding around 20 to 23 million metric tons per year. Major production zones include fertile northern and central states, notably Lower Saxony, Bavaria, Saxony-Anhalt, and Schleswig-Holstein, producing both quality milling wheat and feed grain.',
   'south-africa-western-cape': 'The Western Cape is South Africa’s premier dryland breadbasket, typically accounting for 45% to 55% of national wheat production. Its Mediterranean winter-rainfall climate supports rain-fed farming across the productive lowlands and rolling hills of the Swartland and Overberg.',
-  'south-africa-free-state': 'The Free State is a critical pillar of South Africa’s interior grain supply and has historically traded the second and third production positions nationally. This summer-rainfall region relies on dryland farming and localized irrigation; output fluctuates with early-season moisture and drought cycles.'
+  'south-africa-free-state': 'The Free State is a critical pillar of South Africa’s interior grain supply and has historically traded the second and third production positions nationally. This summer-rainfall region relies on dryland farming and localized irrigation; output fluctuates with early-season moisture and drought cycles.',
+  'ukraine-western-forest-steppe': 'Vinnytsia represents Ukraine’s western forest-steppe wheat belt. USDA FAS reported more favorable crop-condition indicators across central and western oblasts than in the southern steppe in its 2025/26 regional assessment. This belt provides an important comparison against the more exposed southern production zone.',
+  'ukraine-central-forest-steppe': 'Poltava represents the central forest-steppe, an important part of Ukraine’s grain-producing interior. USDA FAS regional monitoring distinguishes central and western crop conditions from the drought-stressed southern steppe, making this area useful for tracking the national crop contrast.',
+  'ukraine-southern-steppe': 'Mykolaiv represents the southern steppe and Black Sea-facing wheat zone. USDA FAS identified southern steppe oblasts including Mykolaiv and Odesa for regional crop-condition monitoring; FAO notes that war-related transport and storage constraints continue to weigh on Ukraine’s grain exports.',
+  'russia-european-south': 'Rostov represents Russia’s European southern winter-wheat belt. USDA FAS estimates winter wheat at about 70% of Russian production and places most of that crop in European Russia; the southern districts are central to the country’s export supply.',
+  'russia-central-black-earth': 'Voronezh represents the Central Black Earth zone within Russia’s European winter-wheat area. Its winter crop is part of the dominant European production cycle, distinct from the spring-wheat focus farther east.',
+  'russia-volga': 'Saratov represents the Volga transition zone. USDA FAS identifies the Volga among the main eastern areas for spring wheat, while the wider region also links European winter-crop conditions with Russia’s more continental production areas.',
+  'russia-western-siberia': 'Omsk represents Russia’s Western Siberian spring-wheat belt. USDA FAS identifies Siberia, along with the Urals and Volga, as a principal area for the spring crop, which accounts for roughly 30% of Russian wheat production. This is a later-season weather window than the European winter crop.'
+};
+
+const UKRAINE_SOURCES = [
+  { label: 'USDA FAS · Ukraine Grain and Feed Quarterly (Aug 2026)', href: 'https://www.fas.usda.gov/data/gain/2026/08/ukraine-grain-and-feed-quarterly' },
+  { label: 'FAO GIEWS · Ukraine Country Brief (Mar 2026)', href: 'https://www.fao.org/giews/countrybrief/country.jsp?code=UKR' }
+];
+const RUSSIA_SOURCES = [
+  { label: 'USDA FAS · Russia Wheat: General Review (Sep 2025)', href: 'https://www.fas.usda.gov/data/russia-wheat-general-review' },
+  { label: 'USDA FAS · Russia Wheat MY 2025/26 Outlook', href: 'https://www.fas.usda.gov/data/russia-wheat-my-202526-outlook' },
+  { label: 'FAO GIEWS · Russian Federation Country Brief (Apr 2026)', href: 'https://www.fao.org/giews/countrybrief/country.jsp?code=RUS' }
+];
+const SIGNIFICANCE_SOURCES = {
+  'ukraine-western-forest-steppe': UKRAINE_SOURCES,
+  'ukraine-central-forest-steppe': UKRAINE_SOURCES,
+  'ukraine-southern-steppe': UKRAINE_SOURCES,
+  'russia-european-south': RUSSIA_SOURCES,
+  'russia-central-black-earth': RUSSIA_SOURCES,
+  'russia-volga': RUSSIA_SOURCES,
+  'russia-western-siberia': RUSSIA_SOURCES
 };
 
 // ── REGION CONFIG ─────────────────────────────────────────────────────────────
@@ -527,6 +556,8 @@ const REGION_GROUPS = [
   { id: 'australia', name: 'Australia', sharedMap: true, bounds: [[-40,112],[-27,153]] },
   { id: 'latin-america', name: 'Latin America', sharedMap: true, bounds: [[-36,-68],[-22,-46]] },
   { id: 'western-europe', name: 'Western Europe', sharedMap: true, bounds: [[45,-6],[55,16]] },
+  { id: 'ukraine', name: 'Ukraine', sharedMap: true, bounds: [[44,22],[53.5,41]] },
+  { id: 'russia', name: 'Russia', sharedMap: true, bounds: [[44,29],[60,87]] },
   { id: 'south-africa', name: 'South Africa', sharedMap: true, bounds: [[-35,16],[-25,31]] }
 ];
 
@@ -546,6 +577,13 @@ const NORMALS = {
   argentina: { norm: [74.7,72.2,69.1,62.6,56.5,50.8,49.1,52.9,56.7,62.1,68,72.7], precipNorm: [4.21,4.04,3.94,3.69,2.68,1.72,1.4,1.88,2.63,4.75,3.76,3.83] },
   france: { norm: [39.6,40.1,45,49.9,56.3,62.4,66.5,66.5,60.5,53.7,45.6,40.5], precipNorm: [1.99,1.76,1.87,1.89,2.53,2.07,2.04,2.1,1.81,2.34,2.24,2.45] },
   germany: { norm: [34.4,35.8,41.1,49.3,57.4,63.5,67.5,67.1,59.5,50.9,42,36.2], precipNorm: [1.67,1.27,1.7,1.38,2.15,1.89,2.56,2.21,2,1.66,1.83,1.82] },
+  ukraineWest: { norm: [26.3,28.4,36.1,48.4,58.9,65.6,68.8,67.8,58.4,47.6,37.4,29], precipNorm: [1.24,1.27,1.59,1.87,2.49,3.09,3.38,2.33,2.3,1.57,1.56,1.39] },
+  ukraineCentral: { norm: [24.3,25.6,34.3,48.4,60,67.5,71.1,69.9,59.3,47.2,35.5,27.5], precipNorm: [1.57,1.26,1.73,1.69,2.11,2.37,2.23,1.67,1.88,1.69,1.5,1.66] },
+  ukraineSouth: { norm: [29.2,31.3,39.2,51.1,62.6,70.5,75.2,74.4,63.7,52.1,41.1,33], precipNorm: [1.32,1.16,1.32,1.33,1.75,2.12,1.31,1.45,1.64,1.18,1.3,1.24] },
+  russiaSouth: { norm: [27.1,28.4,37.7,50.9,62.5,71.1,75.9,74.9,63.7,51.3,38.3,30.3], precipNorm: [1.88,1.65,1.79,1.71,2.34,1.93,1.49,1.26,1.45,1.61,1.61,1.91] },
+  russiaCentral: { norm: [20.4,21,30.1,46.2,59,66.4,70.3,68.1,57.2,45.1,32.3,23.9], precipNorm: [1.62,1.43,1.54,1.6,1.97,2.18,2.3,1.51,1.89,1.99,1.59,1.66] },
+  russiaVolga: { norm: [17.2,17.1,27,44.6,59.7,68.5,72.5,70,58.4,45.3,31.1,20.9], precipNorm: [1.5,1.23,1.35,1.38,1.52,1.82,1.66,1.17,1.79,1.43,1.28,1.4] },
+  russiaSiberia: { norm: [2.3,6.6,20.3,39.2,54.4,64.4,67.5,63.2,51.7,38.2,19.8,7.8], precipNorm: [0.59,0.5,0.71,1.14,1.45,2.11,2.51,2.48,1.29,1.29,1.18,0.85] },
   southAfricaWesternCape: { norm: [73.4,73.5,70.5,64.7,58.6,53.2,51.9,52.8,56.4,62.1,66,70.8], precipNorm: [0.52,0.47,0.56,1.58,2.58,4.1,3.53,3.16,1.99,1.26,1.11,0.64] },
   southAfricaFreeState: { norm: [67,66.5,63.8,58.3,52.2,46.6,46.2,51.5,58.8,62.1,63.9,66.2], precipNorm: [5.45,3.81,3.34,1.96,0.98,0.52,0.3,0.81,0.86,3.43,4.23,5.56] }
 };
@@ -566,6 +604,13 @@ const REGIONS = [
   { id: 'argentina', group: 'latin-america', name: 'Argentina', sub: 'Pampas wheat belt · Córdoba · Buenos Aires · Santa Fe', type: 'openmeteo', lat: -34.61, lon: -60.72, bounds: [[-37,-64],[-29,-57]], ...NORMALS.argentina },
   { id: 'france', group: 'western-europe', name: 'France', sub: 'Northern wheat belt · Paris Basin · Chartres', type: 'openmeteo', lat: 48.45, lon: 1.49, bounds: [[47,-2],[51,4]], ...NORMALS.france },
   { id: 'germany', group: 'western-europe', name: 'Germany', sub: 'Central and eastern wheat belt · Halle · Saxony-Anhalt', type: 'openmeteo', lat: 51.48, lon: 11.97, bounds: [[49,8],[54,14]], ...NORMALS.germany },
+  { id: 'ukraine-western-forest-steppe', group: 'ukraine', name: 'Ukraine-Western Forest-Steppe', sub: 'Vinnytsia · Western interior wheat belt', type: 'openmeteo', lat: 49.23, lon: 28.47, bounds: [[47.5,25],[51,31]], ...NORMALS.ukraineWest },
+  { id: 'ukraine-central-forest-steppe', group: 'ukraine', name: 'Ukraine-Central Forest-Steppe', sub: 'Poltava · Central grain belt', type: 'openmeteo', lat: 49.59, lon: 34.55, bounds: [[47.5,31],[51.5,38]], ...NORMALS.ukraineCentral },
+  { id: 'ukraine-southern-steppe', group: 'ukraine', name: 'Ukraine-Southern Steppe', sub: 'Mykolaiv · Black Sea-facing wheat zone', type: 'openmeteo', lat: 46.97, lon: 32.00, bounds: [[44,28],[49,36]], ...NORMALS.ukraineSouth },
+  { id: 'russia-european-south', group: 'russia', name: 'Russia-European South', sub: 'Rostov-on-Don · Southern winter-wheat belt', type: 'openmeteo', lat: 47.22, lon: 39.72, bounds: [[44,35],[50,45]], ...NORMALS.russiaSouth },
+  { id: 'russia-central-black-earth', group: 'russia', name: 'Russia-Central Black Earth', sub: 'Voronezh · Central European wheat belt', type: 'openmeteo', lat: 51.66, lon: 39.20, bounds: [[49,35],[54,43]], ...NORMALS.russiaCentral },
+  { id: 'russia-volga', group: 'russia', name: 'Russia-Volga', sub: 'Saratov · Volga spring-wheat zone', type: 'openmeteo', lat: 51.54, lon: 46.01, bounds: [[48,43],[56,52]], ...NORMALS.russiaVolga },
+  { id: 'russia-western-siberia', group: 'russia', name: 'Russia-Western Siberia', sub: 'Omsk · Siberian spring-wheat belt', type: 'openmeteo', lat: 54.99, lon: 73.37, bounds: [[52,68],[58,80]], ...NORMALS.russiaSiberia },
   { id: 'south-africa-western-cape', group: 'south-africa', name: 'South Africa-Western Cape', sub: 'Swartland · Winter-rainfall wheat belt · Malmesbury', type: 'openmeteo', lat: -33.46, lon: 18.73, bounds: [[-34.5,17],[-31,21]], ...NORMALS.southAfricaWesternCape },
   { id: 'south-africa-free-state', group: 'south-africa', name: 'South Africa-Free State', sub: 'Summer-rainfall interior · Bethlehem', type: 'openmeteo', lat: -28.23, lon: 28.30, bounds: [[-30,24],[-26,30]], ...NORMALS.southAfricaFreeState }
 ];
@@ -993,6 +1038,16 @@ function init() {
     if (!region || !description) return;
     document.getElementById('wwd-significance-title').textContent = region.name;
     document.getElementById('wwd-significance-copy').textContent = description;
+    const sourcesRoot = document.getElementById('wwd-significance-sources');
+    sourcesRoot.replaceChildren();
+    (SIGNIFICANCE_SOURCES[region.id] || []).forEach(source => {
+      const link = document.createElement('a');
+      link.href = source.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = source.label;
+      sourcesRoot.append(link);
+    });
     significanceDialog.showModal();
   });
 
