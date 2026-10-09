@@ -113,6 +113,13 @@ body {
   color: rgba(240,232,208,.38);
   text-transform: uppercase;
 }
+#wwd-mast-method {
+  margin-top: 5px;
+  font-size: 8px;
+  letter-spacing: .08em;
+  color: rgba(240,232,208,.52);
+  text-transform: uppercase;
+}
 #wwd-mast-footer {
   position: relative;
   display: flex;
@@ -166,6 +173,54 @@ body {
 
 /* ── SECTIONS ───────────────────────────────────────────────────────── */
 .wwd-section { margin-bottom: 24px; }
+.wwd-jump-nav {
+  margin: 0 0 18px;
+  padding: 10px;
+  background: var(--cream-lt);
+  border: 1px solid var(--border);
+}
+.wwd-jump-title {
+  margin: 0 0 7px;
+  color: var(--text-dim);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.wwd-jump-row {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding: 6px 0;
+  border-top: 1px solid var(--border-lt);
+}
+.wwd-jump-country {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.wwd-jump-links { display: flex; flex-wrap: wrap; gap: 4px; }
+.wwd-jump-links a {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  border: 1px solid var(--border);
+  color: var(--text-mid);
+  font-size: 9px;
+  text-decoration: none;
+}
+.wwd-jump-links a:hover, .wwd-jump-country:hover {
+  color: var(--warm);
+  border-color: var(--wheat);
+}
+.wwd-section { scroll-margin-top: 12px; }
+.wwd-card { scroll-margin-top: 12px; }
 .wwd-section-hdr {
   display: flex;
   align-items: center;
@@ -185,12 +240,15 @@ body {
 .wwd-section-rule { flex: 1; height: 1px; background: var(--border-lt); }
 
 /* ── GRIDS ──────────────────────────────────────────────────────────── */
-.wwd-grid-us     { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-.wwd-grid-global { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.wwd-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
 
-@media (max-width: 1200px) { .wwd-grid-global { grid-template-columns: repeat(3,1fr); } }
-@media (max-width: 900px)  { .wwd-grid-us, .wwd-grid-global { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 560px)  { .wwd-grid-us, .wwd-grid-global { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .wwd-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 560px) {
+  .wwd-grid { grid-template-columns: 1fr; }
+  .wwd-jump-row { grid-template-columns: 1fr; gap: 2px; }
+  .wwd-jump-country { min-height: 30px; }
+  .wwd-jump-links a { min-height: 40px; }
+}
 
 /* ── CARD ───────────────────────────────────────────────────────────── */
 .wwd-card {
@@ -315,7 +373,8 @@ body {
     <div id="wwd-mast-eyebrow">MarketBullets® &nbsp;·&nbsp; The Warm Signal™ &nbsp;·&nbsp; Global Intelligence Series</div>
     <div id="wwd-mast-title">Wheat Weather<br>World Wide</div>
     <div id="wwd-mast-rule">◆ &nbsp; Global Crop Condition Intelligence &nbsp; ◆</div>
-    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 8 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
+    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 18 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
+    <div id="wwd-mast-method">Representative-location forecasts · 1991–2020 climate normals</div>
   </div>
   <div id="wwd-mast-footer">
     <span id="wwd-updated">Initializing…</span>
@@ -327,23 +386,12 @@ body {
   <span id="wwd-ticker">Loading weather data for all wheat regions…</span>
 </div>
 
-<section class="wwd-section">
-  <div class="wwd-section-hdr">
-    <span class="wwd-section-label">U.S. Wheat Regions</span>
-    <div class="wwd-section-rule"></div>
-    <span class="wwd-section-label">NOAA</span>
-  </div>
-  <div class="wwd-grid-us" id="wwd-grid-us"></div>
-</section>
+<nav class="wwd-jump-nav" aria-label="Jump to wheat region">
+  <div class="wwd-jump-title">Jump to region</div>
+  <div id="wwd-jump-table"></div>
+</nav>
 
-<section class="wwd-section">
-  <div class="wwd-section-hdr">
-    <span class="wwd-section-label">Global Wheat Regions</span>
-    <div class="wwd-section-rule"></div>
-    <span class="wwd-section-label">Open-Meteo</span>
-  </div>
-  <div class="wwd-grid-global" id="wwd-grid-global"></div>
-</section>
+<div id="wwd-groups"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
@@ -353,71 +401,55 @@ body {
 const CARTO_API_KEY = 'cb1_4e35_1_abb10b8066022732197f10f0';
 
 // ── REGION CONFIG ─────────────────────────────────────────────────────────────
+const REGION_GROUPS = [
+  { id: 'united-states', name: 'United States' },
+  { id: 'canada', name: 'Canada' },
+  { id: 'australia', name: 'Australia' },
+  { id: 'latin-america', name: 'Latin America' },
+  { id: 'western-europe', name: 'Western Europe' },
+  { id: 'south-africa', name: 'South Africa' }
+];
+
+const NORMALS = {
+  usSww: { norm: [31.7,34.6,41,47.7,56.5,63.5,73.4,72.7,63.5,50.5,38.8,31.5], precipNorm: [3.1,2.3,2.75,2.07,1.9,1.35,0.44,0.5,0.82,1.97,3.22,3.27] },
+  usSrw: { norm: [28.6,31.5,40.4,51.9,62.3,71,74.8,73.6,67,55,42.9,33.5], precipNorm: [3.35,2.85,3.89,4.57,4.42,4.09,3.61,3.01,2.9,2.94,3.15,3.36] },
+  usHrw: { norm: [33.5,37.6,47.5,57.2,66.8,76.4,81.3,79.8,71.8,59.5,46.7,36], precipNorm: [1.03,1.42,2.83,3.63,5.66,4.42,3.41,3.3,3.12,2.99,1.73,1.49] },
+  usHrs: { norm: [9.6,14.9,28,42.7,56.4,66.9,71.5,69.9,61.1,46.4,30.4,16.6], precipNorm: [0.78,0.74,1.39,2.02,3.44,4.22,3.83,3.24,2.84,2.32,1.08,0.97] },
+  canadaSaskatchewan: { norm: [5.7,9.9,22.2,38.7,51.9,61.1,66.3,65.1,55.3,40.3,23.9,11], precipNorm: [0.61,0.42,0.72,1.24,1.81,3.43,2.84,1.94,1.49,1.08,0.81,0.49] },
+  canadaManitoba: { norm: [4.3,9,21.9,38.2,51.6,62.2,67.1,65.9,56.1,41.4,24.7,10.3], precipNorm: [0.6,0.57,1.09,1.37,2.98,3.97,3.32,2.86,1.96,1.72,0.92,0.85] },
+  canadaOntario: { norm: [22.9,23.3,32.2,44.5,57.2,67,71.1,69.5,63,51.1,39.4,29.5], precipNorm: [2.89,2.32,2.73,3.66,3.86,4,3.99,3.33,3.32,3.38,3.06,2.73] },
+  australiaWesternAustralia: { norm: [79.1,77.9,73.1,66.3,58.6,53.4,51.4,52.5,56.4,63.9,70.3,75.4], precipNorm: [0.82,0.79,1.14,0.71,1.12,1.22,1.66,1.34,0.78,0.63,0.58,0.62] },
+  australiaSouthAustralia: { norm: [75.4,74.9,70,64.3,57.9,53,51.9,53.4,58.2,63.4,68.4,72], precipNorm: [0.69,0.73,0.5,0.73,0.79,1.1,1.04,1.16,1.1,0.88,0.85,0.99] },
+  australiaVictoria: { norm: [71.3,70.7,65.9,59,53.1,48.7,47.6,48.7,52.2,57.2,62.7,67.5], precipNorm: [1.3,0.91,0.83,1.05,1.49,1.7,1.68,1.77,1.87,1.46,1.52,1.41] },
+  australiaNewSouthWales: { norm: [80.1,77.8,73.6,66.5,58.4,52.7,50.9,53.7,60.7,67.5,72.9,77], precipNorm: [2.83,2.42,1.69,1.02,1.41,1.87,1.47,1.34,1.57,2.09,2.54,2.64] },
+  brazil: { norm: [71.6,70.7,68.9,64.7,58.5,55.8,54.5,57.6,60.2,64.4,67.1,70.6], precipNorm: [6.84,6.51,5.77,5.58,6.34,5.9,6.59,4.6,6.43,9.44,6.93,6.94] },
+  argentina: { norm: [74.7,72.2,69.1,62.6,56.5,50.8,49.1,52.9,56.7,62.1,68,72.7], precipNorm: [4.21,4.04,3.94,3.69,2.68,1.72,1.4,1.88,2.63,4.75,3.76,3.83] },
+  france: { norm: [39.6,40.1,45,49.9,56.3,62.4,66.5,66.5,60.5,53.7,45.6,40.5], precipNorm: [1.99,1.76,1.87,1.89,2.53,2.07,2.04,2.1,1.81,2.34,2.24,2.45] },
+  germany: { norm: [34.4,35.8,41.1,49.3,57.4,63.5,67.5,67.1,59.5,50.9,42,36.2], precipNorm: [1.67,1.27,1.7,1.38,2.15,1.89,2.56,2.21,2,1.66,1.83,1.82] },
+  westernEurope: { norm: [37,37.95,43.05,49.6,56.85,62.95,67,66.8,60,52.3,43.8,38.35], precipNorm: [1.83,1.515,1.785,1.635,2.34,1.98,2.3,2.155,1.905,2,2.035,2.135] },
+  southAfricaWesternCape: { norm: [73.4,73.5,70.5,64.7,58.6,53.2,51.9,52.8,56.4,62.1,66,70.8], precipNorm: [0.52,0.47,0.56,1.58,2.58,4.1,3.53,3.16,1.99,1.26,1.11,0.64] },
+  southAfricaFreeState: { norm: [67,66.5,63.8,58.3,52.2,46.6,46.2,51.5,58.8,62.1,63.9,66.2], precipNorm: [5.45,3.81,3.34,1.96,0.98,0.52,0.3,0.81,0.86,3.43,4.23,5.56] }
+};
+
 const REGIONS = [
-  {
-    id: 'winter-wheat', group: 'us',
-    name: 'US — Winter Wheat', sub: 'HRW · KS · OK · TX · CO · NE',
-    type: 'noaa', lat: 37.69, lon: -97.34, states: 'KS,OK,TX,CO,NE',
-    bounds: [[26.5, -104], [41, -94]],
-    norm: [32,37,47,57,66,76,81,80,70,59,46,35],
-    precipNorm: [0.79,1.01,1.83,2.69,3.86,3.64,3.22,2.88,2.85,2.20,1.25,0.78]
-  },
-  {
-    id: 'spring-wheat', group: 'us',
-    name: 'US — Spring Wheat', sub: 'HRS · ND · SD · MN · MT',
-    type: 'noaa', lat: 46.87, lon: -96.79, states: 'ND,SD,MN,MT',
-    bounds: [[43.5,-106],[49.5,-96]],
-    norm: [12,18,30,45,56,65,72,70,59,46,30,16],
-    precipNorm: [0.55,0.45,0.68,1.21,2.27,3.08,2.78,2.57,1.75,1.10,0.71,0.48]
-  },
-  {
-    id: 'pacific-nw', group: 'us',
-    name: 'US — Pacific NW', sub: 'SWW · WA · OR · ID',
-    type: 'noaa', lat: 46.73, lon: -117.17, states: 'WA,OR,ID',
-    bounds: [[44.5,-121],[49,-115]],
-    norm: [34,39,44,50,57,63,72,72,64,53,42,35],
-    precipNorm: [2.14,1.63,1.69,1.31,1.30,0.87,0.37,0.53,0.74,1.45,2.23,2.54]
-  },
-  {
-    id: 'ukraine', group: 'global',
-    name: 'Ukraine', sub: 'Kyiv · Kharkiv wheat zones',
-    type: 'openmeteo', lat: 49.45, lon: 31.52, lat2: 50.00, lon2: 36.23,
-    bounds: [[46,26],[52,40]],
-    norm: [27,30,40,52,63,70,75,73,63,50,37,29],
-    precipNorm: [1.57,1.50,1.65,1.85,2.09,2.68,2.83,2.17,1.97,1.50,1.77,1.73]
-  },
-  {
-    id: 'russia', group: 'global',
-    name: 'Russia', sub: 'Krasnodar · Stavropol belt',
-    type: 'openmeteo', lat: 45.04, lon: 38.98, lat2: 45.05, lon2: 41.97,
-    bounds: [[43,36],[47,45]],
-    norm: [37,40,49,60,68,77,82,80,70,58,47,39],
-    precipNorm: [2.56,2.28,2.17,2.05,2.17,2.28,2.01,1.57,1.57,2.05,2.56,2.68]
-  },
-  {
-    id: 'canada', group: 'global',
-    name: 'Canada', sub: 'Saskatchewan · Alberta',
-    type: 'openmeteo', lat: 51.17, lon: -106.67, lat2: 53.55, lon2: -113.47,
-    bounds: [[49,-116],[55,-100]],
-    norm: [7,13,24,40,52,61,67,65,53,39,23,10],
-    precipNorm: [0.71,0.51,0.55,0.71,1.57,2.36,2.05,1.73,1.30,0.75,0.71,0.79]
-  },
-  {
-    id: 'argentina', group: 'global',
-    name: 'Argentina', sub: 'Buenos Aires · Córdoba · Santa Fe',
-    type: 'openmeteo', lat: -34.61, lon: -60.72, lat2: -31.42, lon2: -64.19,
-    bounds: [[-38,-66],[-28,-58]],
-    norm: [77,75,71,63,56,51,49,52,58,64,70,75],
-    precipNorm: [4.84,4.25,5.04,3.70,2.64,2.32,2.24,2.40,2.99,4.21,3.78,3.98]
-  },
-  {
-    id: 'australia', group: 'global',
-    name: 'Australia', sub: 'WA Wheatbelt · NSW Riverina',
-    type: 'openmeteo', lat: -31.95, lon: 117.85, lat2: -34.40, lon2: 146.00,
-    bounds: [[-37,115],[-27,150]],
-    norm: [84,82,77,68,59,53,51,55,62,68,76,82],
-    precipNorm: [0.94,0.96,1.14,1.40,2.42,3.13,3.44,2.88,2.17,1.47,0.92,0.79]
-  }
+  { id: 'us-sww', group: 'united-states', name: 'US-SWW', sub: 'Pacific Northwest · Washington · Oregon · Idaho', type: 'noaa', lat: 46.88, lon: -117.36, states: 'WA,OR,ID', bounds: [[44.5,-120.5],[47.5,-115]], ...NORMALS.usSww },
+  { id: 'us-srw', group: 'united-states', name: 'US-SRW', sub: 'Eastern Corn Belt · Ohio · Indiana · Illinois · Missouri', type: 'noaa', lat: 39.96, lon: -82.99, states: 'OH,IN,IL,MO,KY', bounds: [[36.5,-91],[41.8,-80]], ...NORMALS.usSrw },
+  { id: 'us-hrw', group: 'united-states', name: 'US-HRW', sub: 'Central and Southern Plains · Kansas · Oklahoma · Texas', type: 'noaa', lat: 37.69, lon: -97.34, states: 'KS,OK,TX,CO,NE', bounds: [[32,-103],[40,-96]], ...NORMALS.usHrw },
+  { id: 'us-hrs', group: 'united-states', name: 'US-HRS', sub: 'Northern Plains · North Dakota · South Dakota · Minnesota · Montana', type: 'noaa', lat: 46.88, lon: -96.79, states: 'ND,SD,MN,MT', bounds: [[43.5,-104.5],[49,-95]], ...NORMALS.usHrs },
+  { id: 'canada-saskatchewan', group: 'canada', name: 'Canada-Saskatchewan', sub: 'Saskatchewan wheat belt · Saskatoon', type: 'openmeteo', lat: 52.13, lon: -106.67, bounds: [[49,-110],[54.5,-101]], ...NORMALS.canadaSaskatchewan },
+  { id: 'canada-manitoba', group: 'canada', name: 'Canada-Manitoba', sub: 'Southwestern Manitoba · Brandon', type: 'openmeteo', lat: 49.85, lon: -99.95, bounds: [[48.5,-102],[52,-96]], ...NORMALS.canadaManitoba },
+  { id: 'canada-ontario', group: 'canada', name: 'Canada-Ontario', sub: 'Southwestern Ontario · London · Windsor', type: 'openmeteo', lat: 42.98, lon: -81.25, bounds: [[41.5,-84.5],[44.5,-78]], ...NORMALS.canadaOntario },
+  { id: 'australia-western-australia', group: 'australia', name: 'Australia-Western Australia', sub: 'Wheatbelt · Merredin', type: 'openmeteo', lat: -31.48, lon: 118.28, bounds: [[-34.5,116],[-29,122]], ...NORMALS.australiaWesternAustralia },
+  { id: 'australia-south-australia', group: 'australia', name: 'Australia-South Australia', sub: 'Eyre Peninsula · Wudinna', type: 'openmeteo', lat: -33.05, lon: 135.46, bounds: [[-36,132],[-31,140]], ...NORMALS.australiaSouthAustralia },
+  { id: 'australia-victoria', group: 'australia', name: 'Australia-Victoria', sub: 'Wimmera wheat belt · Horsham', type: 'openmeteo', lat: -36.71, lon: 142.20, bounds: [[-38,140],[-34,146]], ...NORMALS.australiaVictoria },
+  { id: 'australia-new-south-wales', group: 'australia', name: 'Australia-New South Wales', sub: 'Northern wheat belt · Narrabri', type: 'openmeteo', lat: -30.33, lon: 149.78, bounds: [[-33,146],[-28,151.5]], ...NORMALS.australiaNewSouthWales },
+  { id: 'brazil', group: 'latin-america', name: 'Brazil', sub: 'Southern wheat belt · Rio Grande do Sul · Paraná', type: 'openmeteo', lat: -28.26, lon: -52.41, bounds: [[-31.5,-56],[-24,-49]], ...NORMALS.brazil },
+  { id: 'argentina', group: 'latin-america', name: 'Argentina', sub: 'Pampas wheat belt · Córdoba · Buenos Aires · Santa Fe', type: 'openmeteo', lat: -34.61, lon: -60.72, bounds: [[-37,-64],[-29,-57]], ...NORMALS.argentina },
+  { id: 'france', group: 'western-europe', name: 'France', sub: 'Northern wheat belt · Paris Basin · Chartres', type: 'openmeteo', lat: 48.45, lon: 1.49, bounds: [[47,-2],[51,4]], ...NORMALS.france },
+  { id: 'western-europe-overview', group: 'western-europe', name: 'Western Europe Overview', sub: 'France · Germany · Benelux · neighboring wheat regions', type: 'openmeteo', lat: 48.45, lon: 1.49, lat2: 51.48, lon2: 11.97, bounds: [[45,-5],[54,15]], ...NORMALS.westernEurope },
+  { id: 'germany', group: 'western-europe', name: 'Germany', sub: 'Central and eastern wheat belt · Halle · Saxony-Anhalt', type: 'openmeteo', lat: 51.48, lon: 11.97, bounds: [[49,8],[54,14]], ...NORMALS.germany },
+  { id: 'south-africa-western-cape', group: 'south-africa', name: 'South Africa-Western Cape', sub: 'Swartland · Winter-rainfall wheat belt · Malmesbury', type: 'openmeteo', lat: -33.46, lon: 18.73, bounds: [[-34.5,17],[-31,21]], ...NORMALS.southAfricaWesternCape },
+  { id: 'south-africa-free-state', group: 'south-africa', name: 'South Africa-Free State', sub: 'Summer-rainfall interior · Bethlehem', type: 'openmeteo', lat: -28.23, lon: 28.30, bounds: [[-30,24],[-26,30]], ...NORMALS.southAfricaFreeState }
 ];
 
 const WX = {
@@ -441,9 +473,26 @@ const maps            = {};
 let   allBannerAlerts = [];
 
 // ── FETCH HELPERS ─────────────────────────────────────────────────────────────
+const meteoQueue = [];
+let meteoRequestsActive = 0;
+
 function getJSON(url, headers) {
   return fetch(url, headers ? { headers } : {})
     .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); });
+}
+
+function getMeteoJSON(url) {
+  return new Promise((resolve, reject) => {
+    const start = () => {
+      meteoRequestsActive++;
+      getJSON(url).then(resolve, reject).finally(() => {
+        meteoRequestsActive--;
+        meteoQueue.shift()?.();
+      });
+    };
+    if (meteoRequestsActive < 4) start();
+    else meteoQueue.push(start);
+  });
 }
 
 function openMeteo(lat, lon) {
@@ -457,7 +506,7 @@ function openMeteo(lat, lon) {
     wind_speed_unit: 'mph',
     precipitation_unit: 'inch'
   });
-  return getJSON(`https://api.open-meteo.com/v1/forecast?${p}`);
+  return getMeteoJSON(`https://api.open-meteo.com/v1/forecast?${p}`);
 }
 
 function fetchYTDArchive(lat, lon) {
@@ -473,7 +522,7 @@ function fetchYTDArchive(lat, lon) {
     timezone: 'UTC',
     precipitation_unit: 'inch'
   });
-  return getJSON(`https://archive-api.open-meteo.com/v1/archive?${p}`)
+  return getMeteoJSON(`https://archive-api.open-meteo.com/v1/archive?${p}`)
     .then(d => {
       const vals = (d.daily.precipitation_sum || []).filter(v => v !== null);
       return vals.reduce((a, b) => a + b, 0);
@@ -640,12 +689,7 @@ function initMap(r) {
     { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors &copy; CARTO' }
   ).addTo(map);
 
-  const rect = L.rectangle(r.bounds, {
-    color: '#8B6400', weight: 1.5,
-    fillColor: '#C49A0A', fillOpacity: .15
-  }).addTo(map);
-
-  map.fitBounds(rect.getBounds(), { padding: [8, 8] });
+  map.fitBounds(r.bounds, { padding: [10, 10], maxZoom: 7 });
 
   /* Start markers green — updateMarkers() will recolor after data loads */
   const mkOpts = { radius: 7, color: '#14532D', fillColor: '#22C55E', fillOpacity: .90, weight: 2 };
@@ -805,12 +849,26 @@ async function loadAll() {
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function init() {
-  const usGrid     = document.getElementById('wwd-grid-us');
-  const globalGrid = document.getElementById('wwd-grid-global');
+  const groupRoot = document.getElementById('wwd-groups');
+  const jumpRoot = document.getElementById('wwd-jump-table');
 
-  REGIONS.forEach(r => {
-    const target = r.group === 'us' ? usGrid : globalGrid;
-    target.insertAdjacentHTML('beforeend', cardShell(r));
+  REGION_GROUPS.forEach(group => {
+    const regions = REGIONS.filter(r => r.group === group.id);
+    jumpRoot.insertAdjacentHTML('beforeend', `
+      <div class="wwd-jump-row">
+        <a class="wwd-jump-country" href="#group-${group.id}">${group.name} · ${regions.length}</a>
+        <div class="wwd-jump-links">${regions.map(r => `<a href="#card-${r.id}">${r.name}</a>`).join('')}</div>
+      </div>`);
+    groupRoot.insertAdjacentHTML('beforeend', `
+      <section class="wwd-section" id="group-${group.id}">
+        <div class="wwd-section-hdr">
+          <span class="wwd-section-label">${group.name}</span>
+          <div class="wwd-section-rule"></div>
+        </div>
+        <div class="wwd-grid" id="grid-${group.id}"></div>
+      </section>`);
+    const grid = document.getElementById(`grid-${group.id}`);
+    regions.forEach(r => grid.insertAdjacentHTML('beforeend', cardShell(r)));
   });
 
   setTimeout(() => REGIONS.forEach(initMap), 120);
