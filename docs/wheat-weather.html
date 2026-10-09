@@ -173,6 +173,39 @@ body {
 
 /* ── SECTIONS ───────────────────────────────────────────────────────── */
 .wwd-section { margin-bottom: 24px; }
+.wwd-group-map-wrap {
+  height: 290px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  background: #E8E2D4;
+}
+.wwd-group-map { width: 100%; height: 100%; }
+.wwd-region-pin {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 2px solid #14532D;
+  border-radius: 50%;
+  background: #22C55E;
+  color: #102817;
+  font: 600 10px var(--mono);
+  box-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.wwd-region-pin.warn { border-color: #92400E; background: #F59E0B; color: #3B2505; }
+.wwd-region-pin.danger { border-color: #991B1B; background: #EF4444; color: #3B0909; }
+.wwd-region-index {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  place-items: center;
+  border: 1px solid var(--wheat-lt);
+  color: var(--wheat-lt);
+  font-size: 9px;
+  vertical-align: middle;
+}
+.wwd-card.no-region-map .wwd-card-body { padding-top: 10px; }
 .wwd-jump-nav {
   margin: 0 0 18px;
   padding: 10px;
@@ -245,6 +278,7 @@ body {
 @media (max-width: 900px) { .wwd-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 560px) {
   .wwd-grid { grid-template-columns: 1fr; }
+  .wwd-group-map-wrap { height: 230px; }
   .wwd-jump-row { grid-template-columns: 1fr; gap: 2px; }
   .wwd-jump-country { min-height: 30px; }
   .wwd-jump-links a { min-height: 40px; }
@@ -284,6 +318,65 @@ body {
   color: rgba(240,232,208,.55);
   margin-top: 2px;
 }
+.wwd-region-info {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+.wwd-region-info:hover,
+.wwd-region-info:focus-visible { color: var(--wheat-lt); text-decoration: underline; }
+.wwd-region-info:focus-visible { outline: 2px solid var(--wheat-lt); outline-offset: 3px; }
+.wwd-significance {
+  width: min(520px, calc(100vw - 28px));
+  max-width: none;
+  max-height: min(78vh, 680px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--cream-lt);
+  color: var(--text);
+  box-shadow: 0 18px 55px rgba(0,0,0,.35);
+}
+.wwd-significance::backdrop { background: rgba(17, 24, 31, .62); }
+.wwd-significance-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--hdr);
+  color: var(--hdr-text);
+}
+.wwd-significance-title { margin: 0; font-size: 15px; line-height: 1.35; }
+.wwd-significance-close {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(240,232,208,.45);
+  background: transparent;
+  color: var(--hdr-text);
+  font: 22px/1 var(--mono);
+  cursor: pointer;
+}
+.wwd-significance-close:hover { background: rgba(240,232,208,.12); }
+.wwd-significance-body { padding: 18px; overflow-y: auto; }
+.wwd-significance-label {
+  margin: 0 0 8px;
+  color: var(--wheat);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.wwd-significance-copy { margin: 0; font: 13px/1.7 Georgia, 'Times New Roman', serif; }
 .wwd-card-ts {
   font-size: 8px;
   color: rgba(240,232,208,.40);
@@ -373,7 +466,7 @@ body {
     <div id="wwd-mast-eyebrow">MarketBullets® &nbsp;·&nbsp; The Warm Signal™ &nbsp;·&nbsp; Global Intelligence Series</div>
     <div id="wwd-mast-title">Wheat Weather<br>World Wide</div>
     <div id="wwd-mast-rule">◆ &nbsp; Global Crop Condition Intelligence &nbsp; ◆</div>
-    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 18 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
+    <div id="wwd-mast-sub">NOAA &nbsp;·&nbsp; Open-Meteo &nbsp;·&nbsp; 17 Wheat Regions &nbsp;·&nbsp; Auto-Refresh 30 Min</div>
     <div id="wwd-mast-method">Representative-location forecasts · 1991–2020 climate normals</div>
   </div>
   <div id="wwd-mast-footer">
@@ -393,6 +486,17 @@ body {
 
 <div id="wwd-groups"></div>
 
+<dialog class="wwd-significance" id="wwd-significance" aria-labelledby="wwd-significance-title">
+  <div class="wwd-significance-hdr">
+    <h2 class="wwd-significance-title" id="wwd-significance-title"></h2>
+    <button class="wwd-significance-close" id="wwd-significance-close" type="button" aria-label="Close significance details">×</button>
+  </div>
+  <div class="wwd-significance-body">
+    <div class="wwd-significance-label">Regional significance</div>
+    <p class="wwd-significance-copy" id="wwd-significance-copy"></p>
+  </div>
+</dialog>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
@@ -400,14 +504,30 @@ body {
 
 const CARTO_API_KEY = 'cb1_4e35_1_abb10b8066022732197f10f0';
 
+const SIGNIFICANCE = {
+  'canada-saskatchewan': 'Saskatchewan is the heavyweight of Canadian wheat agriculture, typically accounting for roughly 45% to 50% of national wheat production. It is a global hub for high-protein Canada Western Red Spring wheat and a major durum exporter. Together with Alberta, its southern corridors form the heartland of North America’s premium high-protein spring and durum wheat belts.',
+  'canada-manitoba': 'Manitoba accounts for roughly 15% of Canada’s wheat production and rounds out the Prairie provinces’ Big Three. Its rich lacustrine soils support high-yielding spring and winter wheat varieties.',
+  'canada-ontario': 'Ontario ranks fourth in Canadian wheat production, well behind the Prairie provinces. Its production focuses heavily on soft red and soft white winter wheat, serving domestic milling, pastry, and cookie-flour markets rather than hard spring export channels.',
+  'australia-western-australia': 'Western Australia is Australia’s wheat powerhouse, typically generating 35% to 40% of national production. Its vast, rain-fed Mediterranean-climate Wheatbelt produces a crop that is overwhelmingly exported to Asian and Middle Eastern milling markets.',
+  'australia-new-south-wales': 'New South Wales anchors Australia’s eastern grain belt and competes closely with Western Australia depending on seasonal rainfall. It accounts for roughly 30% of national wheat output, including substantial volumes of high-protein hard wheat for domestic baking and export.',
+  'australia-south-australia': 'South Australia contributes roughly 10% to 15% of Australia’s wheat production. Cropping regions span the Eyre and Yorke peninsulas and the Murray Mallee, with coastal export terminals supporting global shipments of white wheat grades.',
+  'australia-victoria': 'Victoria produces around 10% of Australia’s annual wheat crop. Production is concentrated in the Wimmera and Mallee districts, where reliable, high-yielding varieties complement the broader southern export supply chain.',
+  'argentina': 'Argentina is South America’s dominant wheat export engine. Its Pampas heartland, especially Buenos Aires, Córdoba, and Santa Fe, typically produces 15 to 25 million metric tons annually on fertile soils in a temperate climate, supplying regional markets and destinations worldwide.',
+  'brazil': 'Brazil is South America’s largest agricultural economy and a major regional wheat producer, while domestic milling demand has traditionally made it a net importer. More than 90% of its harvest is concentrated in Rio Grande do Sul, Paraná, and Santa Catarina, with production also expanding northward into the Cerrado.',
+  'france': 'France is the European Union’s largest wheat producer, typically yielding 30 to 36 million metric tons annually. Production is anchored in the fertile northern plains, especially the Paris Basin, and focuses primarily on soft wheat for domestic consumption and intra-EU and global exports.',
+  'germany': 'Germany ranks among Europe’s top wheat producers, typically yielding around 20 to 23 million metric tons per year. Major production zones include fertile northern and central states, notably Lower Saxony, Bavaria, Saxony-Anhalt, and Schleswig-Holstein, producing both quality milling wheat and feed grain.',
+  'south-africa-western-cape': 'The Western Cape is South Africa’s premier dryland breadbasket, typically accounting for 45% to 55% of national wheat production. Its Mediterranean winter-rainfall climate supports rain-fed farming across the productive lowlands and rolling hills of the Swartland and Overberg.',
+  'south-africa-free-state': 'The Free State is a critical pillar of South Africa’s interior grain supply and has historically traded the second and third production positions nationally. This summer-rainfall region relies on dryland farming and localized irrigation; output fluctuates with early-season moisture and drought cycles.'
+};
+
 // ── REGION CONFIG ─────────────────────────────────────────────────────────────
 const REGION_GROUPS = [
   { id: 'united-states', name: 'United States' },
   { id: 'canada', name: 'Canada' },
-  { id: 'australia', name: 'Australia' },
-  { id: 'latin-america', name: 'Latin America' },
-  { id: 'western-europe', name: 'Western Europe' },
-  { id: 'south-africa', name: 'South Africa' }
+  { id: 'australia', name: 'Australia', sharedMap: true, bounds: [[-40,112],[-27,153]] },
+  { id: 'latin-america', name: 'Latin America', sharedMap: true, bounds: [[-36,-68],[-22,-46]] },
+  { id: 'western-europe', name: 'Western Europe', sharedMap: true, bounds: [[45,-6],[55,16]] },
+  { id: 'south-africa', name: 'South Africa', sharedMap: true, bounds: [[-35,16],[-25,31]] }
 ];
 
 const NORMALS = {
@@ -426,7 +546,6 @@ const NORMALS = {
   argentina: { norm: [74.7,72.2,69.1,62.6,56.5,50.8,49.1,52.9,56.7,62.1,68,72.7], precipNorm: [4.21,4.04,3.94,3.69,2.68,1.72,1.4,1.88,2.63,4.75,3.76,3.83] },
   france: { norm: [39.6,40.1,45,49.9,56.3,62.4,66.5,66.5,60.5,53.7,45.6,40.5], precipNorm: [1.99,1.76,1.87,1.89,2.53,2.07,2.04,2.1,1.81,2.34,2.24,2.45] },
   germany: { norm: [34.4,35.8,41.1,49.3,57.4,63.5,67.5,67.1,59.5,50.9,42,36.2], precipNorm: [1.67,1.27,1.7,1.38,2.15,1.89,2.56,2.21,2,1.66,1.83,1.82] },
-  westernEurope: { norm: [37,37.95,43.05,49.6,56.85,62.95,67,66.8,60,52.3,43.8,38.35], precipNorm: [1.83,1.515,1.785,1.635,2.34,1.98,2.3,2.155,1.905,2,2.035,2.135] },
   southAfricaWesternCape: { norm: [73.4,73.5,70.5,64.7,58.6,53.2,51.9,52.8,56.4,62.1,66,70.8], precipNorm: [0.52,0.47,0.56,1.58,2.58,4.1,3.53,3.16,1.99,1.26,1.11,0.64] },
   southAfricaFreeState: { norm: [67,66.5,63.8,58.3,52.2,46.6,46.2,51.5,58.8,62.1,63.9,66.2], precipNorm: [5.45,3.81,3.34,1.96,0.98,0.52,0.3,0.81,0.86,3.43,4.23,5.56] }
 };
@@ -446,7 +565,6 @@ const REGIONS = [
   { id: 'brazil', group: 'latin-america', name: 'Brazil', sub: 'Southern wheat belt · Rio Grande do Sul · Paraná', type: 'openmeteo', lat: -28.26, lon: -52.41, bounds: [[-31.5,-56],[-24,-49]], ...NORMALS.brazil },
   { id: 'argentina', group: 'latin-america', name: 'Argentina', sub: 'Pampas wheat belt · Córdoba · Buenos Aires · Santa Fe', type: 'openmeteo', lat: -34.61, lon: -60.72, bounds: [[-37,-64],[-29,-57]], ...NORMALS.argentina },
   { id: 'france', group: 'western-europe', name: 'France', sub: 'Northern wheat belt · Paris Basin · Chartres', type: 'openmeteo', lat: 48.45, lon: 1.49, bounds: [[47,-2],[51,4]], ...NORMALS.france },
-  { id: 'western-europe-overview', group: 'western-europe', name: 'Western Europe Overview', sub: 'France · Germany · Benelux · neighboring wheat regions', type: 'openmeteo', lat: 48.45, lon: 1.49, lat2: 51.48, lon2: 11.97, bounds: [[45,-5],[54,15]], ...NORMALS.westernEurope },
   { id: 'germany', group: 'western-europe', name: 'Germany', sub: 'Central and eastern wheat belt · Halle · Saxony-Anhalt', type: 'openmeteo', lat: 51.48, lon: 11.97, bounds: [[49,8],[54,14]], ...NORMALS.germany },
   { id: 'south-africa-western-cape', group: 'south-africa', name: 'South Africa-Western Cape', sub: 'Swartland · Winter-rainfall wheat belt · Malmesbury', type: 'openmeteo', lat: -33.46, lon: 18.73, bounds: [[-34.5,17],[-31,21]], ...NORMALS.southAfricaWesternCape },
   { id: 'south-africa-free-state', group: 'south-africa', name: 'South Africa-Free State', sub: 'Summer-rainfall interior · Bethlehem', type: 'openmeteo', lat: -28.23, lon: 28.30, bounds: [[-30,24],[-26,30]], ...NORMALS.southAfricaFreeState }
@@ -676,7 +794,7 @@ function generateText(r, meteo, c) {
 // ── MAP INIT ──────────────────────────────────────────────────────────────────
 function initMap(r) {
   const el = document.getElementById(`map-${r.id}`);
-  if (!el || maps[r.id]) return;
+  if (!el || maps[r.id] || REGION_GROUPS.find(group => group.id === r.group)?.sharedMap) return;
 
   const map = L.map(el, {
     zoomControl: false, attributionControl: true,
@@ -708,6 +826,17 @@ function updateMarkers(rid, badges) {
   let fill = '#22C55E', stroke = '#14532D';
   if      (badges.some(b => b.sev === 'danger')) { fill = '#EF4444'; stroke = '#991B1B'; }
   else if (badges.length)                        { fill = '#F59E0B'; stroke = '#92400E'; }
+  if (m.numbered) {
+    const state = fill === '#EF4444' ? 'danger' : fill === '#F59E0B' ? 'warn' : '';
+    m.m1.setIcon(L.divIcon({
+      className: `wwd-region-pin ${state}`,
+      html: String(m.index),
+      iconSize: [26, 26],
+      iconAnchor: [13, 13]
+    }));
+    if (m.m2) m.m2.setStyle({ color: stroke, fillColor: fill, fillOpacity: .70 });
+    return;
+  }
   const s = { color: stroke, fillColor: fill };
   m.m1.setStyle(s);
   if (m.m2) m.m2.setStyle({ ...s, fillOpacity: .70 });
@@ -715,16 +844,19 @@ function updateMarkers(rid, badges) {
 
 // ── CARD HTML ─────────────────────────────────────────────────────────────────
 function cardShell(r) {
+  const group = REGION_GROUPS.find(item => item.id === r.group);
+  const regionIndex = REGIONS.filter(item => item.group === r.group).indexOf(r) + 1;
+  const significance = SIGNIFICANCE[r.id];
   return `
-<div class="wwd-card" id="card-${r.id}">
+<div class="wwd-card${group.sharedMap ? ' no-region-map' : ''}" id="card-${r.id}">
   <div class="wwd-card-hdr">
     <div>
-      <div class="wwd-region-name">${r.name}</div>
+      <div class="wwd-region-name">${group.sharedMap ? `<span class="wwd-region-index">${regionIndex}</span>` : ''}${significance ? `<button class="wwd-region-info" type="button" data-region-id="${r.id}" aria-haspopup="dialog" aria-controls="wwd-significance">${r.name}</button>` : r.name}</div>
       <div class="wwd-region-sub">${r.sub}</div>
     </div>
     <div class="wwd-card-ts" id="ts-${r.id}">—</div>
   </div>
-  <div class="wwd-map-wrap"><div class="wwd-map" id="map-${r.id}"></div></div>
+  ${group.sharedMap ? '' : `<div class="wwd-map-wrap"><div class="wwd-map" id="map-${r.id}"></div></div>`}
   <div class="wwd-card-body">
     <div id="metrics-${r.id}">
       <div class="wwd-skel"></div><div class="wwd-skel s2"></div><div class="wwd-skel s3"></div>
@@ -851,13 +983,40 @@ async function loadAll() {
 function init() {
   const groupRoot = document.getElementById('wwd-groups');
   const jumpRoot = document.getElementById('wwd-jump-table');
+  const significanceDialog = document.getElementById('wwd-significance');
+
+  groupRoot.addEventListener('click', event => {
+    const button = event.target.closest('.wwd-region-info');
+    if (!button) return;
+    const region = REGIONS.find(item => item.id === button.dataset.regionId);
+    const description = SIGNIFICANCE[button.dataset.regionId];
+    if (!region || !description) return;
+    document.getElementById('wwd-significance-title').textContent = region.name;
+    document.getElementById('wwd-significance-copy').textContent = description;
+    significanceDialog.showModal();
+  });
+
+  document.getElementById('wwd-significance-close').addEventListener('click', () => significanceDialog.close());
+  significanceDialog.addEventListener('cancel', event => {
+    event.preventDefault();
+    significanceDialog.close();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && significanceDialog.open) {
+      event.preventDefault();
+      significanceDialog.close();
+    }
+  });
+  significanceDialog.addEventListener('click', event => {
+    if (event.target === significanceDialog) significanceDialog.close();
+  });
 
   REGION_GROUPS.forEach(group => {
     const regions = REGIONS.filter(r => r.group === group.id);
     jumpRoot.insertAdjacentHTML('beforeend', `
       <div class="wwd-jump-row">
         <a class="wwd-jump-country" href="#group-${group.id}">${group.name} · ${regions.length}</a>
-        <div class="wwd-jump-links">${regions.map(r => `<a href="#card-${r.id}">${r.name}</a>`).join('')}</div>
+        <div class="wwd-jump-links">${regions.map((r, index) => `<a href="#card-${r.id}">${group.sharedMap ? `${index + 1}. ` : ''}${r.name}</a>`).join('')}</div>
       </div>`);
     groupRoot.insertAdjacentHTML('beforeend', `
       <section class="wwd-section" id="group-${group.id}">
@@ -865,10 +1024,43 @@ function init() {
           <span class="wwd-section-label">${group.name}</span>
           <div class="wwd-section-rule"></div>
         </div>
+        ${group.sharedMap ? `<div class="wwd-group-map-wrap"><div class="wwd-group-map" id="group-map-${group.id}" role="img" aria-label="${group.name} wheat regions overview map"></div></div>` : ''}
         <div class="wwd-grid" id="grid-${group.id}"></div>
       </section>`);
     const grid = document.getElementById(`grid-${group.id}`);
     regions.forEach(r => grid.insertAdjacentHTML('beforeend', cardShell(r)));
+
+    if (group.sharedMap) {
+      const map = L.map(`group-map-${group.id}`, {
+        zoomControl: false, attributionControl: true,
+        dragging: false, scrollWheelZoom: false,
+        doubleClickZoom: false, keyboard: false, touchZoom: false
+      });
+      L.tileLayer(
+        `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${encodeURIComponent(CARTO_API_KEY)}`,
+        { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors &copy; CARTO' }
+      ).addTo(map);
+      map.fitBounds(group.bounds, { padding: [10, 10], maxZoom: 6 });
+      regions.forEach((region, index) => {
+        const markerOptions = {
+          radius: 10, color: '#14532D', fillColor: '#22C55E',
+          fillOpacity: .95, weight: 2, opacity: 1
+        };
+        const marker = L.marker([region.mapLat ?? region.lat, region.mapLon ?? region.lon], {
+          icon: L.divIcon({
+            className: 'wwd-region-pin',
+            html: String(index + 1),
+            iconSize: [26, 26],
+            iconAnchor: [13, 13]
+          })
+        }).addTo(map);
+        const secondMarker = region.lat2 != null && region.mapLat == null
+          ? L.circleMarker([region.lat2, region.lon2], { ...markerOptions, radius: 8 }).addTo(map)
+          : null;
+        maps[region.id] = { map, m1: marker, m2: secondMarker, numbered: true, index: index + 1 };
+      });
+      setTimeout(() => map.invalidateSize(), 250);
+    }
   });
 
   setTimeout(() => REGIONS.forEach(initMap), 120);
