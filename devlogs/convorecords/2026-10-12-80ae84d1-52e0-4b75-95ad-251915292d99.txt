@@ -1,0 +1,297 @@
+﻿MarketBullets - Claude Conversation Record
+Session : 80ae84d1-52e0-4b75-95ad-251915292d99
+Date    : 2026-10-12
+======================================================================
+
+-- USER [2026-10-12T04:29:30.603Z] --
+i want a foss ai image generator that is good, foss, and can be used on a android
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:29:40.299Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:29:40.601Z] --
+[Tool call: ToolSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:29:40.624Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:29:42.176Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:29:42.722Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:29:50.467Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:29:50.515Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:29:58.457Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:30:01.341Z] --
+There are two good open-source options for Android. Which one fits depends mostly on your phone's chip.
+
+## 1. Local Dream: best for generating images on the phone itself
+- **What it is:** a free, open-source Android app that runs Stable Diffusion on the phone with no internet and no account. It does text-to-image, image-to-image and inpainting (repainting part of an image), and you can load your own SD1.5 models.
+- **Hardware:** it's fastest on **Snapdragon** phones, because it uses the Qualcomm neural chip (NPU). SD1.5 models run on most Snapdragon 8-series chips from the last few years. The higher-quality SDXL models need a Snapdragon 8 Gen 3 or newer. Other phones (Samsung Exynos, MediaTek, Pixel) fall back to the CPU or GPU, which works but is much slower.
+- **Where to get it:** GitHub (xororz/local-dream) or Google Play.
+
+## 2. SDAI (Stable Diffusion AI): the most flexible
+- **What it is:** an open-source app (AGPL-3.0, no ads, no tracking) that's on **F-Droid**, the open-source app store, as well as Play and GitHub.
+- **How it works:** it can generate on the phone, but its main strength is connecting to other services:
+  - **AI Horde:** a free network of volunteers' computers that generates images for you. Good for a weaker phone, but there can be a wait in the queue.
+  - **Your own PC:** if your Windows machine has a decent NVIDIA graphics card, you can run Stable Diffusion (AUTOMATIC1111 or SwarmUI) on it and use the phone as the remote control. This gives the best quality: a PC can run much larger models than any phone.
+  - It also connects to paid services (OpenAI, Stability) if you ever want them.
+
+## My recommendation
+- **Recent Snapdragon flagship:** start with **Local Dream**.
+- **Any other phone, or you want better image quality:** use **SDAI**, with AI Horde first and your own PC as the upgrade.
+
+## One caveat
+The apps are FOSS, but the image models mostly are not. Stable Diffusion models are "open weights" under licenses that allow commercial use with some restrictions. Read the license of any model you use for MarketBullets marketing.
+
+A marketing note: AI images are fine for filler graphics and social media backgrounds. Keep the boots photo and anything presented as "our farm" or "our people" real, though. Your audience can spot generated farm imagery, and authenticity is part of what you're selling.
+
+If you tell me your phone model, I can tell you which one will run well on it.
+
+Sources:
+- [Local Dream on GitCode](https://gitcode.com/xpxpxp64/local-dream/blob/master/README.md)
+- [Local Dream on HelloGitHub](https://hellogithub.com/en/repository/xororz/local-dream)
+- [SDAI on F-Droid](https://f-droid.org/ru/packages/com.shifthackz.aisdv1.app.foss/index.html)
+- [Stable Diffusion KMP (SDAI) on GitHub](https://github.com/ShiftHackZ/Stable-Diffusion-KMP)
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:31:21.266Z] --
+this is for a friend unrelated to the business
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:31:22.863Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:31:26.381Z] --
+Got it, so the business notes don't apply. Personal use is also covered by the model licenses, so your friend can ignore that caveat too. Here's a version you can pass along:
+
+**Free, open-source AI image generators for Android**
+
+- **Local Dream** (GitHub: xororz/local-dream, also on Google Play)
+  - Generates images on the phone itself, with no internet or account needed.
+  - Fast on recent **Snapdragon** phones, because it uses the phone's AI chip.
+  - Works on other phones too, just slower.
+
+- **SDAI** (on F-Droid, Google Play and GitHub)
+  - Open source, with no ads or tracking.
+  - Can generate on the phone, but works best with **AI Horde**, a free network of volunteers' computers that makes images for you. That makes it fine on older or weaker phones.
+  - If your friend has a gaming PC, SDAI can also use it to make better images.
+
+**Which to pick:** Local Dream for a newer Snapdragon phone; SDAI for any other phone.
+
+If your friend tells you their phone model, I can say which one will run better on it.
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:35:49.473Z] --
+this is his phone
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:35:49.473Z] --
+[Image: source: C:\Users\hofer\AppData\Local\Temp\claude\c--Users-hofer-OneDrive-Documents-GitHub-WEBSITECHARTS\80ae84d1-52e0-4b75-95ad-251915292d99\images\1.jpg]
+[Image: source: C:\Users\hofer\AppData\Local\Temp\claude\c--Users-hofer-OneDrive-Documents-GitHub-WEBSITECHARTS\80ae84d1-52e0-4b75-95ad-251915292d99\images\2.jpg]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:35:54.010Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:35:54.661Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:35:55.194Z] --
+[Tool call: WebSearch]
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:36:01.552Z] --
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:36:02.169Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:36:12.147Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:36:12.235Z] --
+The phone is a **Galaxy XCover7 Pro** with a **Snapdragon 7s Gen 3** chip and probably 6GB of RAM. That's a solid mid-range rugged phone, not a flagship, which puts it in a gray zone for generating images on the phone itself.
+
+**My recommendation for him:** install both apps. They're free and small.
+
+1. **SDAI with AI Horde â€” this is the one that will definitely work.**
+   - Get SDAI from F-Droid or Google Play and pick "AI Horde" as the source.
+   - Volunteers' computers make the images, so the phone's chip doesn't matter.
+   - Quality is good. The catch is that each image can take anywhere from a few seconds to a couple of minutes of waiting in the queue.
+
+2. **Local Dream â€” worth trying, but it may be slow.**
+   - It's built for Snapdragon AI chips, but I couldn't confirm that the 7s Gen 3 is on its list of supported chips for the fast mode.
+   - **If the app offers "NPU" models when he goes to download one,** his chip is supported and he should get an image in seconds, completely offline.
+   - **If it only offers CPU/GPU models,** it still works, but expect a few minutes per image and a warm phone.
+   - Either way, he should stick to the smaller SD1.5 models. The bigger SDXL ones won't run on this chip.
+
+One more thing: the first screenshot shows his phone number, IMEI numbers and serial number. That's fine to share with me, but tell him not to post it anywhere public.
+
+Sources:
+- [Galaxy XCover7 Pro specs (Smartprix)](https://smartprix.com/mobiles/samsung-galaxy-xcover-7-pro-ppd1jy62xyez)
+- [XCover7 Pro FCC listing (Android Headlines)](https://www.androidheadlines.com/2025/03/fcc-certifies-samsung-galaxy-xcover-7-pro-launch-imminent.html)
+- [Local Dream README](https://gitcode.com/xpxpxp64/local-dream/blob/master/README.md)
+- [Local Dream on AlternativeTo](https://alternativeto.net/software/local-dream/about)
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:45:18.092Z] --
+downloaded sdai...got these providers
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:45:18.092Z] --
+[Image: source: C:\Users\hofer\AppData\Local\Temp\claude\c--Users-hofer-OneDrive-Documents-GitHub-WEBSITECHARTS\80ae84d1-52e0-4b75-95ad-251915292d99\images\3.jpg]
+[Image: source: C:\Users\hofer\AppData\Local\Temp\claude\c--Users-hofer-OneDrive-Documents-GitHub-WEBSITECHARTS\80ae84d1-52e0-4b75-95ad-251915292d99\images\4.jpg]
+[Image: source: C:\Users\hofer\AppData\Local\Temp\claude\c--Users-hofer-OneDrive-Documents-GitHub-WEBSITECHARTS\80ae84d1-52e0-4b75-95ad-251915292d99\images\5.jpg]
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:45:22.064Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:45:27.522Z] --
+He should pick **"Connect to Horde AI cloud"**. It's free, marked Stable, and doesn't care what chip his phone has.
+
+**Next steps:**
+1. Tap **Connect to Horde AI cloud**, then **Next**.
+2. The setup screen will ask for an **API key**:
+   - **Quick start:** use the anonymous or default key (all zeros, `0000000000`). It works right away, but anonymous users go to the back of the queue, so waits are longer.
+   - **Better:** register at **aihorde.net** for a free personal key (no payment) and paste it in. He'll get faster service, and it improves the more he uses it.
+3. In the generation screen, he can choose among the models the volunteers are running. The more popular ones come back faster.
+
+**What to skip:**
+
+| Provider | Why skip it |
+|---|---|
+| OpenAI, Stability AI, Fal.ai, ArliAI | Paid services that need a card and an account |
+| Automatic 1111, Swarm UI | Only work with Stable Diffusion running on his own PC |
+| Hugging Face | Free tier exists but needs an account and token, and has tight limits. Fine as a backup later |
+| Local Diffusion Microsoft ONNX | Older option (last updated 2024) and slow |
+| Local Diffusion SDXL | Runs offline on the phone, but it's marked Alpha and SDXL is heavy. On a 6GB phone, expect very slow images or crashes. Only worth a try for fun once Horde is working |
+
+If Horde is too slow for him, Local Dream from my earlier message is still worth trying as the offline option.
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:46:27.101Z] --
+no hord listed w fdroid sdai version
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:46:31.604Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:46:32.523Z] --
+[Tool call: WebFetch]
+
+--------------------------------------------------
+
+-- USER [2026-10-12T04:46:36.606Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:46:42.156Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T04:46:42.175Z] --
+It's there; it's just listed under a different name. In your **first screenshot**, the second card down reads **"Connect to Horde AI cloud"**, sitting between "Local Diffusion SDXL" and "Connect to Hugging Face". The app calls it "Horde AI" rather than "AI Horde", which makes it easy to miss.
+
+If he doesn't see it on his screen:
+- **Scroll.** The list starts at Automatic 1111, and Horde is further down.
+- **Search.** Type `horde` into the "Search providers" box at the top.
+- **Check the filter.** If the filter (funnel icon) is set to offline-only, it will hide cloud options like Horde. Clear it.
+
+I also checked F-Droid: the current SDAI there is version 1.1.1 from July 2026, and its description lists AI Horde as a built-in option. So it isn't missing from the F-Droid build.
+
+Once he taps it and hits **Next**, he can continue from step 2 of my last message, the API key.
+
+--------------------------------------------------
+
+-- USER [2026-10-12T05:04:09.415Z] --
+so now back to my machine
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T05:04:14.593Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T05:04:15.973Z] --
+[Tool call: PowerShell]
+
+--------------------------------------------------
+
+-- USER [2026-10-12T05:04:19.767Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T05:04:30.912Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T05:04:31.067Z] --
+I took "my machine" to mean you want an image generator on your own Windows PC, so I checked its hardware:
+
+| Part | What you have | What it means for AI images |
+|---|---|---|
+| Graphics card | AMD Radeon HD 5450 (from 2010) | Too old to help. No AI image tool supports it. |
+| Processor | Intel Core i5-4460 (4 cores, 2014) | Can do the work, just slowly |
+| Memory | 32 GB | Plenty |
+
+So any image generation on this PC will run on the processor alone.
+
+## Best fit: FastSD CPU
+- Free and open source (MIT license), and built for PCs with no usable graphics card. It uses Intel's OpenVINO toolkit to speed things up on Intel processors.
+- It uses small, fast SD1.5 models. On your i5-4460, my rough estimate is **about 10â€“40 seconds per 512Ã—512 image**. I haven't tested it on this machine.
+- The SDXL and Flux models people show off online would take many minutes per image here, or not run at all.
+- Find it on GitHub at **rupeshs/fastsdcpu**. The Windows install is a download-and-double-click script.
+
+## Zero-install alternative: AI Horde in the browser
+**ArtBot** (artbot.site) is an open-source web front end for the same free volunteer network your friend is using. Nothing to install, and the quality is better than your PC can produce locally. You wait in a queue instead of waiting on your own processor.
+
+## If you ever want fast, high-quality local generation
+That would take a new graphics card. A used NVIDIA RTX 3060 with 12GB runs a few hundred dollars and handles SDXL comfortably. Before buying, check whether your power supply can feed it and whether the case has room. Many office PCs from the i5-4460 era can't take one without a power supply upgrade as well.
+
+Want me to install FastSD CPU and get it running?
+
+--------------------------------------------------
+

@@ -1,0 +1,59 @@
+﻿MarketBullets - Claude Conversation Record
+Session : 33552ef1-3b49-44f0-af3f-d7f0950d5032
+Date    : 2026-10-12
+======================================================================
+
+-- USER [2026-10-12T00:56:56.295Z] --
+any foss construction blueprint easy git or foss
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T00:57:01.861Z] --
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T00:57:10.171Z] --
+I read this as a request for free, open-source software for drawing building plans, plus any ready-made open-source building designs. If you meant something else, tell me.
+
+## Software for drawing plans
+
+| Tool | Best for | Ease | Works well with Git? |
+|---|---|---|---|
+| **Sweet Home 3D** | Floor plans, room layouts, shops, houses. Draw walls in 2D and see a 3D view as you go | **Easiest.** Usable in an afternoon | Not really. Files are binary, so Git keeps copies but can't show what changed |
+| **LibreCAD** | Classic 2D drafting: elevations, site plans, dimensioned drawings | Moderate, AutoCAD-style | Yes. DXF files are text |
+| **QCAD** | Same kind of 2D drafting, a bit more polished | Moderate | Yes (DXF) |
+| **FreeCAD**, with its BIM workbench | Full 3D buildings: framing, trusses, materials lists | Steeper | Partly |
+| **Bonsai** (formerly BlenderBIM, an add-on for Blender) | Professional building information modeling (BIM) using the industry-standard IFC format | Steep | Yes. IFC files are text |
+| **OpenSCAD** | Parts you build by typing measurements instead of drawing them | Easy if you think in numbers | **Best.** The whole design is a text script |
+
+**Easiest:** Sweet Home 3D. For something like a shop, machine shed or house remodel, it gets you to a usable plan fastest.
+
+## Ready-made open-source building designs
+
+- **WikiHouse** (wikihouse.cc, also on GitHub): free house and building designs. The plywood parts are cut on a CNC machine and fit together like a kit.
+- **Open Source Ecology**: open plans for compressed-earth-brick machines, small houses and farm equipment.
+- **Open Building Institute**: modular, low-cost building designs.
+
+## Two caveats
+
+- Any structure that needs a permit will likely still need drawings stamped by a licensed engineer or architect, especially for snow and wind loads. Free software doesn't change that.
+- GitHub works fine as a place to store these files. Only the text formats (DXF, IFC, OpenSCAD) let Git show what changed between versions.
+
+What are you planning to build? A shop, grain bin pad, house or something else? I can narrow this down to one tool and a starting template.
+
+--------------------------------------------------
+
+-- USER [2026-10-12T00:57:41.791Z] --
+link to sweethome 3d
+
+--------------------------------------------------
+
+-- ASSISTANT [2026-10-12T00:57:43.830Z] --
+Sweet Home 3D: **https://www.sweethome3d.com**
+
+The download page is **https://www.sweethome3d.com/download.jsp**. Choose the Windows installer.
+
+Download it from that site. Some third-party download sites bundle adware with their installers.
+
+--------------------------------------------------
+
