@@ -1,0 +1,30 @@
+BoR UPDATE — PASTE FORMAT
+=========================
+
+Copy the Trade Navigator data table and double-click BoR_Update.bat.
+Paste just the latest days or the whole table — new dates are added, matching dates are replaced.
+
+To change levels, put instruction lines ABOVE the data table (or paste them alone, no table).
+Prices can be eighths (731^4) or decimals (731.5). Dates: 2026-09-28 or 9/28/2026.
+Levels stay on the chart until you REMOVE them. The daily review sheet tells you when one needs a look.
+
+  SUPPORT: 650^0 Aug lows                 horizontal support line + label
+  RESIST: 705^0 Oct 6 high                horizontal resistance line + label
+  RANGE: 2026-10-07 656^2 681^0 Oct range shaded band from that date forward (date optional)
+  TREND: 2026-09-02 795^0 2026-10-06 705^0 Sep downtrend
+                                          line through two points, extended to today
+  NOTE: 2026-09-28 low Status Change|On Close Below 696^2|Sep 28, 2026
+                                          callout under (low) or over (high) that day's bar;
+                                          | starts a new line
+  REMOVE: SUPPORT 650^0                   also RESIST 705^0, RANGE 656^2, NOTE 2026-09-28,
+                                          TREND Sep downtrend (by label or first date)
+  TITLE: line 1|line 2|line 3             {date} and {contract} fill in automatically
+  CONTRACT: MAR '27                       new contract: replaces the saved price history,
+                                          so paste the FULL table with it (61+ days)
+  SYMBOL: ZW-202703: Wheat CBT (Elec) Mar 2027 @ CBOT  (Daily bars)
+
+Example paste:
+  RESIST: 705^0 Oct 6 high
+  NOTE: 2026-10-19 low Status Change|On Close Below 650^0
+  Date    Open    High    Low     Close   Volume  Open Int.
+  2026/10/19  659  661  645  647.5  83361  505137

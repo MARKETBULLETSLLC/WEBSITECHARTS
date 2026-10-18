@@ -1,0 +1,25 @@
+{
+  "symbol_line": "ZW-202612:  Wheat CBT (Elec) Dec 2026 @ CBOT  (Daily bars)",
+  "title": [
+    "Chicago (SRW) Soft Red Winter",
+    "{date}: CLOSE",
+    "DAILY - {contract} (Current Contract)"
+  ],
+  "contract": "DEC '26",
+  "support": [],
+  "resist": [],
+  "range": [],
+  "trend": [],
+  "note": [
+    {
+      "date": "2026-09-14",
+      "anchor": "high",
+      "text": "Status Change Sep 14|on Close Below 731^4|Exit Deferred Tranches"
+    },
+    {
+      "date": "2026-09-28",
+      "anchor": "low",
+      "text": "Status Change|On Close Below 696^2|Sep 28, 2026"
+    }
+  ]
+}

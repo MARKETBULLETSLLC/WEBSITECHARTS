@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -768,7 +768,7 @@ option { background: #1A1208; }
     <!-- Controls Bar -->
     <div class="controls-bar">
       <button class="ctrl-btn primary" onclick="recalc()">↻ Recalculate</button>
-      <button class="ctrl-btn" onclick="resetDefaults()">⟳ Load Defaults</button>
+      <button class="ctrl-btn" onclick="resetDefaults()">⟳ Clear All</button>
       <button class="ctrl-btn" onclick="window.print()">⎙ Print / PDF</button>
       <button class="ctrl-btn" onclick="exportCSV()">↓ Export CSV</button>
     </div>
@@ -805,7 +805,7 @@ option { background: #1A1208; }
             </span>
           </div>
           <div class="input-wrap has-suffix">
-            <input type="number" id="inp-acres" value="500" min="1" step="10" oninput="recalc()">
+            <input type="number" id="inp-acres" value="0" min="0" step="10" oninput="recalc()">
             <span class="input-suffix">ac</span>
           </div>
         </div>
@@ -817,7 +817,7 @@ option { background: #1A1208; }
             </span>
           </div>
           <div class="input-wrap has-suffix">
-            <input type="number" id="inp-yield" value="60" min="1" step="1" oninput="recalc()">
+            <input type="number" id="inp-yield" value="0" min="0" step="1" oninput="recalc()">
             <span class="input-suffix">bu/ac</span>
           </div>
         </div>
@@ -835,7 +835,7 @@ option { background: #1A1208; }
           </div>
           <div class="input-wrap has-prefix">
             <span class="input-prefix">$</span>
-            <input type="number" id="inp-futures" value="5.50" min="0" step="0.01" oninput="recalc()">
+            <input type="number" id="inp-futures" value="0" min="0" step="0.01" oninput="recalc()">
           </div>
         </div>
         <div class="input-group">
@@ -847,7 +847,7 @@ option { background: #1A1208; }
           </div>
           <div class="input-wrap has-prefix">
             <span class="input-prefix">$</span>
-            <input type="number" id="inp-basis" value="-0.35" step="0.01" oninput="recalc()">
+            <input type="number" id="inp-basis" value="0" step="0.01" oninput="recalc()">
           </div>
         </div>
         <div class="input-group">
@@ -859,7 +859,7 @@ option { background: #1A1208; }
           </div>
           <div class="input-wrap has-prefix">
             <span class="input-prefix">$</span>
-            <input type="number" id="inp-target-profit" value="0.50" min="0" step="0.05" oninput="recalc()">
+            <input type="number" id="inp-target-profit" value="0" min="0" step="0.05" oninput="recalc()">
           </div>
         </div>
       </div>
@@ -873,7 +873,7 @@ option { background: #1A1208; }
             </span>
           </div>
           <div class="input-wrap has-suffix">
-            <input type="number" id="inp-storage-mo" value="4" min="0" max="18" step="1" oninput="recalc()">
+            <input type="number" id="inp-storage-mo" value="0" min="0" max="18" step="1" oninput="recalc()">
             <span class="input-suffix">mo</span>
           </div>
         </div>
@@ -885,7 +885,7 @@ option { background: #1A1208; }
             </span>
           </div>
           <div class="input-wrap has-suffix">
-            <input type="number" id="inp-storage-rate" value="3" min="0" step="0.5" oninput="recalc()">
+            <input type="number" id="inp-storage-rate" value="0" min="0" step="0.5" oninput="recalc()">
             <span class="input-suffix">¢/bu/mo</span>
           </div>
         </div>
@@ -912,7 +912,7 @@ option { background: #1A1208; }
         <span class="line-name">Certified Seed</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-seed" value="22.00" min="0" step="0.50" oninput="recalc()">
+          <input type="number" id="li-seed" value="0" min="0" step="0.50" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-seed">$22.00</span>
@@ -921,7 +921,7 @@ option { background: #1A1208; }
         <span class="line-name">Seed Treatment</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-seed-treat" value="4.50" min="0" step="0.50" oninput="recalc()">
+          <input type="number" id="li-seed-treat" value="0" min="0" step="0.50" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-seed-treat">$4.50</span>
@@ -936,7 +936,7 @@ option { background: #1A1208; }
         <span class="line-name">Nitrogen (N)</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-fert-n" value="55.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-fert-n" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-fert-n">$55.00</span>
@@ -945,7 +945,7 @@ option { background: #1A1208; }
         <span class="line-name">Phosphorus (P)</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-fert-p" value="18.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-fert-p" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-fert-p">$18.00</span>
@@ -954,7 +954,7 @@ option { background: #1A1208; }
         <span class="line-name">Potassium (K)</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-fert-k" value="8.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-fert-k" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-fert-k">$8.00</span>
@@ -963,7 +963,7 @@ option { background: #1A1208; }
         <span class="line-name">Sulfur / Micronutrients</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-fert-s" value="6.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-fert-s" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-fert-s">$6.00</span>
@@ -978,7 +978,7 @@ option { background: #1A1208; }
         <span class="line-name">Herbicides</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-herb" value="24.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-herb" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-herb">$24.00</span>
@@ -987,7 +987,7 @@ option { background: #1A1208; }
         <span class="line-name">Fungicide</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-fung" value="18.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-fung" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-fung">$18.00</span>
@@ -996,7 +996,7 @@ option { background: #1A1208; }
         <span class="line-name">Insecticide</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-insect" value="4.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-insect" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-insect">$4.00</span>
@@ -1011,7 +1011,7 @@ option { background: #1A1208; }
         <span class="line-name">Fuel &amp; Lubrication</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-fuel" value="18.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-fuel" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-fuel">$18.00</span>
@@ -1020,7 +1020,7 @@ option { background: #1A1208; }
         <span class="line-name">Custom Application</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-custom" value="10.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-custom" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-custom">$10.00</span>
@@ -1029,7 +1029,7 @@ option { background: #1A1208; }
         <span class="line-name">Hired Labor</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-hired-labor" value="6.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-hired-labor" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-hired-labor">$6.00</span>
@@ -1044,7 +1044,7 @@ option { background: #1A1208; }
         <span class="line-name">Crop Insurance Premium</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-cropins" value="12.00" min="0" step="0.50" oninput="recalc()">
+          <input type="number" id="li-cropins" value="0" min="0" step="0.50" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-cropins">$12.00</span>
@@ -1053,7 +1053,7 @@ option { background: #1A1208; }
         <span class="line-name">Drying / Conditioning</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-dry" value="0.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-dry" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-dry">$0.00</span>
@@ -1062,7 +1062,7 @@ option { background: #1A1208; }
         <span class="line-name">Trucking / Hauling</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-truck" value="8.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-truck" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-truck">$8.00</span>
@@ -1071,7 +1071,7 @@ option { background: #1A1208; }
         <span class="line-name">Miscellaneous Variable</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-misc-var" value="5.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-misc-var" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-misc-var">$5.00</span>
@@ -1109,7 +1109,7 @@ option { background: #1A1208; }
         </div>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-rent" value="95.00" min="0" step="5" oninput="recalc()">
+          <input type="number" id="li-rent" value="0" min="0" step="5" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-rent">$95.00</span>
@@ -1118,10 +1118,10 @@ option { background: #1A1208; }
         <span class="line-name">Property Tax (owned acres)</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-proptax" value="8.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-proptax" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
-        <span class="line-result" id="lr-proptax">$8.00</span>
+        <span class="line-result" id="lr-proptax">$0.00</span>
       </div>
 
       <!-- EQUIPMENT -->
@@ -1133,7 +1133,7 @@ option { background: #1A1208; }
         <span class="line-name">Equipment Depreciation</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-deprec" value="28.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-deprec" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-deprec">$28.00</span>
@@ -1142,7 +1142,7 @@ option { background: #1A1208; }
         <span class="line-name">Equipment Repairs &amp; Maintenance</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-repairs" value="14.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-repairs" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-repairs">$14.00</span>
@@ -1157,7 +1157,7 @@ option { background: #1A1208; }
         <span class="line-name">Operator Labor / Management</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-op-labor" value="20.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-op-labor" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-op-labor">$20.00</span>
@@ -1166,7 +1166,7 @@ option { background: #1A1208; }
         <span class="line-name">Farm Insurance</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-farmins" value="5.00" min="0" step="0.50" oninput="recalc()">
+          <input type="number" id="li-farmins" value="0" min="0" step="0.50" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-farmins">$5.00</span>
@@ -1175,7 +1175,7 @@ option { background: #1A1208; }
         <span class="line-name">Utilities / Overhead</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-util" value="4.00" min="0" step="1" oninput="recalc()">
+          <input type="number" id="li-util" value="0" min="0" step="1" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-util">$4.00</span>
@@ -1184,7 +1184,7 @@ option { background: #1A1208; }
         <span class="line-name">Accounting / Legal / Admin</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-admin" value="3.00" min="0" step="0.50" oninput="recalc()">
+          <input type="number" id="li-admin" value="0" min="0" step="0.50" oninput="recalc()">
           <span class="suf">/ac</span>
         </div>
         <span class="line-result" id="lr-admin">$3.00</span>
@@ -1248,7 +1248,7 @@ option { background: #1A1208; }
         </div>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-storage" value="0.00" min="0" step="0.01" oninput="recalc()" placeholder="auto">
+          <input type="number" id="li-storage" value="0" min="0" step="0.01" oninput="recalc()" placeholder="auto">
           <span class="suf">/bu</span>
         </div>
         <span class="line-result" id="lr-storage">$0.00/bu</span>
@@ -1257,7 +1257,7 @@ option { background: #1A1208; }
         <span class="line-name">Elevator Handling</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-handling" value="0.08" min="0" step="0.01" oninput="recalc()">
+          <input type="number" id="li-handling" value="0" min="0" step="0.01" oninput="recalc()">
           <span class="suf">/bu</span>
         </div>
         <span class="line-result" id="lr-handling">$0.08/bu</span>
@@ -1266,7 +1266,7 @@ option { background: #1A1208; }
         <span class="line-name">Shrink / Weight Loss</span>
         <div class="line-input-wrap">
           <span class="pre">$</span>
-          <input type="number" id="li-shrink" value="0.03" min="0" step="0.01" oninput="recalc()">
+          <input type="number" id="li-shrink" value="0" min="0" step="0.01" oninput="recalc()">
           <span class="suf">/bu</span>
         </div>
         <span class="line-result" id="lr-shrink">$0.03/bu</span>
@@ -1280,7 +1280,7 @@ option { background: #1A1208; }
         </span>
         <div class="line-input-wrap">
           <span class="pre">%</span>
-          <input type="number" id="li-carry-rate" value="6.5" min="0" step="0.25" oninput="recalc()">
+          <input type="number" id="li-carry-rate" value="0" min="0" step="0.25" oninput="recalc()">
           <span class="suf">annual</span>
         </div>
         <span class="line-result" id="lr-carry">$0.00/bu</span>
@@ -1439,11 +1439,7 @@ option { background: #1A1208; }
 /* ════════════════════════════════════════════════
    DEBT ROWS — dynamic management
 ════════════════════════════════════════════════ */
-let debtRows = [
-  { name: 'Operating Loan', balance: 80000, rate: 7.5, term: 1 },
-  { name: 'Equipment Note', balance: 220000, rate: 6.25, term: 7 },
-  { name: 'Land Mortgage',  balance: 650000, rate: 5.75, term: 20 }
-];
+let debtRows = [];
 
 function buildDebtRows() {
   const container = document.getElementById('debt-rows');
@@ -1471,6 +1467,10 @@ function addDebtRow() {
 
 function calcAnnualPayment(balance, annualRate, termYears) {
   if (!balance || !termYears) return 0;
+  // A 1-year term is treated as revolving/operating credit (e.g. an annual
+  // operating loan) — its yearly cost is the interest carried, not the
+  // full balance amortized as principal+interest in a single year.
+  if (termYears <= 1) return balance * annualRate;
   if (!annualRate) return balance / termYears;
   const r = annualRate;
   const n = termYears;
@@ -1792,28 +1792,27 @@ function buildSensTable(baseCostPerBu, baseYield, baseFutures, basis,
    RESET DEFAULTS
 ════════════════════════════════════════════════ */
 function resetDefaults() {
-  const defaults = {
-    'inp-acres': 500, 'inp-yield': 60, 'inp-futures': 5.50, 'inp-basis': -0.35,
-    'inp-target-profit': 0.50, 'inp-storage-mo': 4, 'inp-storage-rate': 3,
-    'li-seed': 22, 'li-seed-treat': 4.50,
-    'li-fert-n': 55, 'li-fert-p': 18, 'li-fert-k': 8, 'li-fert-s': 6,
-    'li-herb': 24, 'li-fung': 18, 'li-insect': 4,
-    'li-fuel': 18, 'li-custom': 10, 'li-hired-labor': 6,
-    'li-cropins': 12, 'li-dry': 0, 'li-truck': 8, 'li-misc-var': 5,
-    'li-rent': 95, 'li-proptax': 8,
-    'li-deprec': 28, 'li-repairs': 14,
-    'li-op-labor': 20, 'li-farmins': 5, 'li-util': 4, 'li-admin': 3,
-    'li-handling': 0.08, 'li-shrink': 0.03, 'li-carry-rate': 6.5
-  };
-  Object.entries(defaults).forEach(([id, val]) => {
-    const el = document.getElementById(id);
-    if (el) el.value = val;
-  });
-  debtRows = [
-    { name: 'Operating Loan', balance: 80000, rate: 7.5, term: 1 },
-    { name: 'Equipment Note', balance: 220000, rate: 6.25, term: 7 },
-    { name: 'Land Mortgage',  balance: 650000, rate: 5.75, term: 20 }
+  // "Clear All" — zero every field so users enter their own real numbers
+  // rather than being anchored to a sample scenario.
+  const zeroFields = [
+    'inp-acres', 'inp-yield', 'inp-futures', 'inp-basis',
+    'inp-target-profit', 'inp-storage-mo', 'inp-storage-rate',
+    'li-seed', 'li-seed-treat',
+    'li-fert-n', 'li-fert-p', 'li-fert-k', 'li-fert-s',
+    'li-herb', 'li-fung', 'li-insect',
+    'li-fuel', 'li-custom', 'li-hired-labor',
+    'li-cropins', 'li-dry', 'li-truck', 'li-misc-var',
+    'li-rent', 'li-proptax',
+    'li-deprec', 'li-repairs',
+    'li-op-labor', 'li-farmins', 'li-util', 'li-admin',
+    'li-storage', 'li-handling', 'li-shrink', 'li-carry-rate'
   ];
+  zeroFields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = 0;
+  });
+  document.getElementById('inp-class').selectedIndex = 0;
+  debtRows = [];
   buildDebtRows();
   recalc();
 }
