@@ -1,7 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git -C \"c:/Users/hofer/OneDrive/Documents/GitHub/WEBSITECHARTS\" remote -v)"
+      "Bash(git -C \"m:/GitHub/WEBSITECHARTS\" remote -v)"
     ]
   }
 }

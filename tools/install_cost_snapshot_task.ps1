@@ -1,7 +1,8 @@
+$root = Split-Path -Parent $PSScriptRoot
 # Run this script ONCE (as yourself, no elevation needed) to register the
 # nightly cost-benchmark snapshot in Windows Task Scheduler.
 
-$batPath  = "C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\cost_snapshot.bat"
+$batPath  = "$root\tools\cost_snapshot.bat"
 $taskName = "MarketBullets-CostSnapshot"
 
 $action = New-ScheduledTaskAction `
@@ -27,8 +28,8 @@ Register-ScheduledTask `
 Write-Host ""
 Write-Host "Task registered: '$taskName'"
 Write-Host "Runs daily at 02:15 AM"
-Write-Host "Writes:  C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\data\cost-history.json"
-Write-Host "Log:     C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\cost_snapshot.log"
+Write-Host "Writes:  $root\data\cost-history.json"
+Write-Host "Log:     $root\tools\cost_snapshot.log"
 Write-Host ""
 Write-Host "To run immediately for testing:"
 Write-Host "  Start-ScheduledTask -TaskName '$taskName'"

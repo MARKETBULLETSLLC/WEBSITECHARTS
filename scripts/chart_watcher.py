@@ -23,11 +23,11 @@ from watchdog.events import FileSystemEventHandler
 
 # ─── CONFIG ─────────────────────────────────────────────────────────────────
 
-# Where Trade Navigator saves exported JPGs (your OneDrive path)
-WATCH_FOLDER = Path(r"C:\users\hofer\onedrive\documents\github\websitecharts")
+# Where Trade Navigator saves exported JPGs (the repo root; self-locating)
+WATCH_FOLDER = Path(__file__).resolve().parent.parent
 
 # Root of your local git clone (same folder — it IS the repo)
-REPO_ROOT = Path(r"C:\users\hofer\onedrive\documents\github\websitecharts")
+REPO_ROOT = Path(__file__).resolve().parent.parent
 
 # Subfolder inside repo where chart images are stored
 CHARTS_DIR = REPO_ROOT / "charts"

@@ -7,10 +7,11 @@ param(
     [datetime]$ReportDate = (Get-Date)
 )
 
-$projectRoot = "C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS"
+$projectRoot = Split-Path -Parent $PSScriptRoot
 $reportsDir  = "$projectRoot\devlogs\reports"
 $convoDir    = "$projectRoot\devlogs\convorecords"
-$claudeDir   = "C:\Users\hofer\.claude\projects\c--Users-hofer-OneDrive-Documents-GitHub-WEBSITECHARTS"
+# Claude Code names its project folder after the repo path, non-alphanumerics -> "-"
+$claudeDir   = Join-Path "$env:USERPROFILE\.claude\projects" ($projectRoot -replace '[^A-Za-z0-9]', '-')
 
 $dateStr = $ReportDate.ToString("yyyy-MM-dd")
 $cutoff  = $ReportDate.AddHours(-24)

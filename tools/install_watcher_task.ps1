@@ -1,7 +1,8 @@
+$root = Split-Path -Parent $PSScriptRoot
 # Run this script ONCE to register the auto-commit watcher in Windows Task Scheduler.
 # It will start automatically at login and run silently in the background.
 
-$batPath  = "C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\auto_commit_watcher.bat"
+$batPath  = "$root\tools\auto_commit_watcher.bat"
 $taskName = "MarketBullets-ChartWatcher"
 
 $action = New-ScheduledTaskAction `
@@ -30,8 +31,8 @@ Register-ScheduledTask `
 Write-Host ""
 Write-Host "Task registered: '$taskName'"
 Write-Host "Starts automatically at login."
-Write-Host "Watches: C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\charts"
-Write-Host "Log:     C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\tools\auto_commit.log"
+Write-Host "Watches: $root\charts"
+Write-Host "Log:     $root\tools\auto_commit.log"
 Write-Host ""
 Write-Host "Starting watcher now..."
 Start-ScheduledTask -TaskName $taskName
