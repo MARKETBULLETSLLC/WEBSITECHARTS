@@ -15,7 +15,7 @@ import logging
 from datetime import datetime
 from pathlib import Path
 
-REPO_ROOT = Path(r"c:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS")
+REPO_ROOT = Path(__file__).resolve().parent.parent
 WATCH_DIR = REPO_ROOT / "charts"
 LOG_FILE = REPO_ROOT / "tools" / "auto_commit.log"
 

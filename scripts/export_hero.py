@@ -1,9 +1,9 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-root = Path(r"C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS")
+root = Path(__file__).resolve().parent.parent
 out = root / "marketbullets_hero_adjusted.png"
-url = "file:///C:/Users/hofer/OneDrive/Documents/GitHub/WEBSITECHARTS/marketbullets_nnm.html"
+url = (root / "marketbullets_nnm.html").as_uri()
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)

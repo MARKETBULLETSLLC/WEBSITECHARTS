@@ -28,7 +28,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-REPO_ROOT = Path(r"C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS")
+REPO_ROOT = Path(__file__).resolve().parent.parent
 HISTORY_FILE = REPO_ROOT / "data" / "cost-history.json"
 LOG_FILE = REPO_ROOT / "tools" / "cost_snapshot.log"
 MAX_ENTRIES = 365

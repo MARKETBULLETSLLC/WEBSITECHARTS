@@ -44,6 +44,7 @@ REVIEW_DIR = PREVIEW_DIR
 VISIBLE_BARS = 120
 W, H, DPI = 1876, 732, 100
 GREEN, RED, BLUE = "#00B000", "#E00000", "#0000E0"
+STATUS_COLOR = {"EXECUTE": RED, "SUSPEND": "#1a3a5c"}  # SUSPEND = BOR badge suspend blue
 UP, DOWN = "#22C022", "#E01010"
 SUPPORT_COLOR, RESIST_COLOR, TREND_COLOR = "#0050C8", "#C05000", "#6A2C91"
 ZONE_LABEL = "Execute Sale of Tranche(s)"
@@ -74,7 +75,8 @@ def parse_price(s):
     s = s.strip()
     if "^" in s:
         whole, e = s.split("^")
-        return int(whole) + int(e) / 8
+        sign = -1 if whole.startswith("-") else 1
+        return sign * (abs(int(whole)) + int(e) / 8)
     return float(s)
 
 
@@ -117,6 +119,11 @@ def split_paste(text):
         bars = pd.DataFrame([r[:5] for r in rows], columns=cols)
         bars["Date"] = pd.to_datetime(bars.Date).dt.normalize()
         bars[cols[1:]] = bars[cols[1:]].astype(float)
+        # Optional Trade Navigator columns: Settle and Net Change (header change uses them if present)
+        for name, pat in (("Settle", r"^settle"), ("NetChg", r"^net\s*ch|^chg$|^change$")):
+            j = next((k for k, h in enumerate(header or []) if re.search(pat, h.strip(), re.I)), None)
+            if j is not None:
+                bars[name] = [parse_price(r[j]) if len(r) > j and r[j].strip() else np.nan for r in rows]
     return directives, bars
 
 
@@ -360,7 +367,6 @@ def draw(d, ann, out):
     x = np.arange(len(v))
     last = v.iloc[-1]
     end = len(v) - 1
-    prev_close = d.Close.iloc[-2]
 
     lo = math.floor((v.Low.min() - 15) / 25) * 25
     hi = math.ceil((v.High.max() + 15) / 25) * 25
@@ -427,8 +433,34 @@ def draw(d, ann, out):
     ax.plot(x, v.MA20, color=RED, lw=1.8, zorder=5)
     ax.plot(x, v.MA60, color=GREEN, lw=1.8, zorder=5)
 
-    # Zone label in the emptiest stretch of the shading
-    cx, top = label_spot(np.minimum(v.Low.values, v.MA60.values), lo, width=28)
+    # Note placement, worked out up front so the zone label can steer clear of notes
+    idx = {dt: i for i, dt in enumerate(v.Date)}
+    bar_px = W * 0.945 / (xr + 1)
+    unit_px = H * 0.885 / (hi - lo)
+    placed = []
+    for n in ann["note"]:
+        nd = pd.Timestamp(n["date"])
+        if nd not in idx:
+            continue
+        i, r = idx[nd], v.iloc[idx[nd]]
+        above = n["anchor"] == "high"
+        y0 = r.High + 3 if above else r.Low - 3
+        ty = y0 + (n.get("dy", 24) if above else -n.get("dy", 24))
+        right = n.get("align") == "right"  # optional: text ends at the candle and runs left
+        tx = i + 1 if right else i - 1
+        lines = n["text"].split("|")
+        span = max(map(len, lines)) * 9 / bar_px
+        x0, x1 = (tx - span, tx) if right else (tx, tx + span)
+        nlines = len(lines) + (1 if n.get("status") else 0)
+        placed.append((n, i, y0, tx, ty, above, right, x0, x1, ty - nlines * 18 / unit_px))
+
+    # Zone label in the emptiest stretch of the shading, below any notes hanging into it
+    ceiling = np.minimum(v.Low.values, v.MA60.values)
+    for *_, above, _r, x0, x1, bottom in placed:
+        if not above:
+            a, b = max(int(x0) - 1, 0), min(int(x1) + 2, len(ceiling))
+            ceiling[a:b] = np.minimum(ceiling[a:b], bottom)
+    cx, top = label_spot(ceiling, lo, width=28)
     ax.text(cx, lo + (top - lo) * 0.45, ZONE_LABEL, color="#006400", fontsize=21,
             fontweight="bold", ha="center", va="center", alpha=0.85, zorder=6)
 
@@ -447,18 +479,22 @@ def draw(d, ann, out):
                 arrowprops=dict(arrowstyle="->", color="black", lw=1.5), zorder=7)
 
     # Analyst notes — Gary's calls
-    idx = {dt: i for i, dt in enumerate(v.Date)}
-    for n in ann["note"]:
-        nd = pd.Timestamp(n["date"])
-        if nd not in idx:
-            continue
-        i, r = idx[nd], v.iloc[idx[nd]]
-        above = n["anchor"] == "high"
-        y0 = r.High + 3 if above else r.Low - 3
-        ax.annotate(n["text"].replace("|", "\n"), xy=(i, y0), xytext=(i - 1, y0 + (24 if above else -24)),
-                    color=RED, fontsize=11, fontweight="bold", ha="left",
-                    va="bottom" if above else "top",
-                    arrowprops=dict(arrowstyle="->", color=RED, lw=1.3), zorder=7)
+    for n, i, y0, tx, ty, above, right, *_ in placed:
+        col = {"red": RED, "blue": BLUE, "green": GREEN}.get(n.get("color", "red"), RED)
+        txt = ax.text(tx, ty, n["text"].replace("|", "\n"), color=col, fontsize=11, fontweight="bold",
+                      ha="right" if right else "left", multialignment="left",
+                      va="bottom" if above else "top", zorder=7)
+        src = txt
+        st = n.get("status", "").upper()  # optional closing line, e.g. "EXECUTE is status."
+        if st:
+            last_line = ax.annotate(f"{st} is status.", xy=(0, 0), xycoords=txt, xytext=(0, -1),
+                                    textcoords="offset points", ha="left", va="top", fontsize=11,
+                                    fontweight="bold", color=STATUS_COLOR.get(st, col), zorder=7)
+            src = last_line if above else txt
+        # Arrow leaves the box corner nearest the candle
+        corner = (1 if right else 0, 0 if above else 1)
+        ax.annotate("", xy=(i, y0), xytext=corner, textcoords=src,
+                    arrowprops=dict(arrowstyle="->", color=col, lw=1.3, shrinkA=2), zorder=7)
 
     ax.yaxis.tick_right()
     yt = range(int(lo), int(hi) + 1, 25)
@@ -473,11 +509,18 @@ def draw(d, ann, out):
 
     # Header strip
     fig.patch.set_facecolor("#FFFFC8")
-    chg = close - prev_close
+    # Day's change only from TN's own Net Change or Settle columns; the Close column is last trade,
+    # so close-minus-close can disagree with TN's header. No column, no change shown.
+    chg = None
+    if pd.notna(last.get("NetChg", np.nan)):
+        chg = last.NetChg
+    elif pd.notna(last.get("Settle", np.nan)) and pd.notna(d.iloc[-2].get("Settle", np.nan)):
+        chg = last.Settle - d.iloc[-2].Settle
+    chg_txt = "" if chg is None else f" ({'+' if chg >= 0 else ''}{eighths(chg)})"
     fig.text(0.5, 0.985, ann["symbol_line"], ha="center", va="top", fontsize=8, fontweight="bold")
-    hdr = [(f"MA20 (AvgOHLC,20) = {eighths(ma20)}", RED),
-           (f"  MA60 (AvgOHLC,60) = {eighths(ma60)}", GREEN),
-           (f"  {last.Date:%m/%d/%Y} = {eighths(close)} ({'+' if chg >= 0 else ''}{eighths(chg)})", "black")]
+    hdr = [(f"Tripwire = {eighths(ma20)}", RED),
+           (f"  Threshold = {eighths(ma60)}", GREEN),
+           (f"  {last.Date:%m/%d/%Y} = {eighths(close)}{chg_txt}", "black")]
     t = fig.text(0.935, 0.935, hdr[-1][0], ha="right", va="bottom", fontsize=17,
                  fontweight="bold", color=hdr[-1][1])
     fig.canvas.draw()
@@ -541,7 +584,8 @@ def main():
 
     # Save state only after a successful draw
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    d[["Date", "Open", "High", "Low", "Close"]].to_csv(HISTORY, index=False, date_format="%Y-%m-%d")
+    keep = ["Date", "Open", "High", "Low", "Close"] + [c for c in ("Settle", "NetChg") if c in d]
+    d[keep].to_csv(HISTORY, index=False, date_format="%Y-%m-%d")
     ANNOTATIONS.write_text(json.dumps(ann, indent=2), encoding="utf-8")
 
     print(f"Chart:  {out}{'  (LIVE)' if args.live else '  (preview)'}")

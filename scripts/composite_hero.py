@@ -2,8 +2,10 @@ from PIL import Image
 import numpy as np
 
 TRUCK = r"C:\Users\hofer\OneDrive\MBLLC.COM CLOUD\Site Development\images\20230320_watertruck.png"
-LOGO  = r"C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\MarketBullets_Logo.png"
-OUT   = r"C:\Users\hofer\OneDrive\Documents\GitHub\WEBSITECHARTS\hero_banner.jpg"
+from pathlib import Path
+_ROOT = Path(__file__).resolve().parent.parent
+LOGO  = str(_ROOT / "MarketBullets_Logo.png")
+OUT   = str(_ROOT / "hero_banner.jpg")
 
 DOOR_CX   = 0.195   # door center as fraction of image width  (~left 19.5%)
 DOOR_CY   = 0.525   # door center as fraction of image height (~52% down)

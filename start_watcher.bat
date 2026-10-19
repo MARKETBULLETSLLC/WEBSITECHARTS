@@ -1,4 +1,4 @@
 @echo off
-cd /d C:\users\hofer\onedrive\documents\github\websitecharts
+cd /d "%~dp0"
 python scripts\chart_watcher.py
 pause

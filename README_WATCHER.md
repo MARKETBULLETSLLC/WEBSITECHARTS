@@ -1,6 +1,15 @@
 # MarketBullets — Wheat Chart Auto-Push Pipeline
 
-Trade Navigator → OneDrive → GitHub → Squarespace
+> **Current setup (2026-10-18):** the active watcher is **`tools/auto_commit_watcher.py`**, not `scripts/chart_watcher.py` described below.
+> - Trade Navigator exports PNGs with their final generic filenames straight into **`M:\GitHub\WEBSITECHARTS\charts\`**.
+> - The watcher polls `charts/` every 10 s, then commits and pushes each changed PNG.
+> - It starts at login from `Startup\MarketBullets-ChartWatcher.bat` and logs to `tools/auto_commit.log`.
+> - The repo moved off C:/OneDrive to M: on 2026-10-18. Scripts are now self-locating.
+> - Known gap: the watcher does not retry a failed push or pull before pushing. If the last export of a session hits a network blip, that chart waits for the next push.
+>
+> The rest of this file documents the older `chart_watcher.py` (repo-root JPG + `CHART_MAP` rename) and is kept for reference.
+
+Trade Navigator → GitHub → Squarespace (OneDrive is not part of the chain)
 
 ## How It Works
 
