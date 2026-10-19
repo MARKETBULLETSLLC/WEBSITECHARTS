@@ -518,8 +518,8 @@ def draw(d, ann, out):
         chg = last.Settle - d.iloc[-2].Settle
     chg_txt = "" if chg is None else f" ({'+' if chg >= 0 else ''}{eighths(chg)})"
     fig.text(0.5, 0.985, ann["symbol_line"], ha="center", va="top", fontsize=8, fontweight="bold")
-    hdr = [(f"MA20 (AvgOHLC,20) = {eighths(ma20)}", RED),
-           (f"  MA60 (AvgOHLC,60) = {eighths(ma60)}", GREEN),
+    hdr = [(f"Tripwire = {eighths(ma20)}", RED),
+           (f"  Threshold = {eighths(ma60)}", GREEN),
            (f"  {last.Date:%m/%d/%Y} = {eighths(close)}{chg_txt}", "black")]
     t = fig.text(0.935, 0.935, hdr[-1][0], ha="right", va="bottom", fontsize=17,
                  fontweight="bold", color=hdr[-1][1])
