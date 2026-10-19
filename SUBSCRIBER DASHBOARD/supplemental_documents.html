@@ -17,16 +17,18 @@
 <body>
 <div class="mb-sd">
 <style>
-.mb-sd*,.mb-sd*::before,.mb-sd*::after{box-sizing:border-box;margin:0;padding:0;}
+.mb-sd *,.mb-sd *::before,.mb-sd *::after{box-sizing:border-box;margin:0;padding:0;}
 .mb-sd img{display:block;max-width:100%;height:auto;}
 .mb-sd a{text-decoration:none;color:inherit;}
 .mb-sd button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.mb-sd a:focus-visible{outline:2px solid var(--wheat-lt);outline-offset:3px;}
 
 .mb-sd{
   --soil:#0A0704; --soil-mid:#0F0B07; --soil-light:#1A1208;
   --cream:#FBF7EE; --parchment:#F0E8D0; --buff:#E4D9BA;
   --wheat:#C8960A; --wheat-lt:#E8B820; --wheat-pale:#F5E6C0;
   --border:rgba(200,150,10,0.18); --border-lt:rgba(200,150,10,0.08);
+  --bor-suspend:#4da6ff; --bor-execute:#32C850;
   --serif-display:'DM Serif Display',Georgia,serif;
   --serif-body:'Playfair Display',Georgia,serif;
   --body-font:'Lora',Georgia,serif;
@@ -55,7 +57,7 @@
 .mb-sd-page-title{font-family:var(--serif-display);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--wheat-lt);letter-spacing:-0.01em;margin-bottom:6px;}
 .mb-sd-page-sub{font-family:var(--mono);font-size:0.62rem;color:rgba(245,230,192,0.35);letter-spacing:1px;}
 
-/* MAIN CONTENT — splits dark/light */
+/* MAIN CONTENT */
 .mb-sd-body{padding:48px 28px 64px;max-width:1200px;margin:0 auto;}
 
 /* SECTION HEADER */
@@ -93,6 +95,51 @@
 }
 .mb-sd-btn-dl:hover{background:rgba(200,150,10,0.1);border-color:rgba(200,150,10,0.6);}
 .mb-sd-btn-dl svg{width:10px;height:10px;}
+/* Not-yet-published documents: an honest label instead of a dead button */
+.mb-sd-btn-soon{
+  font-family:var(--mono);font-size:0.55rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(245,230,192,0.3);border:1px dashed rgba(200,150,10,0.2);
+  padding:8px 16px;white-space:nowrap;cursor:default;
+}
+
+/* FEATURED: BOX-O-ROX LIVE CARD */
+.mb-sd-feature{
+  display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:26px;
+  background:var(--soil-light);border:1px solid var(--border);
+  border-top:2px solid var(--wheat);
+  padding:22px;margin-bottom:10px;
+}
+.mb-sd-feature-thumb{display:block;position:relative;border:1px solid var(--border);background:#000;align-self:start;transition:border-color .2s;}
+.mb-sd-feature-thumb:hover{border-color:rgba(200,150,10,0.6);}
+.mb-sd-feature-thumb img{width:100%;}
+.mb-sd-feature-thumb span{
+  position:absolute;left:0;right:0;bottom:0;
+  font-family:var(--mono);font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--wheat-pale);background:linear-gradient(transparent,rgba(10,7,4,0.92));
+  padding:18px 10px 8px;
+}
+.mb-sd-feature-eyebrow{font-family:var(--mono);font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:rgba(200,150,10,0.55);margin-bottom:8px;}
+.mb-sd-feature-title{font-family:var(--serif-display);font-size:1.35rem;color:var(--wheat-lt);line-height:1.2;margin-bottom:14px;}
+.mb-sd-status{
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:0.66rem;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(245,230,192,0.45);border:1px solid var(--border);padding:8px 14px;margin-bottom:16px;
+}
+.mb-sd-status-dot{width:10px;height:10px;border-radius:50%;background:rgba(245,230,192,0.2);flex-shrink:0;}
+.mb-sd-status-date{color:rgba(245,230,192,0.35);font-size:0.55rem;letter-spacing:1.5px;}
+.mb-sd-status.is-suspend .mb-sd-status-label{color:var(--bor-suspend);}
+.mb-sd-status.is-suspend .mb-sd-status-dot{background:var(--bor-suspend);box-shadow:0 0 8px var(--bor-suspend);animation:mbsd-breathe 6s ease-in-out infinite;}
+.mb-sd-status.is-execute .mb-sd-status-label{color:var(--bor-execute);}
+.mb-sd-status.is-execute .mb-sd-status-dot{background:var(--bor-execute);box-shadow:0 0 8px var(--bor-execute);animation:mbsd-blink 10s step-start infinite;}
+.mb-sd-status.is-execute-fast .mb-sd-status-dot{animation-duration:5s;}
+@keyframes mbsd-breathe{0%,100%{opacity:1;}50%{opacity:0.35;}}
+@keyframes mbsd-blink{0%,88%{opacity:1;}90%,94%{opacity:0.2;}96%,100%{opacity:1;}}
+@media(prefers-reduced-motion:reduce){.mb-sd-status-dot{animation:none !important;}}
+.mb-sd-feature-lede{font-size:0.9rem;line-height:1.7;color:rgba(245,230,192,0.75);margin-bottom:16px;}
+.mb-sd-benefits{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+.mb-sd-benefits li{border-left:2px solid rgba(200,150,10,0.35);padding:2px 0 2px 12px;font-size:0.82rem;line-height:1.6;color:rgba(245,230,192,0.6);}
+.mb-sd-benefits strong{display:block;font-family:var(--mono);font-size:0.55rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--wheat);margin-bottom:3px;}
+.mb-sd-creed{font-family:var(--serif-body);font-style:italic;font-size:0.88rem;line-height:1.6;color:var(--wheat-pale);opacity:0.85;margin-bottom:18px;}
 
 /* PLACEHOLDER STATE */
 .mb-sd-placeholder{
@@ -118,12 +165,20 @@
 .mb-sd-footer-link:hover{color:var(--wheat-lt);border-color:rgba(200,150,10,0.5);}
 .mb-sd-footer-copy{font-family:var(--mono);font-size:0.5rem;color:rgba(200,150,10,0.22);letter-spacing:1.5px;}
 
+@media(max-width:780px){
+  .mb-sd-feature{grid-template-columns:1fr;}
+  .mb-sd-benefits{grid-template-columns:1fr;}
+}
 @media(max-width:680px){
   .mb-sd-logo{width:110px;height:110px;}
   .mb-sd-logo-bar{padding:14px 16px 10px;}
+  .mb-sd-header-inner{padding:10px 16px 12px;}
+  .mb-sd-title-bar{padding:24px 16px;}
   .mb-sd-body{padding:28px 16px 40px;}
   .mb-sd-doc-card{flex-wrap:wrap;}
   .mb-sd-doc-actions{width:100%;}
+  .mb-sd-feature{padding:16px;}
+  .mb-sd-footer{padding:20px 16px;}
 }
 </style>
 
@@ -137,7 +192,7 @@
   <div class="mb-sd-header-inner">
     <div>
       <div class="mb-sd-brand-name">MarketBullets<sup>®</sup></div>
-      <div class="mb-sd-brand-tag">More Sense Per Bushel™</div>
+      <div class="mb-sd-brand-tag">More Sense Per Bushel</div>
     </div>
     <a class="mb-sd-back" href="/dashboard">← Dashboard</a>
   </div>
@@ -161,6 +216,70 @@
     © MarketBullets LLC.</p>
   </div>
 
+  <!-- SECTION: THE WARM SIGNAL (first: it's the framework every other document serves) -->
+  <div class="mb-sd-section">
+    <div class="mb-sd-section-eyebrow">Proprietary Framework</div>
+    <div class="mb-sd-section-title">The Warm Signal (TWS)</div>
+
+    <!-- FEATURED: Box-o-Rox. Status reads live from the dashboard's MB_CONFIG on GitHub,
+         so publishing the dashboard updates this card too. Nothing here needs a daily edit. -->
+    <div class="mb-sd-feature">
+      <a class="mb-sd-feature-thumb" href="/box-o-rox" aria-label="Open the Box-o-Rox chart and rules">
+        <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
+             alt="Box-o-Rox daily chart: Chicago SRW settlement against the Threshold and Tripwire" loading="lazy">
+        <span>Daily · Updated each session</span>
+      </a>
+      <div>
+        <div class="mb-sd-feature-eyebrow">Box-o-Rox · Live Benchmark</div>
+        <div class="mb-sd-feature-title">One benchmark, posted before the open.</div>
+        <div class="mb-sd-status" id="mb-sd-bor-status" role="status" aria-live="polite">
+          <span class="mb-sd-status-dot" aria-hidden="true"></span>
+          <span class="mb-sd-status-label">Checking current status…</span>
+          <span class="mb-sd-status-date"></span>
+        </div>
+        <p class="mb-sd-feature-lede">Box-o-Rox measures Chicago SRW settlement against two lines,
+        the Threshold and the Tripwire, and holds one of two states: SUSPEND or EXECUTE. Each state
+        is a marketing posture, not a price target.</p>
+        <ul class="mb-sd-benefits">
+          <li><strong>For producers</strong>A plain cue for when to price the next tranche, so the
+          marketing plan runs on schedule instead of on headlines.</li>
+          <li><strong>For lenders, elevators &amp; input dealers</strong>A shared yardstick for the
+          conversation across the desk. Everyone at the table works from the same read.</li>
+        </ul>
+        <p class="mb-sd-creed">It doesn't need to be complicated. It needs to be honest about where
+        the market sits in its cycle. Box-o-Rox informs; the marketing plan decides.</p>
+        <a class="mb-sd-btn-dl" href="/box-o-rox">
+          Chart &amp; rules
+          <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <line x1="1" y1="5" x2="8" y2="5"/>
+            <polyline points="5,2 8,5 5,8"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="mb-sd-doc-list">
+      <div class="mb-sd-doc-card">
+        <div class="mb-sd-doc-icon">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="2" y="1" width="14" height="16" rx="1"/>
+            <line x1="5" y1="6" x2="13" y2="6"/>
+            <line x1="5" y1="9" x2="13" y2="9"/>
+            <line x1="5" y1="12" x2="9" y2="12"/>
+          </svg>
+        </div>
+        <div class="mb-sd-doc-info">
+          <div class="mb-sd-doc-title">The Warm Signal — Framework Overview</div>
+          <div class="mb-sd-doc-meta">PDF · Framework</div>
+          <div class="mb-sd-doc-desc">How MarketBullets reads timeframe harmony: indicators, oscillators, timeframes and seasonal patterns turning together. What it looks like when a marketing plan is in phase with the market, what attenuation looks like, and where Box-o-Rox fits inside it.</div>
+        </div>
+        <div class="mb-sd-doc-actions">
+          <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- SECTION: USDA & CFTC REFERENCE -->
   <div class="mb-sd-section">
     <div class="mb-sd-section-eyebrow">Government Data</div>
@@ -169,7 +288,7 @@
 
       <div class="mb-sd-doc-card">
         <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="2" y="1" width="14" height="16" rx="1"/>
             <line x1="5" y1="6" x2="13" y2="6"/>
             <line x1="5" y1="9" x2="13" y2="9"/>
@@ -182,24 +301,13 @@
           <div class="mb-sd-doc-desc">How to read the World Agricultural Supply and Demand Estimates report. Key tables, what the numbers mean, and what changes to watch.</div>
         </div>
         <div class="mb-sd-doc-actions">
-          <!--
-            TO ACTIVATE: Upload PDF to Squarespace Files or Google Drive,
-            replace # with the direct download URL
-          -->
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
+          <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
         </div>
       </div>
 
       <div class="mb-sd-doc-card">
         <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="2" y="1" width="14" height="16" rx="1"/>
             <line x1="5" y1="6" x2="13" y2="6"/>
             <line x1="5" y1="9" x2="13" y2="9"/>
@@ -209,23 +317,16 @@
         <div class="mb-sd-doc-info">
           <div class="mb-sd-doc-title">COT Report — Managed Money Positioning Guide</div>
           <div class="mb-sd-doc-meta">PDF · Reference</div>
-          <div class="mb-sd-doc-desc">How to use the Commitment of Traders report. Net long vs. net short thresholds, historical extremes, and what large speculator positioning means for wheat producers.</div>
+          <div class="mb-sd-doc-desc">How to use the Commitment of Traders report. Net long vs. net short thresholds, historical extremes, and what managed money positioning means for wheat producers.</div>
         </div>
         <div class="mb-sd-doc-actions">
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
+          <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
         </div>
       </div>
 
       <div class="mb-sd-doc-card">
         <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="2" y="1" width="14" height="16" rx="1"/>
             <line x1="5" y1="6" x2="13" y2="6"/>
             <line x1="5" y1="9" x2="13" y2="9"/>
@@ -238,75 +339,7 @@
           <div class="mb-sd-doc-desc">Dates for WASDE, Grain Stocks, Crop Progress, Prospective Plantings, and Weekly Export Sales for the current marketing year.</div>
         </div>
         <div class="mb-sd-doc-actions">
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SECTION: THE WARM SIGNAL -->
-  <div class="mb-sd-section">
-    <div class="mb-sd-section-eyebrow">Proprietary Framework</div>
-    <div class="mb-sd-section-title">The Warm Signal (TWS)</div>
-    <div class="mb-sd-doc-list">
-
-      <div class="mb-sd-doc-card">
-        <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="1" width="14" height="16" rx="1"/>
-            <line x1="5" y1="6" x2="13" y2="6"/>
-            <line x1="5" y1="9" x2="13" y2="9"/>
-            <line x1="5" y1="12" x2="9" y2="12"/>
-          </svg>
-        </div>
-        <div class="mb-sd-doc-info">
-          <div class="mb-sd-doc-title">The Warm Signal — Framework Overview</div>
-          <div class="mb-sd-doc-meta">PDF · Framework</div>
-          <div class="mb-sd-doc-desc">Introduction to The Warm Signal (TWS) — Gary Hofer's 44-year synthesis of quantitative and qualitative market pattern recognition. Four phases: Loaded, Locked &amp; Loaded, Aim, Fire.</div>
-        </div>
-        <div class="mb-sd-doc-actions">
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
-        </div>
-      </div>
-
-      <div class="mb-sd-doc-card">
-        <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="2" y="1" width="14" height="16" rx="1"/>
-            <line x1="5" y1="6" x2="13" y2="6"/>
-            <line x1="5" y1="9" x2="13" y2="9"/>
-            <line x1="5" y1="12" x2="9" y2="12"/>
-          </svg>
-        </div>
-        <div class="mb-sd-doc-info">
-          <div class="mb-sd-doc-title">Box-o-Rox — Signal Documentation</div>
-          <div class="mb-sd-doc-meta">PDF · Framework</div>
-          <div class="mb-sd-doc-desc">The Box-o-Rox sell/suspend signal within TWS. Chicago SRW settlement vs. its Threshold — historical signal performance, thresholds, and application guidance.</div>
-        </div>
-        <div class="mb-sd-doc-actions">
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
+          <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
         </div>
       </div>
 
@@ -321,7 +354,7 @@
 
       <div class="mb-sd-doc-card">
         <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="1" y="3" width="16" height="12" rx="1"/>
             <line x1="1" y1="7" x2="17" y2="7"/>
             <line x1="6" y1="3" x2="6" y2="15"/>
@@ -333,20 +366,13 @@
           <div class="mb-sd-doc-desc">When to use a basis contract vs. a Hedge-to-Arrive. Decision framework based on current basis strength, futures trend, and seasonal patterns.</div>
         </div>
         <div class="mb-sd-doc-actions">
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
+          <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
         </div>
       </div>
 
       <div class="mb-sd-doc-card">
         <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="1" y="3" width="16" height="12" rx="1"/>
             <line x1="1" y1="7" x2="17" y2="7"/>
             <line x1="6" y1="3" x2="6" y2="15"/>
@@ -358,20 +384,13 @@
           <div class="mb-sd-doc-desc">Historical seasonal price patterns by class. Month-by-month tendency analysis based on 20+ years of data. Updated annually.</div>
         </div>
         <div class="mb-sd-doc-actions">
-          <a class="mb-sd-btn-dl" href="#">
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
-              <line x1="5" y1="1" x2="5" y2="7"/>
-              <polyline points="2,5 5,8 8,5"/>
-              <line x1="1" y1="9" x2="9" y2="9"/>
-            </svg>
-            Download
-          </a>
+          <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
         </div>
       </div>
 
       <div class="mb-sd-doc-card">
         <div class="mb-sd-doc-icon">
-          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
             <rect x="1" y="3" width="16" height="12" rx="1"/>
             <line x1="1" y1="7" x2="17" y2="7"/>
             <line x1="6" y1="3" x2="6" y2="15"/>
@@ -380,11 +399,11 @@
         <div class="mb-sd-doc-info">
           <div class="mb-sd-doc-title">Chart Master Index — Current</div>
           <div class="mb-sd-doc-meta">XLSX · Index</div>
-          <div class="mb-sd-doc-desc">Complete index of all 60 MarketBullets charts with filenames, categories, descriptions, and update frequency.</div>
+          <div class="mb-sd-doc-desc">The full index of MarketBullets charts: filenames, categories, descriptions, and update frequency. The roster grows and changes; this file always matches it.</div>
         </div>
         <div class="mb-sd-doc-actions">
           <a class="mb-sd-btn-dl" href="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/MarketBullets_Master_Chart_Index.xlsx" download>
-            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
               <line x1="5" y1="1" x2="5" y2="7"/>
               <polyline points="2,5 5,8 8,5"/>
               <line x1="1" y1="9" x2="9" y2="9"/>
@@ -409,13 +428,19 @@
 
   <!--
   ═══════════════════════════════════════════════════════════════
-  HOW TO ADD A NEW DOCUMENT:
+  HOW TO PUBLISH A DOCUMENT THAT SAYS "IN PREPARATION":
 
   1. Upload the file to Squarespace (Pages → File Storage) or Google Drive
   2. Copy the direct download link
-  3. Duplicate one of the mb-sd-doc-card blocks above
-  4. Update the title, meta, description
-  5. Replace the href="#" with your download link
+  3. In that card, replace the line
+       <span class="mb-sd-btn-soon" aria-disabled="true">In preparation</span>
+     with the Download button from the Chart Master Index card,
+     and put your link in its href
+  4. Update the meta line (PDF · Reference, etc.) if the format changed
+
+  HOW TO ADD A NEW DOCUMENT:
+  Duplicate any mb-sd-doc-card block, update title / meta / description,
+  then follow step 3.
   ═══════════════════════════════════════════════════════════════
   -->
 
@@ -426,12 +451,50 @@
   <div class="mb-sd-footer-inner">
     <nav class="mb-sd-footer-nav">
       <a class="mb-sd-footer-link" href="/dashboard">← Dashboard</a>
+      <a class="mb-sd-footer-link" href="/box-o-rox">Box-o-Rox</a>
       <a class="mb-sd-footer-link" href="/input-cost-calculator">Input Cost Calculator</a>
       <a class="mb-sd-footer-link" href="/all-charts">All Charts</a>
     </nav>
     <div class="mb-sd-footer-copy">© MarketBullets LLC · marketbulletsllc.com</div>
   </div>
 </footer>
+
+<script>
+/* Box-o-Rox live status.
+   Reads borStatus / borDate from the dashboard's MB_CONFIG on GitHub, the same
+   source the members dashboard uses. Publishing the dashboard = this card updates. */
+(function(){
+  var box = document.getElementById('mb-sd-bor-status');
+  if(!box) return;
+  var label = box.querySelector('.mb-sd-status-label');
+  var date  = box.querySelector('.mb-sd-status-date');
+  var SRC = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html';
+  var STATES = {
+    'suspend':     { text:'Suspend Sales',             cls:'is-suspend' },
+    'execute-60d': { text:'Execute Sales — Threshold', cls:'is-execute' },
+    'execute-20d': { text:'Execute Sales — Tripwire',  cls:'is-execute is-execute-fast' }
+  };
+  function fallback(){ label.textContent = 'See current status on the chart'; }
+  if(!window.fetch){ fallback(); return; }
+  fetch(SRC + '?t=' + Date.now(), { cache:'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(function(src){
+      var cfg = src.match(/const MB_CONFIG = (\{[\s\S]*?\r?\n\});/);
+      if(!cfg) throw new Error('MB_CONFIG not found');
+      var st = cfg[1].match(/borStatus:\s*'([^']+)'/);
+      var dt = cfg[1].match(/borDate:\s*'([^']+)'/);
+      var s = st && STATES[st[1].toLowerCase()];
+      if(!s) throw new Error('unknown status');
+      box.className = 'mb-sd-status ' + s.cls;
+      label.textContent = s.text;
+      if(dt) date.textContent = '· Updated ' + dt[1];
+    })
+    .catch(function(err){
+      fallback();
+      if(window.console) console.warn('Box-o-Rox status skipped:', err.message);
+    });
+})();
+</script>
 
 </div><!-- end .mb-sd -->
 </body>
