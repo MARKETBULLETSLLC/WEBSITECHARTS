@@ -44,6 +44,7 @@ REVIEW_DIR = PREVIEW_DIR
 VISIBLE_BARS = 120
 W, H, DPI = 1876, 732, 100
 GREEN, RED, BLUE = "#00B000", "#E00000", "#0000E0"
+STATUS_COLOR = {"EXECUTE": RED, "SUSPEND": "#1a3a5c"}  # SUSPEND = BOR badge suspend blue
 UP, DOWN = "#22C022", "#E01010"
 SUPPORT_COLOR, RESIST_COLOR, TREND_COLOR = "#0050C8", "#C05000", "#6A2C91"
 ZONE_LABEL = "Execute Sale of Tranche(s)"
@@ -450,7 +451,8 @@ def draw(d, ann, out):
         lines = n["text"].split("|")
         span = max(map(len, lines)) * 9 / bar_px
         x0, x1 = (tx - span, tx) if right else (tx, tx + span)
-        placed.append((n, i, y0, tx, ty, above, right, x0, x1, ty - len(lines) * 18 / unit_px))
+        nlines = len(lines) + (1 if n.get("status") else 0)
+        placed.append((n, i, y0, tx, ty, above, right, x0, x1, ty - nlines * 18 / unit_px))
 
     # Zone label in the emptiest stretch of the shading, below any notes hanging into it
     ceiling = np.minimum(v.Low.values, v.MA60.values)
@@ -479,10 +481,20 @@ def draw(d, ann, out):
     # Analyst notes — Gary's calls
     for n, i, y0, tx, ty, above, right, *_ in placed:
         col = {"red": RED, "blue": BLUE, "green": GREEN}.get(n.get("color", "red"), RED)
-        ax.annotate(n["text"].replace("|", "\n"), xy=(i, y0), xytext=(tx, ty),
-                    color=col, fontsize=11, fontweight="bold", ha="right" if right else "left", multialignment="left",
-                    va="bottom" if above else "top",
-                    arrowprops=dict(arrowstyle="->", color=col, lw=1.3), zorder=7)
+        txt = ax.text(tx, ty, n["text"].replace("|", "\n"), color=col, fontsize=11, fontweight="bold",
+                      ha="right" if right else "left", multialignment="left",
+                      va="bottom" if above else "top", zorder=7)
+        src = txt
+        st = n.get("status", "").upper()  # optional closing line, e.g. "EXECUTE is status."
+        if st:
+            last_line = ax.annotate(f"{st} is status.", xy=(0, 0), xycoords=txt, xytext=(0, -1),
+                                    textcoords="offset points", ha="left", va="top", fontsize=11,
+                                    fontweight="bold", color=STATUS_COLOR.get(st, col), zorder=7)
+            src = last_line if above else txt
+        # Arrow leaves the box corner nearest the candle
+        corner = (1 if right else 0, 0 if above else 1)
+        ax.annotate("", xy=(i, y0), xytext=corner, textcoords=src,
+                    arrowprops=dict(arrowstyle="->", color=col, lw=1.3, shrinkA=2), zorder=7)
 
     ax.yaxis.tick_right()
     yt = range(int(lo), int(hi) + 1, 25)
