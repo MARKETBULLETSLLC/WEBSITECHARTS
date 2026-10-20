@@ -392,6 +392,8 @@
   /* enlarge / close */
   var zoom = root.querySelector("[data-rox-zoom]");
   var chartLink = root.querySelector("[data-rox-open]");
+  /* lift the full-screen layer out of Squarespace's block wrappers so it covers the whole screen */
+  document.body.appendChild(zoom);
   var autoOpened = false;
 
   function openZoom(fromTap){
