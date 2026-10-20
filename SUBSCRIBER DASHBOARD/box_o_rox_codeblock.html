@@ -103,10 +103,16 @@
 .mb-rox-foot{padding:36px 0 48px;border-top:1px solid var(--rule);}
 .mb-rox-foot .mb-rox-btns{margin-top:0;}
 
-/* expand overlay */
-.mb-rox-zoom{display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,7,4,.94);align-items:center;justify-content:center;padding:24px;cursor:zoom-out;overflow:auto;}
+/* expand overlay (tap to enlarge; opens by itself when a phone or tablet turns to landscape) */
+.mb-rox-zoom{display:none;position:fixed;inset:0;z-index:99999;background:rgba(10,7,4,.96);align-items:center;justify-content:center;padding:24px;cursor:zoom-out;}
 .mb-rox-zoom.open{display:flex;}
-.mb-rox-zoom .mb-rox-crop{width:min(96vw,1876px);border:1px solid rgba(212,160,81,.4);}
+.mb-rox-zoom img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;border:1px solid rgba(212,160,81,.4);}
+.mb-rox-zoom-x{position:absolute;top:10px;right:12px;width:44px;height:44px;border:none;border-radius:50%;background:rgba(0,0,0,.55);color:#F5F5F0;font-size:30px;line-height:44px;text-align:center;cursor:pointer;z-index:2;}
+@media (orientation:landscape) and (max-height:600px){
+  .mb-rox-zoom{padding:0;background:#000;}
+  .mb-rox-zoom img{width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;object-fit:contain;border:none;}
+  .mb-rox-zoom-x{top:6px;right:8px;}
+}
 
 @media (max-width:900px){
   .mb-rox-cards{grid-template-columns:1fr 1fr;}
@@ -144,13 +150,13 @@
         </div>
       </div>
 
-      <a class="mb-rox-chart" href="#" data-rox-open aria-label="Enlarge the Box-o-Rox daily chart">
+      <a class="mb-rox-chart" href="#" data-rox-open aria-label="Open the Box-o-Rox daily chart full screen">
         <div class="mb-rox-crop">
           <img data-rox-chart alt="Box-o-Rox daily chart of Chicago soft red winter wheat settlement against the Threshold and the Tripwire, with every change of state dated on the chart" loading="lazy">
         </div>
         <div class="mb-rox-cap">
           <span>Box-o-Rox Daily: Chicago soft red winter wheat, settlement against the Threshold and the Tripwire</span>
-          <span>CLICK TO ENLARGE</span>
+          <span>CLICK FOR FULLSCREEN (VIEW IN LANDSCAPE)</span>
         </div>
       </a>
     </div>
@@ -306,7 +312,8 @@
 
   <!-- enlarged chart -->
   <div class="mb-rox-zoom" data-rox-zoom role="dialog" aria-label="Box-o-Rox daily chart, enlarged">
-    <div class="mb-rox-crop"><img data-rox-chart alt="Box-o-Rox daily chart, enlarged"></div>
+    <button type="button" class="mb-rox-zoom-x" aria-label="Close chart">&times;</button>
+    <img data-rox-chart alt="Box-o-Rox daily chart, enlarged">
   </div>
 </div>
 
@@ -384,11 +391,51 @@
 
   /* enlarge / close */
   var zoom = root.querySelector("[data-rox-zoom]");
-  each("[data-rox-open]", function(a){
-    a.addEventListener("click", function(e){ e.preventDefault(); zoom.classList.add("open"); });
+  var chartLink = root.querySelector("[data-rox-open]");
+  var autoOpened = false;
+
+  function openZoom(fromTap){
+    zoom.classList.add("open");
+    document.documentElement.style.overflow = "hidden";
+    /* a tap may also take the browser itself full screen (Android; iPhone keeps the overlay) */
+    if (fromTap && zoom.requestFullscreen && !document.fullscreenElement) {
+      zoom.requestFullscreen().catch(function(){});
+    }
+  }
+  function closeZoom(){
+    zoom.classList.remove("open");
+    document.documentElement.style.overflow = "";
+    autoOpened = false;
+    if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function(){});
+  }
+
+  chartLink.addEventListener("click", function(e){ e.preventDefault(); openZoom(true); });
+  zoom.addEventListener("click", closeZoom);
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeZoom(); });
+  document.addEventListener("fullscreenchange", function(){
+    if (!document.fullscreenElement && zoom.classList.contains("open") && !autoOpened) closeZoom();
   });
-  zoom.addEventListener("click", function(){ zoom.classList.remove("open"); });
-  document.addEventListener("keydown", function(e){ if (e.key === "Escape") zoom.classList.remove("open"); });
+
+  /* phones and tablets: turning to landscape with the chart on screen opens it full screen;
+     turning back to portrait closes it */
+  var chartOnScreen = false;
+  if (window.IntersectionObserver) {
+    new IntersectionObserver(function(entries){
+      chartOnScreen = entries[0].intersectionRatio >= 0.3;
+    }, { threshold: [0, 0.3, 1] }).observe(chartLink);
+  }
+  if (window.matchMedia) {
+    var landscape = window.matchMedia("(orientation: landscape) and (max-height: 600px) and (pointer: coarse)");
+    var onTurn = function(){
+      if (landscape.matches) {
+        if (chartOnScreen && !zoom.classList.contains("open")) { openZoom(false); autoOpened = true; }
+      } else if (autoOpened) {
+        closeZoom();
+      }
+    };
+    if (landscape.addEventListener) landscape.addEventListener("change", onTurn);
+    else if (landscape.addListener) landscape.addListener(onTurn);
+  }
 
   /* in-page buttons */
   each("[data-rox-jump]", function(a){
