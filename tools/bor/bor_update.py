@@ -19,6 +19,7 @@ import html
 import json
 import math
 import re
+import shutil
 import sys
 from datetime import date
 from pathlib import Path
@@ -37,6 +38,8 @@ DATA_DIR = REPO_ROOT / "data" / "bor"
 HISTORY = DATA_DIR / "WHEAT_SRW_BOR_D_history.csv"
 ANNOTATIONS = DATA_DIR / "WHEAT_SRW_BOR_D_annotations.json"
 LIVE_OUT = REPO_ROOT / "charts" / CHART_NAME
+# Public Box-o-Rox page (marketbulletsllc.com/box-o-rox) embeds this name; kept identical on every live run
+LIVE_COPIES = [REPO_ROOT / "charts" / "WHEAT_SRW_BOR_Dhisto.png"]
 PREVIEW_DIR = Path("M:/preview")
 PREVIEW_OUT = PREVIEW_DIR / CHART_NAME
 REVIEW_DIR = PREVIEW_DIR
@@ -577,6 +580,9 @@ def main():
         sys.exit(f"Drive {PREVIEW_DIR.anchor} not found — the preview folder lives there.")
     out = LIVE_OUT if args.live else PREVIEW_OUT
     draw(d, ann, out)
+    if args.live:
+        for copy in LIVE_COPIES:
+            shutil.copyfile(out, copy)
     first_visible = d.Date.iloc[-VISIBLE_BARS] if len(d) >= VISIBLE_BARS else d.Date.iloc[0]
     flags, quiet, sugg = review(d, ann, first_visible)
     review_path = REVIEW_DIR / f"review-{d.Date.iloc[-1]:%Y-%m-%d}.html"
