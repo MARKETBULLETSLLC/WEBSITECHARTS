@@ -108,6 +108,11 @@
 .mb-rox-zoom.open{display:flex;}
 .mb-rox-zoom img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;border:1px solid rgba(212,160,81,.4);}
 .mb-rox-zoom-x{position:absolute;top:10px;right:12px;width:44px;height:44px;border:none;border-radius:50%;background:rgba(0,0,0,.55);color:#F5F5F0;font-size:30px;line-height:44px;text-align:center;cursor:pointer;z-index:2;}
+/* phone held upright (or rotation lock on): chart opens turned sideways to fill the screen */
+@media (orientation:portrait) and (max-width:600px){
+  .mb-rox-zoom{padding:0;background:#000;overflow:hidden;}
+  .mb-rox-zoom img{position:absolute;top:50%;left:50%;width:100vh;width:100dvh;height:100vw;max-width:none;max-height:none;object-fit:contain;border:none;transform:translate(-50%,-50%) rotate(90deg);}
+}
 @media (orientation:landscape) and (max-height:600px){
   .mb-rox-zoom{padding:0;background:#000;}
   .mb-rox-zoom img{width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;object-fit:contain;border:none;}
@@ -401,13 +406,17 @@
     document.documentElement.style.overflow = "hidden";
     /* a tap may also take the browser itself full screen (Android; iPhone keeps the overlay) */
     if (fromTap && zoom.requestFullscreen && !document.fullscreenElement) {
-      zoom.requestFullscreen().catch(function(){});
+      zoom.requestFullscreen().then(function(){
+        /* Android: also turn the screen to landscape */
+        if (screen.orientation && screen.orientation.lock) screen.orientation.lock("landscape").catch(function(){});
+      }).catch(function(){});
     }
   }
   function closeZoom(){
     zoom.classList.remove("open");
     document.documentElement.style.overflow = "";
     autoOpened = false;
+    if (screen.orientation && screen.orientation.unlock) { try { screen.orientation.unlock(); } catch (e) {} }
     if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function(){});
   }
 
