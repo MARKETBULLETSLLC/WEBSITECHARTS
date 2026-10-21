@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,38 +7,39 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --soil: #140E08;
-  --soil-mid: #1E1408;
-  --soil-light: #2C1C0A;
-  --wheat: #C8973A;
-  --wheat-light: #E8C068;
-  --wheat-pale: #F5E6C0;
-  --wheat-dim: rgba(200,151,58,0.15);
+  --soil: #F4EDDD;
+  --soil-mid: #EBE1CB;
+  --soil-light: #FFFDF7;
+  --wheat: #A8761E;
+  --wheat-light: #5E3F10;
+  --wheat-pale: #2A1E12;
+  --wheat-dim: rgba(168,118,30,0.12);
   --field: #1a3a1e;
   --field-mid: #2d5a3d;
-  --sage: #6A9B78;
-  --amber: #D4860A;
-  --amber-glow: rgba(212,134,10,0.12);
+  --sage: #4F7D5C;
+  --amber: #B06E08;
+  --amber-glow: rgba(176,110,8,0.10);
   --parchment: #F8F2E4;
   --ink: #1C1410;
   --rust: #9B3A1A;
-  --rust-dim: rgba(155,58,26,0.18);
-  --red: #E05030;
-  --red-dim: rgba(224,80,48,0.15);
-  --green: #5AAA70;
-  --green-dim: rgba(90,170,112,0.15);
-  --warn: #D47A1A;
-  --warn-dim: rgba(212,122,26,0.15);
+  --rust-dim: rgba(155,58,26,0.12);
+  --red: #B3341A;
+  --red-dim: rgba(179,52,26,0.09);
+  --green: #2E7A46;
+  --green-dim: rgba(46,122,70,0.10);
+  --warn: #A3560A;
+  --warn-dim: rgba(163,86,10,0.10);
   --muted: #7A6A58;
-  --border: rgba(200,151,58,0.18);
-  --term-bg: #0A0704;
-  --term-amber: #E8A020;
-  --term-dim: rgba(232,160,32,0.45);
-  --term-faint: rgba(232,160,32,0.18);
-  --term-grid: rgba(232,160,32,0.06);
-  --card-bg: rgba(28,20,10,0.95);
-  --card-border: rgba(200,151,58,0.2);
-  --input-bg: rgba(0,0,0,0.35);
+  --border: rgba(139,111,71,0.25);
+  --term-bg: #FFFDF7;
+  --term-amber: #7E520A;
+  --term-dim: rgba(74,52,37,0.78);
+  --term-label: rgba(74,52,37,0.62);
+  --term-faint: rgba(74,52,37,0.18);
+  --term-grid: rgba(74,52,37,0.05);
+  --card-bg: #FFFFFF;
+  --card-border: rgba(139,111,71,0.28);
+  --input-bg: #FBF7EE;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -48,7 +49,7 @@ body {
   background: var(--soil);
   background-image:
     radial-gradient(ellipse at 20% 0%, rgba(200,151,58,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 100%, rgba(26,58,30,0.15) 0%, transparent 50%);
+    radial-gradient(ellipse at 80% 100%, rgba(45,90,61,0.06) 0%, transparent 50%);
   color: var(--wheat-pale);
   min-height: 100vh;
   overflow-x: hidden;
@@ -58,7 +59,7 @@ body {
    MASTHEAD
 ══════════════════════════════════ */
 .masthead {
-  background: linear-gradient(180deg, #0A0704 0%, var(--soil) 100%);
+  background: linear-gradient(180deg, var(--soil-light) 0%, var(--soil) 100%);
   border-bottom: 1px solid var(--wheat);
   padding: 22px 40px 18px;
   display: flex;
@@ -125,7 +126,7 @@ body {
   font-size: 0.56rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--term-faint);
+  color: var(--term-label);
 }
 .ticker-value {
   font-family: 'IBM Plex Mono', monospace;
@@ -192,6 +193,7 @@ body {
   background: var(--wheat);
   opacity: 0.4;
 }
+.card, .result-hero, .breakdown-card { box-shadow: 0 1px 3px rgba(74,52,37,0.08); }
 .card.accent::before { background: var(--wheat); opacity: 1; }
 
 .card-title {
@@ -282,13 +284,13 @@ input[type="number"]:focus, input[type="text"]:focus, select:focus {
 
 select {
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(232,160,32,0.4)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(74,52,37,0.55)'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
   padding-right: 28px;
   -webkit-appearance: none;
 }
-option { background: #1A1208; }
+option { background: #FFFFFF; color: var(--wheat-pale); }
 
 /* ══════════════════════════════════
    LINE ITEMS
@@ -299,7 +301,7 @@ option { background: #1A1208; }
   gap: 8px 12px;
   align-items: center;
   padding: 7px 0;
-  border-bottom: 1px solid rgba(232,160,32,0.06);
+  border-bottom: 1px solid rgba(126,82,10,0.06);
 }
 .line-item:last-child { border-bottom: none; }
 
@@ -324,7 +326,7 @@ option { background: #1A1208; }
   color: var(--wheat-pale);
   text-align: right;
   padding: 6px 8px;
-  background: rgba(232,160,32,0.05);
+  background: rgba(126,82,10,0.05);
   border-radius: 2px;
   border: 1px solid var(--term-faint);
 }
@@ -358,7 +360,7 @@ option { background: #1A1208; }
   gap: 6px 10px;
   align-items: center;
   padding: 7px 0;
-  border-bottom: 1px solid rgba(232,160,32,0.06);
+  border-bottom: 1px solid rgba(126,82,10,0.06);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.68rem;
 }
@@ -367,7 +369,7 @@ option { background: #1A1208; }
   font-size: 0.56rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--term-faint);
+  color: var(--term-label);
   padding-bottom: 6px;
   border-bottom: 1px solid var(--term-faint);
 }
@@ -495,7 +497,7 @@ option { background: #1A1208; }
   white-space: nowrap;
 }
 .bb-bar-wrap {
-  background: rgba(232,160,32,0.07);
+  background: rgba(126,82,10,0.07);
   border-radius: 2px;
   height: 8px;
   overflow: hidden;
@@ -524,9 +526,9 @@ option { background: #1A1208; }
   line-height: 1.7;
   border: 1px solid;
 }
-.verdict.loss { background: var(--red-dim); border-color: rgba(224,80,48,0.3); color: #E88070; }
-.verdict.margin { background: var(--warn-dim); border-color: rgba(212,122,26,0.3); color: #E8A060; }
-.verdict.profit { background: var(--green-dim); border-color: rgba(90,170,112,0.3); color: #80C890; }
+.verdict.loss { background: var(--red-dim); border-color: rgba(224,80,48,0.3); color: #8E2A14; }
+.verdict.margin { background: var(--warn-dim); border-color: rgba(212,122,26,0.3); color: #844508; }
+.verdict.profit { background: var(--green-dim); border-color: rgba(90,170,112,0.3); color: #256238; }
 .verdict.idle { background: rgba(200,151,58,0.05); border-color: var(--term-faint); color: var(--term-dim); }
 
 .verdict-title {
@@ -555,13 +557,13 @@ option { background: #1A1208; }
   font-size: 0.56rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--term-faint);
+  color: var(--term-label);
   font-weight: 400;
 }
 .sens-table th:first-child { text-align: left; }
 .sens-table td {
   padding: 6px 7px;
-  border-bottom: 1px solid rgba(232,160,32,0.05);
+  border-bottom: 1px solid rgba(126,82,10,0.05);
   text-align: right;
   color: var(--term-dim);
 }
@@ -613,8 +615,8 @@ option { background: #1A1208; }
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.73rem;
   margin-top: 6px;
-  background: rgba(232,160,32,0.07);
-  border: 1px solid rgba(232,160,32,0.12);
+  background: rgba(126,82,10,0.07);
+  border: 1px solid rgba(126,82,10,0.12);
 }
 .total-row .t-label { color: var(--wheat-light); }
 .total-row .t-val { color: var(--term-amber); font-weight: 700; }
@@ -717,7 +719,7 @@ option { background: #1A1208; }
   </div>
   <div class="masthead-right" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--term-dim);text-align:right;line-height:1.8">
     <span id="clockEl">—</span><br>
-    <em style="color:var(--wheat-dim)">More Sense Per Bushel™</em>
+    <em style="color:var(--term-dim)">More Sense Per Bushel</em>
   </div>
 </div>
 
@@ -1383,19 +1385,19 @@ option { background: #1A1208; }
       <div class="breakdown-title">Per-Bushel Cost Detail</div>
 
       <div id="per-bu-detail" style="font-family:'IBM Plex Mono',monospace;font-size:0.65rem;">
-        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(126,82,10,0.06);">
           <span style="color:var(--term-dim)">Variable Inputs</span>
           <span style="color:var(--term-amber);" id="pbu-var">—</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(126,82,10,0.06);">
           <span style="color:var(--term-dim)">Fixed &amp; Overhead</span>
           <span style="color:var(--term-amber);" id="pbu-fix">—</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(126,82,10,0.06);">
           <span style="color:var(--term-dim)">Debt Service</span>
           <span style="color:var(--term-amber);" id="pbu-debt">—</span>
         </div>
-        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(232,160,32,0.06);">
+        <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(126,82,10,0.06);">
           <span style="color:var(--term-dim)">Marketing / Storage</span>
           <span style="color:var(--term-amber);" id="pbu-mkt">—</span>
         </div>
@@ -1409,7 +1411,7 @@ option { background: #1A1208; }
     <!-- SENSITIVITY TABLE -->
     <div class="breakdown-card">
       <div class="breakdown-title">Sensitivity — Net $/Bu at Yield × Price</div>
-      <p style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--term-faint);margin-bottom:10px;">
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;color:var(--term-label);margin-bottom:10px;">
         Rows = yield deviation from expected. Columns = futures price. Bold = current scenario.
       </p>
       <div style="overflow-x:auto;">
@@ -1425,7 +1427,7 @@ option { background: #1A1208; }
             </tr>
           </thead>
           <tbody id="sens-body">
-            <tr><td colspan="6" style="color:var(--term-faint);text-align:center;padding:12px;">Enter data above to generate sensitivity matrix.</td></tr>
+            <tr><td colspan="6" style="color:var(--term-label);text-align:center;padding:12px;">Enter data above to generate sensitivity matrix.</td></tr>
           </tbody>
         </table>
       </div>
