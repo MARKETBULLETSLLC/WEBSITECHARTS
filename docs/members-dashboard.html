@@ -6,7 +6,7 @@
 <title>MarketBullets® — Members Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&family=Alfa+Slab+One&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════════
    TOKENS & RESET
@@ -15,25 +15,25 @@
 img{display:block;max-width:100%;height:auto;}
 a{text-decoration:none;color:inherit;}
 :root{
-  --soil:       #FBF7EE;
-  --soil-mid:   #F0E8D3;
-  --soil-lt:    #FDFAF3;
-  --charcoal:   #E8DFC5;
-  --char-lt:    #EDE6CC;
-  --cream:      #1A0D04;
-  --parchment:  #2E1E0A;
-  --buff:       #3D2814;
-  --wheat:      #7A5800;
-  --wheat-lt:   #8B6400;
-  --wheat-pal:  #1A0D04;
-  --wheat-dim:  rgba(100,72,0,.08);
-  --gold:       #B07830;
-  --red:        #C42C1C;
-  --green:      #228A38;
-  --up:         #268040;
-  --dn:         #C03020;
-  --border:     rgba(74,52,25,.22);
-  --border-lt:  rgba(74,52,25,.10);
+  --soil:       #0A0704;
+  --soil-mid:   #0F0B07;
+  --soil-lt:    #1A1208;
+  --charcoal:   #231A0E;
+  --char-lt:    #2E2213;
+  --cream:      #FBF7EE;
+  --parchment:  #F0E8D0;
+  --buff:       #E4D9BA;
+  --wheat:      #C8960A;
+  --wheat-lt:   #E8B820;
+  --wheat-pal:  #F5E6C0;
+  --wheat-dim:  rgba(200,150,10,.12);
+  --gold:       #D4A051;
+  --red:        #DC3220;
+  --green:      #32C850;
+  --up:         #5AAA70;
+  --dn:         #E05030;
+  --border:     rgba(200,150,10,.20);
+  --border-lt:  rgba(200,150,10,.09);
   --serif:      'DM Serif Display',Georgia,serif;
   --serif2:     'Playfair Display',Georgia,serif;
   --body:       'Lora',Georgia,serif;
@@ -51,29 +51,33 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   margin:0 auto;
   height:562px;
   overflow:hidden;
-  background:var(--soil-mid);
-  background-image:url('./hero_banner.jpg');
+  background:var(--soil-mid);/* Fallback until hero_banner.jpg is added to repo root */
+  background-image:url('https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/hero_banner.jpg');
   background-size:cover;
-  background-position:center 35%;
+  background-position:center center;
 }
 .hero::after{
   content:'';
   position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.20) 50%,rgba(0,0,0,.45) 100%);
+  background:linear-gradient(to right,
+    rgba(0,0,0,.20) 0%,
+    rgba(0,0,0,.15) 35%,
+    rgba(0,0,0,.55) 65%,
+    rgba(0,0,0,.75) 100%);
 }
 .hero-title{
   position:absolute;
   top:50px;left:0;right:0;
   text-align:center;
   z-index:2;
-  padding:0 48px;
+  padding:0 80px;
 }
 .hero-company{
   font-family:var(--serif);
   font-size:clamp(28px,3.2vw,52px);
   letter-spacing:.18em;
   text-transform:uppercase;
-  color:#FBF7EE;
+  color:var(--cream);
   text-shadow:0 2px 16px rgba(0,0,0,.8);
   line-height:1.1;
 }
@@ -81,18 +85,18 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   font-family:var(--body);
   font-size:clamp(13px,1.4vw,20px);
   font-style:italic;
-  color:#F5E6C0;
+  color:var(--wheat-pal);
   margin-top:10px;
   text-shadow:0 1px 8px rgba(0,0,0,.7);
   letter-spacing:.04em;
 }
 @media(max-width:900px){
   .hero{height:320px;}
-  .hero-title{top:30px;}
+  .hero-title{top:30px;padding:0 48px;}
 }
 @media(max-width:600px){
   .hero{height:220px;}
-  .hero-title{top:20px;padding:0 20px;}
+  .hero-title{top:20px;padding:0 24px;text-align:right;}
   .hero-company{font-size:18px;}
   .hero-tagline{font-size:11px;}
 }
@@ -124,7 +128,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   font-size:10px;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:rgba(61,40,20,.55);
+  color:rgba(245,230,192,.45);
 }
 .bor-row{
   display:flex;
@@ -137,17 +141,22 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   border-radius:50%;
   border:1px solid rgba(0,0,0,.4);
 }
-/* Breathing blue — SUSPEND (price above 60-D MA, tranches accumulating) */
+/* Breathing blue — SUSPEND (price above the Threshold, tranches accumulating) */
 @keyframes breathe-blue{
-  0%,100%{opacity:.35;box-shadow:0 0 6px 3px rgba(77,166,255,.35);}
-  50%{opacity:1;box-shadow:0 0 16px 6px rgba(77,166,255,.70),0 0 30px 12px rgba(77,166,255,.25);}
+  0%,100%{opacity:.22;box-shadow:0 0 5px 2px rgba(77,166,255,.2);}
+  50%{opacity:1;box-shadow:0 0 18px 7px rgba(77,166,255,.85),0 0 36px 14px rgba(77,166,255,.25);}
 }
 .bor-light.suspend{
   background:#4da6ff;
   animation:breathe-blue 6s ease-in-out infinite;
 }
-/* Blinking green — EXECUTE (60-D breach, 10s cycle) */
+/* Blinking green — EXECUTE (Threshold breach, 10s cycle) */
 @keyframes blink-green-normal{
+  0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
+  50.01%,100%{opacity:.12;box-shadow:none;}
+}
+/* Blinking green — EXECUTE fast (Tripwire signal, 5s cycle) */
+@keyframes blink-green-fast{
   0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
   50.01%,100%{opacity:.12;box-shadow:none;}
 }
@@ -157,7 +166,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 }
 .bor-light.execute-fast{
   background:var(--green);
-  animation:blink-green-normal 5s step-start infinite;
+  animation:blink-green-fast 5s step-start infinite;
 }
 .bor-status-text{
   font-family:var(--serif2);
@@ -166,12 +175,12 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   letter-spacing:.03em;
   line-height:1.1;
 }
-.bor-status-text.suspend{color:#0066CC;}
+.bor-status-text.suspend{color:#4da6ff;}
 .bor-status-text.execute{color:var(--green);}
 .bor-updated{
   font-family:var(--mono);
   font-size:10px;
-  color:rgba(61,40,20,.45);
+  color:rgba(245,230,192,.35);
   letter-spacing:.06em;
 }
 /* ── Prices Table ── */
@@ -185,7 +194,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   font-size:10px;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:rgba(61,40,20,.55);
+  color:rgba(245,230,192,.45);
   margin-bottom:10px;
 }
 .prices-table{
@@ -199,7 +208,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   padding:5px 12px 5px 0;
   font-size:10px;
   letter-spacing:.10em;
-  color:rgba(61,40,20,.55);
+  color:rgba(245,230,192,.45);
   border-bottom:1px solid var(--border-lt);
   white-space:nowrap;
 }
@@ -211,7 +220,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 }
 .prices-table tr:last-child td{border-bottom:none;}
 .pt-contract{font-size:13px;font-weight:600;color:var(--cream);letter-spacing:.02em;}
-.pt-exchange{font-size:9px;color:rgba(61,40,20,.55);display:block;margin-top:1px;letter-spacing:.06em;}
+.pt-exchange{font-size:9px;color:rgba(245,230,192,.45);display:block;margin-top:1px;letter-spacing:.06em;}
 .pt-close{font-size:14px;font-weight:600;color:var(--wheat-lt);}
 .pt-chg.up{color:var(--up);}
 .pt-chg.dn{color:var(--dn);}
@@ -263,6 +272,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   width:7px;height:7px;
   border-radius:50%;
   margin-top:7px;
+  /* color set inline by JS */
 }
 /* Commentary body */
 .commentary-body{
@@ -275,11 +285,11 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .commentary-body p{margin-bottom:20px;}
 .commentary-body p:last-child{margin-bottom:0;}
 .commentary-body a{
-  color:var(--wheat);
-  border-bottom:1px solid rgba(100,72,0,.35);
+  color:var(--wheat-lt);
+  border-bottom:1px solid rgba(232,184,32,.35);
   transition:border-color .15s;
 }
-.commentary-body a:hover{border-color:var(--wheat);}
+.commentary-body a:hover{border-color:var(--wheat-lt);}
 /* Inline chart thumbnails (from [chart:FILENAME] shortcode) */
 .inline-chart-link{
   display:inline-block;
@@ -329,7 +339,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   margin-bottom:20px;
 }
 .bor-chart-card{
-  border:1px solid rgba(100,72,0,.38);
+  border:1px solid rgba(200,150,10,.35);
   border-radius:3px;
   overflow:hidden;
   cursor:pointer;
@@ -356,7 +366,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .bor-chart-caption-sub{
   font-family:var(--mono);
   font-size:10px;
-  color:rgba(61,40,20,.55);
+  color:rgba(245,230,192,.45);
   letter-spacing:.06em;
   margin-left:auto;
 }
@@ -403,7 +413,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .exchange-contract{
   font-family:var(--mono);
   font-size:10px;
-  color:rgba(61,40,20,.50);
+  color:rgba(245,230,192,.4);
   letter-spacing:.06em;
   margin-left:auto;
 }
@@ -435,7 +445,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .chart-card-sub{
   font-family:var(--mono);
   font-size:10px;
-  color:rgba(61,40,20,.55);
+  color:rgba(245,230,192,.42);
   margin-top:2px;
   letter-spacing:.04em;
 }
@@ -443,7 +453,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .chart-card.no-image{
   background:var(--charcoal);
   border-style:dashed;
-  border-color:rgba(100,72,0,.18);
+  border-color:rgba(200,150,10,.15);
   display:flex;
   flex-direction:column;
   min-height:200px;
@@ -456,7 +466,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   justify-content:center;
   gap:8px;
   padding:24px;
-  color:rgba(61,40,20,.32);
+  color:rgba(245,230,192,.25);
 }
 .chart-card.no-image .chart-no-img-inner span{
   font-family:var(--mono);
@@ -516,7 +526,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   font-size:10px;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:rgba(61,40,20,.55);
+  color:rgba(245,230,192,.45);
   margin-bottom:10px;
   padding-bottom:6px;
   border-bottom:1px solid var(--border-lt);
@@ -573,7 +583,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   border-radius:2px;
   transition:color .15s,border-color .15s;
 }
-.lb-close:hover{color:#FBF7EE;border-color:rgba(245,230,192,.5);}
+.lb-close:hover{color:var(--cream);border-color:rgba(245,230,192,.5);}
 .lb-nav{
   position:fixed;
   top:50%;transform:translateY(-50%);
@@ -585,133 +595,9 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   transition:color .15s;
   user-select:none;
 }
-.lb-nav:hover{color:#E8B820;}
+.lb-nav:hover{color:var(--wheat-lt);}
 .lb-prev{left:12px;}
 .lb-next{right:12px;}
-
-/* ════════════════════════════════════════════════════
-   WHEAT WEATHER SECTION
-════════════════════════════════════════════════════ */
-.weather-section{
-  max-width:1440px;margin:0 auto;
-  padding:40px 48px 52px;
-  background:var(--soil);
-  border-bottom:1px solid var(--border);
-}
-@media(max-width:700px){.weather-section{padding:24px 16px 40px;}}
-
-/* ════════════════════════════════════════════════════
-   HERITAGE SECTION
-════════════════════════════════════════════════════ */
-.heritage{
-  max-width:1440px;margin:0 auto;
-  padding:56px 48px 68px;
-  border-bottom:1px solid var(--border-lt);
-  background:var(--soil-mid);
-}
-.heritage-eyebrow{
-  font-family:var(--mono);
-  font-size:10px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:rgba(100,72,0,.70);
-  margin-bottom:30px;
-}
-.heritage-top{
-  position:relative;
-  overflow:hidden;
-  cursor:zoom-in;
-  margin-bottom:10px;
-}
-.heritage-top img{
-  width:100%;height:420px;
-  object-fit:cover;object-position:center 40%;
-  display:block;
-  filter:sepia(.50) brightness(.72) contrast(1.05);
-  transition:filter .3s;
-}
-.heritage-top:hover img{filter:sepia(.50) brightness(.85) contrast(1.05);}
-.heritage-top::after{
-  content:'';position:absolute;inset:0;
-  border:1px solid rgba(100,72,0,.22);
-  pointer-events:none;
-}
-.heritage-caption{
-  font-family:var(--mono);font-size:9px;
-  letter-spacing:.08em;
-  color:rgba(61,40,20,.40);
-  font-style:italic;
-  margin-bottom:40px;
-  padding-top:9px;
-}
-.heritage-bottom{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:48px;
-  align-items:start;
-}
-.heritage-heading{
-  font-family:var(--serif);
-  font-size:clamp(22px,2.3vw,36px);
-  color:var(--cream);
-  line-height:1.15;font-weight:400;
-  margin-bottom:22px;
-}
-.heritage-body{
-  font-family:var(--body);
-  font-size:15px;line-height:1.8;
-  color:rgba(61,40,20,.85);
-  margin-bottom:28px;
-}
-.heritage-sig{
-  font-family:var(--mono);
-  font-size:10px;letter-spacing:.16em;
-  color:rgba(100,72,0,.80);
-  text-transform:uppercase;
-}
-.heritage-photo-wrap{
-  position:relative;overflow:hidden;cursor:zoom-in;
-}
-.heritage-photo-wrap img{
-  width:100%;height:360px;
-  object-fit:cover;object-position:center top;
-  display:block;
-  filter:sepia(.45) brightness(.70) contrast(1.05);
-  transition:filter .3s;
-}
-.heritage-photo-wrap:hover img{filter:sepia(.45) brightness(.82) contrast(1.05);}
-.heritage-photo-wrap::after{
-  content:'';position:absolute;inset:0;
-  border:1px solid rgba(100,72,0,.22);
-  pointer-events:none;
-}
-.heritage-snark{
-  padding-top:14px;
-}
-.heritage-snark-main{
-  font-family:var(--body);
-  font-size:13px;font-style:italic;
-  line-height:1.7;
-  color:rgba(61,40,20,.70);
-  margin-bottom:8px;
-}
-.heritage-snark-credit{
-  font-family:var(--mono);font-size:9px;
-  letter-spacing:.08em;
-  color:rgba(61,40,20,.35);
-  font-style:italic;
-}
-@media(max-width:960px){
-  .heritage{padding:40px 24px 52px;}
-  .heritage-bottom{grid-template-columns:1fr;gap:32px;}
-  .heritage-top img{height:280px;}
-  .heritage-photo-wrap img{height:260px;}
-}
-@media(max-width:600px){
-  .heritage{padding:28px 16px 40px;}
-  .heritage-top img{height:200px;}
-  .heritage-photo-wrap img{height:220px;}
-}
 
 /* ════════════════════════════════════════════════════
    FOOTER
@@ -726,12 +612,12 @@ footer{
   align-items:center;
 }
 .footer-brand{font-family:var(--serif2);font-size:13px;font-weight:700;color:var(--wheat);}
-.footer-copy{font-family:var(--mono);font-size:10px;color:rgba(61,40,20,.45);letter-spacing:.05em;}
+.footer-copy{font-family:var(--mono);font-size:10px;color:rgba(245,230,192,.30);letter-spacing:.05em;}
 .footer-tag{
   margin-left:auto;
   font-family:var(--mono);
   font-size:10px;
-  color:rgba(61,40,20,.35);
+  color:rgba(245,230,192,.25);
   letter-spacing:.08em;
 }
 </style>
@@ -788,13 +674,13 @@ footer{
   <h2 class="section-heading">Box&#x2011;o&#x2011;Rox Signal Chart</h2>
   <a class="bor-chart-card lb-trigger"
      data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
-     data-title="Box-o-Rox Daily — SRW Price vs 60-Day MA"
+     data-title="Box-o-Rox Daily — SRW Settlement vs Threshold"
      href="#"
   >
     <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
          alt="Box-o-Rox Daily" loading="lazy">
     <div class="bor-chart-caption">
-      <div class="bor-chart-caption-title">Box&#x2011;o&#x2011;Rox Daily — SRW Price vs 60-Day MA</div>
+      <div class="bor-chart-caption-title">Box&#x2011;o&#x2011;Rox Daily — SRW Settlement vs Threshold</div>
       <div class="bor-chart-caption-sub">CLICK TO EXPAND</div>
     </div>
   </a>
@@ -932,7 +818,7 @@ footer{
 <!-- ══════════════════════════════════════════════════
      7. WHEAT WEATHER DASHBOARD
 ══════════════════════════════════════════════════ -->
-<section class="weather-section">
+<section style="max-width:1440px;margin:0 auto;padding:40px 48px 52px;background:var(--soil);border-bottom:1px solid var(--border);">
   <div class="section-eyebrow">Crop Conditions</div>
   <h2 class="section-heading">Global Wheat Weather</h2>
   <iframe
@@ -944,60 +830,6 @@ footer{
     loading="lazy"
     title="Global Wheat Weather Dashboard"
   ></iframe>
-</section>
-
-<!-- ══════════════════════════════════════════════════
-     8. HERITAGE
-     Placed just before footer — emotional close, Guardian arc
-     Images: add heritage-table.jpg + heritage-crew.jpg to docs/
-══════════════════════════════════════════════════ -->
-<section class="heritage">
-  <div class="heritage-eyebrow">The People This Is Built For</div>
-
-  <!-- Harvest table — dominant photo -->
-  <div class="heritage-top lb-trigger"
-       data-src="./heritage-table.jpg"
-       data-title="Harvest crew lunch — Great Plains, c. 1940s">
-    <img src="./heritage-table.jpg"
-         alt="Harvest crew eating together at a table in the field"
-         loading="lazy">
-  </div>
-  <div class="heritage-caption">Harvest crew lunch, Great Plains &nbsp;·&nbsp; c. 1940s</div>
-
-  <!-- Copy + crew portrait -->
-  <div class="heritage-bottom">
-    <div class="heritage-copy">
-      <h2 class="heritage-heading">Harvest has always been a team effort.</h2>
-      <p class="heritage-body">
-        Before yield monitors. Before WASDE reports. Before closing prices
-        landed in anyone's inbox before sunrise — these people made their
-        marketing decisions with a handshake and whatever the elevator had
-        chalked on the board. The farms those calls built are still being farmed.
-        MarketBullets exists because the people farming them now deserve the same
-        quality of market intelligence that institutional desks take for granted.
-        They always did.
-      </p>
-      <div class="heritage-sig">More Sense Per Bushel™</div>
-    </div>
-
-    <div>
-      <div class="heritage-photo-wrap lb-trigger"
-           data-src="./heritage-crew.jpg"
-           data-title="Threshing crew on grain bags — Pacific Northwest, c. 1910s">
-        <img src="./heritage-crew.jpg"
-             alt="Large threshing crew posed on grain sacks at harvest"
-             loading="lazy">
-      </div>
-      <div class="heritage-snark">
-        <p class="heritage-snark-main">
-          A mountain of grain that would make any merchandiser smile.
-          The crew that moved it worked for day wages.
-          Filthy? Undeniably. Rich? Ask the elevator.
-        </p>
-        <div class="heritage-snark-credit">Threshing crew &nbsp;·&nbsp; Pacific Northwest, c. 1910s</div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- FOOTER -->
@@ -1035,9 +867,9 @@ footer{
 const MB_CONFIG = {
 
   /* ── BOX-O-ROX STATUS ──────────────────────────────
-     'suspend'      Condition 1 — price above 60-D MA
-     'execute-60d'  Condition 2 — price below 60-D MA
-     'execute-20d'  Condition 3 — 20-D signal active   */
+     'suspend'      Condition 1 — price above the Threshold
+     'execute-60d'  Condition 2 — price below the Threshold
+     'execute-20d'  Condition 3 — Tripwire signal active   */
   borStatus: 'execute-60d',                    // ← 'suspend' | 'execute-60d' | 'execute-20d'
   borDate:   'Oct 20, 2026',                   // ← Update each session
 
@@ -1046,18 +878,24 @@ const MB_CONFIG = {
      FWH: €/tonne (e.g. '211.00')
      chgDir: 'up', 'dn', or 'flat'                   */
   prices: [
-    { contract:'Chicago SRW',       exchange:'CBOT',      ticker:'ZW',  unit:'¢/bu',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
-    { contract:'Kansas City HRW',   exchange:'KCBT',      ticker:'KE',  unit:'¢/bu',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
-    { contract:'Minneapolis HRS',   exchange:'MGEX',      ticker:'MWE', unit:'¢/bu',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
-    { contract:'Paris Milling FWH', exchange:'Euronext',  ticker:'EBM', unit:'€/t',
-      open:'0.00',  high:'0.00',  low:'0.00',  close:'0.00',  chg:'+0.00',  chgDir:'flat' },
+    { contract:'Chicago SRW (Dec)',       exchange:'CBOT',      ticker:'ZW',  unit:'$/bu',
+      open:'6.56',  high:'6.61¾',  low:'6.42½',  close:'6.43¼',  chg:'-0.12',  chgDir:'dn' },
+    { contract:'Kansas City HRW (Dec)',   exchange:'KCBT',      ticker:'KE',  unit:'$/bu',
+      open:'—',  high:'—',  low:'—',  close:'6.91',  chg:'-0.08½',  chgDir:'dn' },
+    { contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',      ticker:'MWE', unit:'$/bu',
+      open:'—',  high:'—',  low:'—',  close:'6.61¾',  chg:'-0.08¼',  chgDir:'dn' },
+    { contract:'Paris Milling FWH (Dec)', exchange:'Euronext',  ticker:'EBM', unit:'€/t',
+      open:'—',  high:'—',  low:'—',  close:'—',  chg:'—',  chgDir:'flat' },
   ],
+  /* NOTE 2026-10-21 (Tue 10/20 settles, for Wed pre-dawn):
+     - SRW: Brownfield + ADMIS ($6.43¼, -12). O/H/L from Investing.com (656.00 / 661.90 / 642.60),
+       rounded to ticks; high and low are unofficial, check against TN.
+     - KC: ADMIS + GX94 ($6.91, -8½). MPLS: ADMIS + GX94 ($6.61¾, -8¼). O/H/L not sourced.
+     - Paris: no verified Oct 20 settle found; fill from TN or leave blank.
+     - Threshold/Tripwire: bor_update.py formula with Mon/Tue bars appended (not yet pasted to data/bor). */
 
   /* ── COMMENTARY DATELINE ────────────────────────── */
-  dateline: 'WEDNESDAY, MAY 7, 2026 · Pre-Dawn Update',
+  dateline: 'WEDNESDAY, OCTOBER 21, 2026 · Pre-Dawn Update',
 
   /* ── BULLET POINTS ───────────────────────────────────
      Each bullet has a color and text.
@@ -1070,33 +908,54 @@ const MB_CONFIG = {
        Neutral/Macro:     '#B0C0D0'
        Default:           '#F5E6C0'                   */
   bullets: [
-    { color: '#E8B820', text: 'Box-o-Rox® SUSPEND — ZW holds above 60-day MA — tranches accumulate, system engaged.' },
-    { color: '#7BBFDE', text: 'Dollar index [DXY VALUE] — the variable swamping the spring crop narrative. Verify before publishing.' },
-    { color: '#B0C0D0', text: 'Managed Money net position [COT VALUE contracts] — stored energy, not a directional signal. Verify before publishing.' },
+    { color: '#E08050', text: 'Dec Chicago settled Tuesday at $6.43¼, down 12¢, after giving up 5¼¢ Monday. That\'s the first settle under the Aug. 11 swing low of $6.45¼, the launch pad for the August Black Sea rally and the floor we named Monday. KC fell 8½¢ to $6.91 and Minneapolis 8¼¢ to $6.61¾. All three classes closed at fresh two-to-three-month lows, per <a href="https://www.admis.com/ag-market-view-for-oct-20-2026/" target="_blank" rel="noopener">ADM Investor Services</a>. Overnight, Dec Chicago slipped to about $6.37, down 6¼¢, as of 1 a.m. Pacific, under Tuesday's low.' },
+    { color: '#B0C0D0', text: 'Tuesday tried to bounce first. Dec opened at $6.56 and worked up near $6.62, then got sold 19¢ off the high to settle near the low. That\'s two straight sessions closing in the bottom of the range.' },
+    { color: '#F5E6C0', text: '<a href="https://www.marketbulletsllc.com/box-o-rox" style="float:right;margin:2px 0 8px 14px"><img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png" class="inline-chart-thumb" alt="Box-o-Rox daily chart"></a><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Threshold, now about 56¢ under it. The Threshold sits near $6.99¼ and the Tripwire near $6.82½, and both are still bending lower to follow price. The signal didn\'t change this week. The price did. For the producer, the cue is the same one we gave Monday: the next tranche goes on plan. For the elevator, the input dealer and the banker carrying the operating note, it\'s the same yardstick posted before the open, so everybody at the table is reading from one page. Box-o-Rox informs; the marketing plan decides. <strong><a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">See the chart and the rules →</a></strong>' },
+    { color: '#7BBFDE', text: 'Black Sea: there were renewed strikes on vessels Monday, and wheat fell anyway, to its lowest since Aug. 12, per Bloomberg via UkrAgroConsult. The headlines the market is trading are the peace-side ones: a Turkish two-corridor plan and a reported EU push for a safe-navigation deal.' },
+    { color: '#8FCB8A', text: 'Crop Progress: U.S. winter wheat was 63% planted (69% average) and 39% emerged, still behind. Washington is ahead of the country: 96% planted against a 90% average, and 80% emerged against 65%.' },
+    { color: '#7BBFDE', text: 'Export inspections came in at 240,308 tonnes, about 8.8 million bu. That\'s down from 307,025 the week before. Marketing-year inspections stand at 7.22 MMT, 36% behind last year\'s 11.21 MMT. Jordan reportedly passed on both offers in its 120,000-tonne tender.' },
+    { color: '#B0C0D0', text: 'KC\'s premium over Chicago widened back to 47¾¢, from 43½¢ Friday. Chicago is leading the way down now, and Chicago is where the funds are short.' },
+    { color: '#E08050', text: 'Crude: November WTI pushed to $103.66 Monday and expired Tuesday at $101.79. Diesel is still north of $6 a gallon. The scissors haven\'t closed.' },
+    { color: '#F5E6C0', text: 'Ahead: export sales Thursday at 5:30 a.m. Pacific. COT Friday at 12:30 p.m. Pacific, with positions as of today.' },
   ],
 
   /* ── COMMENTARY BODY ─────────────────────────────────
-     KIRK ERROR PROTOCOL DRAFT — May 7, 2026
-     Replace all [BRACKETED PLACEHOLDERS] with verified
-     data before publishing. All USDA/CFTC figures must
-     be sourced — no estimated stats in print.
+     Wednesday 2026-10-21 pre-dawn. Source: commentary/_DRAFT_2026-10-21.md
+     Data: Mon/Tue 10/19–20 settles, Crop Progress 10/19, export inspections
+     week ending 10/15, CFTC COT as of 10/13. Sources linked in text.
      ─────────────────────────────────────────────────── */
   body: `
-    <p style="color:#E8B820">The market knows exactly what you're worried about. Since the first Monday in April, Chicago SRW has been trading the same spring anxiety loop — crop condition percentages, moisture maps, a frost headline to spark a rally, a weather-model revision to take it back. The ritual of Spring Silly Season, right on schedule. And yet here's the thing the market isn't advertising: ZW closed above its 60-day moving average. Box-o-Rox® is in SUSPEND. [chart:WHEAT_SRW_BOR_D.png]</p>
+    <p style="font-size:1.15em;color:#E8B820"><strong>The Launch Pad Gave Way, and the Market's Gone Deaf in One Ear</strong></p>
 
-    <p>That word — <em>suspend</em> — tends to generate the wrong reaction. "Suspend" does not mean "don't worry." It means the trend filter says we're in an up-phase, tranches are accumulating in suspended status, and we wait for the signal to flip before executing. It means the system is working. The wily critter has a plan; let it run.</p>
+    <p>Monday morning we scouted the terrain and named the next real floor: the Aug. 11 swing low at $6.45¼, where the August rally lifted off. Tuesday the market walked up to that floor, leaned on it, and went through. Dec Chicago settled at $6.43¼, down 12¢ on the day and 17¼¢ in two sessions. KC and Minneapolis went with it, and <a href="https://www.admis.com/ag-market-view-for-oct-20-2026/" target="_blank" rel="noopener">ADM Investor Services</a> has all three classes at fresh two-to-three-month lows. Here's why that matters more than another red number. The August low was the last level on the daily chart that let you call the whole Black Sea run a rally off a base. With it gone, the base is behind us too. Seven weeks ago the question was how high the war could carry wheat. Today the question is what's left underneath it. [chart:WHEAT_SRW_D.png]</p>
 
-    <p>Now, the Kirk Error Protocol. In the old television science fiction that some of us watched in reruns on a 19-inch Sony while grain prices were still printed in the morning paper, a certain Starfleet cadet refused to accept an unwinnable scenario. Changed the parameters of the simulation. Refused the premise. Here's the spring 2026 version: everyone you know has been bearish on wheat. Global ending stocks are [LARGE/ADEQUATE — verify current WASDE figure]. Russian FOB Black Sea prices remain competitive at approximately [$XXX/tonne — verify current Black Sea quote]. Export inspections [lagging/meeting/exceeding] the pace needed to reach USDA's projection. The elevator conversation is not optimistic. And yet — price is above the 60-day MA. The premise of the unwinnable scenario is that those two things are incompatible. They're not. Change what you're looking at.</p>
+    <p><strong>How it broke matters more than where.</strong> Tuesday didn't open weak. Dec opened at $6.56 and worked up near $6.62. That was the bounce oversold markets are supposed to produce, maybe with a few shorts covering. Then the selling found it, and Dec closed 19¢ off the high, near the low of the day. A market that can't hold a morning rally is telling you the sellers weren't finished. They were waiting for a better price, and the bounce gave them one. On Monday we said a pop toward the Tripwire would be a gift to an EXECUTE plan. Tuesday the pop showed up for a couple of hours and never got within 20¢ of the Tripwire. That isn't a reason for regret. It's the reason scale-up offers get written down ahead of time and left resting. Bounces off oversold lows don't send invitations, and when they do show up, they don't stay for supper.</p>
+    <!-- EDITOR: historical parallel, an October support break from past years and how the following weeks played out -->
 
-    <p style="color:#7BBFDE"><strong>Look at the dollar.</strong> [chart:IDX_DXY_W.png] The DXY closed [at/near] [VALUE] on Tuesday, [up/down] on the session. There is no more important correlated variable for U.S. wheat export competitiveness than the U.S. Dollar Index. Strength in the dollar is a ceiling; weakness is a pillow. Funds watching the euro-dollar relationship are moving more wheat tonnage right now than any single USDA crop condition number. If the dollar continues to [weaken/hold here], the technical picture in SRW has room to develop further. That's the parameter the elevator conversation is missing.</p>
+    <p><strong>Scout the terrain again.</strong> The floor that broke becomes the first ceiling. On any recovery, $6.45¼ is now the level the market has to reclaim, and it'll be tested from underneath. Below Tuesday's low, there's not much on the daily until the summer lows. The weekly retracement of the whole October-2025-to-September run still sits at $6.06¼. None of that is a forecast. It's a map, so nobody has to draw one at 7:29 a.m.</p>
+    <!-- EDITOR: confirm the July low on the Dec chart -->
 
-    <p style="color:#B0C0D0"><strong>Look at the fund position.</strong> Per Friday's <a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank">CFTC Commitment of Traders report</a>, Managed Money in Chicago SRW held a net [long/short] of approximately [NUMBER] contracts. [If net short: That's compressed energy — coiled short-covering waiting for a match. Large spec shorts don't evaporate; they cover, and they cover hard, often when the fundamental story is still ugly. The beastie doesn't need good news to squeeze. It needs a trigger and a crowded trade.] [If net long: That's stored selling pressure. Longs who entered late are nervous, and nervous longs sell into any disappointing development. Watch for liquidation risk on a bearish surprise.] COT doesn't tell you <em>when</em> the energy releases. It tells you how much is in the chamber.</p>
+    <p><strong>The market has gone deaf in one ear.</strong> Monday brought renewed strikes on vessels in the Black Sea, and wheat fell anyway, to its lowest since Aug. 12, per Bloomberg via <a href="https://ukragroconsult.com/en/news/wheat-market-gradually-becomes-less-responsive-to-black-sea-export-disruptions/" target="_blank" rel="noopener">UkrAgroConsult</a>. The disruption itself is real, not imagined. Both sides of the war report an export pace more than 50% behind a year ago, per <a href="https://blog.pricegroup.com/2026/10/20/grains-report-10-20-2026/" target="_blank" rel="noopener">the Price Group</a>, and the Grain Central wire, as summarized by <a href="https://commodity-board.com/wheat-caught-between-black-sea-supply-shock-and-demand-headwinds" target="_blank" rel="noopener">CMB News</a>, reported no wheat leaving Russia's Black Sea ports since late September. Yet the headlines the trade is listening to are on the peace side. Turkey has floated <a href="https://ukragroconsult.com/en/news/turkey-proposes-separate-safe-corridors-for-ukrainian-and-russian-vessels-in-the-black-sea/" target="_blank" rel="noopener">two separate safe corridors</a>, one for each side's ships, and ADM reports the EU working with Ukraine, Turkey, India and North African importers to press for a safe-navigation agreement and bring Russia to the table. The market hears the talks and tunes out the gunfire. The reason is the one we laid out Monday: unavailable isn't the same as gone. Importers are drawing down their own stocks and buying from other origins while Russia's grain sits in its piles. The ear that's closed is the one that would hear grain actually <em>lost</em>, not delayed. Nothing in the last two sessions qualified. That's a fact about this market today, not a law of nature, and it's worth knowing which ear to watch.</p>
 
-    <p>Marketing posture unchanged: SUSPEND. Tranches accumulate. The moment Chicago SRW prints a close below the 60-day MA, the protocol flips — we execute, we accelerate, we move grain. Not before. The system doesn't care about the elevator conversation. Neither should your marketing decisions. Meanwhile, back at the ranch, the crop is growing and the market is doing what markets do — making everyone feel wrong at precisely the right moment.</p>
+    <p><strong>Meanwhile, the U.S. isn't the alternative origin.</strong> Export inspections for the week ending Oct. 15 came in at 240,308 tonnes, about 8.8 million bushels, per <a href="https://blog.pricegroup.com/2026/10/20/grains-report-10-20-2026/" target="_blank" rel="noopener">the Price Group</a>. That's down from 307,025 the week before, and it's barely half the roughly 15.4 million a week it takes to reach USDA's 750-million-bushel export number. Marketing-year inspections stand at 7.22 MMT against 11.21 MMT a year ago, a 36% gap. ADM calls U.S. wheat "largely uncompetitive," and Jordan reportedly passed on both offers in its 120,000-tonne tender. With the dollar index steady near 102, there's no currency tailwind coming to the rescue. The world isn't short of wheat sellers. It's short of reasons to pick ours.</p>
 
-    <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gary</p>
+    <p><strong>At home, the drills are mostly parked.</strong> Nationally, USDA had winter wheat 63% planted as of Sunday, up 12 points on the week but still behind the 69% average, with 39% emerged, also behind. Weather in the Plains has turned friendlier, with scattered showers in the forecast, per <a href="https://blog.pricegroup.com/2026/10/20/grains-report-10-20-2026/" target="_blank" rel="noopener">the Price Group</a>. That takes some air out of a weather leg the market might otherwise have leaned on. Washington is running ahead of the country: 96% planted against a 90% average, and 80% emerged against 65%, with 6.5 days suitable for fieldwork last week, per <a href="https://wawg.org/updates/crop-progess-report-10-20/" target="_blank" rel="noopener">NASS via WAWG</a>. For our home ground, the work in the field is about done for the year. The work at the phone isn't.</p>
+    <!-- EDITOR: local color, Prescott/Palouse seeding, moisture, how the stand looks -->
+
+    <p><strong>The scissors are still open.</strong> November WTI pushed to $103.66 Monday, a new high for the move, and went off the board Tuesday at $101.79, per <a href="https://brownfieldagnews.com/news/closing-grain-and-livestock-futures-october-20-2026/" target="_blank" rel="noopener">Brownfield</a>. Diesel is north of $6 a gallon, and the <a href="https://www.fb.org/files/Diesel-Letter_WH_10.1.26.pdf" target="_blank" rel="noopener">Farm Bureau told the White House</a> earlier this month that on-highway diesel had reached $6.38. Tuesday's whole move fits on one line: wheat down 12¢, crude still over $100. The bid blade and the input blade kept cutting toward each other. [chart:NRG_CL_D.png]</p>
+
+    <p><strong>Follow the spread to find the pressure.</strong> KC's premium over Chicago has widened back to 47¾¢, from 43½¢ Friday. Last week hard red winter was taking the beating as KC funds liquidated longs. This week Chicago is leading the way down, and Chicago is where managed money was already short about 33,000 contracts as of Oct. 13, per the <a href="https://www.cftc.gov/dea/futures/ag_sf.htm" target="_blank" rel="noopener">CFTC</a>. A short position pressing into a broken floor is moving with the wind at its back. Friday's report, with positions as of today, will show whether they pressed again. Inside Chicago, the Dec-to-March carry is 15¼¢, with March settling at $6.58½. A carry that wide is the market offering to pay you to store wheat. It's offering to pay storage, though, not to guarantee the price. [chart:SPDINTER_SRW_HRW_M.png] [chart:SPD_SRW_Z_H2.png]</p>
+
+    <p><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Threshold, now about 56¢ beneath it at roughly $6.99¼. The Tripwire has eased to about $6.82½, down 6¾¢ in two sessions. That's how the yardstick behaves: it follows price slowly, so it's coming down to meet the market even as the market keeps walking away from it. No discretionary hold is in effect, and no report on the calendar argues for one. A return to SUSPEND takes a settle back above the Threshold, 56¢ from here. <a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">The chart and the rules</a> are posted for anyone who wants to check our work. The signal didn't change this week. The price did, and that changes the conversation. [chart:WHEAT_SRW_BOR_D.png]</p>
+
+    <p><strong>Marketing posture: EXECUTE, still on plan. What's changed is the question.</strong> For the 7:30 call:</p>
+
+    <p>&bull; <strong>Producers:</strong> If Monday's tranche went, the plan did its job. If it didn't, don't try to catch up by doubling the next one. The next scheduled tranche goes on schedule, and the missed one gets priced on the plan's terms, not on a deadline you invented this morning. With $6.45¼ now overhead, a retest of that broken floor from underneath is a natural place to leave a resting offer, if the market gets there.<br><br>&bull; <strong>Unpriced wheat in the bin:</strong> Portland soft white was posting $6.40 for October delivery overnight, 3¢ over Dec Chicago, and $6.60 for March, 8¢ over March futures, per <a href="https://pnw.coop" target="_blank" rel="noopener">PNW Farmers Cooperative</a>. That's 20¢ to wait five months, more than the 15¼¢ the Chicago board offers, because Portland basis firms along the way. Roughly 4¢ a month on $6.40 wheat works out to about 7½% a year. If that beats your storage cost plus the rate on your operating note, a forward sale for March delivery prices the bushels and keeps them in the bin. The carry pays you to wait. The flat price doesn't.<br><br>&bull; <strong>Millers, feeders and end users:</strong> All three classes are at two-to-three-month lows, and global buyers like Jordan aren't hurrying. You don't need to either. But a fund short that keeps growing under a broken floor is the setup where short-covering spikes come from. Extending coverage in scale here is cheap insurance against the one risk that actually threatens a long hedger.<br><br>&bull; <strong>Lenders and elevator managers:</strong> Mark unpriced inventory at $6.43 and run it again at the $6.06¼ weekly reference. With inspections running at about half of USDA's needed pace, watch whether basis ends up doing work the export pipeline isn't.</p>
+
+    <p>Here's the part that doesn't fit in a bullet. In Washington, 80% of next year's crop is already up out of the ground. That seed is a promise made to next August, and nobody can take it back. The price of <em>this</em> crop is a different kind of promise, the kind you make on the phone, and you keep the right to decide it one tranche at a time. A floor breaking on a chart doesn't make the operation any less sound than it was Monday. It means the market has stopped paying for hope, and the producer who priced on plan was never selling hope in the first place. So before you pick up the phone this morning, find the line in your marketing plan that says what you do when support breaks. If it's there, follow it. If it isn't, write it this morning, before the next floor gets tested, not after.</p>
+
+    <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gabriel</p>
   `
-
 };
 /* ════════════════════════════════════════════════════
    END DAILY UPDATE ZONE
@@ -1244,7 +1103,6 @@ const NAV_CATEGORIES = [
 ════════════════════════════════════════════════════ */
 var lbIndex = 0;
 var lbItems = [];
-var lbImg, lbTitleEl, lbPrev, lbNext;
 
 function openLightbox(src, title, items, index){
   lbItems  = items  || [{ src:src, title:title }];
@@ -1255,41 +1113,35 @@ function openLightbox(src, title, items, index){
 }
 function showLb(i){
   var it = lbItems[i];
-  lbImg.src = it.src;
-  lbTitleEl.textContent = it.title || '';
-  var multi = lbItems.length > 1;
-  lbPrev.style.visibility = multi ? 'visible' : 'hidden';
-  lbNext.style.visibility = multi ? 'visible' : 'hidden';
+  document.getElementById('lb-img').src   = it.src;
+  document.getElementById('lb-title').textContent = it.title || '';
+  var prev = document.getElementById('lb-prev');
+  var next = document.getElementById('lb-next');
+  prev.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
+  next.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
 }
-var lbEl    = document.getElementById('lb');
-var lbClose = document.getElementById('lb-close');
-lbImg    = document.getElementById('lb-img');
-lbTitleEl= document.getElementById('lb-title');
-lbPrev   = document.getElementById('lb-prev');
-lbNext   = document.getElementById('lb-next');
-
 function closeLightbox(){
-  lbEl.classList.remove('open');
-  lbImg.src = '';
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('lb-img').src = '';
   document.body.style.overflow = '';
   lbItems = []; lbIndex = 0;
 }
-lbClose.addEventListener('click', closeLightbox);
-lbEl.addEventListener('click', function(e){
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb').addEventListener('click', function(e){
   if(e.target === this) closeLightbox();
 });
-lbPrev.addEventListener('click', function(e){
+document.getElementById('lb-prev').addEventListener('click', function(e){
   e.stopPropagation();
   lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length;
   showLb(lbIndex);
 });
-lbNext.addEventListener('click', function(e){
+document.getElementById('lb-next').addEventListener('click', function(e){
   e.stopPropagation();
   lbIndex = (lbIndex + 1) % lbItems.length;
   showLb(lbIndex);
 });
 document.addEventListener('keydown', function(e){
-  if(!lbEl.classList.contains('open')) return;
+  if(!document.getElementById('lb').classList.contains('open')) return;
   if(e.key==='Escape') closeLightbox();
   if(e.key==='ArrowLeft'  && lbItems.length>1){ lbIndex=(lbIndex-1+lbItems.length)%lbItems.length; showLb(lbIndex); }
   if(e.key==='ArrowRight' && lbItems.length>1){ lbIndex=(lbIndex+1)%lbItems.length; showLb(lbIndex); }
@@ -1305,10 +1157,6 @@ function buildCard(file, title, sub){
   card.dataset.src   = url;
   card.dataset.title = title;
 
-  var cap = document.createElement('div');
-  cap.className = 'chart-card-cap';
-  cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
-
   var image = document.createElement('img');
   image.alt     = title;
   image.loading = 'lazy';
@@ -1319,11 +1167,18 @@ function buildCard(file, title, sub){
     var inner = document.createElement('div');
     inner.className = 'chart-no-img-inner';
     inner.innerHTML = '<span>&#8987;</span><span>COMING SOON</span><span>' + file + '</span>';
+    var cap = document.createElement('div');
+    cap.className = 'chart-card-cap';
+    cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
     card.appendChild(inner);
     card.appendChild(cap);
     card.style.cursor = 'default';
   };
   card.appendChild(image);
+
+  var cap = document.createElement('div');
+  cap.className = 'chart-card-cap';
+  cap.innerHTML = '<div class="chart-card-title">'+title+'</div><div class="chart-card-sub">'+sub+'</div>';
   card.appendChild(cap);
 
   return card;
@@ -1345,8 +1200,8 @@ function renderCommandBar(){
   txt.className = 'bor-status-text ' + txtClass;
   var stateLabels = {
     'suspend':     'Suspend Sales',
-    'execute-60d': 'Execute Sales — 60-D',
-    'execute-20d': 'Execute Sales — 20-D'
+    'execute-60d': 'Execute Sales — Threshold',
+    'execute-20d': 'Execute Sales — Tripwire'
   };
   txt.textContent = stateLabels[st] || 'Suspend Sales';
 
@@ -1423,24 +1278,13 @@ function renderWheatGalleries(){
 /* ════════════════════════════════════════════════════
    RENDER CHART NAVIGATOR
 ════════════════════════════════════════════════════ */
-function buildChartGrid(charts){
-  var grid = document.createElement('div');
-  grid.className = 'nav-grid';
-  var lbSet = charts.map(function(c){ return { src: img(c.file), title: c.title }; });
-  charts.forEach(function(c, i){
-    var card = buildCard(c.file, c.title, c.sub);
-    card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
-    grid.appendChild(card);
-  });
-  return grid;
-}
-
 function renderNavigator(){
   var tabsEl   = document.getElementById('nav-tabs');
   var panelsEl = document.getElementById('nav-panels');
   var firstTab = null;
 
   NAV_CATEGORIES.forEach(function(cat, ci){
+    // Tab button
     var btn = document.createElement('button');
     btn.className = 'nav-tab';
     btn.textContent = cat.short;
@@ -1448,11 +1292,13 @@ function renderNavigator(){
     tabsEl.appendChild(btn);
     if(ci === 0) firstTab = btn;
 
+    // Panel
     var panel = document.createElement('div');
     panel.className = 'nav-panel';
     panel.id = 'panel-' + cat.id;
 
     if(cat.groups){
+      // Category with sub-groups (Spreads)
       cat.groups.forEach(function(grp){
         var sg = document.createElement('div');
         sg.className = 'nav-subgroup';
@@ -1460,16 +1306,34 @@ function renderNavigator(){
         lbl.className = 'nav-subgroup-label';
         lbl.textContent = grp.label;
         sg.appendChild(lbl);
-        sg.appendChild(buildChartGrid(grp.charts));
+        var grid = document.createElement('div');
+        grid.className = 'nav-grid';
+        var lbSet = grp.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+        grp.charts.forEach(function(c, i){
+          var card = buildCard(c.file, c.title, c.sub);
+          card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+          grid.appendChild(card);
+        });
+        sg.appendChild(grid);
         panel.appendChild(sg);
       });
     } else {
-      panel.appendChild(buildChartGrid(cat.charts));
+      // Simple category
+      var grid = document.createElement('div');
+      grid.className = 'nav-grid';
+      var lbSet = cat.charts.map(function(c){ return { src: img(c.file), title: c.title }; });
+      cat.charts.forEach(function(c, i){
+        var card = buildCard(c.file, c.title, c.sub);
+        card.addEventListener('click', function(){ openLightbox(null, null, lbSet, i); });
+        grid.appendChild(card);
+      });
+      panel.appendChild(grid);
     }
 
     panelsEl.appendChild(panel);
   });
 
+  // Tab click handlers
   tabsEl.addEventListener('click', function(e){
     var btn = e.target.closest('.nav-tab');
     if(!btn) return;
@@ -1480,6 +1344,7 @@ function renderNavigator(){
     if(panel) panel.classList.add('active');
   });
 
+  // Activate first tab
   if(firstTab){
     firstTab.classList.add('active');
     var fp = document.getElementById('panel-' + firstTab.dataset.cat);
@@ -1491,6 +1356,7 @@ function renderNavigator(){
    WIRE UP STATIC LB TRIGGERS (BOR chart + SRW gallery)
 ════════════════════════════════════════════════════ */
 function wireStaticTriggers(){
+  // Collect all static SRW chart cards for gallery lightbox
   var srwCards = document.querySelectorAll('.wheat-gallery-section .chart-card.lb-trigger, .bor-chart-card.lb-trigger');
   srwCards.forEach(function(el){
     el.addEventListener('click', function(e){
@@ -1498,12 +1364,14 @@ function wireStaticTriggers(){
       openLightbox(el.dataset.src, el.dataset.title);
     });
   });
-  document.querySelectorAll('.heritage .lb-trigger').forEach(function(el){
-    el.addEventListener('click', function(e){
+  // BOR chart standalone
+  var borCard = document.querySelector('.bor-chart-card.lb-trigger');
+  if(borCard){
+    borCard.addEventListener('click', function(e){
       e.preventDefault();
-      openLightbox(el.dataset.src, el.dataset.title);
+      openLightbox(borCard.dataset.src, borCard.dataset.title);
     });
-  });
+  }
 }
 
 /* ════════════════════════════════════════════════════
@@ -1529,8 +1397,43 @@ document.addEventListener('DOMContentLoaded', function(){
   renderNavigator();
   wireStaticTriggers();
   wireCommentaryTriggers();
+  loadLiveConfig();
 });
 
+/* ════════════════════════════════════════════════════
+   LIVE UPDATE
+   The copy pasted into Squarespace keeps itself current:
+   on each page load it fetches this same file from GitHub,
+   pulls out the DAILY UPDATE ZONE (MB_CONFIG), and re-renders
+   the BoR badge, prices and commentary. Publishing = pushing
+   index01.html to GitHub. Re-paste into Squarespace only when
+   the layout or code (not the daily content) changes.
+   If GitHub can't be reached, the pasted copy's own MB_CONFIG
+   stays on screen.
+════════════════════════════════════════════════════ */
+var LIVE_CONFIG_URL = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html';
+
+function loadLiveConfig(){
+  if(!window.fetch) return;
+  fetch(LIVE_CONFIG_URL + '?t=' + Date.now(), { cache:'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(function(src){
+      var m = src.match(/const MB_CONFIG = (\{[\s\S]*?\r?\n\});/);
+      if(!m) throw new Error('MB_CONFIG not found');
+      var live = (new Function('return ' + m[1]))();
+      if(!live || !live.dateline || !live.body) throw new Error('MB_CONFIG incomplete');
+      if(live.dateline === MB_CONFIG.dateline && live.body === MB_CONFIG.body
+         && live.borStatus === MB_CONFIG.borStatus
+         && JSON.stringify(live.prices) === JSON.stringify(MB_CONFIG.prices)) return;
+      Object.keys(live).forEach(function(k){ MB_CONFIG[k] = live[k]; });
+      renderCommandBar();
+      renderCommentary();
+      wireCommentaryTriggers();
+    })
+    .catch(function(err){
+      if(window.console) console.warn('MarketBullets live update skipped:', err.message);
+    });
+}
 </script>
 </body>
 </html>

@@ -879,20 +879,23 @@ const MB_CONFIG = {
      chgDir: 'up', 'dn', or 'flat'                   */
   prices: [
     { contract:'Chicago SRW (Dec)',       exchange:'CBOT',      ticker:'ZW',  unit:'$/bu',
-      open:'—',  high:'—',  low:'—',  close:'7.14¼',  chg:'-0.12¾',  chgDir:'dn' },
+      open:'6.56',  high:'6.61¾',  low:'6.42½',  close:'6.43¼',  chg:'-0.12',  chgDir:'dn' },
     { contract:'Kansas City HRW (Dec)',   exchange:'KCBT',      ticker:'KE',  unit:'$/bu',
-      open:'—',  high:'—',  low:'—',  close:'7.83¾',  chg:'-0.10¾',  chgDir:'dn' },
+      open:'—',  high:'—',  low:'—',  close:'6.91',  chg:'-0.08½',  chgDir:'dn' },
     { contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',      ticker:'MWE', unit:'$/bu',
-      open:'—',  high:'—',  low:'—',  close:'—',  chg:'— NOT PUBLISHED',  chgDir:'flat' },
+      open:'—',  high:'—',  low:'—',  close:'6.61¾',  chg:'-0.08¼',  chgDir:'dn' },
     { contract:'Paris Milling FWH (Dec)', exchange:'Euronext',  ticker:'EBM', unit:'€/t',
-      open:'—',  high:'—',  low:'—',  close:'241.50',  chg:'-0.8%',  chgDir:'dn' },
+      open:'—',  high:'—',  low:'—',  close:'—',  chg:'—',  chgDir:'flat' },
   ],
-  /* NOTE 2026-09-22: Friday 9/18 settles only — Monday 9/21 settles, Crop Progress,
-     and export inspections were not yet published when this draft was built.
-     Replace OHL '—' and MPLS close from Trade Navigator before publishing. */
+  /* NOTE 2026-10-21 (Tue 10/20 settles, for Wed pre-dawn):
+     - SRW: Brownfield + ADMIS ($6.43¼, -12). O/H/L from Investing.com (656.00 / 661.90 / 642.60),
+       rounded to ticks; high and low are unofficial, check against TN.
+     - KC: ADMIS + GX94 ($6.91, -8½). MPLS: ADMIS + GX94 ($6.61¾, -8¼). O/H/L not sourced.
+     - Paris: no verified Oct 20 settle found; fill from TN or leave blank.
+     - Threshold/Tripwire: bor_update.py formula with Mon/Tue bars appended (not yet pasted to data/bor). */
 
   /* ── COMMENTARY DATELINE ────────────────────────── */
-  dateline: 'TUESDAY, SEPTEMBER 22, 2026 · Pre-Dawn Update',
+  dateline: 'WEDNESDAY, OCTOBER 21, 2026 · Pre-Dawn Update',
 
   /* ── BULLET POINTS ───────────────────────────────────
      Each bullet has a color and text.
@@ -905,49 +908,54 @@ const MB_CONFIG = {
        Neutral/Macro:     '#B0C0D0'
        Default:           '#F5E6C0'                   */
   bullets: [
-    { color: '#E08050', text: 'Dec Chicago slid to $7.14¼ Friday — an 11¢ weekly loss and 68¢ off the Sept. 1 close — before Monday\'s overnight bounce (SRW +7½¢, HRW +9¢) put a floor under the three-week low.' },
-    { color: '#7BBFDE', text: 'Trump and Xi meet Thursday, Sept. 24 — the market wants a wheat line item inside China\'s pledged $17B/year in farm purchases, and hasn\'t gotten one yet.' },
-    { color: '#8FCB8A', text: 'September WASDE raised the farm price to $6.40, but cut Russia\'s export forecast 3.0 MMT to 43.0 and Ukraine\'s 1.0 MMT to 12.5 — more wheat exists, less of it can reach a boat.' },
-    { color: '#B0C0D0', text: 'Managed Money flipped back net short in Chicago (4,706 contracts) as of Sept. 15, while KC\'s net long was trimmed to 45,758 — stored energy on both sides, not a directional signal by itself.' },
-    { color: '#E08050', text: '2026/27 export sales are running 30% behind last year at 44% of USDA\'s pace target — though last week\'s sales were a 3-week high, led by the Philippines.' },
+    { color: '#E08050', text: 'Dec Chicago settled Tuesday at $6.43¼, down 12¢, after giving up 5¼¢ Monday. That\'s the first settle under the Aug. 11 swing low of $6.45¼, the launch pad for the August Black Sea rally and the floor we named Monday. KC fell 8½¢ to $6.91 and Minneapolis 8¼¢ to $6.61¾. All three classes closed at fresh two-to-three-month lows, per <a href="https://www.admis.com/ag-market-view-for-oct-20-2026/" target="_blank" rel="noopener">ADM Investor Services</a>. Overnight, Dec Chicago slipped to about $6.37, down 6¼¢, as of 1 a.m. Pacific, under Tuesday's low.' },
+    { color: '#B0C0D0', text: 'Tuesday tried to bounce first. Dec opened at $6.56 and worked up near $6.62, then got sold 19¢ off the high to settle near the low. That\'s two straight sessions closing in the bottom of the range.' },
+    { color: '#F5E6C0', text: '<a href="https://www.marketbulletsllc.com/box-o-rox" style="float:right;margin:2px 0 8px 14px"><img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png" class="inline-chart-thumb" alt="Box-o-Rox daily chart"></a><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Threshold, now about 56¢ under it. The Threshold sits near $6.99¼ and the Tripwire near $6.82½, and both are still bending lower to follow price. The signal didn\'t change this week. The price did. For the producer, the cue is the same one we gave Monday: the next tranche goes on plan. For the elevator, the input dealer and the banker carrying the operating note, it\'s the same yardstick posted before the open, so everybody at the table is reading from one page. Box-o-Rox informs; the marketing plan decides. <strong><a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">See the chart and the rules →</a></strong>' },
+    { color: '#7BBFDE', text: 'Black Sea: there were renewed strikes on vessels Monday, and wheat fell anyway, to its lowest since Aug. 12, per Bloomberg via UkrAgroConsult. The headlines the market is trading are the peace-side ones: a Turkish two-corridor plan and a reported EU push for a safe-navigation deal.' },
+    { color: '#8FCB8A', text: 'Crop Progress: U.S. winter wheat was 63% planted (69% average) and 39% emerged, still behind. Washington is ahead of the country: 96% planted against a 90% average, and 80% emerged against 65%.' },
+    { color: '#7BBFDE', text: 'Export inspections came in at 240,308 tonnes, about 8.8 million bu. That\'s down from 307,025 the week before. Marketing-year inspections stand at 7.22 MMT, 36% behind last year\'s 11.21 MMT. Jordan reportedly passed on both offers in its 120,000-tonne tender.' },
+    { color: '#B0C0D0', text: 'KC\'s premium over Chicago widened back to 47¾¢, from 43½¢ Friday. Chicago is leading the way down now, and Chicago is where the funds are short.' },
+    { color: '#E08050', text: 'Crude: November WTI pushed to $103.66 Monday and expired Tuesday at $101.79. Diesel is still north of $6 a gallon. The scissors haven\'t closed.' },
+    { color: '#F5E6C0', text: 'Ahead: export sales Thursday at 5:30 a.m. Pacific. COT Friday at 12:30 p.m. Pacific, with positions as of today.' },
   ],
 
   /* ── COMMENTARY BODY ─────────────────────────────────
-     DRAFT — built from 2026-09-22 research packet.
-     Fact-check status (per Kirk Error Protocol):
-       - Settlements, WASDE, COT, export-sales figures below
-         were re-traced to source and hold up as printed.
-       - [BRACKETED PLACEHOLDERS] remain for items the
-         packet could NOT verify (BOR/60-day MA reading,
-         Monday settles, Trade Navigator high, crude/urea
-         figures that conflicted across sources). Replace
-         before publishing — do not print an unsourced stat.
-       - Moscow refinery strike figures attributed to
-         Russian MOD via Bloomberg, per source chain.
-       - "Lowest HRW production in 40-50 years" softened to
-         attributed quote — it was one farm-leader's
-         characterization, not a USDA-verified figure.
+     Wednesday 2026-10-21 pre-dawn. Source: commentary/_DRAFT_2026-10-21.md
+     Data: Mon/Tue 10/19–20 settles, Crop Progress 10/19, export inspections
+     week ending 10/15, CFTC COT as of 10/13. Sources linked in text.
      ─────────────────────────────────────────────────── */
   body: `
-    <p style="color:#E08050">Wheat is still the weakest link on the grain board, but it found a floor overnight. Dec Chicago settled Friday at $7.14¼, down 12¾¢ on the day and 11¢ on the week — the fourth straight losing week since the $7.82½ close on September 1, a 68¢ slide in under three weeks. Dec KC held up better, off 10¾¢ to $7.83¾. Monday overnight, both came back: Dec SRW +7½¢, Dec HRW +9¢ by 6 a.m. Chicago time, with the most-active contract up as much as 2% at one point — its sharpest intraday jump in almost two weeks. That's a bounce, not yet a reversal.</p>
+    <p style="font-size:1.15em;color:#E8B820"><strong>The Launch Pad Gave Way, and the Market's Gone Deaf in One Ear</strong></p>
 
-    <p style="color:#7BBFDE"><strong>Thursday is the test.</strong> Trump and Xi sit down September 24, and the market wants to see a wheat line item inside China's pledged $17 billion a year in farm purchases — on top of the soybean commitment already in hand. It hasn't shown up yet, and the trade truce itself expires in November. That's the catalyst the summit-optimism bounce is actually pricing.</p>
+    <p>Monday morning we scouted the terrain and named the next real floor: the Aug. 11 swing low at $6.45¼, where the August rally lifted off. Tuesday the market walked up to that floor, leaned on it, and went through. Dec Chicago settled at $6.43¼, down 12¢ on the day and 17¼¢ in two sessions. KC and Minneapolis went with it, and <a href="https://www.admis.com/ag-market-view-for-oct-20-2026/" target="_blank" rel="noopener">ADM Investor Services</a> has all three classes at fresh two-to-three-month lows. Here's why that matters more than another red number. The August low was the last level on the daily chart that let you call the whole Black Sea run a rally off a base. With it gone, the base is behind us too. Seven weeks ago the question was how high the war could carry wheat. Today the question is what's left underneath it. [chart:WHEAT_SRW_D.png]</p>
 
-    <p>Underneath the price action, the KC-over-Chicago premium has widened to roughly 69½¢. [chart:SPDINTER_SRW_HRW_M.png] A year ago at this point, KC was trading <em>behind</em> Chicago — this HRW-over-SRW flip is a chart worth sitting with this morning, not just a spread number. [PNW board-level source: HRW crop described as the "lowest production in 40 to 50 years" — attributed quote, not a USDA-verified figure. Confirm before using.]</p>
+    <p><strong>How it broke matters more than where.</strong> Tuesday didn't open weak. Dec opened at $6.56 and worked up near $6.62. That was the bounce oversold markets are supposed to produce, maybe with a few shorts covering. Then the selling found it, and Dec closed 19¢ off the high, near the low of the day. A market that can't hold a morning rally is telling you the sellers weren't finished. They were waiting for a better price, and the bounce gave them one. On Monday we said a pop toward the Tripwire would be a gift to an EXECUTE plan. Tuesday the pop showed up for a couple of hours and never got within 20¢ of the Tripwire. That isn't a reason for regret. It's the reason scale-up offers get written down ahead of time and left resting. Bounces off oversold lows don't send invitations, and when they do show up, they don't stay for supper.</p>
+    <!-- EDITOR: historical parallel, an October support break from past years and how the following weeks played out -->
 
-    <p style="color:#8FCB8A">September's WASDE kept US production at 1.531 billion bushels and ending stocks at 717 million, and raised the season-average farm price to $6.40. World production and world stocks both moved up — but Russia's export forecast was trimmed 3.0 MMT to 43.0, and Ukraine's cut 1.0 MMT to 12.5. Read together: more wheat exists in the world than it did a month ago, but less of it is cleared to leave the Black Sea. That's a supportive undertow running beneath a bearish tape.</p>
+    <p><strong>Scout the terrain again.</strong> The floor that broke becomes the first ceiling. On any recovery, $6.45¼ is now the level the market has to reclaim, and it'll be tested from underneath. Below Tuesday's low, there's not much on the daily until the summer lows. The weekly retracement of the whole October-2025-to-September run still sits at $6.06¼. None of that is a forecast. It's a map, so nobody has to draw one at 7:29 a.m.</p>
+    <!-- EDITOR: confirm the July low on the Dec chart -->
 
-    <p>Russian September exports are projected to drop roughly threefold to 1.6–2.0 MMT on port disruption. Ukraine, per Russia's own Defense Ministry account as relayed by Bloomberg, launched its largest drone barrage of the year at a Moscow-area refinery over the weekend. Saudi Arabia passed entirely on its 535,000-tonne tender, with traders citing Black Sea-elevated pricing. Chicago sold off through all of it anyway — a sign the market has already done some pricing-in of Black Sea risk. [Confirm your own read on how much of that risk premium is left to give back.]</p>
+    <p><strong>The market has gone deaf in one ear.</strong> Monday brought renewed strikes on vessels in the Black Sea, and wheat fell anyway, to its lowest since Aug. 12, per Bloomberg via <a href="https://ukragroconsult.com/en/news/wheat-market-gradually-becomes-less-responsive-to-black-sea-export-disruptions/" target="_blank" rel="noopener">UkrAgroConsult</a>. The disruption itself is real, not imagined. Both sides of the war report an export pace more than 50% behind a year ago, per <a href="https://blog.pricegroup.com/2026/10/20/grains-report-10-20-2026/" target="_blank" rel="noopener">the Price Group</a>, and the Grain Central wire, as summarized by <a href="https://commodity-board.com/wheat-caught-between-black-sea-supply-shock-and-demand-headwinds" target="_blank" rel="noopener">CMB News</a>, reported no wheat leaving Russia's Black Sea ports since late September. Yet the headlines the trade is listening to are on the peace side. Turkey has floated <a href="https://ukragroconsult.com/en/news/turkey-proposes-separate-safe-corridors-for-ukrainian-and-russian-vessels-in-the-black-sea/" target="_blank" rel="noopener">two separate safe corridors</a>, one for each side's ships, and ADM reports the EU working with Ukraine, Turkey, India and North African importers to press for a safe-navigation agreement and bring Russia to the table. The market hears the talks and tunes out the gunfire. The reason is the one we laid out Monday: unavailable isn't the same as gone. Importers are drawing down their own stocks and buying from other origins while Russia's grain sits in its piles. The ear that's closed is the one that would hear grain actually <em>lost</em>, not delayed. Nothing in the last two sessions qualified. That's a fact about this market today, not a law of nature, and it's worth knowing which ear to watch.</p>
 
-    <p style="color:#B0C0D0"><strong>Demand isn't picking up the slack.</strong> 2026/27 export sales are running 30% behind last year and sit at 44% of USDA's full-year projection, against a 53% average pace for this point in the marketing year. Last week's sales were a three-week high, led by the Philippines — a green shoot, not a trend yet. Add the dollar: DXY hit a seven-week high Friday with the Fed, ECB and BOJ all still in tightening mode, and the 10-year sat near 4.95% Monday morning. [chart:IDX_DXY_W.png] That's a second headwind stacked on the Black Sea one — export competitiveness doesn't need Russian logistics to get worse, it just needs the dollar to keep climbing.</p>
+    <p><strong>Meanwhile, the U.S. isn't the alternative origin.</strong> Export inspections for the week ending Oct. 15 came in at 240,308 tonnes, about 8.8 million bushels, per <a href="https://blog.pricegroup.com/2026/10/20/grains-report-10-20-2026/" target="_blank" rel="noopener">the Price Group</a>. That's down from 307,025 the week before, and it's barely half the roughly 15.4 million a week it takes to reach USDA's 750-million-bushel export number. Marketing-year inspections stand at 7.22 MMT against 11.21 MMT a year ago, a 36% gap. ADM calls U.S. wheat "largely uncompetitive," and Jordan reportedly passed on both offers in its 120,000-tonne tender. With the dollar index steady near 102, there's no currency tailwind coming to the rescue. The world isn't short of wheat sellers. It's short of reasons to pick ours.</p>
 
-    <p><strong>Marketing posture:</strong> [BOR STATUS — 60-day MA reading not available from this draft's source material; confirm SUSPEND vs. EXECUTE against your own Trade Navigator chart before publishing]. [chart:WHEAT_SRW_BOR_D.png] Whichever side of that line Chicago sits on this morning, an oversold market heading into a summit with real two-sided optionality is not the place to chase either direction hard.</p>
+    <p><strong>At home, the drills are mostly parked.</strong> Nationally, USDA had winter wheat 63% planted as of Sunday, up 12 points on the week but still behind the 69% average, with 39% emerged, also behind. Weather in the Plains has turned friendlier, with scattered showers in the forecast, per <a href="https://blog.pricegroup.com/2026/10/20/grains-report-10-20-2026/" target="_blank" rel="noopener">the Price Group</a>. That takes some air out of a weather leg the market might otherwise have leaned on. Washington is running ahead of the country: 96% planted against a 90% average, and 80% emerged against 65%, with 6.5 days suitable for fieldwork last week, per <a href="https://wawg.org/updates/crop-progess-report-10-20/" target="_blank" rel="noopener">NASS via WAWG</a>. For our home ground, the work in the field is about done for the year. The work at the phone isn't.</p>
+    <!-- EDITOR: local color, Prescott/Palouse seeding, moisture, how the stand looks -->
 
-    <p>Here at home, the numbers tell two stories at once. PNW yields ran at least 20% above average this harvest — soft white protein came in low early, and the trade has since worked through it. But the growers we talked to say prices are still a little short of covering costs, fuel especially. A big crop and a thin margin, sitting on top of each other — the story this market doesn't put on a chart. Watch Thursday. Watch the Threshold. Don't let a two-day bounce talk you out of the marketing plan you built for reasons that are still true.</p>
+    <p><strong>The scissors are still open.</strong> November WTI pushed to $103.66 Monday, a new high for the move, and went off the board Tuesday at $101.79, per <a href="https://brownfieldagnews.com/news/closing-grain-and-livestock-futures-october-20-2026/" target="_blank" rel="noopener">Brownfield</a>. Diesel is north of $6 a gallon, and the <a href="https://www.fb.org/files/Diesel-Letter_WH_10.1.26.pdf" target="_blank" rel="noopener">Farm Bureau told the White House</a> earlier this month that on-highway diesel had reached $6.38. Tuesday's whole move fits on one line: wheat down 12¢, crude still over $100. The bid blade and the input blade kept cutting toward each other. [chart:NRG_CL_D.png]</p>
 
-    <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gary</p>
+    <p><strong>Follow the spread to find the pressure.</strong> KC's premium over Chicago has widened back to 47¾¢, from 43½¢ Friday. Last week hard red winter was taking the beating as KC funds liquidated longs. This week Chicago is leading the way down, and Chicago is where managed money was already short about 33,000 contracts as of Oct. 13, per the <a href="https://www.cftc.gov/dea/futures/ag_sf.htm" target="_blank" rel="noopener">CFTC</a>. A short position pressing into a broken floor is moving with the wind at its back. Friday's report, with positions as of today, will show whether they pressed again. Inside Chicago, the Dec-to-March carry is 15¼¢, with March settling at $6.58½. A carry that wide is the market offering to pay you to store wheat. It's offering to pay storage, though, not to guarantee the price. [chart:SPDINTER_SRW_HRW_M.png] [chart:SPD_SRW_Z_H2.png]</p>
+
+    <p><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Threshold, now about 56¢ beneath it at roughly $6.99¼. The Tripwire has eased to about $6.82½, down 6¾¢ in two sessions. That's how the yardstick behaves: it follows price slowly, so it's coming down to meet the market even as the market keeps walking away from it. No discretionary hold is in effect, and no report on the calendar argues for one. A return to SUSPEND takes a settle back above the Threshold, 56¢ from here. <a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">The chart and the rules</a> are posted for anyone who wants to check our work. The signal didn't change this week. The price did, and that changes the conversation. [chart:WHEAT_SRW_BOR_D.png]</p>
+
+    <p><strong>Marketing posture: EXECUTE, still on plan. What's changed is the question.</strong> For the 7:30 call:</p>
+
+    <p>&bull; <strong>Producers:</strong> If Monday's tranche went, the plan did its job. If it didn't, don't try to catch up by doubling the next one. The next scheduled tranche goes on schedule, and the missed one gets priced on the plan's terms, not on a deadline you invented this morning. With $6.45¼ now overhead, a retest of that broken floor from underneath is a natural place to leave a resting offer, if the market gets there.<br><br>&bull; <strong>Unpriced wheat in the bin:</strong> Portland soft white was posting $6.40 for October delivery overnight, 3¢ over Dec Chicago, and $6.60 for March, 8¢ over March futures, per <a href="https://pnw.coop" target="_blank" rel="noopener">PNW Farmers Cooperative</a>. That's 20¢ to wait five months, more than the 15¼¢ the Chicago board offers, because Portland basis firms along the way. Roughly 4¢ a month on $6.40 wheat works out to about 7½% a year. If that beats your storage cost plus the rate on your operating note, a forward sale for March delivery prices the bushels and keeps them in the bin. The carry pays you to wait. The flat price doesn't.<br><br>&bull; <strong>Millers, feeders and end users:</strong> All three classes are at two-to-three-month lows, and global buyers like Jordan aren't hurrying. You don't need to either. But a fund short that keeps growing under a broken floor is the setup where short-covering spikes come from. Extending coverage in scale here is cheap insurance against the one risk that actually threatens a long hedger.<br><br>&bull; <strong>Lenders and elevator managers:</strong> Mark unpriced inventory at $6.43 and run it again at the $6.06¼ weekly reference. With inspections running at about half of USDA's needed pace, watch whether basis ends up doing work the export pipeline isn't.</p>
+
+    <p>Here's the part that doesn't fit in a bullet. In Washington, 80% of next year's crop is already up out of the ground. That seed is a promise made to next August, and nobody can take it back. The price of <em>this</em> crop is a different kind of promise, the kind you make on the phone, and you keep the right to decide it one tranche at a time. A floor breaking on a chart doesn't make the operation any less sound than it was Monday. It means the market has stopped paying for hope, and the producer who priced on plan was never selling hope in the first place. So before you pick up the phone this morning, find the line in your marketing plan that says what you do when support breaks. If it's there, follow it. If it isn't, write it this morning, before the next floor gets tested, not after.</p>
+
+    <p>This stuff is trackable. Let's track it.<br>Stay tuned.<br>&mdash;Gabriel</p>
   `
-
 };
 /* ════════════════════════════════════════════════════
    END DAILY UPDATE ZONE
@@ -1389,7 +1397,43 @@ document.addEventListener('DOMContentLoaded', function(){
   renderNavigator();
   wireStaticTriggers();
   wireCommentaryTriggers();
+  loadLiveConfig();
 });
+
+/* ════════════════════════════════════════════════════
+   LIVE UPDATE
+   The copy pasted into Squarespace keeps itself current:
+   on each page load it fetches this same file from GitHub,
+   pulls out the DAILY UPDATE ZONE (MB_CONFIG), and re-renders
+   the BoR badge, prices and commentary. Publishing = pushing
+   index01.html to GitHub. Re-paste into Squarespace only when
+   the layout or code (not the daily content) changes.
+   If GitHub can't be reached, the pasted copy's own MB_CONFIG
+   stays on screen.
+════════════════════════════════════════════════════ */
+var LIVE_CONFIG_URL = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html';
+
+function loadLiveConfig(){
+  if(!window.fetch) return;
+  fetch(LIVE_CONFIG_URL + '?t=' + Date.now(), { cache:'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+    .then(function(src){
+      var m = src.match(/const MB_CONFIG = (\{[\s\S]*?\r?\n\});/);
+      if(!m) throw new Error('MB_CONFIG not found');
+      var live = (new Function('return ' + m[1]))();
+      if(!live || !live.dateline || !live.body) throw new Error('MB_CONFIG incomplete');
+      if(live.dateline === MB_CONFIG.dateline && live.body === MB_CONFIG.body
+         && live.borStatus === MB_CONFIG.borStatus
+         && JSON.stringify(live.prices) === JSON.stringify(MB_CONFIG.prices)) return;
+      Object.keys(live).forEach(function(k){ MB_CONFIG[k] = live[k]; });
+      renderCommandBar();
+      renderCommentary();
+      wireCommentaryTriggers();
+    })
+    .catch(function(err){
+      if(window.console) console.warn('MarketBullets live update skipped:', err.message);
+    });
+}
 </script>
 </body>
 </html>
