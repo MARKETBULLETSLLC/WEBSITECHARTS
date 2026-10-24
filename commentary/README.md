@@ -7,6 +7,40 @@ same file. No Squarespace edits, ever.
 
 ---
 
+## Writing in Word (updates the Members Dashboard)
+
+1. Open `_TEMPLATE.docx` (or yesterday's file) and write. While drafting, keep a
+   name that starts with `_` — e.g. `_DRAFT_2026-10-23.docx` — so Word's AutoSave
+   never publishes half a sentence.
+2. When it's ready: **File → Save a Copy** into this folder as `YYYY-MM-DD.docx`.
+3. Done. `tools/word_commentary.py` waits until the file stops changing (45 s),
+   then writes `YYYY-MM-DD.md`, rebuilds `index.json`, rewrites `MB_CONFIG` in the
+   dashboard (dateline, bullets, body, and Box-o-Rox status / prices if filled in),
+   commits, and pushes. marketbulletsllc.com/market-bullet_points shows it on the
+   next page load, usually within a couple of minutes.
+
+To fix a typo after publishing: open `YYYY-MM-DD.docx`, fix, save. Same path.
+
+| In Word | On the dashboard |
+|---|---|
+| `Dateline:` line at top | Dateline. Leave blank for the automatic `FRIDAY, OCTOBER 23, 2026 · Pre-Dawn Update` |
+| `Box-o-Rox: SUSPEND / EXECUTE / TRIPWIRE` | BoR badge. Add `· Oct 22, 2026` to set the date, otherwise the previous weekday |
+| Prices table (Contract, Open, High, Low, Close, Chg) | Closing prices. Rows left blank are left unchanged; delete the table to skip prices |
+| First paragraph (Title style) | Headline |
+| Word bullet list | Bullets. Start one with `[bull]` `[bear]` `[global]` `[usda]` `[macro]` to color it |
+| Paragraphs after the bullets | Narrative. Bold, italics, hyperlinks carry over; bullets here become a list |
+| `[chart: WHEAT_SRW_D \| caption]` | Chart thumbnail (opens in the lightbox) |
+
+Only the newest dated `.docx` drives the dashboard; re-saving an older one just
+refreshes its `.md`. The page header in the template has a cheat sheet and is
+never published.
+
+Run it: double-click `start_word_watcher.bat`, or run
+`tools/install_word_watcher_task.ps1` once to start it silently at every login.
+Log: `tools/word_commentary.log`.
+
+---
+
 ## Daily workflow (Gary)
 
 1. Write the commentary in any text editor.

@@ -1,2 +1,5 @@
 # Runtime logs — machine-local, never version-controlled (caused push ref-lock races across clones)
 *.log
+
+# Word lock files (created while a .docx is open)
+~$*
