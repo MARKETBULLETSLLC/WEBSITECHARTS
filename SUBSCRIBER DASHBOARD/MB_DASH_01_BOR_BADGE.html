@@ -15,8 +15,8 @@
   Updated: 2026-04-25
 
   To change state: edit data-state on the .bor-badge div
-    data-state="suspend"      Condition 1 — price above the Threshold
-    data-state="execute-60d"  Condition 2 — price below the Threshold
+    data-state="suspend"      Condition 1 — price above the Suspend/Execute line
+    data-state="execute-60d"  Condition 2 — price below the Suspend/Execute line
     data-state="execute-20d"  Condition 3 — Tripwire signal active
 ═══════════════════════════════════════════════════════════════════
 -->
@@ -87,8 +87,8 @@
 /* ══════════════════════════════════════════════════
    BoR BADGE — THREE-STATE SYSTEM
    ══════════════════════════════════════════════════
-   data-state="suspend"      Condition 1: above Threshold, accumulating
-   data-state="execute-60d"  Condition 2: below Threshold, sell all
+   data-state="suspend"      Condition 1: above the Suspend/Execute line, accumulating
+   data-state="execute-60d"  Condition 2: below the Suspend/Execute line, sell all
    data-state="execute-20d"  Condition 3: Tripwire signal, sell all
    ══════════════════════════════════════════════════ */
 
@@ -109,7 +109,7 @@
   background: #4da6ff;
 }
 
-/* --- CONDITION 2: EXECUTE via Threshold (green blink, 10s cycle) --- */
+/* --- CONDITION 2: EXECUTE via Suspend/Execute line (green blink, 10s cycle) --- */
 .bor-badge[data-state="execute-60d"] {
   background: #2C5530;
   border-color: #1e3d22;
@@ -229,17 +229,17 @@ body {
     'suspend': {
       tag:    'SUSPEND',
       action: 'Suspend Sale(s)',
-      desc:   'Condition 1 — price above the Threshold. Tranches accumulating in suspended status.'
+      desc:   'Condition 1 — price above the Suspend/Execute line. Tranches accumulating in suspended status.'
     },
     'execute-60d': {
       tag:    'EXECUTE',
       action: 'Execute Sale(s)',
-      desc:   'Condition 2 — price below the Threshold. Execute all accumulated suspended tranche sales.'
+      desc:   'Condition 2 — price below the Suspend/Execute line. Execute all accumulated suspended tranche sales.'
     },
     'execute-20d': {
       tag:    'EXECUTE • TRIPWIRE',
       action: 'Execute Sale(s)',
-      desc:   'Condition 3 — Tripwire signal active. Price crossed below the Tripwire while above the Threshold. Execute all accumulated suspended tranche sales.'
+      desc:   'Condition 3 — Tripwire signal active. Price crossed below the Tripwire while above the Suspend/Execute line. Execute all accumulated suspended tranche sales.'
     }
   };
 
@@ -263,19 +263,19 @@ body {
     <div class="bor-status-label">
       <span class="bor-state-tag">SUSPEND</span>Box-o-Rox&#174; &mdash; Suspend Sale(s)
     </div>
-    <div class="bor-status-desc">Condition 1 — price above the Threshold. Tranches accumulating in suspended status.</div>
+    <div class="bor-status-desc">Condition 1 — price above the Suspend/Execute line. Tranches accumulating in suspended status.</div>
     <div class="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
   </div>
 </div>
 
-<div class="preview-label">Preview — Condition 2: EXECUTE (Threshold breach)</div>
+<div class="preview-label">Preview — Condition 2: EXECUTE (Suspend/Execute line breach)</div>
 <div class="bor-badge" data-state="execute-60d">
   <div class="bor-indicator"></div>
   <div class="bor-content">
     <div class="bor-status-label">
       <span class="bor-state-tag">EXECUTE</span>Box-o-Rox&#174; &mdash; Execute Sale(s)
     </div>
-    <div class="bor-status-desc">Condition 2 — price below the Threshold. Execute all accumulated suspended tranche sales.</div>
+    <div class="bor-status-desc">Condition 2 — price below the Suspend/Execute line. Execute all accumulated suspended tranche sales.</div>
     <div class="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
   </div>
 </div>
@@ -287,7 +287,7 @@ body {
     <div class="bor-status-label">
       <span class="bor-state-tag">EXECUTE • TRIPWIRE</span>Box-o-Rox&#174; &mdash; Execute Sale(s)
     </div>
-    <div class="bor-status-desc">Condition 3 — Tripwire signal active. Price crossed below the Tripwire while above the Threshold. Execute all accumulated suspended tranche sales.</div>
+    <div class="bor-status-desc">Condition 3 — Tripwire signal active. Price crossed below the Tripwire while above the Suspend/Execute line. Execute all accumulated suspended tranche sales.</div>
     <div class="bor-meta">Box-o-Rox&#174; &mdash; The Warm Signal&#8482;</div>
   </div>
 </div>

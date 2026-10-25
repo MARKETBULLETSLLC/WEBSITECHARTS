@@ -157,10 +157,10 @@
 
       <a class="mb-rox-chart" href="#" data-rox-open aria-label="Open the Box-o-Rox daily chart full screen">
         <div class="mb-rox-crop">
-          <img data-rox-chart alt="Box-o-Rox daily chart of Chicago soft red winter wheat settlement against the Threshold and the Tripwire, with every change of state dated on the chart" loading="lazy">
+          <img data-rox-chart alt="Box-o-Rox daily chart of Chicago soft red winter wheat settlement against the Suspend/Execute line and the Tripwire, with every change of state dated on the chart" loading="lazy">
         </div>
         <div class="mb-rox-cap">
-          <span>Box-o-Rox Daily: Chicago soft red winter wheat, settlement against the Threshold and the Tripwire</span>
+          <span>Box-o-Rox Daily: Chicago soft red winter wheat, settlement against the Suspend/Execute line and the Tripwire</span>
           <span>CLICK FOR FULLSCREEN (VIEW IN LANDSCAPE)</span>
         </div>
       </a>
@@ -216,7 +216,7 @@
           <p>You get time to take the plan out of the drawer before the market forces you to. Nobody ever lost a farm by being ready a day early.</p>
         </div>
         <div class="mb-rox-card">
-          <strong>The Threshold: the line that matters.</strong>
+          <strong>The Suspend/Execute line: the one that matters.</strong>
           <p>Decide in calm what you'll do in the storm. Write the order on a quiet Tuesday so you aren't writing it on a panicked Thursday. Measure twice, sell once.</p>
         </div>
         <div class="mb-rox-card">
@@ -269,7 +269,7 @@
       <p>Box-o-Rox reads where Chicago soft red winter wheat settles against two lines we draw every day.</p>
 
       <div class="mb-rox-lines">
-        <p>The <strong>Threshold</strong> is the slow line. It moves about as fast as a banker approving a line of credit.</p>
+        <p>The <strong>Suspend/Execute line</strong> is the slow one. It moves about as fast as a banker approving a line of credit.</p>
         <p>The <strong>Tripwire</strong> is the quick line. It moves about as fast as news travels from the café to the shop.</p>
       </div>
 
@@ -278,13 +278,13 @@
       <h3>The two states</h3>
 
       <div class="mb-rox-state s">
-        <p><span class="mb-rox-pill">SUSPEND.</span>Settlement holds above the Threshold, and the market is accumulating. The posture is patience. Keep your powder dry, leave the bushels you planned to hold unpriced, and let the market come to you.</p>
+        <p><span class="mb-rox-pill">SUSPEND.</span>Settlement holds above the Suspend/Execute line, and the market is accumulating. The posture is patience. Keep your powder dry, leave the bushels you planned to hold unpriced, and let the market come to you.</p>
       </div>
       <div class="mb-rox-state e">
-        <p><span class="mb-rox-pill">EXECUTE (Tripwire):</span><strong>the early call.</strong> Settlement is still above the Threshold but breaks below the Tripwire, with no discretionary hold in place. It isn't a fire alarm yet; it's the smell of smoke. Take the marketing plan out of the drawer and check which bushels are next in line.</p>
+        <p><span class="mb-rox-pill">EXECUTE (Tripwire):</span><strong>the early call.</strong> Settlement is still above the Suspend/Execute line but breaks below the Tripwire, with no discretionary hold in place. It isn't a fire alarm yet; it's the smell of smoke. Take the marketing plan out of the drawer and check which bushels are next in line.</p>
       </div>
       <div class="mb-rox-state e">
-        <p><span class="mb-rox-pill">EXECUTE (Threshold):</span><strong>the main call.</strong> Settlement drops below the Threshold, and the market is in its execution phase. This is the time to price, sell, or put protection in place, following the plan you wrote while the market was quiet.</p>
+        <p><span class="mb-rox-pill">EXECUTE (Suspend/Execute Line):</span><strong>the main call.</strong> Settlement drops below the Suspend/Execute line, and the market is in its execution phase. This is the time to price, sell, or put protection in place, following the plan you wrote while the market was quiet.</p>
       </div>
 
       <!-- [EDITOR: confirm the return-to-SUSPEND condition] -->
@@ -295,7 +295,7 @@
         <li><strong>Settlement, not the midday tape.</strong> The box reads the close. It doesn't flinch at a lunchtime headline, and your plan shouldn't either.</li>
         <li><strong>One state at a time.</strong> The box is always in exactly one state. There's no "leaning," no "sort of," no "we'll see."</li>
         <!-- [EDITOR: hold rule awaiting final approval] -->
-        <li><strong>The discretionary hold.</strong> Sometimes the wider read argues against an early call: export pace, fund positioning, the seasonal pattern. Then a hold can be placed, and it's marked on the chart where everyone can see it. A hold can delay an early call. It never overrides a confirmed break below the Threshold.</li>
+        <li><strong>The discretionary hold.</strong> Sometimes the wider read argues against an early call: export pace, fund positioning, the seasonal pattern. Then a hold can be placed, and it's marked on the chart where everyone can see it. A hold can delay an early call. It never overrides a confirmed break below the Suspend/Execute line.</li>
         <li><strong>The record stays on the board.</strong> Every change of state is dated and logged, right calls and wrong ones alike. We don't erase the chalkboard.</li>
         <li><strong>The box informs. You decide.</strong> It doesn't know your basis, your bin space or your banker. You do.</li>
       </ul>
@@ -333,7 +333,7 @@
   ============================================================================ */
   var BOX = {
     state:  "threshold",
-    label:  "EXECUTE: Oct 6 Close above Threshold",
+    label:  "EXECUTE: Oct 6 Close above the Suspend/Execute line",
     since:  "",
     note:   "*HOLD condition(s) satisfied",
     settle: "2026-10-16"
@@ -347,7 +347,7 @@
   var STATES = {
     suspend:   { tag:"SUSPEND",             line:"Keep your powder dry, leave the bushels you planned to hold unpriced, and let the market come to you." },
     tripwire:  { tag:"EXECUTE (Tripwire)",  line:"Take the marketing plan out of the drawer and check which bushels are next in line." },
-    threshold: { tag:"EXECUTE (Threshold)", line:"This is the time to price, sell, or put protection in place, following the plan you wrote while the market was quiet." }
+    threshold: { tag:"EXECUTE (Suspend/Execute Line)", line:"This is the time to price, sell, or put protection in place, following the plan you wrote while the market was quiet." }
   };
   var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
