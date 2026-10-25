@@ -183,6 +183,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 }
 .bor-status-text.suspend{color:#4da6ff;}
 .bor-status-text.execute{color:var(--green);}
+.bor-status-note{display:block;margin-top:3px;font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.06em;color:var(--wheat-pal);opacity:.7;}
 .bor-updated{
   font-family:var(--mono);
   font-size:10px;
@@ -1259,10 +1260,10 @@ function renderCommandBar(){
   txt.className = 'bor-status-text ' + txtClass;
   var stateLabels = {
     'suspend':     'Suspend Sales',
-    'execute-60d': 'Execute Sales — Threshold',
+    'execute-60d': 'Price Below Threshold <span class="bor-status-note">(at last close)</span>',
     'execute-20d': 'Execute Sales — Tripwire'
   };
-  txt.textContent = stateLabels[st] || 'Suspend Sales';
+  txt.innerHTML = stateLabels[st] || 'Suspend Sales';
 
   document.getElementById('bor-updated').textContent = 'Updated: ' + cfg.borDate;
 
