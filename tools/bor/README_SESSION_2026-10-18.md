@@ -66,7 +66,7 @@ A hold keeps the current status through a single settlement that would otherwise
 
 | Key | Effect |
 |---|---|
-| `header: "ma"` | Header uses Trade Navigator's MA20/MA60 (AvgOHLC) labels. Omit it for the default "Tripwire / Suspend/Execute" header. |
+| ~~`header: "ma"`~~ | Removed 2026-10-24. The header always reads "Tripwire / Suspend/Execute"; the chart never shows the averages' lengths. |
 | `threshold_label`, `tripwire_label`, `close_label` | Text beside the right-side price tags; `\|` starts a new line |
 | `text` | Free text placed by date and price: `{date, price, text, color, size}` |
 | `zone_label` | Fixed `{date, price}` for "Execute Sale of Tranche(s)". Without it, the label finds the emptiest spot in the shading on its own and steers clear of notes and free text. |

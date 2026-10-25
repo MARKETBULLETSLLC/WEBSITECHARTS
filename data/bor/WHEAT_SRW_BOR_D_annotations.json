@@ -23,7 +23,6 @@
       "align": "right"
     }
   ],
-  "header": "ma",
   "threshold_label": "Above = Suspend|Below = Execute",
   "tripwire_label": "Tripwire",
   "close_label": "Current",
