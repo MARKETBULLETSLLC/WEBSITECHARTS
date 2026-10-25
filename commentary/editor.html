@@ -55,11 +55,13 @@ input{font:inherit;color:inherit;}
 .bor-row{display:flex;align-items:center;gap:14px;}
 .bor-light{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.4);}
 @keyframes breathe-blue{0%,100%{opacity:.22;box-shadow:0 0 5px 2px rgba(77,166,255,.2);}50%{opacity:1;box-shadow:0 0 18px 7px rgba(77,166,255,.85),0 0 36px 14px rgba(77,166,255,.25);}}
-@keyframes blink-green-normal{0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}50.01%,100%{opacity:.12;box-shadow:none;}}
+@keyframes blink-green-normal{0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}50.01%,100%{opacity:.35;box-shadow:none;}}
 .bor-light.suspend{background:#4da6ff;animation:breathe-blue 6s ease-in-out infinite;}
 .bor-light.execute{background:var(--green);animation:blink-green-normal 10s step-start infinite;}
-.bor-status-text{font-family:var(--serif2);font-size:22px;font-weight:700;letter-spacing:.03em;line-height:1.1;}
+.bor-widget.execute{box-shadow:inset 0 3px 0 var(--green);} .bor-widget.suspend{box-shadow:inset 0 3px 0 #4da6ff;}
+.bor-status-text{font-family:var(--serif2);font-size:24px;font-weight:900;text-transform:uppercase;letter-spacing:.14em;line-height:1;}
 .bor-status-text.suspend{color:#4da6ff;} .bor-status-text.execute{color:var(--green);}
+.bor-detail{font-family:var(--body);font-style:italic;font-size:15px;line-height:1.4;color:var(--buff);padding-top:10px;border-top:1px solid var(--border-lt);}
 .bor-choices{display:flex;gap:6px;}
 .bor-choice{flex:1;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:7px 8px;border:1px solid var(--border);border-radius:3px;color:rgba(245,230,192,.6);}
 .bor-choice[aria-pressed=true].s{border-color:#4da6ff;color:#4da6ff;background:rgba(77,166,255,.08);}
@@ -223,17 +225,18 @@ body.previewing #preview{display:block;}
 <main id="editor">
   <!-- Box-o-Rox + prices -->
   <div class="command-bar">
-    <div class="bor-widget">
+    <div class="bor-widget" id="bor-widget">
       <div class="bor-label">Box&#x2011;o&#x2011;Rox Status</div>
       <div class="bor-row">
         <div class="bor-light" id="bor-light"></div>
         <div class="bor-status-text" id="bor-text"></div>
       </div>
+      <div class="bor-detail" id="bor-detail"></div>
       <div class="bor-choices" role="group" aria-label="Box-o-Rox status">
         <button class="bor-choice s" data-status="suspend" aria-pressed="false">Suspend</button>
         <button class="bor-choice e" data-status="execute-60d" aria-pressed="false">Execute</button>
       </div>
-      <div class="bor-updated">Updated: <input class="fld" id="bor-date" placeholder="auto"></div>
+      <div class="bor-updated">At last close · <input class="fld" id="bor-date" placeholder="auto"></div>
     </div>
     <div class="prices-wrap">
       <div class="prices-heading">Latest Closing Prices</div>
@@ -272,9 +275,10 @@ body.previewing #preview{display:block;}
 <section id="preview">
   <div class="prev-banner">Preview — exactly as members will see it · click a chart to open it</div>
   <div class="command-bar">
-    <div class="bor-widget">
+    <div class="bor-widget" id="pv-bor-widget">
       <div class="bor-label">Box&#x2011;o&#x2011;Rox Status</div>
       <div class="bor-row"><div class="bor-light" id="pv-light"></div><div class="bor-status-text" id="pv-bor"></div></div>
+      <div class="bor-detail" id="pv-bor-detail"></div>
       <div class="bor-updated" id="pv-bor-date"></div>
     </div>
     <div class="prices-wrap"><div class="prices-heading">Latest Closing Prices</div><table class="prices-table" id="pv-prices"></table></div>
@@ -359,7 +363,8 @@ var COLORS = [
   { hex:'#B0C0D0', name:'Neutral / Macro' },
   { hex:'#F5E6C0', name:'Default' }
 ];
-var BOR_LABELS = { 'suspend':'Suspend Sales', 'execute-60d':'Execute Sales — Threshold' };
+var BOR_LABELS = { 'suspend':'Suspend', 'execute-60d':'Execute' };
+var BOR_DETAILS = { 'suspend':'Price above the Suspend/Execute line', 'execute-60d':'Price below the Suspend/Execute line' };
 var PRICE_ROWS = [
   { ticker:'ZW',  contract:'Chicago SRW (Dec)',       exchange:'CBOT',     unit:'$/bu' },
   { ticker:'KE',  contract:'Kansas City HRW (Dec)',   exchange:'KCBT',     unit:'$/bu' },
@@ -500,6 +505,8 @@ function setBor(st){
   $('bor-light').className = 'bor-light ' + cls;
   $('bor-text').className = 'bor-status-text ' + cls;
   $('bor-text').textContent = BOR_LABELS[state.bor];
+  $('bor-widget').className = 'bor-widget ' + cls;
+  $('bor-detail').textContent = BOR_DETAILS[state.bor];
   document.querySelectorAll('.bor-choice').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.status === state.bor); });
 }
 
@@ -681,7 +688,9 @@ function renderPreview(){
   var cls = d.bor.status === 'suspend' ? 'suspend' : 'execute';
   $('pv-light').className = 'bor-light ' + cls; $('pv-bor').className = 'bor-status-text ' + cls;
   $('pv-bor').textContent = BOR_LABELS[d.bor.status];
-  $('pv-bor-date').textContent = 'Updated: ' + (d.bor.date || prevWeekday(d.date));
+  $('pv-bor-widget').className = 'bor-widget ' + cls;
+  $('pv-bor-detail').textContent = BOR_DETAILS[d.bor.status];
+  $('pv-bor-date').textContent = 'At last close · ' + (d.bor.date || prevWeekday(d.date));
   var rows = '<thead><tr><th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th></tr></thead><tbody>';
   d.prices.forEach(function(p){
     var meta = PRICE_ROWS.filter(function(r){ return r.ticker === p.ticker; })[0];
