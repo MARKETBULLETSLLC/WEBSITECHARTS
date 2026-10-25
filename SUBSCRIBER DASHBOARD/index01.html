@@ -598,6 +598,19 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 .lb-nav:hover{color:var(--wheat-lt);}
 .lb-prev{left:12px;}
 .lb-next{right:12px;}
+.lb-fs-hint{display:none;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(245,230,192,.6);background:rgba(0,0,0,.5);padding:4px 10px;border-radius:12px;}
+/* Phone / tablet turned landscape: the chart fills the screen */
+@media (orientation:landscape) and (max-height:600px){
+  .lb{background:#000;}
+  .lb-img-wrap{max-width:100vw;max-height:100vh;max-height:100dvh;width:100vw;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .lb-img-wrap img{max-width:100vw;max-height:100vh;max-height:100dvh;width:auto;height:auto;object-fit:contain;box-shadow:none;}
+  .lb-title{display:none;}
+  .lb-close{top:8px;right:10px;font-size:18px;background:rgba(0,0,0,.4);z-index:2;}
+  .lb-nav{font-size:22px;z-index:2;}
+  .lb.can-fs:not(.is-fs) .lb-fs-hint{display:block;}
+}
+.lb.is-fs .lb-img-wrap{max-width:100vw;max-height:100vh;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;}
+.lb.is-fs .lb-img-wrap img{max-width:100vw;max-height:100vh;object-fit:contain;}
 
 /* ════════════════════════════════════════════════════
    FOOTER
@@ -850,6 +863,7 @@ footer{
   </div>
   <div class="lb-title" id="lb-title"></div>
   <span class="lb-nav lb-next" id="lb-next" title="Next">&#8250;</span>
+  <div class="lb-fs-hint">Tap chart for full screen</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1110,6 +1124,7 @@ function openLightbox(src, title, items, index){
   showLb(lbIndex);
   document.getElementById('lb').classList.add('open');
   document.body.style.overflow = 'hidden';
+  lbAfterOpen();
 }
 function showLb(i){
   var it = lbItems[i];
@@ -1121,6 +1136,7 @@ function showLb(i){
   next.style.visibility = lbItems.length > 1 ? 'visible' : 'hidden';
 }
 function closeLightbox(){
+  lbExitFullscreen();
   document.getElementById('lb').classList.remove('open');
   document.getElementById('lb-img').src = '';
   document.body.style.overflow = '';
@@ -1145,6 +1161,34 @@ document.addEventListener('keydown', function(e){
   if(e.key==='Escape') closeLightbox();
   if(e.key==='ArrowLeft'  && lbItems.length>1){ lbIndex=(lbIndex-1+lbItems.length)%lbItems.length; showLb(lbIndex); }
   if(e.key==='ArrowRight' && lbItems.length>1){ lbIndex=(lbIndex+1)%lbItems.length; showLb(lbIndex); }
+});
+
+/* Phones / tablets: turned landscape, the chart fills the screen (CSS);
+   where the browser allows it, tapping the chart goes true full screen. */
+var lbCanFs = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+var lbTouch = !!(window.matchMedia && window.matchMedia('(pointer:coarse)').matches);
+function lbFullscreen(){
+  var lb = document.getElementById('lb'), req = lb.requestFullscreen || lb.webkitRequestFullscreen;
+  if(!req) return;
+  try { var p = req.call(lb); if(p && p.catch) p.catch(function(){}); } catch(err){}
+}
+function lbExitFullscreen(){
+  var ex = document.exitFullscreen || document.webkitExitFullscreen;
+  if((document.fullscreenElement || document.webkitFullscreenElement) && ex){ try { ex.call(document); } catch(err){} }
+}
+function lbAfterOpen(){
+  var lb = document.getElementById('lb');
+  lb.classList.toggle('can-fs', lbCanFs && lbTouch);
+  if(lbTouch && lbCanFs && window.innerWidth > window.innerHeight) lbFullscreen();  // already landscape: this tap is the gesture
+}
+document.getElementById('lb-img').addEventListener('click', function(e){
+  e.stopPropagation();
+  if(lbTouch && lbCanFs && !(document.fullscreenElement || document.webkitFullscreenElement)) lbFullscreen();
+});
+['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){
+  document.addEventListener(ev, function(){
+    document.getElementById('lb').classList.toggle('is-fs', !!(document.fullscreenElement || document.webkitFullscreenElement));
+  });
 });
 
 /* ════════════════════════════════════════════════════
@@ -1379,10 +1423,13 @@ function wireStaticTriggers(){
    (runs after commentary HTML is injected)
 ════════════════════════════════════════════════════ */
 function wireCommentaryTriggers(){
-  document.querySelectorAll('.commentary-body .lb-trigger').forEach(function(el){
+  // Bullets and body: every commentary thumbnail opens the lightbox, with ‹ › through all of them
+  var els = document.querySelectorAll('#commentary-wrap .lb-trigger');
+  var set = Array.prototype.map.call(els, function(el){ return { src: el.dataset.src, title: el.dataset.title }; });
+  Array.prototype.forEach.call(els, function(el, i){
     el.addEventListener('click', function(e){
       e.preventDefault();
-      openLightbox(el.dataset.src, el.dataset.title);
+      openLightbox(null, null, set, i);
     });
   });
 }
