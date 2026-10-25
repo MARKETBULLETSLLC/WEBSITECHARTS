@@ -1015,13 +1015,17 @@ function validate(doc, publishing){
 function save(publishing){
   var doc = serialize();
   var probs = validate(doc, publishing);
-  if(publishing && probs.length){
-    var hard = probs.filter(function(p){ return p.indexOf('OK to') < 0; });
-    if(hard.length){ alert('Can’t publish yet: ' + hard.join('; ') + '.'); return; }
-    if(!confirm('Heads up: ' + probs.join('; '))) return;
-  }
+  var hard = probs.filter(function(p){ return p.indexOf('OK to') < 0; });
+  if(publishing && hard.length){ alert('Can’t publish yet: ' + hard.join('; ') + '.'); return; }
   var name = (publishing ? '' : '_DRAFT_') + doc.date + '.json';
-  if(publishing && !confirm('Publish “' + textOf(doc.headline).slice(0, 80) + '” to the Members Dashboard as ' + doc.date + '?')) return;
+  // Chrome only opens the folder picker (or its permission prompt) straight off
+  // a click, and a confirm() dialog uses that click up — so get the folder
+  // first, then ask the publish questions.
+  var confirmed = function(){
+    if(!publishing) return true;
+    if(probs.length && !confirm('Heads up: ' + probs.join('; '))) return false;
+    return confirm('Publish “' + textOf(doc.headline).slice(0, 80) + '” to the Members Dashboard as ' + doc.date + '?');
+  };
   var json = JSON.stringify(doc, null, 2);
   var done = function(where){
     dirty = false; clearTimeout(autoT);
@@ -1031,11 +1035,13 @@ function save(publishing){
     if(publishing) watchLive(doc);
   };
   if(!hasFsApi){
+    if(!confirmed()) return;
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([json], { type:'application/json' })); a.download = name; a.click();
     setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
     done('Downloads (move it into WEBSITECHARTS/commentary)'); return;
   }
   getFolder().then(function(dir){
+    if(!confirmed()) throw new Error('cancelled');
     return dir.getFileHandle(name, { create:true }).then(function(fh){ return fh.createWritable(); })
       .then(function(w){ return w.write(json).then(function(){ return w.close(); }); })
       .then(function(){ done(dir.name + '/'); });
