@@ -226,7 +226,7 @@
     <div class="mb-sd-feature">
       <a class="mb-sd-feature-thumb" href="/box-o-rox" aria-label="Open the Box-o-Rox chart and rules">
         <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
-             alt="Box-o-Rox daily chart: Chicago SRW settlement against the Threshold and Tripwire" loading="lazy">
+             alt="Box-o-Rox daily chart: Chicago SRW settlement against the Suspend/Execute line and the Tripwire" loading="lazy">
         <span>Daily · Updated each session</span>
       </a>
       <div>
@@ -238,7 +238,7 @@
           <span class="mb-sd-status-date"></span>
         </div>
         <p class="mb-sd-feature-lede">Box-o-Rox measures Chicago SRW settlement against two lines,
-        the Threshold and the Tripwire, and holds one of two states: SUSPEND or EXECUTE. Each state
+        the Suspend/Execute line and the Tripwire, and holds one of two states: SUSPEND or EXECUTE. Each state
         is a marketing posture, not a price target.</p>
         <ul class="mb-sd-benefits">
           <li><strong>For producers</strong>A plain cue for when to price the next tranche, so the
@@ -471,7 +471,7 @@
   var SRC = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/SUBSCRIBER%20DASHBOARD/index01.html';
   var STATES = {
     'suspend':     { text:'Suspend Sales',             cls:'is-suspend' },
-    'execute-60d': { text:'Execute Sales — Threshold', cls:'is-execute' },
+    'execute-60d': { text:'Execute Sales — Suspend/Execute Line', cls:'is-execute' },
     'execute-20d': { text:'Execute Sales — Tripwire',  cls:'is-execute is-execute-fast' }
   };
   function fallback(){ label.textContent = 'See current status on the chart'; }

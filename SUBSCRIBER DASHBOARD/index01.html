@@ -147,7 +147,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   border-radius:50%;
   border:1px solid rgba(0,0,0,.25);
 }
-/* Breathing blue — SUSPEND (price above the Threshold, tranches accumulating) */
+/* Breathing blue — SUSPEND (price above the Suspend/Execute line, tranches accumulating) */
 @keyframes breathe-blue{
   0%,100%{opacity:.22;box-shadow:0 0 5px 2px rgba(77,166,255,.2);}
   50%{opacity:1;box-shadow:0 0 18px 7px rgba(77,166,255,.85),0 0 36px 14px rgba(77,166,255,.25);}
@@ -156,7 +156,7 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
   background:#4da6ff;
   animation:breathe-blue 6s ease-in-out infinite;
 }
-/* Blinking green — EXECUTE (Threshold breach, 10s cycle) */
+/* Blinking green — EXECUTE (Suspend/Execute line breach, 10s cycle) */
 @keyframes blink-green-normal{
   0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}
   50.01%,100%{opacity:.12;box-shadow:none;}
@@ -703,13 +703,13 @@ footer{
   <h2 class="section-heading">Box&#x2011;o&#x2011;Rox Signal Chart</h2>
   <a class="bor-chart-card lb-trigger"
      data-src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
-     data-title="Box-o-Rox Daily — SRW Settlement vs Threshold"
+     data-title="Box-o-Rox Daily — SRW Settlement vs Suspend/Execute Line"
      href="#"
   >
     <img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png"
          alt="Box-o-Rox Daily" loading="lazy">
     <div class="bor-chart-caption">
-      <div class="bor-chart-caption-title">Box&#x2011;o&#x2011;Rox Daily — SRW Settlement vs Threshold</div>
+      <div class="bor-chart-caption-title">Box&#x2011;o&#x2011;Rox Daily — SRW Settlement vs Suspend/Execute Line</div>
       <div class="bor-chart-caption-sub">CLICK TO EXPAND</div>
     </div>
   </a>
@@ -897,8 +897,8 @@ footer{
 const MB_CONFIG = {
 
   /* ── BOX-O-ROX STATUS ──────────────────────────────
-     'suspend'      Condition 1 — price above the Threshold
-     'execute-60d'  Condition 2 — price below the Threshold
+     'suspend'      Condition 1 — price above the Suspend/Execute line
+     'execute-60d'  Condition 2 — price below the Suspend/Execute line
      'execute-20d'  Condition 3 — Tripwire signal active   */
   borStatus: 'execute-60d',                    // ← 'suspend' | 'execute-60d' | 'execute-20d'
   borDate:   'Oct 20, 2026',                   // ← Update each session
@@ -922,7 +922,7 @@ const MB_CONFIG = {
        rounded to ticks; high and low are unofficial, check against TN.
      - KC: ADMIS + GX94 ($6.91, -8½). MPLS: ADMIS + GX94 ($6.61¾, -8¼). O/H/L not sourced.
      - Paris: no verified Oct 20 settle found; fill from TN or leave blank.
-     - Threshold/Tripwire: bor_update.py formula with Mon/Tue bars appended (not yet pasted to data/bor). */
+     - Suspend/Execute line and Tripwire: bor_update.py formula with Mon/Tue bars appended (not yet pasted to data/bor). */
 
   /* ── COMMENTARY DATELINE ────────────────────────── */
   dateline: 'WEDNESDAY, OCTOBER 21, 2026 · Pre-Dawn Update',
@@ -940,7 +940,7 @@ const MB_CONFIG = {
   bullets: [
     { color: '#E08050', text: 'Dec Chicago settled Tuesday at $6.43¼, down 12¢, after giving up 5¼¢ Monday. That\'s the first settle under the Aug. 11 swing low of $6.45¼, the launch pad for the August Black Sea rally and the floor we named Monday. KC fell 8½¢ to $6.91 and Minneapolis 8¼¢ to $6.61¾. All three classes closed at fresh two-to-three-month lows, per <a href="https://www.admis.com/ag-market-view-for-oct-20-2026/" target="_blank" rel="noopener">ADM Investor Services</a>. Overnight, Dec Chicago slipped to about $6.37, down 6¼¢, as of 1 a.m. Pacific, under Tuesday\'s low.' },
     { color: '#B0C0D0', text: 'Tuesday tried to bounce first. Dec opened at $6.56 and worked up near $6.62, then got sold 19¢ off the high to settle near the low. That\'s two straight sessions closing in the bottom of the range.' },
-    { color: '#F5E6C0', text: '<a href="https://www.marketbulletsllc.com/box-o-rox" style="float:right;margin:2px 0 8px 14px"><img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png" class="inline-chart-thumb" alt="Box-o-Rox daily chart"></a><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Threshold, now about 56¢ under it. The Threshold sits near $6.99¼ and the Tripwire near $6.82½, and both are still bending lower to follow price. The signal didn\'t change this week. The price did. For the producer, the cue is the same one we gave Monday: the next tranche goes on plan. For the elevator, the input dealer and the banker carrying the operating note, it\'s the same yardstick posted before the open, so everybody at the table is reading from one page. Box-o-Rox informs; the marketing plan decides. <strong><a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">See the chart and the rules →</a></strong>' },
+    { color: '#F5E6C0', text: '<a href="https://www.marketbulletsllc.com/box-o-rox" style="float:right;margin:2px 0 8px 14px"><img src="https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/charts/WHEAT_SRW_BOR_D.png" class="inline-chart-thumb" alt="Box-o-Rox daily chart"></a><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Suspend/Execute line, now about 56¢ under it. The Suspend/Execute line sits near $6.99¼ and the Tripwire near $6.82½, and both are still bending lower to follow price. The signal didn\'t change this week. The price did. For the producer, the cue is the same one we gave Monday: the next tranche goes on plan. For the elevator, the input dealer and the banker carrying the operating note, it\'s the same yardstick posted before the open, so everybody at the table is reading from one page. Box-o-Rox informs; the marketing plan decides. <strong><a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">See the chart and the rules →</a></strong>' },
     { color: '#7BBFDE', text: 'Black Sea: there were renewed strikes on vessels Monday, and wheat fell anyway, to its lowest since Aug. 12, per Bloomberg via UkrAgroConsult. The headlines the market is trading are the peace-side ones: a Turkish two-corridor plan and a reported EU push for a safe-navigation deal.' },
     { color: '#8FCB8A', text: 'Crop Progress: U.S. winter wheat was 63% planted (69% average) and 39% emerged, still behind. Washington is ahead of the country: 96% planted against a 90% average, and 80% emerged against 65%.' },
     { color: '#7BBFDE', text: 'Export inspections came in at 240,308 tonnes, about 8.8 million bu. That\'s down from 307,025 the week before. Marketing-year inspections stand at 7.22 MMT, 36% behind last year\'s 11.21 MMT. Jordan reportedly passed on both offers in its 120,000-tonne tender.' },
@@ -976,7 +976,7 @@ const MB_CONFIG = {
 
     <p><strong>Follow the spread to find the pressure.</strong> KC's premium over Chicago has widened back to 47¾¢, from 43½¢ Friday. Last week hard red winter was taking the beating as KC funds liquidated longs. This week Chicago is leading the way down, and Chicago is where managed money was already short about 33,000 contracts as of Oct. 13, per the <a href="https://www.cftc.gov/dea/futures/ag_sf.htm" target="_blank" rel="noopener">CFTC</a>. A short position pressing into a broken floor is moving with the wind at its back. Friday's report, with positions as of today, will show whether they pressed again. Inside Chicago, the Dec-to-March carry is 15¼¢, with March settling at $6.58½. A carry that wide is the market offering to pay you to store wheat. It's offering to pay storage, though, not to guarantee the price. [chart:SPDINTER_SRW_HRW_M.png] [chart:SPD_SRW_Z_H2.png]</p>
 
-    <p><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Threshold, now about 56¢ beneath it at roughly $6.99¼. The Tripwire has eased to about $6.82½, down 6¾¢ in two sessions. That's how the yardstick behaves: it follows price slowly, so it's coming down to meet the market even as the market keeps walking away from it. No discretionary hold is in effect, and no report on the calendar argues for one. A return to SUSPEND takes a settle back above the Threshold, 56¢ from here. <a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">The chart and the rules</a> are posted for anyone who wants to check our work. The signal didn't change this week. The price did, and that changes the conversation. [chart:WHEAT_SRW_BOR_D.png]</p>
+    <p><strong>Box-o-Rox: EXECUTE.</strong> Tuesday was the tenth straight settle below the Suspend/Execute line, now about 56¢ beneath it at roughly $6.99¼. The Tripwire has eased to about $6.82½, down 6¾¢ in two sessions. That's how the yardstick behaves: it follows price slowly, so it's coming down to meet the market even as the market keeps walking away from it. No discretionary hold is in effect, and no report on the calendar argues for one. A return to SUSPEND takes a settle back above the Suspend/Execute line, 56¢ from here. <a href="https://www.marketbulletsllc.com/box-o-rox" target="_blank" rel="noopener">The chart and the rules</a> are posted for anyone who wants to check our work. The signal didn't change this week. The price did, and that changes the conversation. [chart:WHEAT_SRW_BOR_D.png]</p>
 
     <p><strong>Marketing posture: EXECUTE, still on plan. What's changed is the question.</strong> For the 7:30 call:</p>
 
@@ -1260,7 +1260,7 @@ function renderCommandBar(){
   txt.className = 'bor-status-text ' + txtClass;
   var stateLabels = {
     'suspend':     'Suspend Sales',
-    'execute-60d': 'Price Below Threshold <span class="bor-status-note">(at last close)</span>',
+    'execute-60d': 'Price Below Suspend/Execute Line <span class="bor-status-note">(at last close)</span>',
     'execute-20d': 'Execute Sales — Tripwire'
   };
   txt.innerHTML = stateLabels[st] || 'Suspend Sales';
