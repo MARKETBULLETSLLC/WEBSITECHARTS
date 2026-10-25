@@ -24,7 +24,7 @@ To fix a typo after publishing: open `YYYY-MM-DD.docx`, fix, save. Same path.
 | In Word | On the dashboard |
 |---|---|
 | `Dateline:` line at top | Dateline. Leave blank for the automatic `FRIDAY, OCTOBER 23, 2026 · Pre-Dawn Update` |
-| `Box-o-Rox: SUSPEND / EXECUTE / TRIPWIRE` | BoR badge. Add `· Oct 22, 2026` to set the date, otherwise the previous weekday |
+| `Box-o-Rox: SUSPEND / EXECUTE` | BoR badge. Add `· Oct 22, 2026` to set the date, otherwise the previous weekday |
 | Prices table (Contract, Open, High, Low, Close, Chg) | Closing prices. Rows left blank are left unchanged; delete the table to skip prices |
 | First paragraph (Title style) | Headline |
 | Word bullet list | Bullets. Start one with `[bull]` `[bear]` `[global]` `[usda]` `[macro]` to color it |

@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commentary Editor — MarketBullets®</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!--
+  MarketBullets Commentary Editor
+  Opens in Chrome or Edge (PC or Mac). Looks like the Members Dashboard; every
+  field is edited in place. "Publish" writes commentary/YYYY-MM-DD.json, which
+  tools/word_commentary.py turns into MB_CONFIG and pushes to GitHub.
+  Nothing here talks to GitHub except READING the live dashboard and chart list.
+-->
+<style>
+:root{
+  --soil:#0A0704; --soil-mid:#0F0B07; --soil-lt:#1A1208; --charcoal:#231A0E; --char-lt:#2E2213;
+  --cream:#FBF7EE; --parchment:#F0E8D0; --buff:#E4D9BA; --wheat:#C8960A; --wheat-lt:#E8B820;
+  --wheat-pal:#F5E6C0; --wheat-dim:rgba(200,150,10,.12); --gold:#D4A051; --red:#DC3220;
+  --green:#32C850; --up:#5AAA70; --dn:#E05030; --border:rgba(200,150,10,.20); --border-lt:rgba(200,150,10,.09);
+  --serif:'DM Serif Display',Georgia,serif; --serif2:'Playfair Display',Georgia,serif;
+  --body:'Lora',Georgia,serif; --mono:'IBM Plex Mono','Courier New',monospace;
+  --ui:#3b2c17; --focus:rgba(232,184,32,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{color-scheme:dark;}
+body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-size:16px;line-height:1.6;min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+input{font:inherit;color:inherit;}
+
+/* ── App bar ─────────────────────────────────────── */
+.appbar{position:sticky;top:0;z-index:50;background:#120d07;border-bottom:1px solid var(--border);
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 20px;}
+.brand{font-family:var(--serif2);font-weight:700;color:var(--wheat-lt);font-size:17px;white-space:nowrap;}
+.brand small{font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.14em;color:rgba(245,230,192,.45);margin-left:8px;text-transform:uppercase;}
+.appbar label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,230,192,.5);display:flex;align-items:center;gap:6px;}
+.appbar input[type=date]{background:var(--soil-lt);border:1px solid var(--border);border-radius:3px;padding:5px 8px;font-family:var(--mono);font-size:13px;}
+.spacer{flex:1;}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--border);border-radius:3px;color:var(--wheat-pal);background:var(--soil-lt);white-space:nowrap;}
+.btn:hover{border-color:var(--wheat);color:var(--cream);}
+.btn.primary{background:var(--wheat);color:#1a1206;border-color:var(--wheat);font-weight:600;}
+.btn.primary:hover{background:var(--wheat-lt);}
+.btn.on{border-color:var(--wheat-lt);color:var(--wheat-lt);}
+.status{font-family:var(--mono);font-size:11px;color:rgba(245,230,192,.6);width:100%;display:flex;gap:16px;flex-wrap:wrap;}
+.status .ok{color:var(--up);} .status .warn{color:var(--wheat-lt);} .status .err{color:var(--dn);}
+.folder{cursor:pointer;text-decoration:underline dotted;}
+
+/* ── Command bar (same as the dashboard) ─────────── */
+.command-bar{max-width:1440px;margin:0 auto;background:var(--soil-mid);border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;}
+.bor-widget{flex:0 0 340px;display:flex;flex-direction:column;justify-content:center;gap:10px;padding:24px 32px;border-right:1px solid var(--border);background:var(--soil-lt);}
+.bor-label,.prices-heading{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,230,192,.45);}
+.bor-row{display:flex;align-items:center;gap:14px;}
+.bor-light{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.4);}
+@keyframes breathe-blue{0%,100%{opacity:.22;box-shadow:0 0 5px 2px rgba(77,166,255,.2);}50%{opacity:1;box-shadow:0 0 18px 7px rgba(77,166,255,.85),0 0 36px 14px rgba(77,166,255,.25);}}
+@keyframes blink-green-normal{0%,50%{opacity:1;box-shadow:0 0 14px 5px rgba(50,200,80,.80);}50.01%,100%{opacity:.12;box-shadow:none;}}
+.bor-light.suspend{background:#4da6ff;animation:breathe-blue 6s ease-in-out infinite;}
+.bor-light.execute{background:var(--green);animation:blink-green-normal 10s step-start infinite;}
+.bor-status-text{font-family:var(--serif2);font-size:22px;font-weight:700;letter-spacing:.03em;line-height:1.1;}
+.bor-status-text.suspend{color:#4da6ff;} .bor-status-text.execute{color:var(--green);}
+.bor-choices{display:flex;gap:6px;}
+.bor-choice{flex:1;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:7px 8px;border:1px solid var(--border);border-radius:3px;color:rgba(245,230,192,.6);}
+.bor-choice[aria-pressed=true].s{border-color:#4da6ff;color:#4da6ff;background:rgba(77,166,255,.08);}
+.bor-choice[aria-pressed=true].e{border-color:var(--green);color:var(--green);background:rgba(50,200,80,.08);}
+.bor-updated{font-family:var(--mono);font-size:10px;color:rgba(245,230,192,.45);letter-spacing:.06em;display:flex;align-items:center;gap:6px;}
+.bor-updated input{width:120px;}
+.prices-wrap{flex:1 1 0;padding:18px 28px;overflow-x:auto;}
+.prices-heading{margin-bottom:10px;}
+.prices-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px;}
+.prices-table th{text-align:left;padding:5px 10px 5px 0;font-size:10px;letter-spacing:.10em;color:rgba(245,230,192,.45);border-bottom:1px solid var(--border-lt);white-space:nowrap;font-weight:400;}
+.prices-table td{padding:5px 10px 5px 0;border-bottom:1px solid var(--border-lt);white-space:nowrap;vertical-align:middle;}
+.prices-table tr:last-child td{border-bottom:none;}
+.pt-exchange{font-size:9px;color:rgba(245,230,192,.45);display:block;margin-top:1px;letter-spacing:.06em;}
+.fld{background:transparent;border:1px solid transparent;border-bottom:1px dashed rgba(200,150,10,.3);border-radius:2px;padding:3px 5px;font-family:var(--mono);font-size:12px;color:var(--wheat-pal);width:72px;}
+.fld:hover{border-bottom-color:var(--wheat);}
+.fld:focus{outline:none;border:1px solid var(--focus);background:rgba(232,184,32,.05);}
+.fld.contract{width:190px;font-size:13px;font-weight:600;color:var(--cream);}
+.fld.close{font-size:14px;font-weight:600;color:var(--wheat-lt);}
+.fld.up{color:var(--up);} .fld.dn{color:var(--dn);}
+.chg-cell{display:flex;align-items:center;gap:2px;}
+.arrow{font-size:11px;width:12px;} .arrow.up{color:var(--up);} .arrow.dn{color:var(--dn);}
+@media(max-width:900px){.command-bar{flex-direction:column;}.bor-widget{flex:unset;border-right:none;border-bottom:1px solid var(--border);}.prices-wrap{padding:16px 20px;}}
+
+/* ── Commentary (same as the dashboard) ─────────── */
+.commentary-wrap{max-width:1440px;margin:0 auto;padding:40px 48px 80px;background:var(--soil);}
+.commentary-dateline{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--wheat);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border-lt);display:flex;align-items:center;gap:10px;}
+.commentary-dateline input{flex:1;background:transparent;border:1px solid transparent;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--wheat);padding:3px 4px;}
+.commentary-dateline input:hover{border-bottom:1px dashed rgba(200,150,10,.4);}
+.commentary-dateline input:focus{outline:none;border:1px solid var(--focus);}
+.mini{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,230,192,.45);border:1px solid var(--border-lt);border-radius:2px;padding:3px 7px;white-space:nowrap;}
+.mini:hover{color:var(--wheat-lt);border-color:var(--wheat);}
+.mini.auto-on{color:var(--up);border-color:rgba(90,170,112,.4);}
+
+.section-tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,230,192,.35);margin:6px 0 8px;}
+.bullets-list{list-style:none;margin-bottom:12px;display:flex;flex-direction:column;gap:10px;}
+.bullet-item{display:flex;align-items:baseline;gap:12px;font-family:var(--serif2);font-size:18px;font-weight:700;line-height:1.35;position:relative;}
+.bullet-mark{flex-shrink:0;width:7px;height:7px;border-radius:50%;margin-top:7px;}
+button.bullet-mark{width:13px;height:13px;margin:0 -3px;border:2px solid transparent;}
+button.bullet-mark:hover{border-color:var(--cream);}
+.bwrap{flex:1;min-width:0;}
+.commentary-body{max-width:860px;font-family:var(--body);font-size:16px;line-height:1.8;color:var(--buff);}
+.commentary-body a,.rich a{color:var(--wheat-lt);border-bottom:1px solid rgba(232,184,32,.35);}
+.bullet-item .rich a{color:inherit;border-bottom-color:currentColor;}
+.inline-chart-link{display:inline-block;vertical-align:middle;margin:0 6px 4px;cursor:pointer;}
+.inline-chart-thumb{width:130px;height:auto;border:1px solid var(--border);border-radius:2px;transition:transform .15s,border-color .15s;display:block;}
+.inline-chart-link:hover .inline-chart-thumb{transform:scale(1.06);border-color:var(--wheat);}
+
+/* editable blocks */
+.rich{outline:none;border-radius:2px;min-height:1.4em;padding:2px 4px;margin:-2px -4px;transition:background .15s;}
+.rich:hover{background:rgba(232,184,32,.035);}
+.rich:focus{background:rgba(232,184,32,.06);box-shadow:0 0 0 1px var(--focus);}
+.rich:empty::before{content:attr(data-ph);color:rgba(245,230,192,.28);font-style:italic;font-weight:400;}
+.headline{font-family:var(--body);font-size:1.15em;color:#E8B820;font-weight:700;margin-bottom:20px;max-width:860px;}
+.blk{position:relative;}
+.tools{position:absolute;right:-6px;top:-14px;display:none;gap:2px;background:var(--charcoal);border:1px solid var(--border);border-radius:3px;padding:2px;z-index:5;font-family:var(--mono);font-weight:400;}
+.blk:hover>.tools,.blk:focus-within>.tools{display:flex;}
+.tools button{font-size:12px;line-height:1;padding:5px 7px;border-radius:2px;color:rgba(245,230,192,.75);}
+.tools button:hover{background:var(--char-lt);color:var(--cream);}
+.tools button.del:hover{color:var(--dn);}
+.para{margin-bottom:20px;}
+.para-charts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.thumb{position:relative;display:inline-block;}
+.thumb .x{position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:var(--charcoal);border:1px solid var(--border);font-size:11px;line-height:18px;text-align:center;color:var(--wheat-pal);display:none;font-family:var(--mono);}
+.thumb:hover .x{display:block;} .thumb .x:hover{color:var(--dn);border-color:var(--dn);}
+.bullet-thumb{float:right;margin:2px 0 8px 14px;}
+.add-row{display:flex;gap:8px;margin:4px 0 30px;}
+.add{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,230,192,.45);border:1px dashed var(--border);border-radius:3px;padding:7px 12px;}
+.add:hover{color:var(--wheat-lt);border-color:var(--wheat);}
+.hint{font-family:var(--mono);font-size:10.5px;color:rgba(245,230,192,.35);letter-spacing:.04em;margin:-6px 0 18px;line-height:1.7;}
+.hint kbd{font-family:var(--mono);border:1px solid var(--border);border-bottom-width:2px;border-radius:3px;padding:0 4px;color:rgba(245,230,192,.6);}
+
+/* preview mode: hide all editing chrome, render exactly like the site */
+#preview{display:none;}
+body.previewing #editor{display:none;}
+body.previewing #preview{display:block;}
+.prev-banner{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:6px;background:var(--wheat-dim);color:var(--wheat-lt);}
+#preview .bullet-item{font-size:18px;}
+#preview .commentary-body p{margin-bottom:20px;}
+#preview .commentary-body ul{margin:0 0 20px 22px;}
+
+/* ── Floating format bar, link bubble, popovers ──── */
+.fmtbar{position:fixed;z-index:80;display:none;gap:2px;background:#1d150b;border:1px solid var(--wheat);border-radius:4px;padding:3px;box-shadow:0 6px 24px rgba(0,0,0,.6);}
+.fmtbar button{font-family:var(--mono);font-size:13px;padding:6px 10px;border-radius:3px;color:var(--wheat-pal);}
+.fmtbar button:hover{background:var(--char-lt);color:var(--cream);}
+.linkbub{position:fixed;z-index:80;display:none;align-items:center;gap:8px;background:#1d150b;border:1px solid var(--border);border-radius:4px;padding:6px 10px;font-family:var(--mono);font-size:11px;box-shadow:0 6px 24px rgba(0,0,0,.6);max-width:min(520px,92vw);}
+.linkbub a{color:var(--wheat-lt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:320px;}
+.linkbub button{color:rgba(245,230,192,.7);padding:2px 6px;border:1px solid var(--border-lt);border-radius:2px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;}
+.linkbub button:hover{color:var(--cream);border-color:var(--wheat);}
+.palette{position:fixed;z-index:85;display:none;flex-direction:column;gap:2px;background:#1d150b;border:1px solid var(--border);border-radius:4px;padding:6px;box-shadow:0 6px 24px rgba(0,0,0,.6);}
+.palette button{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:3px;font-family:var(--mono);font-size:11px;text-align:left;}
+.palette button:hover{background:var(--char-lt);}
+.palette i{width:12px;height:12px;border-radius:50%;display:inline-block;}
+
+.modal-bg{position:fixed;inset:0;z-index:90;background:rgba(6,4,2,.8);display:none;align-items:center;justify-content:center;padding:16px;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--soil-lt);border:1px solid var(--border);border-radius:4px;width:min(560px,100%);padding:22px;box-shadow:0 12px 50px rgba(0,0,0,.7);}
+.modal.wide{width:min(1100px,100%);height:min(86vh,900px);display:flex;flex-direction:column;}
+.modal h3{font-family:var(--serif2);font-size:20px;color:var(--cream);margin-bottom:6px;}
+.modal p.sub{font-family:var(--mono);font-size:11px;color:rgba(245,230,192,.5);margin-bottom:14px;}
+.modal .row{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;flex-wrap:wrap;}
+.txt{width:100%;background:var(--soil);border:1px solid var(--border);border-radius:3px;padding:10px 12px;font-family:var(--mono);font-size:13px;color:var(--cream);}
+.txt:focus{outline:none;border-color:var(--wheat);}
+.linktext{font-family:var(--body);font-size:15px;color:var(--wheat-lt);margin-bottom:10px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 12px;}
+.chip{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--border);border-radius:12px;color:rgba(245,230,192,.65);}
+.chip[aria-pressed=true]{border-color:var(--wheat-lt);color:var(--wheat-lt);background:var(--wheat-dim);}
+.grid{flex:1;overflow:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:2px;}
+.card{border:1px solid var(--border-lt);border-radius:3px;background:var(--soil);text-align:left;overflow:hidden;display:flex;flex-direction:column;}
+.card:hover{border-color:var(--wheat);}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:left top;background:var(--soil-mid);display:block;}
+.card .t{font-family:var(--serif2);font-size:13px;font-weight:700;color:var(--cream);padding:7px 9px 0;}
+.card .f{font-family:var(--mono);font-size:9.5px;color:rgba(245,230,192,.45);padding:2px 9px 8px;word-break:break-all;}
+.card.missing img{opacity:.15;}
+
+/* ── Lightbox: same as the site + landscape full screen ── */
+.lb{display:none;position:fixed;inset:0;z-index:9999;background:rgba(6,4,2,.96);cursor:zoom-out;flex-direction:column;align-items:center;justify-content:center;}
+.lb.open{display:flex;}
+.lb-img-wrap{max-width:95vw;max-height:88vh;overflow:auto;cursor:default;}
+.lb-img-wrap img{max-width:100%;height:auto;display:block;box-shadow:0 8px 40px rgba(0,0,0,.8);}
+.lb-title{margin-top:12px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:rgba(245,230,192,.55);}
+.lb-close{position:fixed;top:18px;right:22px;font-family:var(--mono);font-size:22px;color:rgba(245,230,192,.5);cursor:pointer;line-height:1;padding:4px 8px;border:1px solid rgba(245,230,192,.15);border-radius:2px;z-index:2;}
+.lb-close:hover{color:var(--cream);border-color:rgba(245,230,192,.5);}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:28px;color:rgba(245,230,192,.35);cursor:pointer;padding:12px 16px;user-select:none;z-index:2;}
+.lb-nav:hover{color:var(--wheat-lt);} .lb-prev{left:12px;} .lb-next{right:12px;}
+.lb-fs-hint{display:none;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(245,230,192,.6);background:rgba(0,0,0,.5);padding:4px 10px;border-radius:12px;}
+@media (orientation:landscape) and (max-height:600px){
+  .lb{background:#000;}
+  .lb-img-wrap{max-width:100vw;max-height:100vh;max-height:100dvh;width:100vw;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .lb-img-wrap img{max-width:100vw;max-height:100vh;max-height:100dvh;width:auto;height:auto;object-fit:contain;box-shadow:none;}
+  .lb-title{display:none;}
+  .lb-close{top:8px;right:10px;font-size:18px;background:rgba(0,0,0,.4);}
+  .lb-nav{font-size:22px;}
+  .lb.can-fs:not(.is-fs) .lb-fs-hint{display:block;}
+}
+.lb.is-fs .lb-img-wrap,.lb:fullscreen .lb-img-wrap{max-width:100vw;max-height:100vh;width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;}
+.lb.is-fs .lb-img-wrap img{max-width:100vw;max-height:100vh;object-fit:contain;}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:95;background:#1d150b;border:1px solid var(--wheat);border-radius:4px;padding:10px 16px;font-family:var(--mono);font-size:12px;color:var(--cream);box-shadow:0 8px 30px rgba(0,0,0,.6);display:none;max-width:92vw;}
+@media(max-width:700px){
+  .commentary-wrap{padding:28px 16px 60px;} .bullet-item{font-size:15px;} .commentary-body{font-size:15px;}
+  .inline-chart-thumb{width:90px;} .bor-widget{padding:20px 16px;} .appbar{padding:10px 16px;}
+  .tools{position:static;display:flex;margin-top:6px;width:max-content;}
+}
+@media print{.appbar,.tools,.add-row,.hint,.fmtbar,.linkbub{display:none!important;}}
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <div class="brand">MarketBullets®<small>Commentary Editor</small></div>
+  <label>Session <input type="date" id="session-date"></label>
+  <div class="spacer"></div>
+  <button class="btn" id="btn-load" title="Replace everything with what's on the live dashboard now">Load from site</button>
+  <button class="btn" id="btn-open" title="Open a saved .json commentary">Open…</button>
+  <button class="btn" id="btn-preview" title="See it exactly as members will">Preview</button>
+  <button class="btn" id="btn-draft" title="Saves _DRAFT_YYYY-MM-DD.json — never goes live (Ctrl+S)">Save draft</button>
+  <button class="btn primary" id="btn-publish" title="Saves YYYY-MM-DD.json — the site updates in ~2 minutes">Publish</button>
+  <div class="status"><span id="st-msg">Starting…</span><span id="st-folder"></span><span id="st-live"></span></div>
+</header>
+
+<main id="editor">
+  <!-- Box-o-Rox + prices -->
+  <div class="command-bar">
+    <div class="bor-widget">
+      <div class="bor-label">Box&#x2011;o&#x2011;Rox Status</div>
+      <div class="bor-row">
+        <div class="bor-light" id="bor-light"></div>
+        <div class="bor-status-text" id="bor-text"></div>
+      </div>
+      <div class="bor-choices" role="group" aria-label="Box-o-Rox status">
+        <button class="bor-choice s" data-status="suspend" aria-pressed="false">Suspend</button>
+        <button class="bor-choice e" data-status="execute-60d" aria-pressed="false">Execute</button>
+      </div>
+      <div class="bor-updated">Updated: <input class="fld" id="bor-date" placeholder="auto"></div>
+    </div>
+    <div class="prices-wrap">
+      <div class="prices-heading">Latest Closing Prices</div>
+      <table class="prices-table">
+        <thead><tr><th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th></tr></thead>
+        <tbody id="prices-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="commentary-wrap">
+    <div class="commentary-dateline">
+      <input id="dateline" aria-label="Dateline" spellcheck="false">
+      <button class="mini" id="dateline-auto" title="Follow the session date automatically">Auto</button>
+    </div>
+
+    <div class="section-tag">Headline</div>
+    <div class="rich headline" id="headline" contenteditable="true" data-ph="Headline — what the market did and why it matters"></div>
+
+    <div class="section-tag">Bullets</div>
+    <ul class="bullets-list" id="bullets"></ul>
+    <div class="add-row"><button class="add" id="add-bullet">+ Add bullet</button></div>
+
+    <div class="section-tag">Commentary</div>
+    <div class="commentary-body" id="body"></div>
+    <div class="add-row"><button class="add" id="add-para">+ Add paragraph</button></div>
+
+    <p class="hint">
+      Select text → <b>B</b> <i>I</i> 🔗 to format or link (links always open in a new tab). <kbd>Ctrl</kbd>+<kbd>K</kbd> link ·
+      Paste a URL over selected text to link it · <kbd>Enter</kbd> new bullet / paragraph · <kbd>Shift</kbd>+<kbd>Enter</kbd> line break ·
+      🖼 adds a chart thumbnail · click a bullet's dot to change its color · drafts autosave in this browser.
+    </p>
+  </div>
+</main>
+
+<section id="preview">
+  <div class="prev-banner">Preview — exactly as members will see it · click a chart to open it</div>
+  <div class="command-bar">
+    <div class="bor-widget">
+      <div class="bor-label">Box&#x2011;o&#x2011;Rox Status</div>
+      <div class="bor-row"><div class="bor-light" id="pv-light"></div><div class="bor-status-text" id="pv-bor"></div></div>
+      <div class="bor-updated" id="pv-bor-date"></div>
+    </div>
+    <div class="prices-wrap"><div class="prices-heading">Latest Closing Prices</div><table class="prices-table" id="pv-prices"></table></div>
+  </div>
+  <div class="commentary-wrap" id="pv-wrap">
+    <div class="commentary-dateline" id="pv-dateline"></div>
+    <ul class="bullets-list" id="pv-bullets"></ul>
+    <div class="commentary-body" id="pv-body"></div>
+  </div>
+</section>
+
+<!-- format bar -->
+<div class="fmtbar" id="fmtbar">
+  <button data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+  <button data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+  <button data-cmd="link" title="Link to a source (Ctrl+K)">🔗 Link</button>
+  <button data-cmd="unlink" title="Remove link">✕</button>
+</div>
+<div class="linkbub" id="linkbub"><a id="lb-url" target="_blank" rel="noopener"></a><button id="lb-edit">Edit</button><button id="lb-remove">Remove</button></div>
+<div class="palette" id="palette"></div>
+
+<!-- link dialog -->
+<div class="modal-bg" id="link-modal">
+  <div class="modal" role="dialog" aria-labelledby="link-h">
+    <h3 id="link-h">Link to a source</h3>
+    <p class="sub">Readers who click it get the source in a new tab — they don't leave the dashboard.</p>
+    <div class="linktext" id="link-text"></div>
+    <input class="txt" id="link-url" placeholder="https://www.admis.com/…" spellcheck="false">
+    <div class="row">
+      <button class="btn" id="link-test">Test ↗</button>
+      <button class="btn" id="link-del">Remove link</button>
+      <div class="spacer"></div>
+      <button class="btn" id="link-cancel">Cancel</button>
+      <button class="btn primary" id="link-ok">Apply</button>
+    </div>
+  </div>
+</div>
+
+<!-- chart picker -->
+<div class="modal-bg" id="chart-modal">
+  <div class="modal wide" role="dialog" aria-labelledby="chart-h">
+    <h3 id="chart-h">Add a chart</h3>
+    <p class="sub" id="chart-sub">Click a chart to attach it. Members see the thumbnail; clicking it opens the chart full size.</p>
+    <input class="txt" id="chart-q" placeholder="Search — SRW daily, BOR, spread, crude…" spellcheck="false">
+    <div class="chips" id="chart-cats"></div>
+    <div class="grid" id="chart-grid"></div>
+    <div class="row"><button class="btn" id="chart-cancel">Close</button></div>
+  </div>
+</div>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-label="Chart viewer">
+  <div class="lb-close" id="lb-close" title="Close (Esc)">&#x2715;</div>
+  <span class="lb-nav lb-prev" id="lb-prev">&#8249;</span>
+  <div class="lb-img-wrap"><img src="" id="lb-img" alt=""></div>
+  <div class="lb-title" id="lb-title"></div>
+  <span class="lb-nav lb-next" id="lb-next">&#8250;</span>
+  <div class="lb-fs-hint">Tap chart for full screen</div>
+</div>
+
+<input type="file" id="file-in" accept=".json,application/json" hidden>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ════════════════════════════════════════════════════
+   CONSTANTS — must match tools/word_commentary.py
+════════════════════════════════════════════════════ */
+var REPO_RAW   = 'https://raw.githubusercontent.com/MARKETBULLETSLLC/WEBSITECHARTS/main/';
+var CHART_BASE = REPO_RAW + 'charts/';
+var LIVE_URL   = REPO_RAW + 'SUBSCRIBER%20DASHBOARD/index01.html';
+var CHARTS_API = 'https://api.github.com/repos/MARKETBULLETSLLC/WEBSITECHARTS/contents/charts';
+var DRAFT_KEY  = 'mb-commentary-editor-draft';
+
+var COLORS = [
+  { hex:'#E8B820', name:'Wheat / Bullish' },
+  { hex:'#7BBFDE', name:'Export / Global' },
+  { hex:'#8FCB8A', name:'USDA / Fundamental' },
+  { hex:'#E08050', name:'Bearish / Warning' },
+  { hex:'#B0C0D0', name:'Neutral / Macro' },
+  { hex:'#F5E6C0', name:'Default' }
+];
+var BOR_LABELS = { 'suspend':'Suspend Sales', 'execute-60d':'Execute Sales — Threshold' };
+var PRICE_ROWS = [
+  { ticker:'ZW',  contract:'Chicago SRW (Dec)',       exchange:'CBOT',     unit:'$/bu' },
+  { ticker:'KE',  contract:'Kansas City HRW (Dec)',   exchange:'KCBT',     unit:'$/bu' },
+  { ticker:'MWE', contract:'Minneapolis HRS (Dec)',   exchange:'MGEX',     unit:'$/bu' },
+  { ticker:'EBM', contract:'Paris Milling FWH (Dec)', exchange:'Euronext', unit:'€/t'  }
+];
+var FALLBACK_CHARTS = [
+  { file:'WHEAT_SRW_BOR_D.png', title:'Box-o-Rox Daily — SRW', cat:'Box-o-Rox' },
+  { file:'WHEAT_SRW_30Min.png', title:'Chicago SRW 30-Minute', cat:'Chicago SRW' },
+  { file:'WHEAT_SRW_D.png',     title:'Chicago SRW Daily',     cat:'Chicago SRW' },
+  { file:'WHEAT_SRW_W.png',     title:'Chicago SRW Weekly',    cat:'Chicago SRW' },
+  { file:'WHEAT_SRW_M.png',     title:'Chicago SRW Monthly',   cat:'Chicago SRW' }
+];
+
+var $ = function(id){ return document.getElementById(id); };
+var state = { datelineAuto:true, bor:'execute-60d', charts:FALLBACK_CHARTS.slice(), liveSrc:null, dirHandle:null };
+
+/* ════════════════════════════════════════════════════
+   SMALL HELPERS
+════════════════════════════════════════════════════ */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escAttr(s){ return esc(s).replace(/"/g,'&quot;'); }
+function chartUrl(f){ return CHART_BASE + f; }
+function chartName(f){ return String(f).replace(/\.(png|jpe?g|gif|webp)$/i,''); }
+function chartTitle(f){
+  var c = state.charts.filter(function(x){ return x.file === f; })[0];
+  return c ? c.title : chartName(f);
+}
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+function isoDate(d){ return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()); }
+function parseIso(s){ var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+var DAYS = ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+var MONTHS = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+function autoDateline(iso){
+  var d = parseIso(iso);
+  return DAYS[d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' · Pre-Dawn Update';
+}
+function prevWeekday(iso){
+  var d = parseIso(iso); d.setDate(d.getDate()-1);
+  while(d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate()-1);
+  var m = MONTHS[d.getMonth()]; return m.charAt(0) + m.slice(1,3).toLowerCase() + ' ' + d.getDate() + ', ' + d.getFullYear();
+}
+function normUrl(u){
+  u = (u || '').trim();
+  if(!u) return '';
+  if(/^(https?:|mailto:)/i.test(u)) return u;
+  if(/^www\.|^[a-z0-9-]+(\.[a-z0-9-]+)+(\/|$)/i.test(u)) return 'https://' + u;
+  return u;
+}
+function isUrl(s){ return /^(https?:\/\/|www\.)\S+$/i.test((s || '').trim()); }
+var toastT;
+function toast(msg, ms){
+  var t = $('toast'); t.textContent = msg; t.style.display = 'block';
+  clearTimeout(toastT); toastT = setTimeout(function(){ t.style.display = 'none'; }, ms || 3500);
+}
+function status(msg, cls){ var s = $('st-msg'); s.textContent = msg; s.className = cls || ''; }
+
+/* ════════════════════════════════════════════════════
+   HTML CLEANER — same whitelist as the publisher:
+   <strong> <em> <a href> (new tab) <br>. Everything else → text.
+════════════════════════════════════════════════════ */
+function clean(html){
+  var tpl = document.createElement('template');
+  tpl.innerHTML = html || '';
+  var out = '';
+  function walk(node){
+    node.childNodes.forEach(function(n){
+      if(n.nodeType === 3){ out += esc(n.nodeValue.replace(/ /g,' ')); return; }
+      if(n.nodeType !== 1) return;
+      var tag = n.tagName.toLowerCase();
+      if(tag === 'script' || tag === 'style') return;
+      if(tag === 'br'){ out += '<br>'; return; }
+      if(tag === 'img') return;
+      if((tag === 'div' || tag === 'p') && out){ out += '<br>'; walk(n); return; }
+      if(tag === 'b' || tag === 'strong'){ out += '<strong>'; walk(n); out += '</strong>'; return; }
+      if(tag === 'i' || tag === 'em'){ out += '<em>'; walk(n); out += '</em>'; return; }
+      if(tag === 'a'){
+        var href = (n.getAttribute('href') || '').trim();
+        if(/^(https?:\/\/|mailto:|#)/i.test(href)){
+          out += '<a href="' + escAttr(href) + '" target="_blank" rel="noopener">'; walk(n); out += '</a>';
+        } else walk(n);
+        return;
+      }
+      walk(n);
+    });
+  }
+  walk(tpl.content);
+  return out.replace(/(<br>\s*)+$/,'').replace(/<(strong|em)><\/\1>/g,'').trim();
+}
+function textOf(html){ var d = document.createElement('div'); d.innerHTML = html; return d.textContent.trim(); }
+
+/* ════════════════════════════════════════════════════
+   PRICES + BOX-O-ROX
+════════════════════════════════════════════════════ */
+function chgDir(v){
+  var t = (v || '').trim().replace(/[−–]/g,'-');
+  if(!t || t === '—' || t === '-' || /^unch/i.test(t)) return 'flat';
+  if(t.charAt(0) === '-') return 'dn';
+  return /[1-9]/.test(t) ? 'up' : 'flat';
+}
+function buildPrices(){
+  var tb = $('prices-body'); tb.innerHTML = '';
+  PRICE_ROWS.forEach(function(r){
+    var tr = document.createElement('tr'); tr.dataset.ticker = r.ticker;
+    tr.innerHTML =
+      '<td><input class="fld contract" data-k="contract" aria-label="Contract"><span class="pt-exchange">' + esc(r.exchange + ' · ' + r.ticker + ' · ' + r.unit) + '</span></td>' +
+      ['open','high','low'].map(function(k){ return '<td><input class="fld" data-k="' + k + '" aria-label="' + k + '"></td>'; }).join('') +
+      '<td><input class="fld close" data-k="close" aria-label="close"></td>' +
+      '<td><div class="chg-cell"><input class="fld" data-k="chg" aria-label="change"><span class="arrow"></span></div></td>';
+    tb.appendChild(tr);
+    setPrice(r.ticker, { contract:r.contract });
+  });
+  tb.addEventListener('input', function(e){ if(e.target.dataset.k === 'chg') paintChg(e.target); changed(); });
+}
+function setPrice(ticker, p){
+  var tr = document.querySelector('#prices-body tr[data-ticker="' + ticker + '"]'); if(!tr) return;
+  tr.querySelectorAll('input').forEach(function(inp){
+    var k = inp.dataset.k;
+    if(p[k] !== undefined) inp.value = p[k] === '—' ? '' : p[k];
+    if(k === 'chg') paintChg(inp);
+  });
+}
+function paintChg(inp){
+  var d = chgDir(inp.value);
+  inp.className = 'fld' + (d === 'flat' ? '' : ' ' + d);
+  var a = inp.parentNode.querySelector('.arrow'); a.className = 'arrow ' + d; a.textContent = d === 'up' ? '▲' : d === 'dn' ? '▼' : '';
+}
+function getPrices(){
+  return Array.prototype.map.call(document.querySelectorAll('#prices-body tr'), function(tr){
+    var o = { ticker: tr.dataset.ticker };
+    tr.querySelectorAll('input').forEach(function(inp){ o[inp.dataset.k] = inp.value.trim(); });
+    return o;
+  });
+}
+function setBor(st){
+  state.bor = BOR_LABELS[st] ? st : 'execute-60d';
+  var cls = state.bor === 'suspend' ? 'suspend' : 'execute';
+  $('bor-light').className = 'bor-light ' + cls;
+  $('bor-text').className = 'bor-status-text ' + cls;
+  $('bor-text').textContent = BOR_LABELS[state.bor];
+  document.querySelectorAll('.bor-choice').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.status === state.bor); });
+}
+
+/* ════════════════════════════════════════════════════
+   DATELINE
+════════════════════════════════════════════════════ */
+function sessionIso(){ return $('session-date').value || isoDate(new Date()); }
+function refreshDateline(){
+  if(state.datelineAuto) $('dateline').value = autoDateline(sessionIso());
+  $('dateline-auto').classList.toggle('auto-on', state.datelineAuto);
+  $('dateline-auto').textContent = state.datelineAuto ? 'Auto ✓' : 'Auto';
+  $('bor-date').placeholder = prevWeekday(sessionIso()) + ' (auto)';
+}
+
+/* ════════════════════════════════════════════════════
+   BLOCKS — bullets and paragraphs. The DOM is the document.
+════════════════════════════════════════════════════ */
+function thumbEl(file, onRemove){
+  var w = document.createElement('span'); w.className = 'thumb'; w.dataset.file = file;
+  w.innerHTML = '<a class="inline-chart-link" href="' + escAttr(chartUrl(file)) + '" title="' + escAttr(chartTitle(file)) + ' — click to view">' +
+    '<img class="inline-chart-thumb" src="' + escAttr(chartUrl(file)) + '" alt="' + escAttr(chartTitle(file)) + '"></a>' +
+    '<button class="x" title="Remove chart">✕</button>';
+  w.querySelector('a').addEventListener('click', function(e){ e.preventDefault(); openLightbox([{ src:chartUrl(file), title:chartTitle(file) }], 0); });
+  w.querySelector('.x').addEventListener('click', function(){ w.remove(); if(onRemove) onRemove(); changed(); });
+  return w;
+}
+function toolsEl(blk, kind){
+  var t = document.createElement('div'); t.className = 'tools';
+  t.innerHTML = '<button data-a="chart" title="Add chart thumbnail">🖼</button><button data-a="up" title="Move up">↑</button>' +
+                '<button data-a="down" title="Move down">↓</button><button data-a="del" class="del" title="Delete">🗑</button>';
+  t.addEventListener('mousedown', function(e){ e.preventDefault(); });
+  t.addEventListener('click', function(e){
+    var a = e.target.closest('button'); if(!a) return;
+    var act = a.dataset.a;
+    if(act === 'chart') openChartPicker(blk, kind);
+    if(act === 'up' && blk.previousElementSibling){ blk.parentNode.insertBefore(blk, blk.previousElementSibling); changed(); }
+    if(act === 'down' && blk.nextElementSibling){ blk.parentNode.insertBefore(blk.nextElementSibling, blk); changed(); }
+    if(act === 'del'){
+      if(textOf(blk.querySelector('.rich').innerHTML) && !confirm('Delete this ' + (kind === 'bullet' ? 'bullet' : 'paragraph') + '?')) return;
+      blk.remove(); changed();
+    }
+  });
+  return t;
+}
+function makeBullet(b){
+  b = b || {};
+  var li = document.createElement('li'); li.className = 'bullet-item blk';
+  var color = b.color || '#F5E6C0';
+  li.innerHTML = '<button class="bullet-mark" title="Bullet color"></button><div class="bwrap"><div class="rich" contenteditable="true" data-ph="New bullet — one or two sentences"></div></div>';
+  var rich = li.querySelector('.rich'); rich.innerHTML = clean(b.html || '');
+  li.appendChild(toolsEl(li, 'bullet'));
+  setBulletColor(li, color);
+  li.querySelector('.bullet-mark').addEventListener('click', function(e){ openPalette(li, e.currentTarget); });
+  if(b.chart) setBulletChart(li, b.chart);
+  return li;
+}
+function setBulletColor(li, hex){
+  li.dataset.color = hex;
+  var m = li.querySelector('.bullet-mark');
+  m.style.background = hex; m.style.boxShadow = '0 0 6px 2px ' + hex + '40';
+  li.querySelector('.rich').style.color = hex;
+}
+function setBulletChart(li, file){
+  var old = li.querySelector('.thumb'); if(old) old.remove();
+  if(!file) return;
+  var t = thumbEl(file); t.classList.add('bullet-thumb');
+  li.querySelector('.bwrap').insertBefore(t, li.querySelector('.rich'));
+}
+function makePara(p){
+  p = p || {};
+  var d = document.createElement('div'); d.className = 'para blk';
+  d.innerHTML = '<div class="rich" contenteditable="true" data-ph="Write the paragraph…"></div><div class="para-charts"></div>';
+  d.querySelector('.rich').innerHTML = clean(p.html || '');
+  (p.charts || []).forEach(function(f){ d.querySelector('.para-charts').appendChild(thumbEl(f)); });
+  d.appendChild(toolsEl(d, 'para'));
+  return d;
+}
+function blockOf(el){ return el && el.closest ? el.closest('.blk') : null; }
+function focusEnd(el, atStart){
+  el.focus();
+  var r = document.createRange(); r.selectNodeContents(el); r.collapse(!!atStart);
+  var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+}
+
+/* ════════════════════════════════════════════════════
+   DOCUMENT  ⇄  JSON
+════════════════════════════════════════════════════ */
+function serialize(){
+  return {
+    format: 'marketbullets-commentary', version: 1,
+    date: sessionIso(),
+    dateline: state.datelineAuto ? '' : $('dateline').value.trim(),
+    bor: { status: state.bor, date: $('bor-date').value.trim() },
+    prices: getPrices(),
+    headline: clean($('headline').innerHTML),
+    bullets: Array.prototype.map.call($('bullets').children, function(li){
+      var t = li.querySelector('.thumb');
+      return { color: li.dataset.color, html: clean(li.querySelector('.rich').innerHTML),
+               chart: t ? t.dataset.file : null, chartTitle: t ? chartTitle(t.dataset.file) : null };
+    }).filter(function(b){ return textOf(b.html) || b.chart; }),
+    body: Array.prototype.map.call($('body').children, function(d){
+      return { html: clean(d.querySelector('.rich').innerHTML),
+               charts: Array.prototype.map.call(d.querySelectorAll('.thumb'), function(t){ return t.dataset.file; }) };
+    }).filter(function(p){ return textOf(p.html) || p.charts.length; }),
+    savedAt: new Date().toISOString()
+  };
+}
+function loadDoc(doc, opts){
+  opts = opts || {};
+  if(doc.date && !opts.keepDate) $('session-date').value = doc.date;
+  state.datelineAuto = !doc.dateline;
+  if(doc.dateline) $('dateline').value = doc.dateline;
+  refreshDateline();
+  if(doc.bor){ setBor(doc.bor.status); $('bor-date').value = doc.bor.date || ''; }
+  (doc.prices || []).forEach(function(p){ if(p.ticker) setPrice(p.ticker, p); });
+  $('headline').innerHTML = clean(doc.headline || '');
+  $('bullets').innerHTML = ''; (doc.bullets || []).forEach(function(b){ $('bullets').appendChild(makeBullet(b)); });
+  $('body').innerHTML = ''; (doc.body || []).forEach(function(p){ $('body').appendChild(makePara(p)); });
+  if(!$('bullets').children.length) $('bullets').appendChild(makeBullet());
+  if(!$('body').children.length) $('body').appendChild(makePara());
+}
+
+/* Live MB_CONFIG → editor document (reverse of what the publisher writes) */
+function configToDoc(cfg){
+  var doc = { dateline:'', bor:{ status: cfg.borStatus, date: '' }, prices: [], bullets: [], body: [] };
+  (cfg.prices || []).forEach(function(p){
+    doc.prices.push({ ticker:p.ticker, contract:p.contract, open:p.open, high:p.high, low:p.low, close:p.close, chg:p.chg });
+  });
+  (cfg.bullets || []).forEach(function(b){
+    var t = document.createElement('template'); t.innerHTML = b.text;
+    var chart = null;
+    t.content.querySelectorAll('img').forEach(function(im){
+      var f = (im.getAttribute('src') || '').split('/charts/')[1];
+      if(f && !chart) chart = decodeURIComponent(f);
+      var a = im.closest('a'); (a || im).remove();
+    });
+    var d = document.createElement('div'); d.appendChild(t.content);
+    doc.bullets.push({ color: b.color, html: d.innerHTML, chart: chart });
+  });
+  var tb = document.createElement('template'); tb.innerHTML = cfg.body || '';
+  Array.prototype.forEach.call(tb.content.children, function(el){
+    var tag = el.tagName.toLowerCase();
+    if(tag === 'p' && /font-size/.test(el.getAttribute('style') || '') && !doc.headline){
+      var s = el.querySelector('strong'); doc.headline = (s || el).innerHTML; return;
+    }
+    if(tag === 'ul' || tag === 'ol'){
+      doc.body.push({ html: Array.prototype.map.call(el.querySelectorAll('li'), function(li){ return '&bull; ' + li.innerHTML; }).join('<br>'), charts: [] });
+      return;
+    }
+    var html = el.innerHTML, charts = [];
+    html = html.replace(/\s*\[chart:\s*([^\]]+?)\s*\]/g, function(_, f){ charts.push(f.trim()); return ''; });
+    doc.body.push({ html: html, charts: charts });
+  });
+  return doc;
+}
+function extractConfig(src){
+  var m = src.match(/const MB_CONFIG = (\{[\s\S]*?\r?\n\});/);
+  if(!m) throw new Error('MB_CONFIG not found on the live dashboard');
+  return (new Function('return ' + m[1]))();
+}
+
+/* ════════════════════════════════════════════════════
+   PREVIEW — mirrors what the publisher writes + how the page renders it
+════════════════════════════════════════════════════ */
+function bulletThumbHtml(file){
+  var url = chartUrl(file), t = escAttr(chartTitle(file));
+  return '<a href="' + url + '" class="inline-chart-link lb-trigger" data-src="' + url + '" data-title="' + t + '" target="_blank" rel="noopener" style="float:right;margin:2px 0 8px 14px">' +
+         '<img src="' + url + '" class="inline-chart-thumb" alt="' + t + '"></a>';
+}
+function processShortcodes(html){   // identical to the dashboard's
+  return html.replace(/\[chart:([^\]]+)\]/g, function(_, filename){
+    var url = chartUrl(filename.trim());
+    return '<a href="'+url+'" class="inline-chart-link lb-trigger" data-src="'+url+'" data-title="'+filename.replace('.png','')+'">'
+      + '<img src="'+url+'" class="inline-chart-thumb" alt="'+filename+'" loading="lazy">' + '</a>';
+  });
+}
+function renderPreview(){
+  var d = serialize();
+  var cls = d.bor.status === 'suspend' ? 'suspend' : 'execute';
+  $('pv-light').className = 'bor-light ' + cls; $('pv-bor').className = 'bor-status-text ' + cls;
+  $('pv-bor').textContent = BOR_LABELS[d.bor.status];
+  $('pv-bor-date').textContent = 'Updated: ' + (d.bor.date || prevWeekday(d.date));
+  var rows = '<thead><tr><th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th></tr></thead><tbody>';
+  d.prices.forEach(function(p){
+    var meta = PRICE_ROWS.filter(function(r){ return r.ticker === p.ticker; })[0];
+    var dir = chgDir(p.chg), v = function(x){ return esc(x || '—'); };
+    rows += '<tr><td><span class="pt-contract" style="font-size:13px;font-weight:600;color:var(--cream)">' + v(p.contract) + '</span><span class="pt-exchange">' + esc(meta.exchange + ' · ' + meta.ticker + ' · ' + meta.unit) + '</span></td>' +
+      '<td>' + v(p.open) + '</td><td>' + v(p.high) + '</td><td>' + v(p.low) + '</td><td style="font-size:14px;font-weight:600;color:var(--wheat-lt)">' + v(p.close) + '</td>' +
+      '<td style="color:' + (dir === 'up' ? 'var(--up)' : dir === 'dn' ? 'var(--dn)' : 'inherit') + '">' + v(p.chg) + (dir === 'up' ? ' ▲' : dir === 'dn' ? ' ▼' : '') + '</td></tr>';
+  });
+  $('pv-prices').innerHTML = rows + '</tbody>';
+  $('pv-dateline').textContent = d.dateline || autoDateline(d.date);
+  $('pv-bullets').innerHTML = d.bullets.map(function(b){
+    return '<li class="bullet-item"><div class="bullet-mark" style="background:' + b.color + ';box-shadow:0 0 6px 2px ' + b.color + '40;"></div>' +
+           '<span style="color:' + b.color + '">' + (b.chart ? bulletThumbHtml(b.chart) : '') + b.html + '</span></li>';
+  }).join('');
+  var body = '<p style="font-size:1.15em;color:#E8B820"><strong>' + d.headline + '</strong></p>';
+  d.body.forEach(function(p){
+    var codes = p.charts.map(function(f){ return '[chart:' + f + ']'; }).join(' ');
+    body += '<p>' + p.html + (codes && p.html ? ' ' : '') + codes + '</p>';
+  });
+  $('pv-body').innerHTML = processShortcodes(body);
+  wireTriggers($('pv-wrap'));
+}
+function wireTriggers(root){
+  var els = root.querySelectorAll('.lb-trigger');
+  var items = Array.prototype.map.call(els, function(el){ return { src: el.dataset.src, title: el.dataset.title }; });
+  els.forEach(function(el, i){ el.addEventListener('click', function(e){ e.preventDefault(); openLightbox(items, i); }); });
+}
+
+/* ════════════════════════════════════════════════════
+   LIGHTBOX — full size on desktop; on a phone or tablet turned
+   landscape the chart fills the screen (tap = true full screen
+   where the browser allows it).
+════════════════════════════════════════════════════ */
+var lbItems = [], lbIndex = 0;
+var canFs = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+var touch = matchMedia('(pointer:coarse)').matches;
+function openLightbox(items, i){
+  lbItems = items; lbIndex = i || 0; showLb();
+  var lb = $('lb'); lb.classList.add('open'); lb.classList.toggle('can-fs', canFs && touch);
+  document.body.style.overflow = 'hidden';
+  if(touch && canFs && innerWidth > innerHeight) goFs();   // already landscape: the tap is our gesture
+}
+function showLb(){
+  var it = lbItems[lbIndex];
+  $('lb-img').src = it.src; $('lb-title').textContent = it.title || '';
+  var many = lbItems.length > 1 ? 'visible' : 'hidden';
+  $('lb-prev').style.visibility = many; $('lb-next').style.visibility = many;
+}
+function goFs(){
+  var lb = $('lb'), req = lb.requestFullscreen || lb.webkitRequestFullscreen;
+  if(req){ try { var p = req.call(lb); if(p && p.catch) p.catch(function(){}); } catch(e){} }
+}
+function closeLightbox(){
+  var ex = document.exitFullscreen || document.webkitExitFullscreen;
+  if((document.fullscreenElement || document.webkitFullscreenElement) && ex) ex.call(document);
+  $('lb').classList.remove('open'); $('lb-img').src = ''; document.body.style.overflow = '';
+}
+document.addEventListener('fullscreenchange', function(){ $('lb').classList.toggle('is-fs', !!document.fullscreenElement); });
+$('lb-close').addEventListener('click', closeLightbox);
+$('lb').addEventListener('click', function(e){ if(e.target === this) closeLightbox(); });
+$('lb-img').addEventListener('click', function(){ if(touch && canFs && !document.fullscreenElement) goFs(); });
+$('lb-prev').addEventListener('click', function(e){ e.stopPropagation(); lbIndex = (lbIndex - 1 + lbItems.length) % lbItems.length; showLb(); });
+$('lb-next').addEventListener('click', function(e){ e.stopPropagation(); lbIndex = (lbIndex + 1) % lbItems.length; showLb(); });
+
+/* ════════════════════════════════════════════════════
+   CHART PICKER
+════════════════════════════════════════════════════ */
+var pickTarget = null, pickKind = null, pickCat = 'All';
+function openChartPicker(blk, kind){
+  pickTarget = blk; pickKind = kind;
+  $('chart-sub').textContent = kind === 'bullet'
+    ? 'Click a chart to attach it to this bullet (one per bullet). Clicking the thumbnail on the site opens it full size.'
+    : 'Click charts to attach them to this paragraph. They show at the end of the paragraph; clicking opens full size.';
+  $('chart-modal').classList.add('open'); renderCharts(); $('chart-q').focus();
+}
+function renderCharts(){
+  var q = $('chart-q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  var cats = ['All']; state.charts.forEach(function(c){ if(cats.indexOf(c.cat) < 0) cats.push(c.cat); });
+  $('chart-cats').innerHTML = cats.map(function(c){ return '<button class="chip" aria-pressed="' + (c === pickCat) + '">' + esc(c) + '</button>'; }).join('');
+  var list = state.charts.filter(function(c){
+    if(pickCat !== 'All' && c.cat !== pickCat) return false;
+    var hay = (c.title + ' ' + c.file + ' ' + c.cat + ' ' + (c.sub || '')).toLowerCase();
+    return q.every(function(w){ return hay.indexOf(w) >= 0; });
+  });
+  $('chart-grid').innerHTML = list.map(function(c){
+    return '<button class="card" data-file="' + escAttr(c.file) + '"><img loading="lazy" src="' + escAttr(chartUrl(c.file)) + '" alt="" onerror="this.parentNode.classList.add(\'missing\')">' +
+           '<span class="t">' + esc(c.title) + '</span><span class="f">' + esc(c.file) + (c.sub ? ' · ' + esc(c.sub) : '') + '</span></button>';
+  }).join('') || '<p class="sub">No charts match.</p>';
+}
+$('chart-cats').addEventListener('click', function(e){ var b = e.target.closest('.chip'); if(b){ pickCat = b.textContent; renderCharts(); } });
+$('chart-q').addEventListener('input', renderCharts);
+$('chart-grid').addEventListener('click', function(e){
+  var b = e.target.closest('.card'); if(!b || !pickTarget) return;
+  var f = b.dataset.file;
+  if(pickKind === 'bullet'){ setBulletChart(pickTarget, f); $('chart-modal').classList.remove('open'); }
+  else { pickTarget.querySelector('.para-charts').appendChild(thumbEl(f)); toast('Added ' + chartTitle(f) + ' — pick another or close.'); }
+  changed();
+});
+$('chart-cancel').addEventListener('click', function(){ $('chart-modal').classList.remove('open'); });
+
+/* chart list: titled charts from the live dashboard + every file in charts/ */
+function harvestCharts(src){
+  var found = [], seen = {}, cat = 'Chicago SRW';
+  var GALLERY = { 'hrw-gallery':'Kansas City HRW', 'hrs-gallery':'Minneapolis HRS', 'fwh-gallery':'Paris FWH' };
+  var re = /(?:id:'([^']+)')|(?:label:'([^']+)')|(?:\{\s*file:'([^']+)',\s*title:'([^']*)'(?:,\s*sub:'([^']*)')?)|(?:data-src="[^"]*\/charts\/([^"]+)"\s*data-title="([^"]*)")/g, m;
+  while((m = re.exec(src))){
+    if(m[1]) cat = GALLERY[m[1]] || cat;
+    else if(m[2]) cat = m[2];
+    else if(m[3] && !seen[m[3]]){ seen[m[3]] = 1; found.push({ file:m[3], title:m[4], sub:m[5] || '', cat:cat }); }
+    else if(m[6] && !seen[m[6]]){ seen[m[6]] = 1; found.push({ file:m[6], title:m[7], cat: /BOR/i.test(m[6]) ? 'Box-o-Rox' : 'Chicago SRW' }); }
+  }
+  return found;
+}
+function mergeCharts(list){
+  var have = {}; state.charts.forEach(function(c){ have[c.file] = c; });
+  list.forEach(function(c){ if(!have[c.file]){ have[c.file] = c; state.charts.push(c); } else if(c.title && have[c.file].cat === 'All files') { have[c.file].title = c.title; have[c.file].cat = c.cat; } });
+}
+function loadAllChartFiles(){
+  fetch(CHARTS_API).then(function(r){ return r.ok ? r.json() : []; }).then(function(arr){
+    mergeCharts((arr || []).filter(function(f){ return f.type === 'file' && /\.(png|jpe?g|gif|webp)$/i.test(f.name); })
+      .map(function(f){ return { file:f.name, title:chartName(f.name).replace(/_/g,' '), cat:'All files' }; }));
+  }).catch(function(){});
+}
+
+/* ════════════════════════════════════════════════════
+   LINKS — format bar, link bubble, dialog
+════════════════════════════════════════════════════ */
+var savedRange = null, editingLink = null;
+function richOf(node){ while(node && node !== document.body){ if(node.classList && node.classList.contains('rich')) return node; node = node.parentNode; } return null; }
+function linkOf(node){ while(node && node !== document.body){ if(node.tagName === 'A' && richOf(node)) return node; node = node.parentNode; } return null; }
+document.addEventListener('selectionchange', function(){
+  var s = getSelection(), bar = $('fmtbar'), bub = $('linkbub');
+  if(!s.rangeCount || !richOf(s.anchorNode)){ bar.style.display = 'none'; bub.style.display = 'none'; return; }
+  var r = s.getRangeAt(0), rect = r.getBoundingClientRect();
+  if(!s.isCollapsed && rect.width){
+    bar.style.display = 'flex';
+    bar.style.top = Math.max(8, rect.top - 46) + 'px';
+    bar.style.left = Math.min(innerWidth - 240, Math.max(8, rect.left + rect.width/2 - 110)) + 'px';
+  } else bar.style.display = 'none';
+  var a = linkOf(s.anchorNode);
+  if(a && s.isCollapsed){
+    var ar = a.getBoundingClientRect();
+    $('lb-url').href = a.href; $('lb-url').textContent = '↗ ' + a.getAttribute('href');
+    bub.style.display = 'flex'; bub.style.top = (ar.bottom + 6) + 'px'; bub.style.left = Math.min(innerWidth - 300, Math.max(8, ar.left)) + 'px';
+    bub.dataset.on = '1'; bub._a = a;
+  } else bub.style.display = 'none';
+});
+$('fmtbar').addEventListener('mousedown', function(e){ e.preventDefault(); });
+$('fmtbar').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if(!b) return;
+  var c = b.dataset.cmd;
+  if(c === 'bold' || c === 'italic'){ document.execCommand(c); changed(); }
+  if(c === 'unlink'){ document.execCommand('unlink'); changed(); }
+  if(c === 'link') openLinkDialog();
+});
+$('linkbub').addEventListener('mousedown', function(e){ if(e.target.tagName === 'BUTTON') e.preventDefault(); });
+$('lb-edit').addEventListener('click', function(){ openLinkDialog($('linkbub')._a); });
+$('lb-remove').addEventListener('click', function(){ var a = $('linkbub')._a; if(a){ a.replaceWith.apply(a, Array.prototype.slice.call(a.childNodes)); changed(); $('linkbub').style.display = 'none'; } });
+
+function openLinkDialog(a){
+  var s = getSelection();
+  savedRange = s.rangeCount ? s.getRangeAt(0).cloneRange() : null;
+  editingLink = a || (savedRange ? linkOf(savedRange.startContainer) : null);
+  if(!editingLink && (!savedRange || savedRange.collapsed)){ toast('Select the words to link first.'); return; }
+  $('link-text').textContent = '“' + (editingLink ? editingLink.textContent : savedRange.toString()) + '”';
+  $('link-url').value = editingLink ? editingLink.getAttribute('href') : '';
+  $('link-del').style.display = editingLink ? '' : 'none';
+  $('link-modal').classList.add('open'); setTimeout(function(){ $('link-url').focus(); $('link-url').select(); }, 30);
+}
+function closeLinkDialog(){ $('link-modal').classList.remove('open'); }
+function applyLink(){
+  var url = normUrl($('link-url').value);
+  if(!/^(https?:\/\/|mailto:)/i.test(url)){ toast('Enter a web address, e.g. https://www.admis.com/…'); return; }
+  closeLinkDialog();
+  if(editingLink){ editingLink.setAttribute('href', url); editingLink.target = '_blank'; editingLink.rel = 'noopener'; }
+  else if(savedRange){
+    var rich = richOf(savedRange.startContainer); rich.focus();
+    var s = getSelection(); s.removeAllRanges(); s.addRange(savedRange);
+    document.execCommand('createLink', false, url);
+    rich.querySelectorAll('a').forEach(function(a){ a.target = '_blank'; a.rel = 'noopener'; });
+  }
+  changed();
+}
+$('link-ok').addEventListener('click', applyLink);
+$('link-cancel').addEventListener('click', closeLinkDialog);
+$('link-test').addEventListener('click', function(){ var u = normUrl($('link-url').value); if(u) window.open(u, '_blank', 'noopener'); });
+$('link-del').addEventListener('click', function(){ if(editingLink){ editingLink.replaceWith.apply(editingLink, Array.prototype.slice.call(editingLink.childNodes)); changed(); } closeLinkDialog(); });
+$('link-url').addEventListener('keydown', function(e){ if(e.key === 'Enter') applyLink(); if(e.key === 'Escape') closeLinkDialog(); });
+
+/* ════════════════════════════════════════════════════
+   TYPING — Enter splits blocks, paste is plain text, URL paste links
+════════════════════════════════════════════════════ */
+document.addEventListener('keydown', function(e){
+  var mod = e.ctrlKey || e.metaKey;
+  if(mod && e.key.toLowerCase() === 's'){ e.preventDefault(); save(false); return; }
+  if(e.key === 'Escape'){
+    if($('lb').classList.contains('open')) closeLightbox();
+    $('chart-modal').classList.remove('open'); closeLinkDialog(); $('palette').style.display = 'none';
+    if(document.body.classList.contains('previewing')) togglePreview();
+    return;
+  }
+  if($('lb').classList.contains('open')){
+    if(e.key === 'ArrowLeft' && lbItems.length > 1) $('lb-prev').click();
+    if(e.key === 'ArrowRight' && lbItems.length > 1) $('lb-next').click();
+    return;
+  }
+  var rich = richOf(e.target); if(!rich) return;
+  if(mod && e.key.toLowerCase() === 'k'){ e.preventDefault(); openLinkDialog(); return; }
+  if(e.key === 'Enter' && e.shiftKey){ e.preventDefault(); document.execCommand('insertLineBreak'); return; }
+  if(e.key === 'Enter'){
+    e.preventDefault();
+    if(rich.id === 'headline'){ var first = $('bullets').querySelector('.rich'); if(first) focusEnd(first, true); return; }
+    var blk = blockOf(rich), kind = blk.classList.contains('bullet-item') ? 'bullet' : 'para';
+    var s = getSelection(), r = s.getRangeAt(0); r.deleteContents();
+    var tail = document.createRange(); tail.setStart(r.endContainer, r.endOffset); tail.setEnd(rich, rich.childNodes.length);
+    var box = document.createElement('div'); box.appendChild(tail.extractContents());
+    var nb = kind === 'bullet' ? makeBullet({ color: blk.dataset.color, html: box.innerHTML }) : makePara({ html: box.innerHTML });
+    blk.parentNode.insertBefore(nb, blk.nextSibling);
+    focusEnd(nb.querySelector('.rich'), true); changed(); return;
+  }
+  if(e.key === 'Backspace' && rich.id !== 'headline' && !textOf(rich.innerHTML) && !rich.querySelector('img')){
+    var b = blockOf(rich), prev = b.previousElementSibling;
+    if(b.parentNode.children.length > 1 && !b.querySelector('.thumb')){
+      e.preventDefault(); b.remove(); if(prev) focusEnd(prev.querySelector('.rich')); changed();
+    }
+  }
+});
+document.addEventListener('paste', function(e){
+  var rich = richOf(e.target); if(!rich) return;
+  e.preventDefault();
+  var text = (e.clipboardData || window.clipboardData).getData('text/plain') || '';
+  var s = getSelection();
+  if(isUrl(text) && s.rangeCount && !s.isCollapsed){
+    document.execCommand('createLink', false, normUrl(text));
+    rich.querySelectorAll('a').forEach(function(a){ a.target = '_blank'; a.rel = 'noopener'; });
+  } else if(isUrl(text)){
+    var u = normUrl(text);
+    document.execCommand('insertHTML', false, '<a href="' + escAttr(u) + '" target="_blank" rel="noopener">' + esc(text.trim()) + '</a>&nbsp;');
+  } else {
+    document.execCommand('insertText', false, text.replace(/\r\n?/g, '\n').replace(/\n{2,}/g, '\n'));
+  }
+  changed();
+});
+document.addEventListener('click', function(e){
+  var a = linkOf(e.target);
+  if(a && (e.ctrlKey || e.metaKey)){ e.preventDefault(); window.open(a.href, '_blank', 'noopener'); return; }
+  if(a) e.preventDefault();
+  if(!e.target.closest('#palette') && !e.target.classList.contains('bullet-mark')) $('palette').style.display = 'none';
+});
+
+/* bullet color palette */
+var palTarget = null;
+$('palette').innerHTML = COLORS.map(function(c){ return '<button data-hex="' + c.hex + '"><i style="background:' + c.hex + '"></i><span style="color:' + c.hex + '">' + esc(c.name) + '</span></button>'; }).join('');
+function openPalette(li, btn){
+  palTarget = li; var r = btn.getBoundingClientRect(), p = $('palette');
+  p.style.display = 'flex'; p.style.top = (r.bottom + 6) + 'px'; p.style.left = Math.max(8, r.left - 6) + 'px';
+}
+$('palette').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if(!b || !palTarget) return;
+  setBulletColor(palTarget, b.dataset.hex); $('palette').style.display = 'none'; changed();
+});
+
+/* ════════════════════════════════════════════════════
+   AUTOSAVE (this browser only — a safety net, not the publish path)
+════════════════════════════════════════════════════ */
+var dirty = false, autoT;
+function changed(){
+  dirty = true; clearTimeout(autoT);
+  autoT = setTimeout(function(){
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify(serialize())); status('Draft autosaved in this browser · ' + new Date().toLocaleTimeString()); } catch(e){}
+  }, 800);
+}
+['headline'].forEach(function(id){ $(id).addEventListener('input', changed); });
+$('bullets').addEventListener('input', changed); $('body').addEventListener('input', changed);
+$('dateline').addEventListener('input', function(){ state.datelineAuto = false; refreshDateline(); changed(); });
+$('dateline-auto').addEventListener('click', function(){ state.datelineAuto = true; refreshDateline(); changed(); });
+$('session-date').addEventListener('change', function(){ refreshDateline(); changed(); });
+$('bor-date').addEventListener('input', changed);
+document.querySelectorAll('.bor-choice').forEach(function(b){ b.addEventListener('click', function(){ setBor(b.dataset.status); changed(); }); });
+$('add-bullet').addEventListener('click', function(){ var li = makeBullet(); $('bullets').appendChild(li); focusEnd(li.querySelector('.rich')); changed(); });
+$('add-para').addEventListener('click', function(){ var p = makePara(); $('body').appendChild(p); focusEnd(p.querySelector('.rich')); changed(); });
+window.addEventListener('beforeunload', function(e){ if(dirty){ e.preventDefault(); e.returnValue = ''; } });
+
+/* ════════════════════════════════════════════════════
+   SAVE / PUBLISH — into the repo's commentary folder
+════════════════════════════════════════════════════ */
+var idb = {
+  open: function(){ return new Promise(function(ok, no){ var r = indexedDB.open('mb-editor', 1); r.onupgradeneeded = function(){ r.result.createObjectStore('kv'); }; r.onsuccess = function(){ ok(r.result); }; r.onerror = no; }); },
+  get: function(k){ return idb.open().then(function(db){ return new Promise(function(ok){ var q = db.transaction('kv').objectStore('kv').get(k); q.onsuccess = function(){ ok(q.result); }; q.onerror = function(){ ok(null); }; }); }); },
+  set: function(k, v){ return idb.open().then(function(db){ return new Promise(function(ok){ var t = db.transaction('kv', 'readwrite'); t.objectStore('kv').put(v, k); t.oncomplete = ok; t.onerror = ok; }); }); }
+};
+var hasFsApi = 'showDirectoryPicker' in window;
+function showFolder(){
+  var f = $('st-folder');
+  if(!hasFsApi){ f.innerHTML = '<span class="warn">This browser saves to Downloads — move the file into the repo’s commentary folder (Chrome or Edge saves there directly).</span>'; return; }
+  f.innerHTML = state.dirHandle ? 'Saving to: <span class="folder" title="Change folder">' + esc(state.dirHandle.name) + '/</span>'
+                                : '<span class="folder warn">Choose the commentary folder…</span>';
+  f.querySelector('.folder').onclick = function(){ pickFolder().catch(function(){}); };
+}
+function pickFolder(){
+  return window.showDirectoryPicker({ id:'mb-commentary', mode:'readwrite' }).then(function(h){
+    if(h.name !== 'commentary' && !confirm('That folder is “' + h.name + '”. The publisher watches WEBSITECHARTS/commentary. Use it anyway?')) throw new Error('cancelled');
+    state.dirHandle = h; return idb.set('dir', h).then(function(){ showFolder(); return h; });
+  });
+}
+function getFolder(){
+  if(!state.dirHandle) return pickFolder();
+  var h = state.dirHandle;
+  return h.queryPermission({ mode:'readwrite' }).then(function(p){
+    if(p === 'granted') return h;
+    return h.requestPermission({ mode:'readwrite' }).then(function(p2){ if(p2 === 'granted') return h; throw new Error('Permission to the folder was not given.'); });
+  });
+}
+function validate(doc, publishing){
+  var problems = [];
+  if(!textOf(doc.headline)) problems.push('the headline is empty');
+  if(!doc.body.length) problems.push('the commentary has no paragraphs');
+  if(publishing && !doc.bullets.length) problems.push('there are no bullets (OK to publish anyway?)');
+  if(publishing && doc.date !== isoDate(new Date())) problems.push('the session date is ' + autoDateline(doc.date).split(' · ')[0] + ', not today (OK to publish anyway?)');
+  return problems;
+}
+function save(publishing){
+  var doc = serialize();
+  var probs = validate(doc, publishing);
+  if(publishing && probs.length){
+    var hard = probs.filter(function(p){ return p.indexOf('OK to') < 0; });
+    if(hard.length){ alert('Can’t publish yet: ' + hard.join('; ') + '.'); return; }
+    if(!confirm('Heads up: ' + probs.join('; '))) return;
+  }
+  var name = (publishing ? '' : '_DRAFT_') + doc.date + '.json';
+  if(publishing && !confirm('Publish “' + textOf(doc.headline).slice(0, 80) + '” to the Members Dashboard as ' + doc.date + '?')) return;
+  var json = JSON.stringify(doc, null, 2);
+  var done = function(where){
+    dirty = false; clearTimeout(autoT);
+    try { doc.savedAs = name; localStorage.setItem(DRAFT_KEY, JSON.stringify(doc)); } catch(e){}
+    status((publishing ? 'Published ' : 'Draft saved ') + name + ' → ' + where, 'ok');
+    toast(publishing ? 'Saved ' + name + '. The site updates in about 2 minutes.' : 'Draft saved: ' + name + ' (not live).', 5000);
+    if(publishing) watchLive(doc);
+  };
+  if(!hasFsApi){
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([json], { type:'application/json' })); a.download = name; a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+    done('Downloads (move it into WEBSITECHARTS/commentary)'); return;
+  }
+  getFolder().then(function(dir){
+    return dir.getFileHandle(name, { create:true }).then(function(fh){ return fh.createWritable(); })
+      .then(function(w){ return w.write(json).then(function(){ return w.close(); }); })
+      .then(function(){ done(dir.name + '/'); });
+  }).catch(function(err){ if(err && err.name !== 'AbortError' && err.message !== 'cancelled') { status('Not saved: ' + err.message, 'err'); alert('Not saved: ' + err.message); } });
+}
+$('btn-draft').addEventListener('click', function(){ save(false); });
+$('btn-publish').addEventListener('click', function(){ save(true); });
+
+/* after Publish: watch the live dashboard until the new headline shows up */
+var liveT;
+function watchLive(doc){
+  clearInterval(liveT);
+  var want = textOf(doc.headline).slice(0, 40), started = Date.now();
+  var el = $('st-live'); el.className = 'warn'; el.textContent = 'Waiting for the site…';
+  liveT = setInterval(function(){
+    if(Date.now() - started > 10 * 60 * 1000){ clearInterval(liveT); el.className = 'err'; el.textContent = 'Not live after 10 min — is the publisher running? (start_word_watcher.bat)'; return; }
+    fetch(LIVE_URL + '?t=' + Date.now(), { cache:'no-store' }).then(function(r){ return r.text(); }).then(function(src){
+      var cfg = extractConfig(src), body = textOf(cfg.body);
+      if(body.indexOf(want) >= 0){ clearInterval(liveT); el.className = 'ok'; el.textContent = '✓ Live on marketbulletsllc.com · ' + new Date().toLocaleTimeString(); }
+      else el.textContent = 'Waiting for the site… ' + Math.round((Date.now() - started) / 1000) + 's';
+    }).catch(function(){});
+  }, 20000);
+}
+
+/* ════════════════════════════════════════════════════
+   LOAD
+════════════════════════════════════════════════════ */
+function fetchLive(){
+  return fetch(LIVE_URL + '?t=' + Date.now(), { cache:'no-store' }).then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status); return r.text();
+  }).then(function(src){ state.liveSrc = src; mergeCharts(harvestCharts(src)); return extractConfig(src); });
+}
+$('btn-load').addEventListener('click', function(){
+  if(dirty && !confirm('Replace what’s in the editor with the live dashboard?')) return;
+  status('Loading the live dashboard…');
+  fetchLive().then(function(cfg){ loadDoc(configToDoc(cfg), { keepDate:true }); dirty = false; status('Loaded the live dashboard — edit and Publish.', 'ok'); })
+    .catch(function(e){ status('Couldn’t load the site: ' + e.message, 'err'); });
+});
+$('btn-open').addEventListener('click', function(){
+  if(hasFsApi){
+    window.showOpenFilePicker({ id:'mb-commentary', types:[{ description:'Commentary', accept:{ 'application/json':['.json'] } }] })
+      .then(function(hs){ return hs[0].getFile(); }).then(openFile).catch(function(){});
+  } else $('file-in').click();
+});
+$('file-in').addEventListener('change', function(){ if(this.files[0]) openFile(this.files[0]); this.value = ''; });
+function openFile(f){
+  f.text().then(function(t){
+    var d = JSON.parse(t);
+    if(d.format !== 'marketbullets-commentary') throw new Error('not a commentary file');
+    loadDoc(d); dirty = false; status('Opened ' + f.name, 'ok');
+  }).catch(function(e){ alert('Couldn’t open ' + f.name + ': ' + e.message); });
+}
+function togglePreview(){
+  var on = !document.body.classList.contains('previewing');
+  if(on) renderPreview();
+  document.body.classList.toggle('previewing', on);
+  $('btn-preview').classList.toggle('on', on); $('btn-preview').textContent = on ? 'Back to editing' : 'Preview';
+  scrollTo(0, 0);
+}
+$('btn-preview').addEventListener('click', togglePreview);
+
+/* ════════════════════════════════════════════════════
+   START
+════════════════════════════════════════════════════ */
+buildPrices(); setBor('execute-60d');
+$('session-date').value = isoDate(new Date()); refreshDateline();
+if(hasFsApi) idb.get('dir').then(function(h){ if(h){ state.dirHandle = h; } showFolder(); }).catch(showFolder); else showFolder();
+loadAllChartFiles();
+
+var draft = null;
+try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch(e){}
+var live = fetchLive();
+if(draft && draft.format === 'marketbullets-commentary'){
+  loadDoc(draft);
+  status((draft.savedAs ? 'Reopened your last session (saved as ' + draft.savedAs + ')' : 'Restored your unsaved work')
+         + ' from ' + new Date(draft.savedAt).toLocaleString() + ' · “Load from site” starts from the live page instead.', 'warn');
+  live.catch(function(){});
+} else {
+  status('Loading the live dashboard…');
+  live.then(function(cfg){ loadDoc(configToDoc(cfg), { keepDate:true }); status('Loaded the live dashboard — edit, then Publish.', 'ok'); })
+      .catch(function(e){ loadDoc({}, { keepDate:true }); status('Offline — couldn’t load the live page (' + e.message + '). Starting blank.', 'err'); });
+}
+
+/* self-test hook for headless checks: editor.html#selftest */
+if(location.hash === '#selftest'){
+  live.then(function(cfg){
+    loadDoc(configToDoc(cfg), { keepDate:true }); renderPreview();
+    var pre = document.createElement('pre'); pre.id = 'selftest-out';
+    pre.textContent = JSON.stringify({ doc: serialize(), charts: state.charts.length, previewBullets: $('pv-bullets').children.length,
+                                       previewTriggers: $('pv-wrap').querySelectorAll('.lb-trigger').length });
+    document.body.appendChild(pre);
+  }).catch(function(e){ var pre = document.createElement('pre'); pre.id = 'selftest-out'; pre.textContent = 'ERROR ' + e.message; document.body.appendChild(pre); });
+}
+})();
+</script>
+</body>
+</html>
