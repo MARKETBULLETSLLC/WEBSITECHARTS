@@ -20,8 +20,31 @@
       "date": "2026-09-28",
       "anchor": "low",
       "text": "Status Change|On Close Below 696^2|Execute Sales as Scheduled|Sep 28, 2026",
-      "align": "right",
-      "status": "EXECUTE"
+      "align": "right"
     }
-  ]
+  ],
+  "header": "ma",
+  "threshold_label": "Above = Suspend|Below = Execute",
+  "tripwire_label": "Tripwire",
+  "close_label": "Current",
+  "text": [
+    {
+      "date": "2026-08-10",
+      "price": 621,
+      "text": "As of Oct 1, 83% of 2026 harvest is sold per BoR",
+      "color": "blue",
+      "size": 14
+    },
+    {
+      "date": "2026-09-08",
+      "price": 605,
+      "text": "CURRENT STATUS: EXECUTE SCHEDULED SALES",
+      "color": "red",
+      "size": 19
+    }
+  ],
+  "zone_label": {
+    "date": "2026-08-10",
+    "price": 587
+  }
 }

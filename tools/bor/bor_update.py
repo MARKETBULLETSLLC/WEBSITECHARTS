@@ -457,29 +457,54 @@ def draw(d, ann, out):
         nlines = len(lines) + (1 if n.get("status") else 0)
         placed.append((n, i, y0, tx, ty, above, right, x0, x1, ty - nlines * 18 / unit_px))
 
-    # Zone label in the emptiest stretch of the shading, below any notes hanging into it
+    # Free text placed by date and price (e.g. sold-percentage line, current-status banner)
+    colors = {"red": RED, "blue": BLUE, "green": GREEN, "black": "black"}
+    free = []
+    for t in ann.get("text", []):
+        td = pd.Timestamp(t["date"])
+        if td not in idx:
+            continue
+        size = t.get("size", 14)
+        lines = t["text"].split("|")
+        half = max(map(len, lines)) * size * 0.4 / bar_px  # ~0.8 em per bold char, halved
+        ax.text(idx[td], t["price"], t["text"].replace("|", "\n"), color=colors.get(t.get("color"), BLUE),
+                fontsize=size, fontweight="bold", ha="center", va="center", zorder=7)
+        hgt = len(lines) * size * 1.4 / unit_px
+        free.append((idx[td] - half, idx[td] + half, t["price"] - hgt / 2))
+
+    # Zone label in the emptiest stretch of the shading, below any notes or text hanging into it
     ceiling = np.minimum(v.Low.values, v.MA60.values)
     for *_, above, _r, x0, x1, bottom in placed:
         if not above:
             a, b = max(int(x0) - 1, 0), min(int(x1) + 2, len(ceiling))
             ceiling[a:b] = np.minimum(ceiling[a:b], bottom)
-    cx, top = label_spot(ceiling, lo, width=28)
-    ax.text(cx, lo + (top - lo) * 0.45, ZONE_LABEL, color="#006400", fontsize=21,
+    for x0, x1, bottom in free:
+        a, b = max(int(x0) - 1, 0), min(int(x1) + 2, len(ceiling))
+        ceiling[a:b] = np.minimum(ceiling[a:b], bottom)
+    zl = ann.get("zone_label")  # optional fixed spot {date, price}
+    if zl and pd.Timestamp(zl["date"]) in idx:
+        cx, cy = idx[pd.Timestamp(zl["date"])], zl["price"]
+    else:
+        cx, top = label_spot(ceiling, lo, width=28)
+        cy = lo + (top - lo) * 0.45
+    ax.text(cx, cy, ZONE_LABEL, color="#006400", fontsize=21,
             fontweight="bold", ha="center", va="center", alpha=0.85, zorder=6)
 
-    # Right-side tags, Threshold / Tripwire
+    # Right-side tags, Suspend/Execute line / Tripwire
     ma60, ma20, close = tick(last.MA60), tick(last.MA20), last.Close
     for val, bg in ((ma60, GREEN), (ma20, RED), (close, "black")):
         ax.text(1.0, val, eighths(val), transform=ax.get_yaxis_transform(), fontsize=15,
                 fontweight="bold", color="white", va="center", ha="left",
                 bbox=dict(boxstyle="square,pad=0.15", fc=bg, ec=bg), zorder=8, clip_on=False)
-    for label, val, color, va in (("Threshold", ma60, GREEN, "bottom"), ("Tripwire", ma20, RED, "top")):
+    tags = ((ann.get("threshold_label", "Above = Suspend|Below = Execute"), ma60, GREEN, "bottom"),
+            (ann.get("tripwire_label", "Tripwire"), ma20, RED, "top"),
+            (ann.get("close_label", ""), close, "black", "bottom"))
+    for label, val, color, va in tags:
         ax.annotate("", xy=(end + 0.6, val), xytext=(xr - 0.2, val),
                     arrowprops=dict(arrowstyle="->", color=color, lw=1.5), zorder=7)
-        ax.text(xr - 0.2, val + (1.5 if va == "bottom" else -1.5), label, color=color,
-                fontsize=13, fontweight="bold", ha="right", va=va, zorder=7)
-    ax.annotate("", xy=(end + 0.6, close), xytext=(xr - 0.2, close),
-                arrowprops=dict(arrowstyle="->", color="black", lw=1.5), zorder=7)
+        if label:
+            ax.text(xr - 0.2, val + (1.5 if va == "bottom" else -1.5), label.replace("|", "\n"), color=color,
+                    fontsize=13, fontweight="bold", ha="right", va=va, multialignment="left", zorder=7)
 
     # Analyst notes — Gary's calls
     for n, i, y0, tx, ty, above, right, *_ in placed:
@@ -521,8 +546,9 @@ def draw(d, ann, out):
         chg = last.Settle - d.iloc[-2].Settle
     chg_txt = "" if chg is None else f" ({'+' if chg >= 0 else ''}{eighths(chg)})"
     fig.text(0.5, 0.985, ann["symbol_line"], ha="center", va="top", fontsize=8, fontweight="bold")
-    hdr = [(f"Tripwire = {eighths(ma20)}", RED),
-           (f"  Threshold = {eighths(ma60)}", GREEN),
+    ma_hdr = ann.get("header") == "ma"  # "ma": Trade Navigator's MA labels; default: Tripwire/Suspend-Execute line
+    hdr = [(f"MA20 (AvgOHLC,20) = {eighths(ma20)}" if ma_hdr else f"Tripwire = {eighths(ma20)}", RED),
+           (f"  MA60 (AvgOHLC,60) = {eighths(ma60)}" if ma_hdr else f"  Suspend/Execute = {eighths(ma60)}", GREEN),
            (f"  {last.Date:%m/%d/%Y} = {eighths(close)}{chg_txt}", "black")]
     t = fig.text(0.935, 0.935, hdr[-1][0], ha="right", va="bottom", fontsize=17,
                  fontweight="bold", color=hdr[-1][1])
@@ -554,6 +580,7 @@ def main():
     ap.add_argument("--live", action="store_true", help="write charts/ (published) instead of preview")
     ap.add_argument("--file", help="read pasted text from a file instead of the clipboard")
     ap.add_argument("--no-paste", action="store_true", help="redraw from saved data only")
+    ap.add_argument("--out", help="write the chart to this path instead of preview/live")
     args = ap.parse_args()
 
     ann = json.loads(ANNOTATIONS.read_text(encoding="utf-8")) if ANNOTATIONS.exists() \
@@ -578,7 +605,7 @@ def main():
 
     if not Path(PREVIEW_DIR.anchor).exists():
         sys.exit(f"Drive {PREVIEW_DIR.anchor} not found — the preview folder lives there.")
-    out = LIVE_OUT if args.live else PREVIEW_OUT
+    out = Path(args.out).resolve() if args.out else LIVE_OUT if args.live else PREVIEW_OUT
     draw(d, ann, out)
     if args.live:
         for copy in LIVE_COPIES:
