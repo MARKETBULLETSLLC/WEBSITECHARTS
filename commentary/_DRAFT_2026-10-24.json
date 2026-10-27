@@ -1,0 +1,181 @@
+{
+  "format": "marketbullets-commentary",
+  "version": 1,
+  "date": "2026-10-24",
+  "dateline": "",
+  "bor": {
+    "status": "execute-60d",
+    "date": ""
+  },
+  "prices": [
+    {
+      "ticker": "ZW",
+      "contract": "Chicago SRW (Dec)",
+      "open": "6.25¼",
+      "high": "6.31½",
+      "low": "6.23½",
+      "close": "6.25",
+      "chg": "+0.00¼"
+    },
+    {
+      "ticker": "KE",
+      "contract": "Kansas City HRW (Dec)",
+      "open": "6.66",
+      "high": "6.70¼",
+      "low": "6.63",
+      "close": "6.64",
+      "chg": "-0.01¾"
+    },
+    {
+      "ticker": "MWE",
+      "contract": "Minneapolis HRS (Dec)",
+      "open": "6.42¼",
+      "high": "6.49",
+      "low": "6.40",
+      "close": "6.40¼",
+      "chg": "-0.02½"
+    },
+    {
+      "ticker": "EBM",
+      "contract": "Paris Milling FWH (Dec)",
+      "open": "",
+      "high": "",
+      "low": "",
+      "close": "",
+      "chg": ""
+    }
+  ],
+  "headline": "Eight Weeks Down, Two Days of Quiet, and One Date Circled: Nov. 10",
+  "bullets": [
+    {
+      "color": "#E08050",
+      "html": "Dec Chicago settled with a 5.4% loss. That's eight straight weekly declines, the longest losing streak since 1997. KC finished Friday at $6.64, down 1¾¢ on the day and 39¾¢ on the week, and Minneapolis at $6.40¼, down 2½¢ on the day and 36½¢ on the week.",
+      "chart": null,
+      "chartTitle": null
+    },
+    {
+      "color": "#B0C0D0",
+      "html": "Wednesday did the damage. Dec fell 15¢ to $6.28¼ the day the Kremlin said Putin had agreed \"in principle\" to resume three-way talks with Washington and Kyiv after Nov. 10, per the <a href=\"https://www.wdbj7.com/2026/10/21/trump-envoy-witkoff-meets-putin-st-petersburg-ukraine-war-talks/\" target=\"_blank\" rel=\"noopener\">AP</a>. Thursday and Friday traded inside Wednesday's range and never broke its $6.21 low. That's the first pause in the slide. A pause isn't a turn, but most turns start with one.",
+      "chart": null,
+      "chartTitle": null
+    },
+    {
+      "color": "#F5E6C0",
+      "html": "<strong>Box-o-Rox: <em>EXECUTE</em>.</strong> Friday was the 13th straight settle below the Suspend/Execute line, which now sits near $6.96¾, 71¾¢ above the market. The Tripwire has dropped 11½¢ since Tuesday, to about $6.71. No discretionary hold is in effect. Box-o-Rox informs; the marketing plan decides. <strong><a href=\"https://www.marketbulletsllc.com/box-o-rox\" target=\"_blank\" rel=\"noopener\">See the chart and the rules →</a></strong>",
+      "chart": "WHEAT_SRW_BOR_D.png",
+      "chartTitle": "Box-o-Rox Daily — SRW"
+    },
+    {
+      "color": "#8FCB8A",
+      "html": "COT: managed money's net short in Chicago jumped about 19,450 contracts in one week, to 52,005 as of Tuesday, per Friday's C<a href=\"https://www.cftc.gov/dea/futures/ag_sf.htm\" target=\"_blank\" rel=\"noopener\">FTC</a> summary. The funds added 18,599 new shorts. In KC they cut their net long by more than half, from about 17,350 to 7,490.",
+      "chart": "COT_SRW_W.png",
+      "chartTitle": "Chicago SRW"
+    },
+    {
+      "color": "#7BBFDE",
+      "html": "Export sales for the week ending Oct. 15 were 239,600 tonnes, about 8.8 million bushels. Total U.S. commitments stand at 10.67 MMT, 32% behind last year. Hard red winter is 63% behind. Soft white is only 4½% behind, at 3.25 MMT against 3.40 MMT, per USDA data.",
+      "chart": null,
+      "chartTitle": null
+    },
+    {
+      "color": "#7BBFDE",
+      "html": "The Black Sea is still being fought over, and wheat isn't listening. President Zelenskyy says Ukraine's port export capacity is down to 38% of normal and that Russia has rejected a Turkey-India-Egypt shipping corridor, per <a href=\"https://www.global-agriculture.com/global-agriculture/ukraine-proposes-turkey-india-egypt-grain-corridor-as-black-sea-exports-collapse/\" target=\"_blank\" rel=\"noopener\">Global Agriculture</a>. Meanwhile, Turkey's own wheat crop came in 37.9% bigger, at 24.8 MMT, per TurkStat.",
+      "chart": null,
+      "chartTitle": null
+    },
+    {
+      "color": "#E08050",
+      "html": "Crude: Dec WTI jumped $4.13 Friday to $103.60 correlated with Houthi attacks on Saudi Arabia. Wheat gained ¼¢. The scissors are still open.",
+      "chart": null,
+      "chartTitle": null
+    },
+    {
+      "color": "#F5E6C0",
+      "html": "Portland soft white was bid $6.25 for October and November delivery Friday in parity with Dec Chicago. The carry is 5¢ more each month out to $6.45 for March, per Walla Walla, WA.",
+      "chart": null,
+      "chartTitle": null
+    },
+    {
+      "color": "#F5E6C0",
+      "html": "Ahead: Monday, export inspections and Crop Progress. Thursday, export sales. Friday, COT. Clocks fall back Nov. 1. The November <a href=\"https://www.usda.gov/oce/commodity/wasde\" target=\"_blank\" rel=\"noopener\">WASDE</a> comes out Nov. 10 at 9 a.m. Pacific, and the talk is that Kremlin, U.S. and Ukraine may resume talks any time after the WASDE. Market may choose to wait and see, but most of the news is indirect factors.",
+      "chart": null,
+      "chartTitle": null
+    }
+  ],
+  "body": [
+    {
+      "html": "We don't usually publish on a Saturday. This week earned one. Dec Chicago lost 35½¢, closed at $6.25, and logged its eighth straight weekly decline, making it the longest weekly losing streak since 1997. On the Dec contract, the weekly close has gone from $7.83½ at the end of August to $6.25, down $1.58½, or about 20%. From the Sept. 2 high at $7.95, it's $1.70. Two months ago the question was how high the war could carry wheat. Now it's how much of the war premium is left. The answer as of Friday's close is \"not much.\" So before Monday's first call, here's the whole week laid out: what broke, what held, who's selling, who's still buying, and what's on the calendar.",
+      "charts": [
+        "WHEAT_SRW_W.png"
+      ]
+    },
+    {
+      "html": "<strong>The \"peace ear\" heard Wednesday loud and clear.</strong> On Wednesday we wrote that the market had gone deaf in one ear: it hears the talks and tunes out the gunfire. Wednesday it heard the talks. U.S. envoy Steve Witkoff spent about three hours with Putin in St. Petersburg. Afterward, Kremlin adviser Yuri Ushakov said Putin had agreed \"in principle\" to resume three-way talks with Washington and Kyiv after Nov. 10, per the <a href=\"https://www.wdbj7.com/2026/10/21/trump-envoy-witkoff-meets-putin-st-petersburg-ukraine-war-talks/\" target=\"_blank\" rel=\"noopener\">AP</a>. The AP also noted there was no sign of an imminent breakthrough. Dec Chicago fell 15¢ to $6.28¼ anyway. It hit $6.21 during the session, its lowest point of the week. Meanwhile, the other ear stayed shut. Zelenskyy told Bloomberg that Russian strikes since August have cut Ukraine's port export capacity to 38% of normal, and that Russia has rejected a plan for ships flagged by Turkey, India and Egypt to call at both countries' ports, per <a href=\"https://www.global-agriculture.com/global-agriculture/ukraine-proposes-turkey-india-egypt-grain-corridor-as-black-sea-exports-collapse/\" target=\"_blank\" rel=\"noopener\">Global Agriculture</a>. Russia's defense ministry claimed strikes on five more cargo vessels, three at the Danube port of Reni and two bound for Odesa, per <a href=\"https://teucrium.substack.com/p/wheat-drops-5-on-peace-talks-but\" target=\"_blank\" rel=\"noopener\">Teucrium's weekly</a>. None of that put a bid under wheat. A promise to talk, with no date and no terms, outweighed ships actually being hit. That tells you how much the market wants peace priced in. It also tells you how quickly it could have to price it back out.",
+      "charts": [
+        "WHEAT_SRW_D.png"
+      ]
+    },
+    {
+      "html": "<strong>Then the market caught its breath.</strong> Thursday, Dec traded between $6.21½ and $6.31 and settled at $6.24¾, down 3½¢. Friday it stayed between $6.23½ and $6.31½ and settled up ¼¢. Two sessions sat inside Wednesday's range, and neither one could make a new low. Friday is worth a second look. Crude jumped more than $4 on new attacks in the Middle East, and wheat moved a quarter of a cent. On a thin day, the quiet is the signal. The sellers who drove the market down 35½¢ didn't press Wednesday's low. The buyers didn't show up to bounce it either. A market that stops falling but won't rise is resting, not turning. The quiet ends when one side commits. With funds still adding shorts and no headline due before Nov. 10, it may take a while to find out which side that is.",
+      "charts": []
+    },
+    {
+      "html": "<strong>Scout the terrain on the Dec contract.</strong> Overhead, the first ceiling is the Aug. 11 floor at $6.45¼, the one that broke last Tuesday. Above that is the Tripwire near $6.71. Below, Wednesday's $6.21 low is the first line. Under it come the July 9 low at $6.18 and the July 1 low at $6.02½. The weekly retracement mark sits at $6.06¼, and the June 30 summer low is $5.90½.  That's a map, not a forecast. Its main use is for a producer to decide on Saturday which of those levels gets a resting order on Monday. These are Dec contract prices, the contract on the Box-o-Rox chart and in the price table. The daily and weekly charts follow the nearby contract, so their labels read a little differently.",
+      "charts": []
+    },
+    {
+      "html": "<strong>The funds kept selling, and the spread shows where.</strong> The CFTC's report, with positions as of Tuesday, showed managed money adding 18,599 short contracts in Chicago in one week and trimming 851 longs. That took the net short from about 32,550 contracts to 52,005, per the <a href=\"https://www.cftc.gov/dea/futures/ag_sf.htm\" target=\"_blank\" rel=\"noopener\">CFTC</a>. <a href=\"https://teucrium.substack.com/p/wheat-drops-5-on-peace-talks-but\" target=\"_blank\" rel=\"noopener\">Teucrium</a> counts (and we count back) seven straight weeks of fund selling. In Kansas City, the funds did it the other way: they sold 6,187 longs, added 3,668 shorts, and cut their net long by more than half, to 7,490. You could watch it in the spread. KC's premium over Chicago stood at 47¼¢ at Tuesday's close. By Friday it had shrunk to 39¢, as KC lost 26¢ from Wednesday through Friday while Chicago lost 17¾¢.",
+      "charts": [
+        "COT_SRW_W.png",
+        "SPDINTER_SRW_HRW_M.png"
+      ]
+    },
+    {
+      "html": "Chicago's selling was fresh shorting. KC's was long liquidation, and long liquidation eventually runs out of longs to sell. Our COT chart uses the older, combined measure, and on that one, large traders' net short in Chicago is 29,270 contracts. That's under a third of the roughly 94,000 they held in June. So there's fuel for a short-covering pop, but the tank isn't full the way it was this summer.",
+      "charts": []
+    },
+    {
+      "html": "",
+      "charts": [
+        "COT_HRW_W.png"
+      ]
+    },
+    {
+      "html": "<strong>The class that's holding its customers is ours.</strong> Export sales for the week ending Oct. 15 were 239,600 tonnes net, about 8.8 million bushels, per USDA data via <a href=\"https://blog.pricegroup.com/2026/10/22/grains-report-10-22-2026/\" target=\"_blank\" rel=\"noopener\">the Price Group</a>. That's an ordinary week. The breakdown by class is where it gets interesting. Total U.S. commitments are 10.67 MMT, 32% behind last year's 15.80 MMT. Hard red winter is at 2.28 MMT against 6.12 MMT, 63% behind. Soft red winter and hard red spring are each about a fifth behind. Soft white is at 3.25 MMT against 3.40 MMT, only about 4½% behind a year ago, and it added another 51,000 tonnes this week. Across the Pacific, the buyers of PNW soft white are still placing orders while Plains wheat struggles to find customers. That doesn't lift a Chicago price. It does mean the PNW's customers haven't gone anywhere.",
+      "charts": []
+    },
+    {
+      "html": "<strong>The rest of the world just got bigger.</strong> <a href=\"https://veriportali.tuik.gov.tr/en/press/58012\" target=\"_blank\" rel=\"noopener\">TurkStat</a> puts Turkey's 2026 wheat crop at 24.8 MMT, up 37.9%, Turkey is one of Russia's biggest wheat customers, so that's one less large buyer needing Black Sea grain. The Buenos Aires Grain Exchange still projects a bumper Argentine crop of 23.4 MMT, though cloudy skies across the Pampas and possible frost are worth watching. France is 45% planted, three points ahead of average. Paris milling wheat fell €9.75 on the week, its biggest weekly drop since late August. A world short of wheat would have bid against the talks. This one didn't.",
+      "charts": []
+    },
+    {
+      "html": "<strong>The scissors are still open.</strong> Dec WTI crude finished the week at $103.60, up $4.13 Friday, after new Houthi attacks on Saudi Arabia and talk of more strikes on Iran. On the same day, wheat gained ¼¢. Energy is pricing a wider war while wheat prices are unmoved. These conditions can't be sustained simultaneously and indefinitely  but both have decent odds at being the wrong stance longer than a fuel bill can wait. The diesel for next spring's work gets priced off one of those markets and paid for out of the other.",
+      "charts": [
+        "NRG_CL_D.png"
+      ]
+    },
+    {
+      "html": "<strong>Box-o-Rox: EXECUTE.</strong> Friday was the 13th straight settle below the Suspend/Execute line, which sits near $6.96¾, 71¾¢ above the market. Since Tuesday, the Tripwire has fallen 11½¢ to about $6.71, and the Suspend/Execute line has eased 2½¢. Both are still bending lower to follow price. No discretionary hold is in effect. A return to SUSPEND would take a settle back above the Suspend/Execute line. The benchmark's own record is posted on <a href=\"https://www.marketbulletsllc.com/box-o-rox\" target=\"_blank\" rel=\"noopener\">the chart</a> for anyone who wants to check our work: as of Oct. 1, it had 83% of the 2026 crop priced. That's what EXECUTE is for. It doesn't mean selling at the bottom. It means the selling was mostly done before the floor gave way.",
+      "charts": [
+        "WHEAT_SRW_BOR_D.png"
+      ]
+    },
+    {
+      "html": "<strong>Marketing posture: EXECUTE, on plan. Use the weekend to set Monday's orders.</strong>",
+      "charts": []
+    },
+    {
+      "html": "• <strong>Producers:</strong> The plan's next scheduled tranche goes on schedule. What the weekend is good for is deciding where the resting offers sit before the phone rings. $6.45¼ is the first ceiling on any bounce, and the Tripwire near $6.71 is the second. Write those down tonight, so a Monday-morning pop gets used instead of chased.<br><br>• <strong>Unpriced wheat in the bin:</strong> Portland soft white is $6.25 for October and November, then $6.30 December, $6.35 January, $6.40 February and $6.45 March, per NWGRGR.COM From November to March, that's 20¢ over four months. On $6.25 wheat, that's about 0.8% a month, a little under 10% a year. The Chicago board offers only 12½¢ from Dec to March, down from 15¼¢ Tuesday, per the <a href=\"https://www.ams.usda.gov/mnreports/ams_2886.pdf\" target=\"_blank\" rel=\"noopener\">USDA settlement table</a>. The cash ladder pays better than the board. If 10% a year beats your storage cost plus the rate on the operating note, a forward sale for March prices the bushels and keeps them in the bin.<br><br>• <strong>Millers, feeders and end users:</strong> Funds added nearly 19,000 shorts in Chicago in a single week, and a meeting is on the calendar that could go either way. If the talks stall, short-covering spikes start from setups like this one. Extending coverage in scale at $6.25 Chicago is cheap insurance against the one risk that actually threatens a long hedger.<br><br>• <strong>Merchandisers:</strong> The KC-Chicago spread gave back 8¼¢ in three sessions as KC funds liquidated. The KC net long is down to 7,490, so most of that liquidation may already be done.<br><br>• <strong>Lenders and elevator managers:</strong> Mark unpriced inventory at $6.25, then run it again at $6.02½ and $5.90½. The WASDE lands Nov. 10, and the talks can start any time after that. Plan for a big move in either direction, not a quiet one.",
+      "charts": []
+    },
+    {
+      "html": "Here's the part that doesn't fit in a bullet. Saturday is the one morning of the week the market can't move on you. It's the day for the kitchen table, not the phone. Eight straight weeks down feels like a judgment on the whole operation. It isn't. It's a judgment on the war premium, and the war premium was never yours to keep. It was a gift, and the plan's job was to cash it while it was there. By the benchmark's own record, most of it got cashed. If yours did too, this weekend is for checking the plan, not for second-guessing it. If it didn't, this weekend is for writing down, in plain numbers, what price you'll take for the next tranche and where you'll take it. Then put it away and spend Sunday with the people the plan is for. The talks, the report and the funds will all still be there Monday at 5 a.m. So will we.",
+      "charts": []
+    },
+    {
+      "html": "This stuff is trackable. Let's track it.<br>Stay tuned.<br>—Gabe",
+      "charts": []
+    }
+  ],
+  "savedAt": "2026-10-25T09:24:52.900Z"
+}

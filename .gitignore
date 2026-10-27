@@ -3,3 +3,6 @@
 
 # Word lock files (created while a .docx is open)
 ~$*
+
+# Local draft preview (tools/preview_draft.py) — never published
+commentary/_PREVIEW.html
