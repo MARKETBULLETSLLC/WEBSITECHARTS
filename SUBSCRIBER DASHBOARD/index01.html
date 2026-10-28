@@ -249,7 +249,10 @@ body{background:var(--soil);color:var(--wheat-pal);font-family:var(--body);font-
 @media(max-width:900px){
   .command-bar{flex-direction:column;}
   .bor-widget{flex:unset;border-right:none;border-bottom:1px solid var(--border);}
-  .prices-wrap{padding:16px 20px;}
+  .prices-wrap{flex:none;padding:16px 20px;}  /* stacked: size to content, not flex-basis 0 (collapsed the table on phones) */
+}
+@media(max-width:600px){
+  .prices-table .pt-ohl{display:none;}  /* phones: contract, close, change only */
 }
 
 /* ════════════════════════════════════════════════════
@@ -1284,7 +1287,7 @@ function renderCommandBar(){
   // Prices table
   var tbl = document.getElementById('prices-table');
   var thead = '<thead><tr>'
-    + '<th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th>'
+    + '<th>Contract</th><th>Close</th><th>Change</th><th class="pt-ohl">Open</th><th class="pt-ohl">High</th><th class="pt-ohl">Low</th>'
     + '</tr></thead>';
   var tbody = '<tbody>';
   cfg.prices.forEach(function(p){
@@ -1293,11 +1296,11 @@ function renderCommandBar(){
     tbody += '<tr>'
       + '<td><span class="pt-contract">'+p.contract+'</span>'
         + '<span class="pt-exchange">'+p.exchange+' · '+p.ticker+' · '+p.unit+'</span></td>'
-      + '<td class="pt-val">'+p.open+'</td>'
-      + '<td class="pt-val">'+p.high+'</td>'
-      + '<td class="pt-val">'+p.low+'</td>'
       + '<td class="pt-close">'+p.close+'</td>'
       + '<td class="'+chgClass+'">'+p.chg+arrow+'</td>'
+      + '<td class="pt-val pt-ohl">'+p.open+'</td>'
+      + '<td class="pt-val pt-ohl">'+p.high+'</td>'
+      + '<td class="pt-val pt-ohl">'+p.low+'</td>'
       + '</tr>';
   });
   tbody += '</tbody>';

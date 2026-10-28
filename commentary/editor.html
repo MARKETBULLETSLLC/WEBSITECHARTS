@@ -691,13 +691,14 @@ function renderPreview(){
   $('pv-bor-widget').className = 'bor-widget ' + cls;
   $('pv-bor-detail').textContent = BOR_DETAILS[d.bor.status];
   $('pv-bor-date').textContent = 'At last close · ' + (d.bor.date || prevWeekday(d.date));
-  var rows = '<thead><tr><th>Contract</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Change</th></tr></thead><tbody>';
+  var rows = '<thead><tr><th>Contract</th><th>Close</th><th>Change</th><th>Open</th><th>High</th><th>Low</th></tr></thead><tbody>';
   d.prices.forEach(function(p){
     var meta = PRICE_ROWS.filter(function(r){ return r.ticker === p.ticker; })[0];
     var dir = chgDir(p.chg), v = function(x){ return esc(x || '—'); };
     rows += '<tr><td><span class="pt-contract" style="font-size:13px;font-weight:600;color:var(--cream)">' + v(p.contract) + '</span><span class="pt-exchange">' + esc(meta.exchange + ' · ' + meta.ticker + ' · ' + meta.unit) + '</span></td>' +
-      '<td>' + v(p.open) + '</td><td>' + v(p.high) + '</td><td>' + v(p.low) + '</td><td style="font-size:14px;font-weight:600;color:var(--wheat-lt)">' + v(p.close) + '</td>' +
-      '<td style="color:' + (dir === 'up' ? 'var(--up)' : dir === 'dn' ? 'var(--dn)' : 'inherit') + '">' + v(p.chg) + (dir === 'up' ? ' ▲' : dir === 'dn' ? ' ▼' : '') + '</td></tr>';
+      '<td style="font-size:14px;font-weight:600;color:var(--wheat-lt)">' + v(p.close) + '</td>' +
+      '<td style="color:' + (dir === 'up' ? 'var(--up)' : dir === 'dn' ? 'var(--dn)' : 'inherit') + '">' + v(p.chg) + (dir === 'up' ? ' ▲' : dir === 'dn' ? ' ▼' : '') + '</td>' +
+      '<td>' + v(p.open) + '</td><td>' + v(p.high) + '</td><td>' + v(p.low) + '</td></tr>';
   });
   $('pv-prices').innerHTML = rows + '</tbody>';
   $('pv-dateline').textContent = d.dateline || autoDateline(d.date);
