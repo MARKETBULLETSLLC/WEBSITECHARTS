@@ -6,3 +6,7 @@
 
 # Local draft preview (tools/preview_draft.py) — never published
 commentary/_PREVIEW.html
+
+# Python bytecode cache — machine-generated, rebuilt on every run
+__pycache__/
+*.pyc
