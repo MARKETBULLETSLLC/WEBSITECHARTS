@@ -666,6 +666,46 @@ footer{
   color:rgba(46,36,22,.45);
   letter-spacing:.08em;
 }
+/* ════════════════════════════════════════════════════
+   HEADHOUSE — floating back-to-top + jump list
+   Hidden while scrolling; shows when scrolling pauses,
+   lingers, then fades. Holds while hovered or open.
+════════════════════════════════════════════════════ */
+#command-bar,#commentary-wrap,#bor-chart,#wheat-futures,#chart-navigator,#wheat-weather{scroll-margin-top:72px;}
+.hh{
+  position:fixed;
+  right:calc(16px + env(safe-area-inset-right,0px));
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  z-index:9000;
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px;
+  opacity:0;visibility:hidden;transform:translateY(8px);
+  transition:opacity .35s ease,transform .35s ease,visibility 0s linear .35s;
+}
+.hh.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s ease,transform .25s ease,visibility 0s;}
+.hh-pill{display:flex;border-radius:22px;overflow:hidden;box-shadow:0 4px 16px rgba(20,14,6,.35);border:1px solid rgba(212,160,81,.55);}
+.hh-btn{
+  appearance:none;border:0;margin:0;cursor:pointer;
+  background:var(--cream);color:var(--gold);
+  font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  min-height:44px;padding:0 16px;
+  display:flex;align-items:center;gap:8px;
+}
+.hh-btn:hover,.hh-btn:focus-visible{background:#3A2E1C;color:#F5E6C0;outline:none;}
+.hh-jump{border-left:1px solid rgba(212,160,81,.35);padding:0 14px;font-size:16px;letter-spacing:0;}
+.hh-arrow{font-size:14px;line-height:1;}
+.hh-menu{
+  display:none;list-style:none;margin:0;padding:6px 0;
+  background:var(--cream);border:1px solid rgba(212,160,81,.55);border-radius:4px;
+  box-shadow:0 6px 20px rgba(20,14,6,.35);min-width:220px;
+}
+.hh.open .hh-menu{display:block;}
+.hh-menu a{
+  display:block;padding:10px 16px;
+  font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:#F5E6C0;text-decoration:none;
+}
+.hh-menu a:hover,.hh-menu a:focus-visible{background:#3A2E1C;color:var(--gold);outline:none;}
+@media (prefers-reduced-motion:reduce){.hh,.hh.show{transition:none;transform:none;}}
 </style>
 </head>
 
@@ -716,7 +756,7 @@ footer{
 <!-- ══════════════════════════════════════════════════
      4. BOX-O-ROX CHART — Standalone Signal Chart
 ══════════════════════════════════════════════════ -->
-<section class="bor-chart-section">
+<section class="bor-chart-section" id="bor-chart">
   <div class="section-eyebrow">The Warm Signal</div>
   <h2 class="section-heading">Box&#x2011;o&#x2011;Rox Signal Chart</h2>
   <a class="bor-chart-card lb-trigger"
@@ -737,7 +777,7 @@ footer{
      5. WHEAT CHART GALLERY
      Organized by exchange — SRW priority
 ══════════════════════════════════════════════════ -->
-<section class="wheat-gallery-section">
+<section class="wheat-gallery-section" id="wheat-futures">
   <div class="section-eyebrow">Chart Gallery</div>
   <h2 class="section-heading">Wheat Futures</h2>
 
@@ -855,7 +895,7 @@ footer{
      6. CHART NAVIGATOR
      Category tabs → galleries for all non-wheat charts
 ══════════════════════════════════════════════════ -->
-<section class="navigator-section">
+<section class="navigator-section" id="chart-navigator">
   <div class="section-eyebrow">Full Chart Index</div>
   <h2 class="section-heading">Chart Navigator</h2>
   <div class="nav-tabs" id="nav-tabs"></div>
@@ -865,7 +905,7 @@ footer{
 <!-- ══════════════════════════════════════════════════
      7. WHEAT WEATHER DASHBOARD
 ══════════════════════════════════════════════════ -->
-<section style="max-width:1440px;margin:0 auto;padding:40px 48px 52px;background:var(--soil);border-bottom:1px solid var(--border);">
+<section id="wheat-weather" style="max-width:1440px;margin:0 auto;padding:40px 48px 52px;background:var(--soil);border-bottom:1px solid var(--border);">
   <div class="section-eyebrow">Crop Conditions</div>
   <h2 class="section-heading">Global Wheat Weather</h2>
   <iframe
@@ -898,6 +938,26 @@ footer{
   <div class="lb-title" id="lb-title"></div>
   <span class="lb-nav lb-next" id="lb-next" title="Next">&#8250;</span>
   <div class="lb-fs-hint">Tap chart for full screen</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     HEADHOUSE — floating back-to-top + jump list
+     (moved to <body> by wireHeadhouse so Squarespace
+     block wrappers can't pin it in place)
+══════════════════════════════════════════════════ -->
+<div class="hh" id="headhouse">
+  <ul class="hh-menu" id="hh-menu" aria-label="Jump to section">
+    <li><a href="#command-bar">BoR Status &amp; Prices</a></li>
+    <li><a href="#commentary-wrap">Commentary</a></li>
+    <li><a href="#bor-chart">BoR Signal Chart</a></li>
+    <li><a href="#wheat-futures">Wheat Futures</a></li>
+    <li><a href="#chart-navigator">Chart Navigator</a></li>
+    <li><a href="#wheat-weather">Wheat Weather</a></li>
+  </ul>
+  <div class="hh-pill">
+    <button type="button" class="hh-btn" id="hh-top" aria-label="Back to top" title="Headhouse — back to top"><span class="hh-arrow" aria-hidden="true">&#9650;</span>Headhouse</button>
+    <button type="button" class="hh-btn hh-jump" id="hh-jump" aria-label="Jump to section" aria-expanded="false" aria-controls="hh-menu" title="Jump to section">&#9776;</button>
+  </div>
 </div>
 
 <!-- ══════════════════════════════════════════════════
@@ -1489,6 +1549,7 @@ document.addEventListener('DOMContentLoaded', function(){
   renderNavigator();
   wireStaticTriggers();
   wireCommentaryTriggers();
+  wireHeadhouse();
   loadLiveConfig();
 });
 
@@ -1525,6 +1586,99 @@ function loadLiveConfig(){
     .catch(function(err){
       if(window.console) console.warn('MarketBullets live update skipped:', err.message);
     });
+}
+/* ════════════════════════════════════════════════════
+   HEADHOUSE
+   Shows when scrolling pauses (past the first screen),
+   lingers HH_LINGER ms, then fades. Stays put while the
+   mouse is over it, while it has focus, or while the
+   jump list is open.
+════════════════════════════════════════════════════ */
+var HH_PAUSE  = 250;   // ms of no scrolling that counts as a pause
+var HH_LINGER = 3000;  // ms visible after a pause (long enough to tap on a phone)
+
+function wireHeadhouse(){
+  var hh = document.getElementById('headhouse');
+  if(!hh) return;
+  document.body.appendChild(hh);
+  var menu = document.getElementById('hh-menu');
+  var jump = document.getElementById('hh-jump');
+  var pauseT = null, lingerT = null, held = false;
+  var pending = null, tries = 0;  // jump target, re-aimed if lazy charts above it grow the page mid-scroll
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function isOpen(){ return hh.classList.contains('open'); }
+  function setOpen(on){ hh.classList.toggle('open', on); jump.setAttribute('aria-expanded', on ? 'true' : 'false'); }
+  function hide(){
+    if(held || isOpen()) return;
+    hh.classList.remove('show');
+  }
+  function reaim(){
+    if(!pending) return false;
+    var off = pending.getBoundingClientRect().top - (parseFloat(getComputedStyle(pending).scrollMarginTop) || 0);
+    var atBottom = window.pageYOffset + window.innerHeight >= document.documentElement.scrollHeight - 2;
+    if(Math.abs(off) > 4 && !(off > 0 && atBottom) && tries < 3){
+      tries++;
+      pending.scrollIntoView({ behavior:'auto', block:'start' });
+      return true;
+    }
+    pending = null;
+    return false;
+  }
+  function show(){
+    if(reaim()) return;
+    if(window.pageYOffset < window.innerHeight * 0.8){ hh.classList.remove('show'); setOpen(false); return; }
+    hh.classList.add('show');
+    clearTimeout(lingerT);
+    lingerT = setTimeout(hide, HH_LINGER);
+  }
+  function go(target){
+    setOpen(false);
+    held = false;
+    hh.classList.remove('show');
+    if(document.activeElement && hh.contains(document.activeElement)) document.activeElement.blur();
+    pending = target; tries = 0;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+  }
+  // The reader taking the wheel cancels any re-aim
+  ['wheel','touchmove','keydown'].forEach(function(ev){
+    window.addEventListener(ev, function(){ pending = null; }, { passive:true });
+  });
+
+  window.addEventListener('scroll', function(){
+    if(!isOpen()){ hh.classList.remove('show'); clearTimeout(lingerT); }
+    clearTimeout(pauseT);
+    pauseT = setTimeout(show, HH_PAUSE);
+  }, { passive:true });
+
+  hh.addEventListener('mouseenter', function(){ held = true; clearTimeout(lingerT); });
+  hh.addEventListener('mouseleave', function(){ held = false; clearTimeout(lingerT); lingerT = setTimeout(hide, 1200); });
+  hh.addEventListener('focusin',  function(){ held = true; clearTimeout(lingerT); });
+  hh.addEventListener('focusout', function(){ held = false; clearTimeout(lingerT); lingerT = setTimeout(hide, 1200); });
+  hh.addEventListener('touchstart', function(){ clearTimeout(lingerT); lingerT = setTimeout(hide, HH_LINGER); }, { passive:true });
+
+  document.getElementById('hh-top').addEventListener('click', function(){
+    go(document.getElementById('top') || document.body);
+  });
+  jump.addEventListener('click', function(){
+    setOpen(!isOpen());
+    clearTimeout(lingerT);
+    if(!isOpen()) lingerT = setTimeout(hide, HH_LINGER);
+  });
+  menu.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if(!t) return;
+    e.preventDefault();
+    go(t);
+  });
+  document.addEventListener('click', function(e){
+    if(isOpen() && !hh.contains(e.target)){ setOpen(false); lingerT = setTimeout(hide, 1200); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && isOpen()){ setOpen(false); jump.focus(); }
+  });
 }
 </script>
 </body>
