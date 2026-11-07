@@ -1,0 +1,90 @@
+<!--
+  MarketBullets — Trailing Cursor Ring
+  WHERE: Squarespace → Settings → Advanced → Code Injection → FOOTER (site-wide)
+         or paste into a single page's Code Injection to test on one page first.
+  WHAT:  A Wheat Gold ring that eases after the mouse pointer. The normal pointer
+         stays visible, so precision clicking and chart reading are unaffected.
+         - Grows and fills softly over links and buttons
+         - Shrinks and fades over chart images so it never covers price detail
+         - Off on touch devices and for visitors who set "reduce motion"
+  TUNE:  Change the values in the CONFIG block below. No other edits needed.
+-->
+<style>
+  .mb-ring {
+    --mb-ring-color: #D4A051;          /* Wheat Gold */
+    position: fixed; top: 0; left: 0;
+    width: 36px; height: 36px;
+    margin: -18px 0 0 -18px;           /* center on the pointer */
+    border: 2.5px solid var(--mb-ring-color);
+    border-radius: 50%;
+    /* Deep Brown halo inside and out: keeps the gold readable on light AND dark sections */
+    box-shadow: 0 0 0 1px rgba(74, 52, 37, .75), inset 0 0 0 1px rgba(74, 52, 37, .75);
+    pointer-events: none;              /* never blocks a click */
+    z-index: 2147483647;
+    opacity: 0;
+    will-change: transform;
+    transition: width .25s ease, height .25s ease, margin .25s ease,
+                background-color .25s ease, opacity .25s ease, border-width .25s ease;
+  }
+  .mb-ring.is-visible { opacity: 1; }
+  .mb-ring.is-link {
+    width: 56px; height: 56px; margin: -28px 0 0 -28px;
+    background-color: rgba(212, 160, 81, .30);
+  }
+  .mb-ring.is-chart {
+    width: 18px; height: 18px; margin: -9px 0 0 -9px;
+    opacity: .7; border-width: 1.5px;
+  }
+  .mb-ring.is-down { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+</style>
+
+<script>
+(function () {
+  var CONFIG = {
+    ease: 0.16,   // 0.05 = long lazy trail, 0.3 = tight follow
+    linkSelector:  'a, button, [role="button"], input[type="submit"], label, select, summary',
+    chartSelector: 'img, canvas, svg, iframe'
+  };
+
+  // Skip touch screens and reduce-motion visitors entirely.
+  if (!window.matchMedia ||
+      !matchMedia('(hover: hover) and (pointer: fine)').matches ||
+      matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ring = document.createElement('div');
+  ring.className = 'mb-ring';
+  ring.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(ring);
+
+  var mx = -100, my = -100, rx = mx, ry = my, running = false;
+
+  function tick() {
+    rx += (mx - rx) * CONFIG.ease;
+    ry += (my - ry) * CONFIG.ease;
+    ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
+    if (Math.abs(mx - rx) > 0.1 || Math.abs(my - ry) > 0.1) {
+      requestAnimationFrame(tick);
+    } else {
+      running = false;               // idle: stop the loop, zero CPU
+    }
+  }
+
+  document.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!ring.classList.contains('is-visible')) {
+      rx = mx; ry = my;               // first move: appear under the pointer, no swoop
+      ring.classList.add('is-visible');
+    }
+    var t = e.target;
+    var onLink  = t.closest && t.closest(CONFIG.linkSelector);
+    var onChart = !onLink && t.closest && t.closest(CONFIG.chartSelector);
+    ring.classList.toggle('is-link', !!onLink);
+    ring.classList.toggle('is-chart', !!onChart);
+    if (!running) { running = true; requestAnimationFrame(tick); }
+  }, { passive: true });
+
+  document.addEventListener('mousedown', function () { ring.classList.add('is-down'); });
+  document.addEventListener('mouseup',   function () { ring.classList.remove('is-down'); });
+  document.documentElement.addEventListener('mouseleave', function () { ring.classList.remove('is-visible'); });
+})();
+</script>
