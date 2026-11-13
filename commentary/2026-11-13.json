@@ -13,9 +13,9 @@
       "contract": "Chicago SRW (Dec)",
       "open": "6.00",
       "high": "6.03",
-      "low": "",
-      "close": "5.84¼",
-      "chg": "-0.17"
+      "low": "5.82¼",
+      "close": "5.82½",
+      "chg": "-0.18¼"
     },
     {
       "ticker": "KE",
@@ -29,18 +29,18 @@
     {
       "ticker": "MWE",
       "contract": "Minneapolis HRS (Dec)",
-      "open": "",
-      "high": "",
-      "low": "",
+      "open": "6.35",
+      "high": "6.36",
+      "low": "6.22",
       "close": "6.22",
       "chg": "-0.13½"
     },
     {
       "ticker": "EBM",
       "contract": "Paris Milling FWH (Dec)",
-      "open": "",
-      "high": "",
-      "low": "",
+      "open": "235.00",
+      "high": "235.75",
+      "low": "231.75",
       "close": "231.75",
       "chg": "-4.25"
     }
@@ -49,13 +49,13 @@
   "bullets": [
     {
       "color": "#E08050",
-      "html": "Dec Chicago closed Thursday at $5.84¼, down 17¢, the lowest close of the move and under last Friday's $5.85 low. Kansas City lost 20½¢ to $6.19. Minneapolis lost 13½¢ to $6.22. One session erased Tuesday's and Wednesday's 13¼¢ bounce.",
+      "html": "Dec Chicago closed Thursday at $5.82½, down 18¼¢, the lowest close of the move and under last Friday's $5.85 low. Kansas City lost 20½¢ to $6.19. Minneapolis lost 13½¢ to $6.22. One session erased Tuesday's and Wednesday's 13¼¢ bounce and 5¢ more.",
       "chart": null,
       "chartTitle": null
     },
     {
       "color": "#8FCB8A",
-      "html": "Overnight, most of it came back. Dec Chicago was $5.95¼, up 11¢, at 1:58 a.m. Pacific. Kansas City was $6.31¼, up 12¼¢. A close above $5.90½ today would end a ten-week losing streak.",
+      "html": "Overnight, most of it came back. Dec Chicago was $5.95¼, up 12¾¢, at 1:58 a.m. Pacific. Kansas City was $6.31¼, up 12¼¢. A close above $5.90½ today would end a ten-week losing streak.",
       "chart": null,
       "chartTitle": null
     },
@@ -85,19 +85,19 @@
     },
     {
       "color": "#E8B820",
-      "html": "Portland soft white bid $6.25 for November, about 40¾¢ over Dec Chicago (Northwest Grain Growers). Since Monday the board is down 3¾¢ and the soft white bid is up a nickel.",
+      "html": "Portland soft white bid $6.25 for November, about 42½¢ over Dec Chicago (Northwest Grain Growers). Since Monday the board is down a nickel and the soft white bid is up a nickel.",
       "chart": null,
       "chartTitle": null
     },
     {
       "color": "#E08050",
-      "html": "Paris ran up to its own Box-o-Rox line Wednesday and turned back Thursday, to €231.75, down €4.25. From the Sept. 2 highs, Chicago is down 26.5%. Paris is down 7.2%. Algeria bought more than 700,000 tonnes this week (UkrAgroConsult).",
+      "html": "Paris ran up to its own Box-o-Rox line Wednesday and turned back Thursday, to €231.75, down €4.25. From the Sept. 2 highs, Chicago is down 26.7%. Paris is down 7.2%. Algeria bought more than 700,000 tonnes this week (UkrAgroConsult).",
       "chart": null,
       "chartTitle": null
     },
     {
       "color": "#F5E6C0",
-      "html": "<strong>Box-o-Rox: EXECUTE.</strong> Thursday was the 27th straight close below the Suspend/Execute line, now $6.79¼, 95¢ above Thursday's close. Box-o-Rox informs; the marketing plan decides. <strong><a href=\"https://www.marketbulletsllc.com/box-o-rox\">See the chart and the rules →</a></strong>",
+      "html": "<strong>Box-o-Rox: EXECUTE.</strong> Thursday was the 27th straight close below the Suspend/Execute line, now $6.79¼, 96¾¢ above Thursday's close. Box-o-Rox informs; the marketing plan decides. <strong><a href=\"https://www.marketbulletsllc.com/box-o-rox\">See the chart and the rules →</a></strong>",
       "chart": "WHEAT_SRW_BOR_D.png",
       "chartTitle": "Box-o-Rox daily — EXECUTE"
     },
@@ -110,11 +110,11 @@
   ],
   "body": [
     {
-      "html": "For three weeks Chicago wheat sold a peace that hadn't happened. This week the peace table adjourned without one, and Chicago made a new low anyway. Dec closed Thursday at $5.84¼, down 17¢. That's under last Friday's $5.85 low and under Monday's $5.88 close, so it's the lowest close of the move. It also took back the whole bounce. Dec had gained 4¢ Tuesday and 9¼¢ Wednesday, to $6.01¼, its first close above $6.00 since Nov. 2. Thursday's session traded as high as $6.03 on Wednesday night and fell to about $5.82 in the final half hour, with the heaviest selling into the close. Dec is now $2.10¾ under the Sept. 2 high of $7.95, down 26.5%.",
+      "html": "For three weeks Chicago wheat sold a peace that hadn't happened. This week the peace table adjourned without one, and Chicago made a new low anyway. Dec closed Thursday at $5.82½, down 18¼¢. That's under last Friday's $5.85 low and under Monday's $5.87½ close, so it's the lowest close of the move. It also took back the whole bounce. Dec had gained 4¢ Tuesday and 9¼¢ Wednesday, to $6.00¾, its first close above $6.00 since Nov. 2. Thursday's session traded as high as $6.03 on Wednesday night and fell to $5.82¼ in the final half hour, with the heaviest selling into the close. It settled a quarter cent off the low. Dec is now $2.12½ under the Sept. 2 high of $7.95, down 26.7%.",
       "charts": ["WHEAT_SRW_D.png"]
     },
     {
-      "html": "Then the night session took most of it back. Dec Chicago climbed steadily from the open and was $5.95¼, up 11¢, at 1:58 a.m. Pacific. Kansas City was $6.31¼, up 12¼¢, at 1:29 a.m. No single headline explains it, and a market that drops 17¢ with this many shorts in it doesn't need one to bounce. Here's what the bounce puts in play: last Friday's close was $5.90½. If Dec holds above that through today's close, the ten-week losing streak ends. That's a big if, with export sales due at 5:30 a.m. Pacific.",
+      "html": "Then the night session took most of it back. Dec Chicago climbed steadily from the open and was $5.95¼, up 12¾¢, at 1:58 a.m. Pacific. Kansas City was $6.31¼, up 12¼¢, at 1:29 a.m. No single headline explains it, and a market that drops 18¼¢ with this many shorts in it doesn't need one to bounce. Here's what the bounce puts in play: last Friday's close was $5.90½. If Dec holds above that through today's close, the ten-week losing streak ends. That's a big if, with export sales due at 5:30 a.m. Pacific.",
       "charts": ["WHEAT_SRW_30Min.png"]
     },
     {
@@ -142,11 +142,11 @@
       "charts": []
     },
     {
-      "html": "<strong>Now the oddball.</strong> Minneapolis closed above Kansas City on Thursday: $6.22 against $6.19. On Monday, KC was 10½¢ over Minneapolis. KC took the hardest hit of the three on Thursday, down 20½¢, two days after USDA wrote \"second lowest on record\" next to its export line. KC's premium over Chicago narrowed to 34¾¢ from 44½¢ on Monday. On Tuesday we said Chicago had fallen out of phase with the other wheats and asked which side would do the catching up. This week's answer: Kansas City came down to meet Chicago. Chicago didn't rise to meet Kansas City. KC's low on Thursday was $6.18¾, less than 8¢ above the June 30 low at $6.11.",
+      "html": "<strong>Now the oddball.</strong> Minneapolis closed above Kansas City on Thursday: $6.22 against $6.19. On Monday, KC was 10½¢ over Minneapolis. KC took the hardest hit of the three on Thursday, down 20½¢, two days after USDA wrote \"second lowest on record\" next to its export line. KC's premium over Chicago narrowed to 36½¢ from 44½¢ on Monday. On Tuesday we said Chicago had fallen out of phase with the other wheats and asked which side would do the catching up. This week's answer: Kansas City came down to meet Chicago. Chicago didn't rise to meet Kansas City. KC's low on Thursday was $6.18¾, less than 8¢ above the June 30 low at $6.11.",
       "charts": ["WHEAT_HRW_D.png", "WHEAT_HRS_D.png", "SPDINTER_SRW_HRW_M.png"]
     },
     {
-      "html": "Paris finally blinked, a little. Euronext Dec milling wheat climbed four sessions in a row, ran up to its own Box-o-Rox line near €236.75 on Wednesday, and turned back Thursday to close at €231.75, down €4.25. It's still about €6 above last Friday's close. From the Sept. 2 highs, Chicago is down 26.5% and Paris is down 7.2%. A week ago that gap was 16 points. It's 19 now. And the buyers came to that side of the ocean: Algeria bought more than 700,000 tonnes of milling wheat this week, per UkrAgroConsult, and China booked French and Argentine cargoes, per The Grain Ledger. The world bought wheat at these prices. It didn't buy much of ours. Total Farm Marketing put it plainly on Wednesday: the U.S. hasn't picked up as many of the missed Black Sea exports as the trade hoped. A dollar at a 19-month high doesn't help. This morning's export sales report is the next read on it.",
+      "html": "Paris finally blinked, a little. Euronext Dec milling wheat climbed four sessions in a row, ran up to its own Box-o-Rox line near €236.75 on Wednesday, and turned back Thursday to close at €231.75, down €4.25. It's still about €6 above last Friday's close. From the Sept. 2 highs, Chicago is down 26.7% and Paris is down 7.2%. A week ago that gap was 16 points. It's more than 19 now. And the buyers came to that side of the ocean: Algeria bought more than 700,000 tonnes of milling wheat this week, per UkrAgroConsult, and China booked French and Argentine cargoes, per The Grain Ledger. The world bought wheat at these prices. It didn't buy much of ours. Total Farm Marketing put it plainly on Wednesday: the U.S. hasn't picked up as many of the missed Black Sea exports as the trade hoped. A dollar at a 19-month high doesn't help. This morning's export sales report is the next read on it.",
       "charts": ["WHEAT_FWH_D.png", "SPDINTER_HRW_FWH_W.png"]
     },
     {
@@ -154,7 +154,7 @@
       "charts": []
     },
     {
-      "html": "<strong>Our class did more than hold its bid this week. It raised it.</strong> Northwest Grain Growers bid November soft white at $6.25 for Portland on Thursday, about 40¾¢ over Dec Chicago. On Monday the Portland bid was $6.20 and 32¢ over. On Oct. 23 it was even with the board. Since Monday, Dec Chicago is down 3¾¢ and the soft white bid is up a nickel. Tuesday's WASDE explains why: USDA raised white wheat exports and cut white wheat stocks by 10 million bushels. The Portland bid has been saying that for three weeks. Now it's in the government's table. One more number to set beside it: USDA's season-average farm price for all U.S. wheat is $6.20. Thursday's Portland soft white bid was above it.",
+      "html": "<strong>Our class did more than hold its bid this week. It raised it.</strong> Northwest Grain Growers bid November soft white at $6.25 for Portland on Thursday, about 42½¢ over Dec Chicago. On Monday the Portland bid was $6.20 and 32½¢ over. On Oct. 23 it was even with the board. Since Monday, Dec Chicago is down a nickel and the soft white bid is up a nickel. Tuesday's WASDE explains why: USDA raised white wheat exports and cut white wheat stocks by 10 million bushels. The Portland bid has been saying that for three weeks. Now it's in the government's table. One more number to set beside it: USDA's season-average farm price for all U.S. wheat is $6.20. Thursday's Portland soft white bid was above it.",
       "charts": []
     },
     {
@@ -162,19 +162,19 @@
       "charts": []
     },
     {
-      "html": "<strong>Overhead:</strong> $5.95 to $5.97½ comes first. That's where the overnight bounce stood at 2 a.m. Pacific and where Thursday's day session failed. Next, $6.01¼ to $6.03¾: Wednesday's close and this week's highs. Beyond that, $6.10, the 20-day average, marked \"Tripwire\" on the Box-o-Rox chart.",
+      "html": "<strong>Overhead:</strong> $5.95 to $5.97½ comes first. That's where the overnight bounce stood at 2 a.m. Pacific and where Thursday's day session failed. Next, $6.00¾ to $6.03¾: Wednesday's close and this week's highs. Beyond that, $6.10, the 20-day average, marked \"Tripwire\" on the Box-o-Rox chart.",
       "charts": []
     },
     {
-      "html": "<strong>Underfoot:</strong> $5.85, last Friday's low. Then Thursday's low near $5.82, the June 15 summer low at $5.70 on our continuation chart, and the April 10 low at $5.67½.",
+      "html": "<strong>Underfoot:</strong> $5.85, last Friday's low. Then Thursday's low at $5.82¼, the June 15 summer low at $5.70 on our continuation chart, and the April 10 low at $5.67½.",
       "charts": []
     },
     {
-      "html": "On our daily chart, the 55-session downtrend line from the Aug. 28 high close runs in the low $5.80s this morning. Thursday closed right on it. The overnight trade is about a dime above it. A trade isn't a close. A close back above $5.88 says Thursday was a dollar day and not a new leg down. A close under Thursday's low says the market is headed for the summer lows. In Kansas City, the June 30 low at $6.11 is 8¢ below Thursday's close. In Minneapolis, the Feb. 27 line at $5.98½ is 23½¢ below. It's a map, not a forecast.",
+      "html": "On our daily chart, the 55-session downtrend line from the Aug. 28 high close runs in the low $5.80s this morning. Thursday closed right on it. The overnight trade is about a dime above it. A trade isn't a close. A close back above $5.87½ says Thursday was a dollar day and not a new leg down. A close under Thursday's low says the market is headed for the summer lows. In Kansas City, the June 30 low at $6.11 is 8¢ below Thursday's close. In Minneapolis, the Feb. 27 line at $5.98½ is 23½¢ below. It's a map, not a forecast.",
       "charts": []
     },
     {
-      "html": "<strong>Box-o-Rox: EXECUTE.</strong> Thursday was the 27th straight close below the Suspend/Execute line, which now sits at $6.79¼, 95¢ above Thursday's close. No discretionary hold is in effect. The line is falling better than a cent a day, so the gap narrows from above even when price does nothing. The benchmark's record is on the chart: 83% of the 2026 crop was priced as of Oct. 1.",
+      "html": "<strong>Box-o-Rox: EXECUTE.</strong> Thursday was the 27th straight close below the Suspend/Execute line, which now sits at $6.79¼, 96¾¢ above Thursday's close. No discretionary hold is in effect. The line is falling better than a cent a day, so the gap narrows from above even when price does nothing. The benchmark's record is on the chart: 83% of the 2026 crop was priced as of Oct. 1.",
       "charts": ["WHEAT_SRW_BOR_D.png"]
     },
     {
@@ -182,7 +182,7 @@
       "charts": []
     },
     {
-      "html": "• <strong>Producers:</strong> Chicago made a new low close Thursday and the Portland soft white bid went up. If you grow soft white, $6.25 is a nickel better than Monday's bid and above USDA's $6.20 season average. Check your resting offers against the cash bid this morning, not against the Chicago headline. If you grow hard red winter, the news runs the other way: KC lost 20½¢ Thursday and USDA just cut your export line. Call the elevator and ask whether basis moved with the board. The overnight bounce gives every offer resting just above the market a second look today. EXECUTE says offers at your plan's numbers are live.<br><br>• <strong>Unpriced wheat in the bin:</strong> On Monday we said to run the carry with a quarter point added to the operating line. The December hike was a what-if then. At 85% odds it's the base case. If the bin doesn't clear the interest at the higher rate, it's costing you money to hold it.<br><br>• <strong>Millers, feeders and end users:</strong> This week showed both sides of a crowded market: 13¼¢ up in two sessions, 17¢ down in one, 11¢ back overnight. Thursday's close was the cheapest of the move, $2.10¾ off the high. If coverage is thin, scale it in. Don't wait for one perfect day. Hard red winter buyers have the better opening: KC's premium over Chicago narrowed 9¾¢ this week.<br><br>• <strong>Merchandisers:</strong> Watch five things today and into the weekend:<br>&nbsp;&nbsp;– Export sales at 5:30 a.m. Pacific. The trade range is 350,000 to 650,000 tonnes. With Chicago 19 points cheaper than Paris since Labor Day, a number at the low end is a problem.<br>&nbsp;&nbsp;– The Minneapolis–KC spread. Minneapolis was 3¢ over on Thursday. Does it hold?<br>&nbsp;&nbsp;– Dec Chicago's close against $5.88 and against last Friday's $5.90½.<br>&nbsp;&nbsp;– The dollar index against Thursday's high above 103.<br>&nbsp;&nbsp;– Weekend headlines out of Moscow and Dublin. There's no meeting on the calendar, which means there's no warning either.<br><br>• <strong>Lenders and elevator managers:</strong> Mark unpriced Chicago-priced inventory at $5.84¼, then run it at $5.80 and $5.70. Mark soft white at the Portland bid. Thursday they were 40¾¢ apart. Use a quarter point higher on operating lines for December as the working assumption, and run a half point as the stress case. Fertilizer hasn't given anything back: at $1,007 a ton, per DTN's late-October survey, anhydrous still costs about 161 bushels of soft white at $6.25, before freight.",
+      "html": "• <strong>Producers:</strong> Chicago made a new low close Thursday and the Portland soft white bid went up. If you grow soft white, $6.25 is a nickel better than Monday's bid and above USDA's $6.20 season average. Check your resting offers against the cash bid this morning, not against the Chicago headline. If you grow hard red winter, the news runs the other way: KC lost 20½¢ Thursday and USDA just cut your export line. Call the elevator and ask whether basis moved with the board. The overnight bounce gives every offer resting just above the market a second look today. EXECUTE says offers at your plan's numbers are live.<br><br>• <strong>Unpriced wheat in the bin:</strong> On Monday we said to run the carry with a quarter point added to the operating line. The December hike was a what-if then. At 85% odds it's the base case. If the bin doesn't clear the interest at the higher rate, it's costing you money to hold it.<br><br>• <strong>Millers, feeders and end users:</strong> This week showed both sides of a crowded market: 13¼¢ up in two sessions, 18¼¢ down in one, 12¾¢ back overnight. Thursday's close was the cheapest of the move, $2.12½ off the high. If coverage is thin, scale it in. Don't wait for one perfect day. Hard red winter buyers have the better opening: KC's premium over Chicago narrowed 8¢ this week.<br><br>• <strong>Merchandisers:</strong> Watch five things today and into the weekend:<br>&nbsp;&nbsp;– Export sales at 5:30 a.m. Pacific. The trade range is 350,000 to 650,000 tonnes. With Chicago more than 19 points cheaper than Paris since Labor Day, a number at the low end is a problem.<br>&nbsp;&nbsp;– The Minneapolis–KC spread. Minneapolis was 3¢ over on Thursday. Does it hold?<br>&nbsp;&nbsp;– Dec Chicago's close against $5.87½ and against last Friday's $5.90½.<br>&nbsp;&nbsp;– The dollar index against Thursday's high above 103.<br>&nbsp;&nbsp;– Weekend headlines out of Moscow and Dublin. There's no meeting on the calendar, which means there's no warning either.<br><br>• <strong>Lenders and elevator managers:</strong> Mark unpriced Chicago-priced inventory at $5.82½, then run it at $5.80 and $5.70. Mark soft white at the Portland bid. Thursday they were 42½¢ apart. Use a quarter point higher on operating lines for December as the working assumption, and run a half point as the stress case. Fertilizer hasn't given anything back: at $1,007 a ton, per DTN's late-October survey, anhydrous still costs about 161 bushels of soft white at $6.25, before freight.",
       "charts": []
     },
     {
