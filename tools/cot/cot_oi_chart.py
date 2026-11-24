@@ -64,7 +64,7 @@ WEEKS = 156                     # three years on the chart
 
 # Yahoo carries no history for expired contracts, so TN is the history and Yahoo
 # only fills weeks after the last TN export.
-TN_DAILY = Path(r"C:\Users\hofer\OneDrive\Attachments\BULLETS it\SRW_Daily.txt")
+TN_DAILY = Path(r"M:\M@RKETBULLETS\BULLETS it\SRW_Daily.txt")   # moved from OneDrive\Attachments 2026-11-24
 CONTRACT_MONTHS = [(3, "H"), (5, "K"), (7, "N"), (9, "U"), (12, "Z")]
 ROLL_DAYS = 15                  # roll to the next contract ~15 days before its delivery month
 
